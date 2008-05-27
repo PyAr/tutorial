@@ -8,7 +8,7 @@ En los siguientes ejemplos, las entradas y salidas son distinguidas por la
 presencia o ausencia de los prompts (```>>>``` and ```...```): para
 reproducir los ejemplos, debes escribir todo lo que esté después del prompt,
 cuando este aparezca; las líneas que no comiencen con el prompt son las
-salidas del intérprete. Tenga en cuenta que el prompt secundario que 
+salidas del intérprete. Tenga en cuenta que el prompt secundario que
 aparece por sí sólo en una línea de un ejemplo significa que debe escribir
 una línea en blanco; esto es usado para terminar un comando multilínea.
 
@@ -30,47 +30,46 @@ Algunos ejemplos::
 
 .. _tut-calculator:
 
-Using Python as a Calculator
-============================
+Usar Python como una Calculadora
+================================
 
-Let's try some simple Python commands.  Start the interpreter and wait for the
-primary prompt, ``>>>``.  (It shouldn't take long.)
-
+Vamos a probar algunos comandos simples en Python. Inicia un intérprete y
+espera por el prompt primario, ``>>>``. (No debería demorar tanto).
 
 .. _tut-numbers:
 
-Numbers
+Números
 -------
 
-The interpreter acts as a simple calculator: you can type an expression at it
-and it will write the value.  Expression syntax is straightforward: the
-operators ``+``, ``-``, ``*`` and ``/`` work just like in most other languages
-(for example, Pascal or C); parentheses can be used for grouping.  For example::
+El intérprete actúa como una simple calculadora; puedes tipear una expresión
+y este escribirá los valores. La sintaxis es sencilla: los operadores ``+``, ``-``,
+``*`` y ``/`` funcionan como en la mayoría de los lenguajes (por ejemplo,
+Pascal o C); los paréntesis pueden ser usados para agrupar. Por ejemplo::
 
    >>> 2+2
    4
-   >>> # This is a comment
+   >>> # Este es un comentario
    ... 2+2
    4
-   >>> 2+2  # and a comment on the same line as code
+   >>> 2+2  # y un comentario en la misma línea que el código
    4
    >>> (50-5*6)/4
    5
-   >>> # Integer division returns the floor:
+   >>> # La división entera retorna el piso:
    ... 7/3
    2
    >>> 7/-3
    -3
 
-The equal sign (``'='``) is used to assign a value to a variable. Afterwards, no
-result is displayed before the next interactive prompt::
+El signo igual (``=``) es usado para asignar un valor a una variable. Luego,
+ningún resultado es mostrado antes del próximo prompt::
 
    >>> width = 20
    >>> height = 5*9
    >>> width * height
    900
 
-A value can be assigned to several variables simultaneously::
+Un valor puede ser asignado a varias variables simultáneamente::
 
    >>> x = y = z = 0  # Zero x, y and z
    >>> x
@@ -80,17 +79,18 @@ A value can be assigned to several variables simultaneously::
    >>> z
    0
 
-There is full support for floating point; operators with mixed type operands
-convert the integer operand to floating point::
+Los números de punto flotante tiene soporte completo; las operaciones con
+mezclas en los tipos de los operandos convierte los enteros a punto flotante::
 
    >>> 3 * 3.75 / 1.5
    7.5
    >>> 7.0 / 2
    3.5
 
-Complex numbers are also supported; imaginary numbers are written with a suffix
-of ``j`` or ``J``.  Complex numbers with a nonzero real component are written as
-``(real+imagj)``, or can be created with the ``complex(real, imag)`` function.
+Los números complejos también están soportados; los números imaginarios son
+escritos con el sufijo de ``j`` o ``J``. Los números complejos con un
+componente real que no sea cero son escritos como ``(real+imagj)``, o pueden
+ser escrito con la función ``complex(real, imag)``.
 ::
 
    >>> 1j * 1J
@@ -104,9 +104,9 @@ of ``j`` or ``J``.  Complex numbers with a nonzero real component are written as
    >>> (1+2j)/(1+1j)
    (1.5+0.5j)
 
-Complex numbers are always represented as two floating point numbers, the real
-and imaginary part.  To extract these parts from a complex number *z*, use
-``z.real`` and ``z.imag``.   ::
+Los números complejos son siempre representados como dos números de punto
+flotante, la parte real y la imaginaria. Para extraer estas partes desde un
+número complejo *z*, usa ``z.real`` y ``z.imag``. ::
 
    >>> a=1.5+0.5j
    >>> a.real
@@ -114,10 +114,11 @@ and imaginary part.  To extract these parts from a complex number *z*, use
    >>> a.imag
    0.5
 
-The conversion functions to floating point and integer (:func:`float`,
-:func:`int` and :func:`long`) don't work for complex numbers --- there is no one
-correct way to convert a complex number to a real number.  Use ``abs(z)`` to get
-its magnitude (as a float) or ``z.real`` to get its real part. ::
+La función de conversión de los punto flotante y enteros (:func:`float`,
+:func:`int` y :func:`long`) no funciona para números complejos --- aquí no hay
+una forma correcta de convertir un número complejo a un número real. Usa
+``abs(z)`` para obtener esta magnitud (como un flotante) o ``z.real`` para
+obtener la parte real. ::
 
    >>> a=3.0+4.0j
    >>> float(a)
@@ -132,9 +133,9 @@ its magnitude (as a float) or ``z.real`` to get its real part. ::
    5.0
    >>>
 
-In interactive mode, the last printed expression is assigned to the variable
-``_``.  This means that when you are using Python as a desk calculator, it is
-somewhat easier to continue calculations, for example::
+En el modo interactivo, la última expresion impresa es asignada a la variable
+``_``. Esto significa que cuando estés usando Python como una calculadora de
+escritorio, es más fácil seguir calculando, por ejemplo::
 
    >>> tax = 12.5 / 100
    >>> price = 100.50
@@ -146,15 +147,15 @@ somewhat easier to continue calculations, for example::
    113.06
    >>>
 
-This variable should be treated as read-only by the user.  Don't explicitly
-assign a value to it --- you would create an independent local variable with the
-same name masking the built-in variable with its magic behavior.
-
+Esta variable debería ser tratada como de sólo lectura por el usuario. No
+asignes explícitamente un valor a esta --- crearás una variable local
+independiente con el mismo nombre enmascarando la variable incorporada con el
+comportamiento mágico.
 
 .. _tut-strings:
 
-Strings
--------
+Cadenas de caracteres
+---------------------
 
 Besides numbers, Python can also manipulate strings, which can be expressed in
 several ways.  They can be enclosed in single quotes or double quotes::
@@ -211,14 +212,14 @@ Or, strings can be surrounded in a pair of matching triple-quotes: ``"""`` or
 they will be included in the string. ::
 
    print """
-   Usage: thingy [OPTIONS] 
+   Usage: thingy [OPTIONS]
         -h                        Display this usage message
         -H hostname               Hostname to connect to
    """
 
 produces the following output::
 
-   Usage: thingy [OPTIONS] 
+   Usage: thingy [OPTIONS]
         -h                        Display this usage message
         -H hostname               Hostname to connect to
 
@@ -342,10 +343,10 @@ One way to remember how slices work is to think of the indices as pointing
 Then the right edge of the last character of a string of *n* characters has
 index *n*, for example::
 
-    +---+---+---+---+---+ 
+    +---+---+---+---+---+
     | H | e | l | p | A |
-    +---+---+---+---+---+ 
-    0   1   2   3   4   5 
+    +---+---+---+---+---+
+    0   1   2   3   4   5
    -5  -4  -3  -2  -1
 
 The first row of numbers gives the position of the indices 0...5 in the string;
@@ -587,7 +588,7 @@ series as follows::
    >>> while b < 10:
    ...     print b
    ...     a, b = b, a+b
-   ... 
+   ...
    1
    1
    2
@@ -637,7 +638,7 @@ This example introduces several new features.
      >>> while b < 1000:
      ...     print b,
      ...     a, b = b, a+b
-     ... 
+     ...
      1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
 
   Note that the interpreter inserts a newline before it prints the next prompt if

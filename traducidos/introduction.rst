@@ -1,28 +1,30 @@
 .. _tut-informal:
 
 **********************************
-An Informal Introduction to Python
+Una Introducción Informal a Python
 **********************************
 
-In the following examples, input and output are distinguished by the presence or
-absence of prompts (``>>>`` and ``...``): to repeat the example, you must type
-everything after the prompt, when the prompt appears; lines that do not begin
-with a prompt are output from the interpreter. Note that a secondary prompt on a
-line by itself in an example means you must type a blank line; this is used to
-end a multi-line command.
+En los siguientes ejemplos, las entradas y salidas son distinguidas por la
+presencia o ausencia de los prompts (```>>>``` and ```...```): para
+reproducir los ejemplos, debes escribir todo lo que esté después del prompt,
+cuando este aparezca; las líneas que no comiencen con el prompt son las
+salidas del intérprete. Tenga en cuenta que el prompt secundario que 
+aparece por sí sólo en una línea de un ejemplo significa que debe escribir
+una línea en blanco; esto es usado para terminar un comando multilínea.
 
-Many of the examples in this manual, even those entered at the interactive
-prompt, include comments.  Comments in Python start with the hash character,
-``#``, and extend to the end of the physical line.  A comment may appear at
-the start of a line or following whitespace or code, but not within a string
-literal.  A hash character within a string literal is just a hash character.
+Muchos de los ejemplos de este manual, incluso aquellos que [...]. Los
+comentarios en Python comienzan con el caracter numeral, ``#``, y se
+extienden hasta el final físico de la línea. Un comentario quizás aparezca
+al comiendo de la línea o seguidos de espacios blancos o código, pero sin
+una cadena de caracteres. Un caracter numeral dentro de una cadena de
+caracteres es sólo un caracter numeral.
 
-Some examples::
+Algunos ejemplos::
 
-   # this is the first comment
-   SPAM = 1                 # and this is the second comment
-                            # ... and now a third!
-   STRING = "# This is not a comment."
+   # este es el primer comentario
+   SPAM = 1                 # y este es el segundo comentario
+                            # ... y ahora un tercero!
+   STRING = "# Este no es un comentario".
 
 
 .. _tut-calculator:

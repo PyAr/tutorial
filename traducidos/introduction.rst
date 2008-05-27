@@ -12,12 +12,13 @@ salidas del intérprete. Tenga en cuenta que el prompt secundario que
 aparece por sí sólo en una línea de un ejemplo significa que debe escribir
 una línea en blanco; esto es usado para terminar un comando multilínea.
 
-Muchos de los ejemplos de este manual, incluso aquellos que [...]. Los
-comentarios en Python comienzan con el caracter numeral, ``#``, y se
-extienden hasta el final físico de la línea. Un comentario quizás aparezca
-al comiendo de la línea o seguidos de espacios blancos o código, pero sin
-una cadena de caracteres. Un caracter numeral dentro de una cadena de
-caracteres es sólo un caracter numeral.
+Muchos de los ejemplos de este manual, incluso aquellos ingresados en el prompt
+interactivo, incluyen comentarios. Los comentarios en Python comienzan con
+el caracter numeral, ``#``, y se extienden hasta el final físico de la
+línea. Un comentario quizás aparezca al comiendo de la línea o seguidos
+de espacios blancos o código, pero sin una cadena de caracteres.
+Un caracter numeral dentro de una cadena de caracteres es sólo un caracter
+numeral.
 
 Algunos ejemplos::
 

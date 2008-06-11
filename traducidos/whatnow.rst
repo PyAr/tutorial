@@ -22,7 +22,7 @@ documentos que encontrarás en este juego son:
   la Referencia de Biblioteca te dará una idea de lo que hay disponible.
 
 * :ref:`install-index` explica cómo instalar módulos externos escritos por otros
-usuarios de Python.
+  usuarios de Python.
 
 * :ref:`reference-index`: Una descripción en detalle de la sintaxis y semántica
 de Python. Es una lectura pesada, pero útil como guía completa al lenguaje en sí.
@@ -38,9 +38,9 @@ Más recursos sobre Python:
 * http://docs.python.org:  Acceso rápido a la documentación de Python.
 
 * http://pypi.python.org: El Índice de Paquetes de Python, antes también
-  apodado "El Negocio de Quesos", es un listado de módulos de Python hechos por
-  usuarios disponibles para descargar. Cuándo comiences a publicar código,
-  puedes registrarlo aquí así otros pueden encontrarlo.
+  apodado "El Negocio de Quesos", es un listado de módulos de Python disponibles
+  para descargar hechos por otros usuarios. Cuándo comiences a publicar código,
+  puedes registrarlo aquí así los demás pueden encontrarlo.
 
 * http://aspn.activestate.com/ASPN/Python/Cookbook/: El Recetario de Python es
   una colección de tamaño considerable de ejemplos de código, módulos más

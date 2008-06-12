@@ -1,114 +1,118 @@
 .. _tut-interacting:
 
-**************************************************
-Interactive Input Editing and History Substitution
-**************************************************
+*********************************************************
+Edición de Entrada Interactiva y Sustitución de Historial
+*********************************************************
 
-Some versions of the Python interpreter support editing of the current input
-line and history substitution, similar to facilities found in the Korn shell and
-the GNU Bash shell.  This is implemented using the *GNU Readline* library, which
-supports Emacs-style and vi-style editing.  This library has its own
-documentation which I won't duplicate here; however, the basics are easily
-explained.  The interactive editing and history described here are optionally
-available in the Unix and Cygwin versions of the interpreter.
+Algunas versiones del intérprete de Python permiten editar la línea de entrada
+actual, y sustituir en base al historial, de forma similar a las capacidades
+del intérprete de comandos Korn y el GNU bash. Esto se implementa con la
+biblioteca *GNU Readline*, que soporta edición al estilo de Emacs y al estilo
+de vi. Esta biblioteca tiene su propia documentación que no duplicaré aquí;
+pero la funcionalidad básica es fácil de explicar. La edición interactiva y
+el historial aquí descriptos están disponibles como opcionales en las versiones
+para Unix y Cygwin del intérprete.
 
-This chapter does *not* document the editing facilities of Mark Hammond's
-PythonWin package or the Tk-based environment, IDLE, distributed with Python.
-The command line history recall which operates within DOS boxes on NT and some
-other DOS and Windows flavors  is yet another beast.
-
+Este capítulo *no* documenta las capacidades de edición del paquete PythonWin de
+Mark Hammond, ni del entorno IDLE basado en Tk que se distribuye con Python.
+El historial de línea de comandos que funciona en pantallas de DOS en NT y 
+algunas otras variantes de DOS y Windows es también una criatura diferente.
 
 .. _tut-lineediting:
 
-Line Editing
-============
+Edición de Línea
+================
 
-If supported, input line editing is active whenever the interpreter prints a
-primary or secondary prompt.  The current line can be edited using the
-conventional Emacs control characters.  The most important of these are:
-:kbd:`C-A` (Control-A) moves the cursor to the beginning of the line, :kbd:`C-E`
-to the end, :kbd:`C-B` moves it one position to the left, :kbd:`C-F` to the
-right.  Backspace erases the character to the left of the cursor, :kbd:`C-D` the
-character to its right. :kbd:`C-K` kills (erases) the rest of the line to the
-right of the cursor, :kbd:`C-Y` yanks back the last killed string.
-:kbd:`C-underscore` undoes the last change you made; it can be repeated for
-cumulative effect.
-
+De estar soportada, la edición de línea de entrada se activa en cuanto el
+intérprete muestra un símbolo de espera de ordenes primario o secundario. La
+línea activa puede editarse usando los caracteres de control convencionales
+de Emacs. De estos, los más importantes son:
+:kbd:`C-A` (Ctrl-A) mueve el cursor al comienzo de la línea, :kbd:`C-E`
+al final, :kbd:`C-B` lo mueve una posición a la izquierda, :kbd:`C-F` a la
+derecha. La tecla de retroceso (Backspace) borra el caracter a la izquierda
+del cursor, :kbd:`C-D` el caracter a su derecha. :kbd:`C-K` corta el resto de la
+línea a la derecha del cursor, :kbd:`C-Y` pega de vuelta la última cadena cortada.
+:kbd:`C-underscore` deshace el último cambio hecho; puede repetirse para obtener
+un efecto acumulativo.
 
 .. _tut-history:
 
-History Substitution
-====================
+Sustitución de historial
+========================
 
-History substitution works as follows.  All non-empty input lines issued are
-saved in a history buffer, and when a new prompt is given you are positioned on
-a new line at the bottom of this buffer. :kbd:`C-P` moves one line up (back) in
-the history buffer, :kbd:`C-N` moves one down.  Any line in the history buffer
-can be edited; an asterisk appears in front of the prompt to mark a line as
-modified.  Pressing the :kbd:`Return` key passes the current line to the
-interpreter.  :kbd:`C-R` starts an incremental reverse search; :kbd:`C-S` starts
-a forward search.
-
+La sustitución de historial funciona de la siguiente manera: todas las líneas
+ingresadas y no vacías se almacenan en una memoria intermedia, y cuando se te
+pide una nueva línea, estás posicionado en una linea nueva al final de esta
+memoria. :kbd:`C-P` se mueve una línea hacia arriba (es decir, hacia atrás) en
+el historial, :kbd:`C-N` se mueve una línea hacia abajo. Cualquier línea en el
+historial puede editarse; aparecera un asterisco adelante del indicador de
+entrada para marcar una línea como editada. Presionando la tecla :kbd:`Return` 
+(Intro) se pasa la líne activa al intérprete. :kbd:`C-R` inicia una búsqueda
+incremental hacia atrás, :kbd:`C-S` inicia una búsqueda hacia adelante.
 
 .. _tut-keybindings:
 
-Key Bindings
-============
+Atajos de teclado
+=================
 
-The key bindings and some other parameters of the Readline library can be
-customized by placing commands in an initialization file called
-:file:`~/.inputrc`.  Key bindings have the form ::
+Los atajos de teclado y algunos otros parámetros de la biblioteca Readlina se
+pueden personalizar poniendo comandos en un archivo de inicialización llamado
+:file:`~/.inputrc`.  Los atajos de teclado tienen la forma ::
 
-   key-name: function-name
+   nombre-de-tecla: nombre-de-función
 
-or ::
+o ::
 
-   "string": function-name
+   "cadena": nombre-de-función
 
-and options can be set with ::
+y se pueden configurar opciones con ::
 
-   set option-name value
+   set nombre-opción valor
 
-For example::
+Por ejemplo::
 
-   # I prefer vi-style editing:
+   # Prefiero edición al estilo vi:
    set editing-mode vi
 
-   # Edit using a single line:
+   # Editar usando sólo un renglón:
    set horizontal-scroll-mode On
 
-   # Rebind some keys:
+   # Reasociar algunas teclas:
    Meta-h: backward-kill-word
    "\C-u": universal-argument
    "\C-x\C-r": re-read-init-file
 
-Note that the default binding for :kbd:`Tab` in Python is to insert a :kbd:`Tab`
-character instead of Readline's default filename completion function.  If you
-insist, you can override this by putting ::
+Observa que la asociación por omision para la tecla :kbd:`Tab` en Python es
+insertar un caracter  :kbd:`Tab` (tabulación horizontal) en vez de la función
+por defecto de Readline de completar nombres de archivo. Si insistes, puedes
+redefinir esto poniendo ::
 
    Tab: complete
 
-in your :file:`~/.inputrc`.  (Of course, this makes it harder to type indented
-continuation lines if you're accustomed to using :kbd:`Tab` for that purpose.)
+en tu :file:`~/.inputrc`.  (Desde luego, esto hace más difícil escribir líneas
+de continuación indentadas si estás acostumbrado a usar :kbd:`Tab` para tal
+propósito.)
 
 .. index::
    module: rlcompleter
    module: readline
 
-Automatic completion of variable and module names is optionally available.  To
-enable it in the interpreter's interactive mode, add the following to your
-startup file: [#]_  ::
+Hay disponible opcionalmente completado automático de variables y nombres de
+módulos. Para activarlo en el modo interactivo del intérprete, agrega lo
+siguiente a tu archivo de arranque: [#]_  ::
 
    import rlcompleter, readline
    readline.parse_and_bind('tab: complete')
 
-This binds the :kbd:`Tab` key to the completion function, so hitting the
-:kbd:`Tab` key twice suggests completions; it looks at Python statement names,
-the current local variables, and the available module names.  For dotted
-expressions such as ``string.a``, it will evaluate the expression up to the
-final ``'.'`` and then suggest completions from the attributes of the resulting
-object.  Note that this may execute application-defined code if an object with a
-:meth:`__getattr__` method is part of the expression.
+Esto asocia la tecla :kbd:`Tab` a la función de completado, con lo cual presionar
+la tecla 
+:kbd:`Tab` dos veces sugerira valores para completar; se fija en nombres de
+instrucciones Python, las variables locales del momento, y los nombres de
+módulos disponibles. Para expresiones con puntos como ``string.a``, evaluará
+la expresión hasta el último ``'.'`` y luego sugerirá opciones a completar de
+los atributos de el objeto resultante. Tenga en cuenta que esto puede ejecutar
+código definido por la aplicación si un objeto con un método :meth:`__getattr__`
+forma parte de la expresión.
 
 A more capable startup file might look like this example.  Note that this
 deletes the names it creates once they are no longer needed; this is done since

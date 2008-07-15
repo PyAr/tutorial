@@ -45,9 +45,9 @@ ingresadas y no vacías se almacenan en una memoria intermedia, y cuando se te
 pide una nueva línea, estás posicionado en una linea nueva al final de esta
 memoria. :kbd:`C-P` se mueve una línea hacia arriba (es decir, hacia atrás) en
 el historial, :kbd:`C-N` se mueve una línea hacia abajo. Cualquier línea en el
-historial puede editarse; aparecera un asterisco adelante del indicador de
+historial puede editarse; aparecerá un asterisco adelante del indicador de
 entrada para marcar una línea como editada. Presionando la tecla :kbd:`Return` 
-(Intro) se pasa la líne activa al intérprete. :kbd:`C-R` inicia una búsqueda
+(Intro) se pasa la línea activa al intérprete. :kbd:`C-R` inicia una búsqueda
 incremental hacia atrás, :kbd:`C-S` inicia una búsqueda hacia adelante.
 
 .. _tut-keybindings:
@@ -55,7 +55,7 @@ incremental hacia atrás, :kbd:`C-S` inicia una búsqueda hacia adelante.
 Atajos de teclado
 =================
 
-Los atajos de teclado y algunos otros parámetros de la biblioteca Readlina se
+Los atajos de teclado y algunos otros parámetros de la biblioteca Readline se
 pueden personalizar poniendo comandos en un archivo de inicialización llamado
 :file:`~/.inputrc`.  Los atajos de teclado tienen la forma ::
 
@@ -82,7 +82,7 @@ Por ejemplo::
    "\C-u": universal-argument
    "\C-x\C-r": re-read-init-file
 
-Observa que la asociación por omision para la tecla :kbd:`Tab` en Python es
+Observa que la asociación por omisión para la tecla :kbd:`Tab` en Python es
 insertar un caracter  :kbd:`Tab` (tabulación horizontal) en vez de la función
 por defecto de Readline de completar nombres de archivo. Si insistes, puedes
 redefinir esto poniendo ::
@@ -106,7 +106,7 @@ siguiente a tu archivo de arranque: [#]_  ::
 
 Esto asocia la tecla :kbd:`Tab` a la función de completado, con lo cual presionar
 la tecla 
-:kbd:`Tab` dos veces sugerira valores para completar; se fija en nombres de
+:kbd:`Tab` dos veces sugerirá valores para completar; se fija en nombres de
 instrucciones Python, las variables locales del momento, y los nombres de
 módulos disponibles. Para expresiones con puntos como ``string.a``, evaluará
 la expresión hasta el último ``'.'`` y luego sugerirá opciones a completar de
@@ -114,23 +114,25 @@ los atributos de el objeto resultante. Tenga en cuenta que esto puede ejecutar
 código definido por la aplicación si un objeto con un método :meth:`__getattr__`
 forma parte de la expresión.
 
-A more capable startup file might look like this example.  Note that this
-deletes the names it creates once they are no longer needed; this is done since
-the startup file is executed in the same namespace as the interactive commands,
-and removing the names avoids creating side effects in the interactive
-environment.  You may find it convenient to keep some of the imported modules,
-such as :mod:`os`, which turn out to be needed in most sessions with the
-interpreter. ::
+Un archivo de inicialización con más capacidades podría ser como este ejemplo.
+Observa que éste borra los nombres que crea una vez que no se necesitan más;
+esto se hace debido a que el archivo de inicialización se ejecuta en el mismo
+espacio de nombres que los comandos interactivos, y borrar los nombres evita
+que se produzcan efectos colaterales en el entorno interactivo. Tal vez te
+resulte cómodo mantener algunos de los módulos importados, tales como :mod:`os`,
+que usualmente acaban siendo necesarios en la mayoría de las sesiones con el
+intérprete. ::
 
-   # Add auto-completion and a stored history file of commands to your Python
-   # interactive interpreter. Requires Python 2.0+, readline. Autocomplete is
-   # bound to the Esc key by default (you can change it - see readline docs).
+   # Añadir auto-completado y almacenamiento de archivo de histórico a tu
+   # intérprete de Python interactivo. Requiere Python 2.0+, y readline.
+   # El autocompletado esta ligado a la tecla Esc por defecto (puedes
+   # modificarlo - lee la documentación de readline).
    #
-   # Store the file in ~/.pystartup, and set an environment variable to point
-   # to it:  "export PYTHONSTARTUP=/home/user/.pystartup" in bash.
+   # Guarda este archivo en ~/.pystartup, y configura una variable de inicio
+   # para que lo apunte: en bash "export PYTHONSTARTUP=/home/usuario/.pystartup".
    #
-   # Note that PYTHONSTARTUP does *not* expand "~", so you have to put in the
-   # full path to your home directory.
+   # Ten en cuenta que PYTHONSTARTUP *no* expande "~", así que debes poner
+   # la ruta completa a tu directorio personal.
 
    import atexit
    import os
@@ -152,20 +154,19 @@ interpreter. ::
 
 .. _tut-commentary:
 
-Commentary
+Comentario
 ==========
 
-This facility is an enormous step forward compared to earlier versions of the
-interpreter; however, some wishes are left: It would be nice if the proper
-indentation were suggested on continuation lines (the parser knows if an indent
-token is required next).  The completion mechanism might use the interpreter's
-symbol table.  A command to check (or even suggest) matching parentheses,
-quotes, etc., would also be useful.
+Esta funcionalidad es un paso enorme hacia adelante comparado con versiones
+anteriores del interprete; de todos modos, quedan pendientes algunos deseos:
+sería bueno si la indentación correcta se sugiriera en las lineas de
+continuación (el parser sabe si se requiere una indentación a continuación).
+El mecanismo de completado podría usar la tabla de símbolos del intérprete.
+Un comando para verificar (o incluso sugerir) coincidencia de paréntesis,
+comillas, etc. también sería útil.
 
+.. rubric:: Notas
 
-.. rubric:: Footnotes
-
-.. [#] Python will execute the contents of a file identified by the
-   :envvar:`PYTHONSTARTUP` environment variable when you start an interactive
-   interpreter.
+.. [#] Python ejecutará el contenido de un archivo indicado por la variable de
+   entorno :envvar:`PYTHONSTARTUP` cuando inicies un intérprete interactivo.
 

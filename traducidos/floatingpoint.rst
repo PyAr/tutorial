@@ -1,173 +1,187 @@
 .. _tut-fp-issues:
 
-**************************************************
-Floating Point Arithmetic:  Issues and Limitations
-**************************************************
+******************************************************
+Aritmética de Punto Flotante: Problemas y Limitaciones
+******************************************************
 
 .. sectionauthor:: Tim Peters <tim_one@users.sourceforge.net>
 
 
-Floating-point numbers are represented in computer hardware as base 2 (binary)
-fractions.  For example, the decimal fraction ::
+Los números de punto flotante se representan en el hardware de la
+computadora en fracciones en base 2 (binario).  Por ejemplo, la fracción
+decimal ::
 
    0.125
 
-has value 1/10 + 2/100 + 5/1000, and in the same way the binary fraction ::
+tiene el valor 1/10 + 2/100 + 5/1000, y de la misma manera la fracción
+binaria ::
 
    0.001
 
-has value 0/2 + 0/4 + 1/8.  These two fractions have identical values, the only
-real difference being that the first is written in base 10 fractional notation,
-and the second in base 2.
+tiene el valor 0/2 + 0/4 + 1/8.  Estas dos fracciones tienen valores
+idénticos, la única diferencia real es que la primera está escrita en
+notación fraccional en base 10 y la segunda en base 2.
 
-Unfortunately, most decimal fractions cannot be represented exactly as binary
-fractions.  A consequence is that, in general, the decimal floating-point
-numbers you enter are only approximated by the binary floating-point numbers
-actually stored in the machine.
+Desafortunadamente, la mayoría de las fracciones decimales no pueden
+representarse exactamente como fracciones binarias.  Como consecuencia, en
+general los números de punto flotante decimal que ingresás en la computadora
+son sólo aproximados por los números de punto flotante binario que realmente
+se guardan en la máquina.
 
-The problem is easier to understand at first in base 10.  Consider the fraction
-1/3.  You can approximate that as a base 10 fraction::
+El problema es más fácil de entender primero en base 10.  Considerá la
+fracción 1/3.  Podés aproximarla como una fracción de base 10 ::
 
    0.3
 
-or, better, ::
+o, mejor, ::
+
 
    0.33
 
-or, better, ::
+o, mejor, ::
 
    0.333
 
-and so on.  No matter how many digits you're willing to write down, the result
-will never be exactly 1/3, but will be an increasingly better approximation of
-1/3.
+y así.  No importa cuantos dígitos desees escribir, el resultado nunca será
+exactamente 1/3, pero será una aproximación cada vez mejor de 1/3.
 
-In the same way, no matter how many base 2 digits you're willing to use, the
-decimal value 0.1 cannot be represented exactly as a base 2 fraction.  In base
-2, 1/10 is the infinitely repeating fraction ::
+De la misma manera, no importa cuantos dígitos en base 2 quieras usar, el
+valor decimal 0.1 no puede representarse exactamente como una fracción en
+base 2.  En base 2, 1/10 es la siguiente fracción que se repite
+infinitamente::
 
    0.0001100110011001100110011001100110011001100110011...
 
-Stop at any finite number of bits, and you get an approximation.  This is why
-you see things like::
+Frená en cualquier número finito de bits, y tendrás una aproximación.  Es
+por esto que ves cosas como::
 
    >>> 0.1
    0.10000000000000001
 
-On most machines today, that is what you'll see if you enter 0.1 at a Python
-prompt.  You may not, though, because the number of bits used by the hardware to
-store floating-point values can vary across machines, and Python only prints a
-decimal approximation to the true decimal value of the binary approximation
-stored by the machine.  On most machines, if Python were to print the true
-decimal value of the binary approximation stored for 0.1, it would have to
-display ::
+En la mayoría de las máquinas de hoy en día, eso es lo que verás si ingresás
+0.1 en un prompt de Python.  Quizás no, sin embargo, porque la cantidad de
+bits usados por el hardware para almacenar valores de punto flotante puede
+variar en las distintas máquinas, y Python sólo muestra una aproximación del
+valor decimal verdadero de la aproximación binaria guardada por la máquina.
+En la mayoría de las máquinas, si Python fuera a mostrar el verdadero valor
+decimal de la aproximación almacenada por 0.1, tendría que mostrar sin
+embargo ::
 
    >>> 0.1
    0.1000000000000000055511151231257827021181583404541015625
 
-instead!  The Python prompt uses the builtin :func:`repr` function to obtain a
-string version of everything it displays.  For floats, ``repr(float)`` rounds
-the true decimal value to 17 significant digits, giving ::
+El prompt de Python usa la función integrada :func:`repr` para obtener una
+versión en cadena de caracteres de todo lo que muestra.  Para flotantes,
+``repr(float)`` redondea el valor decimal verdadero a 17 dígitos
+significativos, dando ::
 
    0.10000000000000001
 
-``repr(float)`` produces 17 significant digits because it turns out that's
-enough (on most machines) so that ``eval(repr(x)) == x`` exactly for all finite
-floats *x*, but rounding to 16 digits is not enough to make that true.
+``repr(float)`` produce 17 dígitos significativos porque esto es suficiente
+(en la mayoría de las máquinas) para que se cumpla ``eval(repr(x)) == x``
+exactamente para todos los flotantes finitos *X*, pero redondeando a 16
+dígitos no es suficiente para que sea verdadero.
 
-Note that this is in the very nature of binary floating-point: this is not a bug
-in Python, and it is not a bug in your code either.  You'll see the same kind of
-thing in all languages that support your hardware's floating-point arithmetic
-(although some languages may not *display* the difference by default, or in all
-output modes).
+Notá que esta es la verdadera naturaleza del punto flotante binario: no es
+un bug de Python, y tampoco es un bug en tu código.  Verás lo mismo en todos
+los lenguajes que soportan la aritmética de punto flotante de tu hardware (a
+pesar de que en algunos lenguajes por default no *muestren* la diferencia, o
+no lo hagan en todos los modos de salida).
 
-Python's builtin :func:`str` function produces only 12 significant digits, and
-you may wish to use that instead.  It's unusual for ``eval(str(x))`` to
-reproduce *x*, but the output may be more pleasant to look at::
+La función integrada :func: `str` de Python produce sólo 12 dígitos
+significativos, y quizás quieras usar esa.  Normalmente ``eval(str(x))`` no
+reproducirá `x`, pero la salida quizás sea más placentera de ver::
 
    >>> print str(0.1)
    0.1
 
-It's important to realize that this is, in a real sense, an illusion: the value
-in the machine is not exactly 1/10, you're simply rounding the *display* of the
-true machine value.
+Es importante darse cuenta de que esto es, realmente, una ilusión: el valor
+en la máquina no es exactamente 1/10, simplemente estás redondeando el valor
+que se *muestra* del valor verdadero de la máquina.
 
-Other surprises follow from this one.  For example, after seeing ::
+A esta se siguen otras sorpresas.  Por ejemplo, luego de ver::
 
    >>> 0.1
    0.10000000000000001
 
-you may be tempted to use the :func:`round` function to chop it back to the
-single digit you expect.  But that makes no difference::
+quizás estés tentado de usar la función :func:`round` para recortar el
+resultado al dígito que esperabas.  Pero es lo mismo::
 
    >>> round(0.1, 1)
    0.10000000000000001
 
-The problem is that the binary floating-point value stored for "0.1" was already
-the best possible binary approximation to 1/10, so trying to round it again
-can't make it better:  it was already as good as it gets.
+El problema es que el valor de punto flotante binario almacenado para "0.1"
+ya era la mejor aproximación binaria posible de 1/10, de manera que intentar
+redondearla nuevamente no puede mejorarla: ya era la mejor posible.
 
-Another consequence is that since 0.1 is not exactly 1/10, summing ten values of
-0.1 may not yield exactly 1.0, either::
+Otra consecuencia es que como 0.1 no es exactamente 1/10, sumar diez valores
+de 0.1 quizás tampoco dé exactamente 1.0::
 
-   >>> sum = 0.0
+   >>> suma = 0.0
    >>> for i in range(10):
-   ...     sum += 0.1
+   ...     suma += 0.1
    ...
-   >>> sum
+   >>> suma
    0.99999999999999989
 
-Binary floating-point arithmetic holds many surprises like this.  The problem
-with "0.1" is explained in precise detail below, in the "Representation Error"
-section.  See `The Perils of Floating Point <http://www.lahey.com/float.htm>`_
-for a more complete account of other common surprises.
+La aritmética de punto flotante binaria tiene varias sorpresas como esta.
+El problema con "0.1" es explicado con detalle abajo, en la sección "Error
+de Representación".  Mirá los Peligros del Punto Flotante (en inglés,
+`The Perils of Floating Point <http://www.lahey.com/float.htm>`_) para una
+más completa recopilación de otras sorpresas normales.
 
-As that says near the end, "there are no easy answers."  Still, don't be unduly
-wary of floating-point!  The errors in Python float operations are inherited
-from the floating-point hardware, and on most machines are on the order of no
-more than 1 part in 2\*\*53 per operation.  That's more than adequate for most
-tasks, but you do need to keep in mind that it's not decimal arithmetic, and
-that every float operation can suffer a new rounding error.
+Como dice cerca del final, "no hay respuestas fáciles".  A pesar de eso,
+¡no le tengas mucho miedo al punto flotante!  Los errores en las operaciones
+flotantes de Python se heredan del hardware de punto flotante, y en la
+mayoría de las máquinas están en el orden de no más de una 1 parte en
+2\*\*53 por operación.  Eso es más que adecuado para la mayoría de las
+tareas, pero necesitás tener en cuenta que no es aritmética decimal, y que
+cada operación de punto flotante sufre un nuevo error de redondeo.
 
-While pathological cases do exist, for most casual use of floating-point
-arithmetic you'll see the result you expect in the end if you simply round the
-display of your final results to the number of decimal digits you expect.
-:func:`str` usually suffices, and for finer control see the :meth:`str.format`
-method's format specifiers in :ref:`formatstrings`.
+A pesar de que existen casos patológicos, para la mayoría de usos casuales
+de la aritmética de punto flotante al final verás el resultado que esperás
+si simplemente redondeás lo que mostrás de tus resultados finales al número
+de dígitos decimales que esperás.  :func:`str` es normalmente suficiente, y
+para un control más fino mirá los parámetros del método de formateo
+:meth:`str.format` en :ref:`formatstrings`.
 
 
 .. _tut-fp-error:
 
-Representation Error
-====================
+Error de Representación
+=======================
 
-This section explains the "0.1" example in detail, and shows how you can perform
-an exact analysis of cases like this yourself.  Basic familiarity with binary
-floating-point representation is assumed.
+Esta sección explica el ejemplo "0.1" en detalle, y muestra como en la
+mayoría de los casos vos mismo podés realizar un análisis exacto como este.
+Se asume un conocimiento básico de la representación de punto flotante
+binario.
 
-:dfn:`Representation error` refers to the fact that some (most, actually)
-decimal fractions cannot be represented exactly as binary (base 2) fractions.
-This is the chief reason why Python (or Perl, C, C++, Java, Fortran, and many
-others) often won't display the exact decimal number you expect::
+:dfn:`Error de representación` se refiere al hecho de que algunas (la
+mayoría) de las fracciones decimales no pueden representarse exactamente
+como fracciones binarias (en base 2).  Esta es la razón principal de por qué
+Python (o Perl, C, C++, Java, Fortran, y tantos otros) frecuentemente no
+mostrarán el número decimal exacto que esperás::
 
    >>> 0.1
    0.10000000000000001
 
-Why is that?  1/10 is not exactly representable as a binary fraction. Almost all
-machines today (November 2000) use IEEE-754 floating point arithmetic, and
-almost all platforms map Python floats to IEEE-754 "double precision".  754
-doubles contain 53 bits of precision, so on input the computer strives to
-convert 0.1 to the closest fraction it can of the form *J*/2\*\**N* where *J* is
-an integer containing exactly 53 bits.  Rewriting ::
+¿Por qué es eso?  1/10 no es representable exactamente como una fracción
+binaria.  Casi todas las máquinas de hoy en día (Noviembre del 2000) usan
+aritmética de punto flotante IEEE-754, y casi todas las plataformas mapean
+los flotantes de Python al "doble precisión" de IEEE-754.  Estos "dobles"
+tienen 53 bits de precisión, por lo tanto en la entrada la computadora
+intenta convertir 0.1 a la fracción más cercana que puede de la forma
+*J*/2\*\**N* donde *J* es un entero que contiene exactamente 53 bits.
+Reescribiendo ::
 
    1 / 10 ~= J / (2**N)
 
-as ::
+como ::
 
    J ~= 2**N / 10
 
-and recalling that *J* has exactly 53 bits (is ``>= 2**52`` but ``< 2**53``),
-the best value for *N* is 56::
+y recordando que *J* tiene exactamente 53 bits (es ``>= 2**52`` pero
+``< 2**53``), el mejor valor para *N* es 56::
 
    >>> 2**52
    4503599627370496L
@@ -176,44 +190,43 @@ the best value for *N* is 56::
    >>> 2**56/10
    7205759403792793L
 
-That is, 56 is the only value for *N* that leaves *J* with exactly 53 bits.  The
-best possible value for *J* is then that quotient rounded::
+O sea, 56 es el único valor para *N* que deja *J* con exactamente 53 bits.
+El mejor valor posible para *J* es entonces el cociente redondeado::
 
    >>> q, r = divmod(2**56, 10)
    >>> r
    6L
 
-Since the remainder is more than half of 10, the best approximation is obtained
-by rounding up::
+Ya que el resto es más que la mitad de 10, la mejor aproximación se obtiene
+redondeándolo::
 
    >>> q+1
    7205759403792794L
 
-Therefore the best possible approximation to 1/10 in 754 double precision is
-that over 2\*\*56, or ::
+Por lo tanto la mejor aproximación a 1/10 en doble precisión 754 es eso
+sobre 2\*\*56, o ::
 
    7205759403792794 / 72057594037927936
 
-Note that since we rounded up, this is actually a little bit larger than 1/10;
-if we had not rounded up, the quotient would have been a little bit smaller than
-1/10.  But in no case can it be *exactly* 1/10!
+Notá que como lo redondeamos, esto es un poquito más grande que 1/10; si no
+lo hubiéramos redondeado, el cociente hubiese sido un poquito menor que
+1/10.  ¡Pero no hay caso en que sea *exactamente* 1/10!
 
-So the computer never "sees" 1/10:  what it sees is the exact fraction given
-above, the best 754 double approximation it can get::
+Entonces la computadora nunca "ve" 1/10:  lo que ve es la fracción exacta de
+arriba, la mejor aproximación al flotante doble de 754 que puede obtener::
 
    >>> .1 * 2**56
    7205759403792794.0
 
-If we multiply that fraction by 10\*\*30, we can see the (truncated) value of
-its 30 most significant decimal digits::
+Si multiplicamos esa fracción por 10\*\*30, podemos ver el valor (truncado)
+de sus 30 dígitos más significativos::
 
    >>> 7205759403792794 * 10**30 / 2**56
    100000000000000005551115123125L
 
-meaning that the exact number stored in the computer is approximately equal to
-the decimal value 0.100000000000000005551115123125.  Rounding that to 17
-significant digits gives the 0.10000000000000001 that Python displays (well,
-will display on any 754-conforming platform that does best-possible input and
-output conversions in its C library --- yours may not!).
-
-
+lo que significa que el valor exacto almacenado en la computadora es
+aproximadamente igual al valor decimal 0.100000000000000005551115123125.
+Redondeando eso a 17 dígitos significativos da el 0.10000000000000001 que
+Python muestra (bueno, mostraría en cualquier plataforma que cumpla con 754
+cuya biblioteca en C haga la mejor conversión posible en entrada y
+salida... ¡la tuya quizás no!).

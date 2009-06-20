@@ -1,18 +1,19 @@
 .. _tut-classes:
 
-*******
-Classes
-*******
+******
+Clases
+******
 
-Python's class mechanism adds classes to the language with a minimum of new
-syntax and semantics.  It is a mixture of the class mechanisms found in C++ and
-Modula-3.  As is true for modules, classes in Python do not put an absolute
-barrier between definition and user, but rather rely on the politeness of the
-user not to "break into the definition."  The most important features of classes
-are retained with full power, however: the class inheritance mechanism allows
-multiple base classes, a derived class can override any methods of its base
-class or classes, and a method can call the method of a base class with the same
-name.  Objects can contain an arbitrary amount of private data.
+El mecanismo de clases de Python agrega clases al lenguaje con un mínimo de
+nuevas sintáxis y semánticas.  Es una mezcla de los mecanismos de clase
+encontrados en C++ y Modula-3.  Como es cierto para los módulos, las clases en
+Python no ponen una barrera absoluta entre la definición y el usuario, sino que
+más bien se apoya en la cortesía del usuario de no "forzar la definición".  Sin
+embargo, se mantiene el poder completo de las características más importantes
+de las clases: el mecanismo de la herencia de clases permite múltiples clases
+base, una clase derivada puede sobreescribir cualquier método de su(s) clase(s)
+base, y un método puede llamar al método de la clase base con el mismo nombre.
+Los objetos pueden tener una cantidad arbitraria de datos privados.
 
 In C++ terminology, all class members (including the data members) are *public*,
 and all member functions are *virtual*.  There are no special constructors or
@@ -252,7 +253,7 @@ are passed on to :meth:`__init__`.  For example, ::
    ...     def __init__(self, realpart, imagpart):
    ...         self.r = realpart
    ...         self.i = imagpart
-   ... 
+   ...
    >>> x = Complex(3.0, -4.5)
    >>> x.r, x.i
    (3.0, -4.5)
@@ -483,7 +484,7 @@ Python has two builtin functions that work with inheritance:
   ``issubclass(unicode, str)`` is ``False`` since :class:`unicode` is not a
   subclass of :class:`str` (they only share a common ancestor,
   :class:`basestring`).
-  
+
 
 
 .. _tut-multiple:

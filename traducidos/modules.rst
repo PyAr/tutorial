@@ -1,54 +1,56 @@
 .. _tut-modules:
 
 *******
-Modules
+Módulos
 *******
 
-If you quit from the Python interpreter and enter it again, the definitions you
-have made (functions and variables) are lost. Therefore, if you want to write a
-somewhat longer program, you are better off using a text editor to prepare the
-input for the interpreter and running it with that file as input instead.  This
-is known as creating a *script*.  As your program gets longer, you may want to
-split it into several files for easier maintenance.  You may also want to use a
-handy function that you've written in several programs without copying its
-definition into each program.
+Si salís del intérprete de Python y entrás de nuevo, las definiciones que
+hiciste (funciones y variables) se pierden.  Por lo tanto, si querés escribir
+un programa más o menos largo, es mejor que uses un editor de texto para
+preparar la entrada para el interprete y ejecutarlo con ese archivo como
+entrada.  Esto es conocido como crear un *guión*, o *script*.  Si tu programa
+se vuelve más largo, quizás quieras separarlo en distintos archivos para un
+mantenimiento más fácil.  Quizás también quieras usar una función útil que
+escribiste desde distintos programas sin copiar su definición a cada programa.
 
-To support this, Python has a way to put definitions in a file and use them in a
-script or in an interactive instance of the interpreter. Such a file is called a
-*module*; definitions from a module can be *imported* into other modules or into
-the *main* module (the collection of variables that you have access to in a
-script executed at the top level and in calculator mode).
+Para soportar esto, Python tiene una manera de poner definiciones en un archivo
+y usarlos en un script o en una instancia interactiva del intérprete.  Tal
+archivo es llamado *módulo*; las definiciones de un módulo pueden ser
+*importadas* a otros módulos o al módulo *principal* (la colección de variables
+a las que tenés acceso en un script ejecutado en el nivel superior y en el modo
+calculadora).
 
-A module is a file containing Python definitions and statements.  The file name
-is the module name with the suffix :file:`.py` appended.  Within a module, the
-module's name (as a string) is available as the value of the global variable
-``__name__``.  For instance, use your favorite text editor to create a file
-called :file:`fibo.py` in the current directory with the following contents::
+Un módulo es una archivo conteniendo definiciones y declaraciones de Python.
+El nombre del archivo es el nombre del módulo con el sufijo :file:`.py`
+agregado. Dentro de un módulo, el nombre del mismo (como una cadena) está
+disponible en el valor de la variable global ``__name__``.  Por ejemplo, usá
+tu editor de textos favorito para crear un archivo llamado :file:`fibo.py` en
+el directorio actual, con el siguiente contenido::
 
-   # Fibonacci numbers module
+   # módulo de números Fibonacci
 
-   def fib(n):    # write Fibonacci series up to n
+   def fib(n):    # escribe la serie Fibonacci hasta n
        a, b = 0, 1
        while b < n:
            print b,
            a, b = b, a+b
 
-   def fib2(n): # return Fibonacci series up to n
-       result = []
+   def fib2(n): # devuelve la serie Fibonacci hasta n
+       resultado = []
        a, b = 0, 1
        while b < n:
-           result.append(b)
+           resultado.append(b)
            a, b = b, a+b
-       return result
+       return resultado
 
-Now enter the Python interpreter and import this module with the following
-command::
+Ahora entrá al intérprete de Python e importá este módulo con la siguiente
+órden::
 
    >>> import fibo
 
-This does not enter the names of the functions defined in ``fibo``  directly in
-the current symbol table; it only enters the module name ``fibo`` there. Using
-the module name you can access the functions::
+Esto no mete los nombres de las funciones definidas en ``fibo`` directamente
+en el espacio de nombres actual; sólo mete ahí el nombre del módulo, ``fibo``.
+Usando el nombre del módulo podés acceder a las funciones::
 
    >>> fibo.fib(1000)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
@@ -57,7 +59,7 @@ the module name you can access the functions::
    >>> fibo.__name__
    'fibo'
 
-If you intend to use a function often you can assign it to a local name::
+Si pensás usar la función frecuentemente, podés asignarla a un nombre local::
 
    >>> fib = fibo.fib
    >>> fib(500)
@@ -66,119 +68,128 @@ If you intend to use a function often you can assign it to a local name::
 
 .. _tut-moremodules:
 
-More on Modules
-===============
+Más sobre los módulos
+=====================
 
-A module can contain executable statements as well as function definitions.
-These statements are intended to initialize the module. They are executed only
-the *first* time the module is imported somewhere. [#]_
+Un módulo puede contener tanto declaraciones ejecutables como definiciones
+de funciones.  Estas declaraciones están pensadas para inicializar el módulo.
+Se ejecutan solamente la *primera* vez que el módulo se importa en algún
+lado. [#]_
 
-Each module has its own private symbol table, which is used as the global symbol
-table by all functions defined in the module. Thus, the author of a module can
-use global variables in the module without worrying about accidental clashes
-with a user's global variables. On the other hand, if you know what you are
-doing you can touch a module's global variables with the same notation used to
-refer to its functions, ``modname.itemname``.
+Cada módulo tiene su propio espacio de nombres, el que es usado como espacio
+de nombres global por todas las funciones definidas en el módulo.  Por lo
+tanto, el autor de un módulo puede usar variables globales en el módulo sin
+preocuparse acerca de  conflictos con una variable global del usuario.
+Por otro lado, si sabés lo que estás haciendo podés tocar las variables
+globales de un módulo con la misma notación usada para referirte a sus
+funciones, ``nombremodulo.nombreitem``.
 
-Modules can import other modules.  It is customary but not required to place all
-:keyword:`import` statements at the beginning of a module (or script, for that
-matter).  The imported module names are placed in the importing module's global
-symbol table.
+Los módulos pueden importar otros módulos.  Es costumbre pero no obligatorio el
+ubicar todas las declaraciones :keyword:`import` al principio del módulo (o
+script, para el caso).  Los nombres de los módulos importados se ubican en el
+espacio de nombres global del módulo que hace la importación.
 
-There is a variant of the :keyword:`import` statement that imports names from a
-module directly into the importing module's symbol table.  For example::
+Hay una variante de la declaración :keyword:`import` que importa los nombres de
+un módulo directamente al espacio de nombres del módulo que hace la
+importación.  Por ejemplo::
 
    >>> from fibo import fib, fib2
    >>> fib(500)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377
 
-This does not introduce the module name from which the imports are taken in the
-local symbol table (so in the example, ``fibo`` is not defined).
+Esto no introduce en el espacio de nombres local el nombre del módulo desde el
+cual se está importando (entonces, en el ejemplo, ``fibo`` no se define).
 
-There is even a variant to import all names that a module defines::
+Hay incluso una variante para importar todos los nombres que un módulo define::
 
    >>> from fibo import *
    >>> fib(500)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377
 
-This imports all names except those beginning with an underscore (``_``).
+Esto importa todos los nombres excepto aquellos que comienzan con un subrayado
+(``_``).
 
 .. note::
 
-   For efficiency reasons, each module is only imported once per interpreter
-   session.  Therefore, if you change your modules, you must restart the
-   interpreter -- or, if it's just one module you want to test interactively,
-   use :func:`reload`, e.g. ``reload(modulename)``.
+   Por razones de eficiencia, cada módulo se importa una vez por sesión del
+   intérprete.  Por lo tanto, si cambiás los módulos, tenés que reiniciar el
+   intérprete -- o, si es sólo un módulo que querés probar interactivamente,
+   usá  :func:`reload`, por ejemplo ``reload(nombremodulo)``.
 
 
 .. _tut-modulesasscripts:
 
-Executing modules as scripts
-----------------------------
+Ejecutando módulos como scripts
+-------------------------------
 
-When you run a Python module with ::
+Cuando ejecutás un módulo de Python con ::
 
-   python fibo.py <arguments>
+   python fibo.py <argumentos>
 
-the code in the module will be executed, just as if you imported it, but with
-the ``__name__`` set to ``"__main__"``.  That means that by adding this code at
-the end of your module::
+el código en el módulo será ejecutado, tal como si lo hubieses importado, pero
+con ``__name__`` con el valor de ``"__main__"``.  Eso significa que agregando
+este código al final de tu módulo::
 
    if __name__ == "__main__":
        import sys
        fib(int(sys.argv[1]))
 
-you can make the file usable as a script as well as an importable module,
-because the code that parses the command line only runs if the module is
-executed as the "main" file::
+podés hacer que el archivo sea utilizable tanto como script como un módulo
+importable, porque el código que analiza la linea de órdenes sólo se ejecuta
+si el módulo es ejecutado como archivo principal::
 
    $ python fibo.py 50
    1 1 2 3 5 8 13 21 34
 
-If the module is imported, the code is not run::
+Si el módulo se importa, ese código no se ejecuta::
 
    >>> import fibo
    >>>
 
-This is often used either to provide a convenient user interface to a module, or
-for testing purposes (running the module as a script executes a test suite).
+Esto es frecuentemente usado para proveer al módulo una interfaz de usuario
+conveniente, o para propósitos de prueba (ejecutar el módulo como un script
+ejecuta el juego de pruebas).
 
 
 .. _tut-searchpath:
 
-The Module Search Path
-----------------------
+El camino de búsqueda de los módulos
+------------------------------------
 
 .. index:: triple: module; search; path
 
-When a module named :mod:`spam` is imported, the interpreter searches for a file
-named :file:`spam.py` in the current directory, and then in the list of
-directories specified by the environment variable :envvar:`PYTHONPATH`.  This
-has the same syntax as the shell variable :envvar:`PATH`, that is, a list of
-directory names.  When :envvar:`PYTHONPATH` is not set, or when the file is not
-found there, the search continues in an installation-dependent default path; on
-Unix, this is usually :file:`.:/usr/local/lib/python`.
+Cuando se importa un módulo llamado :mod:`spam`, el intérprete busca un archivo
+llamado  :file:`spam.py` en el directorio actual, y luego en la lista de
+directorios especificada por la variable de entorno :envvar:`PYTHONPATH`.  Esta
+tiene la misma sintáxis que la variable de shell :envvar:`PATH`, o sea, una
+lista de nombres de directorios.  Cuando :envvar:`PYTHONPATH` no está
+configurada, o cuando el archivo no se encuentra allí, la búsqueda continua en
+un camino por default que depende de la instalación; en Unix, este es
+normalmente :file:`.:/usr/lib/python`.
 
-Actually, modules are searched in the list of directories given by the variable
-``sys.path`` which is initialized from the directory containing the input script
-(or the current directory), :envvar:`PYTHONPATH` and the installation- dependent
-default.  This allows Python programs that know what they're doing to modify or
-replace the module search path.  Note that because the directory containing the
-script being run is on the search path, it is important that the script not have
-the same name as a standard module, or Python will attempt to load the script as
-a module when that module is imported. This will generally be an error.  See
-section :ref:`tut-standardmodules` for more information.
+En realidad, los módulos se buscan en la lista de directorios dada por la
+variable ``sys.path``, la cual se inicializa con el directorio que contiene al
+script de entrada (o el directorio actual), :envvar:`PYTHONPATH`, y el
+directorio default dependiente de la instalación. Esto permite que los
+programas en Python que saben lo que están haciendo modifiquen o reemplacen el
+camino de búsqueda de los módulos.  Notar que como el directorio que contiene
+el script que se ejecuta está en el camino de búsqueda, es importante que el
+script no tenga el mismo nombre que un módulo estándar, o Python intentará
+cargar el script como un módulo cuando ese módulo se importe.  Esto
+generalmente será un error.  Mirá la sección :ref:`tut-standardmodules` para
+más información.
 
 
-"Compiled" Python files
------------------------
+Archivos "compilados" de Python
+-------------------------------
 
-As an important speed-up of the start-up time for short programs that use a lot
-of standard modules, if a file called :file:`spam.pyc` exists in the directory
-where :file:`spam.py` is found, this is assumed to contain an
-already-"byte-compiled" version of the module :mod:`spam`. The modification time
-of the version of :file:`spam.py` used to create :file:`spam.pyc` is recorded in
-:file:`spam.pyc`, and the :file:`.pyc` file is ignored if these don't match.
+Como una importante aceleración del tiempo de arranque para programas cortos
+que usan un montón de los módulos estándar, si un archivo llamado
+:file:`spam.pyc` existe en el directorio donde se encuentra :file:`spam.py`, se
+asume que contiene una versión ya "compilada a byte" del módulo :mod:`spam`.
+La fecha y hora de modificación del archivo :file:`spam.py` usado para crar
+:file:`spam.pyc` se graba en este último, y el :file:`.pyc` se ignora si estos
+no coinciden.
 
 Normally, you don't need to do anything to create the :file:`spam.pyc` file.
 Whenever :file:`spam.py` is successfully compiled, an attempt is made to write
@@ -281,7 +292,7 @@ defines.  It returns a sorted list of strings::
    ['__name__', 'fib', 'fib2']
    >>> dir(sys)
    ['__displayhook__', '__doc__', '__excepthook__', '__name__', '__stderr__',
-    '__stdin__', '__stdout__', '_getframe', 'api_version', 'argv', 
+    '__stdin__', '__stdout__', '_getframe', 'api_version', 'argv',
     'builtin_module_names', 'byteorder', 'callstats', 'copyright',
     'displayhook', 'exc_clear', 'exc_info', 'exc_type', 'excepthook',
     'exec_prefix', 'executable', 'exit', 'getdefaultencoding', 'getdlopenflags',
@@ -314,7 +325,7 @@ want a list of those, they are defined in the standard module
     'FloatingPointError', 'FutureWarning', 'IOError', 'ImportError',
     'IndentationError', 'IndexError', 'KeyError', 'KeyboardInterrupt',
     'LookupError', 'MemoryError', 'NameError', 'None', 'NotImplemented',
-    'NotImplementedError', 'OSError', 'OverflowError', 
+    'NotImplementedError', 'OSError', 'OverflowError',
     'PendingDeprecationWarning', 'ReferenceError', 'RuntimeError',
     'RuntimeWarning', 'StandardError', 'StopIteration', 'SyntaxError',
     'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'True',

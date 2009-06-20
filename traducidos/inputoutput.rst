@@ -1,82 +1,81 @@
 .. _tut-io:
 
 ****************
-Input and Output
+Entrada y salida
 ****************
 
-There are several ways to present the output of a program; data can be printed
-in a human-readable form, or written to a file for future use. This chapter will
-discuss some of the possibilities.
+Hay diferentes métodos de presentar la salida de un programa; los datos pueden
+ser impresos de una forma legible por humanos, o escritos a un archivo para uso
+futuro. Este capítulo discutirá algunas de las posibilidades.
 
 
 .. _tut-formatting:
 
-Fancier Output Formatting
-=========================
+Formateo elegante de la salida
+==============================
 
-So far we've encountered two ways of writing values: *expression statements* and
-the :keyword:`print` statement.  (A third way is using the :meth:`write` method
-of file objects; the standard output file can be referenced as ``sys.stdout``.
-See the Library Reference for more information on this.)
+Hasta ahora encontramos dos maneras de escribir valores: *declaraciones de
+expresión* y la declaración :keyword:`print`. (Una tercer manera es usando el
+método :meth:`write` de los objetos tipo archivo; el archivo de salida estándar
+puede referenciarse como ``sys.stdout``. Mirá la Referencia de la Biblioteca
+para más información sobre esto.)
 
 .. index:: module: string
 
-Often you'll want more control over the formatting of your output than simply
-printing space-separated values.  There are two ways to format your output; the
-first way is to do all the string handling yourself; using string slicing and
-concatenation operations you can create any layout you can imagine.  The
-standard module :mod:`string` contains some useful operations for padding
-strings to a given column width; these will be discussed shortly.  The second
-way is to use the :meth:`str.format` method.
+Frecuentemente querrás más control sobre el formateo de tu salida que
+simplemente imprimir valores separados por espacios.   Hay dos maneras de
+formatear tu salida; la primera es hacer todo el manejo de las cadenas vos
+mismo, usando rebanado de cadenas y operaciones de concatenado podés crear
+cualquier forma que puedas imaginar.  El módulo :mod:`string` contiene algunas
+operaciones útiles para emparejar cadenas a un determinado ancho; estas las
+discutiremos en breve.  La otra forma es usar el método :meth:`str.format`.
 
-One question remains, of course: how do you convert values to strings? Luckily,
-Python has ways to convert any value to a string: pass it to the :func:`repr`
-or :func:`str` functions.  Reverse quotes (``````) are equivalent to
-:func:`repr`, but they are no longer used in modern Python code and are removed
-in future versions of the language.
+Nos queda una pregunta, por supuesto: ¿cómo convertís valores a cadenas?
+Afortunadamente, Python tiene maneras de convertir cualquier valor a una
+cadena: pasalos a las funciones :func:`repr` o :func:`str`. Comillas invertidas
+(``````) son equivalentes a la :func:`repr`, pero no se usan más en código
+actual de Python y se eliminaron de versiones futuras del lenguaje.
 
-The :func:`str` function is meant to return representations of values which are
-fairly human-readable, while :func:`repr` is meant to generate representations
-which can be read by the interpreter (or will force a :exc:`SyntaxError` if
-there is not equivalent syntax).  For objects which don't have a particular
-representation for human consumption, :func:`str` will return the same value as
-:func:`repr`.  Many values, such as numbers or structures like lists and
-dictionaries, have the same representation using either function.  Strings and
-floating point numbers, in particular, have two distinct representations.
+La función :func:`str` devuelve representaciones de los valores que son
+bastante legibles por humanos, mientras que :func:`repr` genera
+representaciones que pueden ser leídas por el el intérprete (o forzarían
+un :exc:`SyntaxError` si no hay sintáxis equivalente).  Para objetos que no
+tienen una representación en particular para consumo humano, :func:`str`
+devolverá el mismo valor que :func:`repr`.  Muchos valores, como números o
+estructuras como listas y diccionarios, tienen la misma representación
+usando cualquiera de las dos funciones.  Las cadenas y los números de punto
+flotante, en particular, tienen dos representaciones distintas.
 
-Some examples::
+Algunos ejemplos::
 
-   >>> s = 'Hello, world.'
+   >>> s = 'Hola mundo.'
    >>> str(s)
-   'Hello, world.'
+   'Hola mundo.'
    >>> repr(s)
-   "'Hello, world.'"
+   "'Hola mundo.'"
    >>> str(0.1)
    '0.1'
    >>> repr(0.1)
    '0.10000000000000001'
    >>> x = 10 * 3.25
    >>> y = 200 * 200
-   >>> s = 'The value of x is ' + repr(x) + ', and y is ' + repr(y) + '...'
+   >>> s = 'El valor de x es ' + repr(x) + ', y es ' + repr(y) + '...'
    >>> print s
-   The value of x is 32.5, and y is 40000...
-   >>> # The repr() of a string adds string quotes and backslashes:
-   ... hello = 'hello, world\n'
-   >>> hellos = repr(hello)
-   >>> print hellos
+   El valor de x es 32.5, y es 40000...
+   >>> # El repr() de una cadena agrega apóstrofos y barras invertidas
+   ... hola = 'hola mundo\n'
+   >>> holas = repr(hola)
+   >>> print holas
    'hello, world\n'
-   >>> # The argument to repr() may be any Python object:
-   ... repr((x, y, ('spam', 'eggs')))
-   "(32.5, 40000, ('spam', 'eggs'))"
-   >>> # reverse quotes are convenient in interactive sessions:
-   ... `x, y, ('spam', 'eggs')`
-   "(32.5, 40000, ('spam', 'eggs'))"
+   >>> # El argumento de repr() puede ser cualquier objeto Python:
+   ... repr((x, y, ('carne', 'huevos')))
+   "(32.5, 40000, ('carne', 'huevos'))"
 
-Here are two ways to write a table of squares and cubes::
+Acá hay dos maneras de escribir una tabla de cuadrados y cubos::
 
    >>> for x in range(1, 11):
    ...     print repr(x).rjust(2), repr(x*x).rjust(3),
-   ...     # Note trailing comma on previous line
+   ...     # notar la coma al final de la linea anterior
    ...     print repr(x*x*x).rjust(4)
    ...
     1   1    1
@@ -92,7 +91,7 @@ Here are two ways to write a table of squares and cubes::
 
    >>> for x in range(1,11):
    ...     print '{0:2d} {1:3d} {2:4d}'.format(x, x*x, x*x*x)
-   ... 
+   ...
     1   1    1
     2   4    8
     3   9   27
@@ -104,20 +103,22 @@ Here are two ways to write a table of squares and cubes::
     9  81  729
    10 100 1000
 
-(Note that in the first example, one space between each column was added by the
-way :keyword:`print` works: it always adds spaces between its arguments.)
+(Notar que en el primer ejemplo, un espacio entre cada columna fue agregado por
+la manera en que :keyword:`print` trabaja: siempre agrega espacios entre sus
+argumentos)
 
-This example demonstrates the :meth:`rjust` method of string objects, which
-right-justifies a string in a field of a given width by padding it with spaces
-on the left.  There are similar methods :meth:`ljust` and :meth:`center`.  These
-methods do not write anything, they just return a new string.  If the input
-string is too long, they don't truncate it, but return it unchanged; this will
-mess up your column lay-out but that's usually better than the alternative,
-which would be lying about a value.  (If you really want truncation you can
-always add a slice operation, as in ``x.ljust(n)[:n]``.)
+Este ejemplo muestra el método :meth:`rjust` de los objetos cadena, el cual
+ordena una cadena a la derecha en un campo del ancho dado llenándolo con
+espacios a la izquierda.  Hay métodos similares :meth:`ljust` y :meth:`center`.
+Estos métodos no escriben nada, sólo devuelven una nueva cadena.  Si la cadena
+de entrada es demasiado larga, no la truncan, sino la devuelven intacta; esto
+te romperá la alineación de tus columnas pero es normalmente mejor que la
+alternativa, que te estaría mintiendo sobre el valor.  (Si realmente querés que
+se recorte, siempre podés agregarle una operación de rebanado, como en
+``x.ljust(n)[:n]``.)
 
-There is another method, :meth:`zfill`, which pads a numeric string on the left
-with zeros.  It understands about plus and minus signs::
+Hay otro método, :meth:`zfill`, el cual rellena una cadena numérica a la
+izquierda con ceros. Entiendo acerca de signos positivos y negativos::
 
    >>> '12'.zfill(5)
    '00012'
@@ -126,103 +127,105 @@ with zeros.  It understands about plus and minus signs::
    >>> '3.14159265359'.zfill(5)
    '3.14159265359'
 
-Basic usage of the :meth:`str.format` method looks like this::
+El uso básico del método :meth:`str.format` es como esto::
 
-   >>> print 'We are the {0} who say "{1}!"'.format('knights', 'Ni')
-   We are the knights who say "Ni!"
+   >>> print 'Somos los {0} quienes decimos "{1}!"'.format('caballeros', 'Nop')
+   Somos los caballeros quienes decimos "Nop!"
 
-The brackets and characters within them (called format fields) are replaced with
-the objects passed into the format method.  The number in the brackets refers to
-the position of the object passed into the format method. ::
+Las llaves y caracteres dentro de las mismas (llamados campos de formato) son
+reemplazadas con los objetos pasados en el método :meth:`format`.  El número en
+las llaves se refiere a la posición del objeto pasado en el método. ::
 
-   >>> print '{0} and {1}'.format('spam', 'eggs')
-   spam and eggs
-   >>> print '{1} and {0}'.format('spam', 'eggs')
-   eggs and spam
+   >>> print '{0} y {1}'.format('carne', 'huevos')
+   carne y huevos
+   >>> print '{1} y {0}'.format('carne', 'huevos')
+   huevos y carne
 
-If keyword arguments are used in the format method, their values are referred to
-by using the name of the argument. ::
+Si se usan argumentos nombrados en el método :meth:`format`, sus valores serán
+referidos usando el nombre del argumento. ::
 
-   >>> print 'This {food} is {adjective}.'.format(food='spam', adjective='absolutely horrible')
-   This spam is absolutely horrible.
+   >>> print 'Esta {comida} es {adjetivo}.'.format(comida='carne', adjetivo='espantosa')
+   Esta carne es espantosa.
 
-Positional and keyword arguments can be arbitrarily combined::
+Se pueden combinar arbitrariamente argumentos posicionales y nombrados::
 
-   >>> print 'The story of {0}, {1}, and {other}.'.format('Bill', 'Manfred', other='Georg')
-   The story of Bill, Manfred, and Georg.
+   >>> print 'La historia de {0}, {1}, y {otro}.'.format('Bill', 'Manfred', otro='Georg')
+   La hostoria de Bill, Manfred, y Georg.
 
-An optional ``':``` and format specifier can follow the field name. This also
-greater control over how the value is formatted.  The following example
-truncates the Pi to three places after the decimal.
+Un ``':``` y especificador de formato opcionales pueden ir luego del nombre del
+campo.  Esto aumenta el control sobre cómo el valor es formateado.  El
+siguiente ejemplo trunca Pi a tres lugares luego del punto decimal.
 
    >>> import math
-   >>> print 'The value of PI is approximately {0:.3f}.'.format(math.pi)
-   The value of PI is approximately 3.142.
+   >>> print 'El valor de PI es aproximadamente {0:.3f}.'.format(math.pi)
+   El valor de PI es aproximadamente 3.142.
 
-Passing an integer after the ``':'`` will cause that field to be a minimum
-number of characters wide.  This is useful for making tables pretty.::
+Pasando un entero luego del ``':'`` causará que que el campo sea de un mínimo
+número de caracteres de ancho.  Esto es útil para hacer tablas lindas. ::
 
-   >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
-   >>> for name, phone in table.items():
-   ...     print '{0:10} ==> {1:10d}'.format(name, phone)
-   ... 
+   >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
+   >>> for nombre, telefono in tabla.items():
+   ...     print '{0:10} ==> {1:10d}'.format(nombre, telefono)
+   ...
    Jack       ==>       4098
    Dcab       ==>       7678
    Sjoerd     ==>       4127
 
-If you have a really long format string that you don't want to split up, it
-would be nice if you could reference the variables to be formatted by name
-instead of by position.  This can be done by simply passing the dict and using
-square brackets ``'[]'`` to access the keys ::
+Si tenés una cadena de formateo realmente larga que no querés separar, podría
+ser bueno que puedas hacer referencia a las variables a ser formateadas por el
+nombre en vez de la posición.  Esto puede hacerse simplemente pasando el
+diccionario y usando corchetes ``'[]'`` para acceder a las claves ::
 
-   >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-   >>> print 'Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(table)
+   >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
+   >>> print 'Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(tabla)
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
-This could also be done by passing the table as keyword arguments with the '**'
-notation.::
+Esto se podría también hacer pasando la tabla como argumentos nombrados con la
+notación '**'.::
 
-   >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-   >>> print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table)
+   >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
+   >>> print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**tabla)
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
-This is particularly useful in combination with the new built-in :func:`vars`
-function, which returns a dictionary containing all local variables.
+Esto es particularmente útil en combinación con la nueva función integrada
+:func:`vars`, que devuelve un diccionario conteniendo todas las variables
+locales.
 
-For a complete overview of string formating with :meth:`str.format`, see
-:ref:`formatstrings`.
+Para una completa descripción del formateo de cadenas con :meth:`str.format`,
+mirá en :ref:`formatstrings`.
 
 
-Old string formatting
----------------------
+Viejo formateo de cadenas
+-------------------------
 
-The ``%`` operator can also be used for string formatting. It interprets the
-left argument much like a :cfunc:`sprintf`\ -style format string to be applied
-to the right argument, and returns the string resulting from this formatting
-operation. For example::
+El operador ``%`` también puede usarse para formateo de cadenas.  Interpreta el
+argumento de la izquierda con el estilo de formateo de :cfunc:`sprintf` para
+ser aplicado al argumento de la derecha, y devuelve la cadena resultante de
+esta operación de formateo.  Por ejemplo:
 
    >>> import math
-   >>> print 'The value of PI is approximately %5.3f.' % math.pi
-   The value of PI is approximately 3.142.
+   >>> print 'El valor de PI es aproximadamente %5.3f.' % math.pi
+   El valor de PI es aproximadamente 3.142.
 
-Since :meth:`str.format` is quite new, a lot of Python code still uses the ``%``
-operator. However, because this old style of formatting will eventually removed
-from the language :meth:`str.format` should generally be used.
+Ya que :meth:`str.format` es bastante nuevo, un montón de código Python todavía
+usa el operador ``%``.  Sin embargo, ya que este viejo estilo de formateo será
+eventualmente eliminado del lenguaje, en general debería usarse
+:meth:`str.format`.
 
-More information can be found in the :ref:`string-formatting` section.
+Podés encontrar más información en la sección :ref:`string-formatting`.
 
 
 .. _tut-files:
 
-Reading and Writing Files
-=========================
+Leyendo y escribiendo archivos
+==============================
 
 .. index::
    builtin: open
    object: file
 
-:func:`open` returns a file object, and is most commonly used with two
-arguments: ``open(filename, mode)``.
+La función :func:`open` devuelve un objeto archivo, y es normalmente usado con
+dos argumentos: ``open(nombre_de_archivo, modo)``.
 
 ::
 
@@ -230,117 +233,120 @@ arguments: ``open(filename, mode)``.
    >>> print f
    <open file '/tmp/workfile', mode 'w' at 80a0960>
 
-The first argument is a string containing the filename.  The second argument is
-another string containing a few characters describing the way in which the file
-will be used.  *mode* can be ``'r'`` when the file will only be read, ``'w'``
-for only writing (an existing file with the same name will be erased), and
-``'a'`` opens the file for appending; any data written to the file is
-automatically added to the end.  ``'r+'`` opens the file for both reading and
-writing. The *mode* argument is optional; ``'r'`` will be assumed if it's
-omitted.
+El primer argumento es una cadena conteniendo el nombre de archivo.  El segundo
+argumento es otra cadena conteniendo unos pocos caracteres que describen la
+forma en que el archivo será usado. El *modo* puede ser ``'r'`` cuando el
+archivo será solamente leído, ``'w'`` para sólo escribirlo (un archivo
+existente con el mismo nombre será borrado), y ``'a'`` abre el archivo para
+agregarle información; cualquier dato escrito al archivo será automáticamente
+agregado al final. ``'r+'`` abre el archivo tanto para leerlo como para
+escribirlo.  El argumento *modo* es opcional; si se omite se asume ``'r'``.
 
-On Windows and the Macintosh, ``'b'`` appended to the mode opens the file in
-binary mode, so there are also modes like ``'rb'``, ``'wb'``, and ``'r+b'``.
-Windows makes a distinction between text and binary files; the end-of-line
-characters in text files are automatically altered slightly when data is read or
-written.  This behind-the-scenes modification to file data is fine for ASCII
-text files, but it'll corrupt binary data like that in :file:`JPEG` or
-:file:`EXE` files.  Be very careful to use binary mode when reading and writing
-such files.  On Unix, it doesn't hurt to append a ``'b'`` to the mode, so
-you can use it platform-independently for all binary files.
+En Windows y la Macintosh, agregando ``'b'`` al modo abre al archivo en modo
+binario, por lo que también hay modos como ``'rb'``, ``'wb'``, y ``'r+b'``.
+Windows hace una distinción entre archivos binarios y de texto; los caracteres
+de fin de linea en los archivos de texto son automáticamente apenas alterados
+cuando los datos son leídos o escritos.  Esta modificación en bambalinas para
+guardar datos está bien con archivos de texto ASCII, pero corromperá datos
+binarios como en archivos :file:`JPEG` o :file:`EXE`.  Se muy cuidadoso en
+usar el modo binario al leer y escribir tales archivos.  En Unix, no hay
+problema en agregarle una ``'b'`` al modo, por lo que podés usarlo
+independientemente de la plataforma para todos los archivos binarios.
 
 
 .. _tut-filemethods:
 
-Methods of File Objects
------------------------
 
-The rest of the examples in this section will assume that a file object called
-``f`` has already been created.
+Métodos de los objetos Archivo
+------------------------------
 
-To read a file's contents, call ``f.read(size)``, which reads some quantity of
-data and returns it as a string.  *size* is an optional numeric argument.  When
-*size* is omitted or negative, the entire contents of the file will be read and
-returned; it's your problem if the file is twice as large as your machine's
-memory. Otherwise, at most *size* bytes are read and returned.  If the end of
-the file has been reached, ``f.read()`` will return an empty string (``""``).
-::
+El resto de los ejemplos en esta sección asumirán que ya se creó un objeto
+archivo llamado ``f``.
+
+Para leer el contenido de una archivo llamá a ``f.read(cantidad)``, el cual lee
+alguna cantidad de datos y los devuelve como una cadena.  *cantidad* es un
+argumento numérico opcional.  Cuando se omite *cantidad* o es negativo, el
+contenido entero del archivo será leido y devuelto; es tu problema si el
+archivo es el doble de grande que la memoria de tu máquina.  De otra manera,
+a lo sumo una *cantidad* de bytes son leídos y devueltos.  Si se alcanzó el
+fin del archivo, ``f.read()`` devolverá una cadena vacía (``""``). ::
 
    >>> f.read()
-   'This is the entire file.\n'
+   'Este es el archivo entero.\n'
    >>> f.read()
    ''
 
-``f.readline()`` reads a single line from the file; a newline character (``\n``)
-is left at the end of the string, and is only omitted on the last line of the
-file if the file doesn't end in a newline.  This makes the return value
-unambiguous; if ``f.readline()`` returns an empty string, the end of the file
-has been reached, while a blank line is represented by ``'\n'``, a string
-containing only a single newline.   ::
+``f.readline()`` lee una sola linea del archivo; el caracter de fin de linea
+(``\n``) se deja al final de la cadena, y sólo se omite en la última linea del
+archivo si el mismo no termina en un fin de linea.  Esto hace que el valor de
+retorno no se ambiguo; si ``f.readline()`` devuelve una cadena vacía, es que
+se alcanzó el fin del archivo, mientras que una linea en blanco es representada
+por ``'\n'``, una cadena conteniendo sólo un único fin de linea. ::
 
    >>> f.readline()
-   'This is the first line of the file.\n'
+   'Esta es la primer linea del archivo.\n'
    >>> f.readline()
-   'Second line of the file\n'
+   'Segunda linea del archivo\n'
    >>> f.readline()
    ''
 
-``f.readlines()`` returns a list containing all the lines of data in the file.
-If given an optional parameter *sizehint*, it reads that many bytes from the
-file and enough more to complete a line, and returns the lines from that.  This
-is often used to allow efficient reading of a large file by lines, but without
-having to load the entire file in memory.  Only complete lines will be returned.
-::
+``f.readlines()`` devuelve una lista conteniendo todos las lineas de datos en
+el archivo.  Si se da un parámetro opcional *pista_tamaño*, lee esa cantidad de
+bytes del archivo y lo suficientemente más como para completar una linea, y
+devuelve las lineas de eso.  Esto se usa frecuentemente para permitir una
+lectura por lineas de forma eficiente en archivos grandes, sin tener que cargar
+el archivo entero en memoria.  Sólo lineas completas serán devueltas. ::
 
    >>> f.readlines()
-   ['This is the first line of the file.\n', 'Second line of the file\n']
+   ['Esta es la primer linea del archivo.\n', 'Segunda linea del archivo\n']
 
-An alternative approach to reading lines is to loop over the file object. This is
-memory efficient, fast, and leads to simpler code::
+Una forma alternativa a leer lineas es ciclar sobre el objeto archivo.  Esto es
+eficiente en memoria, rápido, y conduce a un código más simple::
 
-   >>> for line in f:
-           print line,
+   >>> for linea in f:
+           print linea,
 
-   This is the first line of the file.
-   Second line of the file
+   Esta es la primer linea del archivo
+   Segunda linea del archivo
 
-The alternative approach is simpler but does not provide as fine-grained
-control.  Since the two approaches manage line buffering differently, they
-should not be mixed.
+El enfoque alternativo es mucho más simple peor no permite un control fino.  Ya
+que los dos enfoques manejan diferente el buffer de lineas, no deberían
+mezclarse.
 
-``f.write(string)`` writes the contents of *string* to the file, returning
-``None``.   ::
+``f.write(cadena)`` escribe el contenido de la *cadena* al archivo, devolviendo
+``None``. ::
 
-   >>> f.write('This is a test\n')
+   >>> f.write('Esto es una prueba\n')
 
-To write something other than a string, it needs to be converted to a string
-first::
+Para escribir algo más que una cadena, necesita convertirse primero a una
+cadena::
 
-   >>> value = ('the answer', 42)
-   >>> s = str(value)
+   >>> valor = ('la respuesta', 42)
+   >>> s = str(valor)
    >>> f.write(s)
 
-``f.tell()`` returns an integer giving the file object's current position in the
-file, measured in bytes from the beginning of the file.  To change the file
-object's position, use ``f.seek(offset, from_what)``.  The position is computed
-from adding *offset* to a reference point; the reference point is selected by
-the *from_what* argument.  A *from_what* value of 0 measures from the beginning
-of the file, 1 uses the current file position, and 2 uses the end of the file as
-the reference point.  *from_what* can be omitted and defaults to 0, using the
-beginning of the file as the reference point. ::
+``f.tell()`` devuelve un entero que indica la posición actual en el archivo,
+medida en bytes desde el comienzo del archivo.  Para cambiar la posición use
+``f.seek(desplazamiento, desde_donde)``.  La posición es calculada agregando
+el *desplazamiento* a un punto de referencia; el punto de referencia se
+selecciona del argumento *desde_donde*.  Un valor *desde_donde* de 0 mide desde
+el comienzo del archivo, 1 usa la posición actual del archivo, y 2 usa el fin
+del archivo como punto de referencia.  *desde_donde* puede omitirse, el default
+es 0, usando el comienzo del archivo como punto de referencia. ::
 
-   >>> f = open('/tmp/workfile', 'r+')
+   >>> f = open('/tmp/archivodetrabajo', 'r+')
    >>> f.write('0123456789abcdef')
-   >>> f.seek(5)     # Go to the 6th byte in the file
-   >>> f.read(1)        
+   >>> f.seek(5)     # Va al sexto byte en el archivo
+   >>> f.read(1)
    '5'
-   >>> f.seek(-3, 2) # Go to the 3rd byte before the end
+   >>> f.seek(-3, 2) # Va al tercer byte antes del final
    >>> f.read(1)
    'd'
 
-When you're done with a file, call ``f.close()`` to close it and free up any
-system resources taken up by the open file.  After calling ``f.close()``,
-attempts to use the file object will automatically fail. ::
+Cuando hayas terminado con un archivo, llamá a ``f.close()`` para cerrarlo
+y liberar cualquier recurso del sistema tomado por el archivo abierto.  Luego
+de llamar ``f.close()``, los intentos de usar el objeto archivo fallarán
+automáticamente. ::
 
    >>> f.close()
    >>> f.read()
@@ -348,52 +354,54 @@ attempts to use the file object will automatically fail. ::
      File "<stdin>", line 1, in ?
    ValueError: I/O operation on closed file
 
-File objects have some additional methods, such as :meth:`isatty` and
-:meth:`truncate` which are less frequently used; consult the Library Reference
-for a complete guide to file objects.
+Los objetos archivo tienen algunos métodos más, como :meth:`isatty` y
+:meth:`truncate`` que son usados menos frecuentemente; consultá la
+Referencia de la Biblioteca para una guía completa sobre los objetos
+archivo.
 
 
 .. _tut-pickle:
 
-The :mod:`pickle` Module
-------------------------
+El módulo The :mod:`pickle`
+---------------------------
 
 .. index:: module: pickle
 
-Strings can easily be written to and read from a file. Numbers take a bit more
-effort, since the :meth:`read` method only returns strings, which will have to
-be passed to a function like :func:`int`, which takes a string like ``'123'``
-and returns its numeric value 123.  However, when you want to save more complex
-data types like lists, dictionaries, or class instances, things get a lot more
-complicated.
+Las cadenas pueden facilmente escribirse y leerse de un archivo.  Los números
+toman algo más de esfuerzo, ya que el método :meth:`read` sólo devuelve
+cadenas, que tendrán que ser pasadas a una función como :func:`int`, que toma
+una cadena como ``'123'`` y devuelve su valor numérico 123.  Sin embargo,
+cuando querés grabar tipos de datos más complejos como listas, diccionarios, o
+instancias de clases, las cosas se ponen más complicadas.
 
-Rather than have users be constantly writing and debugging code to save
-complicated data types, Python provides a standard module called :mod:`pickle`.
-This is an amazing module that can take almost any Python object (even some
-forms of Python code!), and convert it to a string representation; this process
-is called :dfn:`pickling`.  Reconstructing the object from the string
-representation is called :dfn:`unpickling`.  Between pickling and unpickling,
-the string representing the object may have been stored in a file or data, or
-sent over a network connection to some distant machine.
+En lugar de tener a los usuarios constantemente escribiendo y debugueando
+código para grabar tipos de datos complicados, Python provee un módulo estándar
+llamado :mod:`pickle`.  Este es un asombroso módulo que puede tomar casi
+cualquier objeto Python (¡incluso algunas formas de código Python!), y
+convertirlo a una representación de cadena; este proceso se llama
+:dfn:`picklear`.  Reconstruir los objetos desde la representación en cadena
+se llama :dfn:`despicklear`.  Entre que se picklea y se despicklear, la
+cadena que representa al objeto puede almacenarse en un archivo, o enviarse
+a una máquina distante por una conexión de red.
 
-If you have an object ``x``, and a file object ``f`` that's been opened for
-writing, the simplest way to pickle the object takes only one line of code::
+Si tenés un objeto ``x``, y un objeto archivo ``f`` que fue abierto para
+escritura, la manera más simple de picklear el objeto toma una sola linea
+de código::
 
    pickle.dump(x, f)
 
-To unpickle the object again, if ``f`` is a file object which has been opened
-for reading::
+Para despicklear el objeto nuevamente, si ``f`` es un objeto archivo que fue
+abierto para lectura::
 
    x = pickle.load(f)
 
-(There are other variants of this, used when pickling many objects or when you
-don't want to write the pickled data to a file; consult the complete
-documentation for :mod:`pickle` in the Python Library Reference.)
+(Hay otras variantes de esto, usadas al picklear muchos objetos o cuando no
+querés escribir los datos pickleados a un archivo; consultá la documentación
+completa para :mod:`pickle` en la Referencia de la Biblioteca de Python.)
 
-:mod:`pickle` is the standard way to make Python objects which can be stored and
-reused by other programs or by a future invocation of the same program; the
-technical term for this is a :dfn:`persistent` object.  Because :mod:`pickle` is
-so widely used, many authors who write Python extensions take care to ensure
-that new data types such as matrices can be properly pickled and unpickled.
-
-
+:mod:`pickle` es la manera estándar de hacer que los objetos Python puedan
+almacenarse y reusarse por otros programas o por una futura invocación al mismo
+programa; el término técnido de esto es un objeto :dfn:`persistente`. Ya que
+:mod:`pickle` es tan ampliamente usado, muchos autores que escriben extensiones
+de Python toman el cuidado de asegurarse que los nuevos tipos de datos como
+matrices puedan ser adecuadamente pickleados y despickleados.

@@ -244,22 +244,23 @@ Algunos consejos para expertos:
 
 .. _tut-standardmodules:
 
-Standard Modules
+Módulos estándar
 ================
 
 .. index:: module: sys
 
-Python comes with a library of standard modules, described in a separate
-document, the Python Library Reference ("Library Reference" hereafter).  Some
-modules are built into the interpreter; these provide access to operations that
-are not part of the core of the language but are nevertheless built in, either
-for efficiency or to provide access to operating system primitives such as
-system calls.  The set of such modules is a configuration option which also
-depends on the underlying platform For example, the :mod:`winreg` module is only
-provided on Windows systems. One particular module deserves some attention:
-:mod:`sys`, which is built into every Python interpreter.  The variables
-``sys.ps1`` and ``sys.ps2`` define the strings used as primary and secondary
-prompts::
+Python viene con una biblioteca de módulos estándar, descrita en un documento
+separado, la Referencia de la Biblioteca de Python (de aquí en más, "Referencia
+de la Biblioteca").  Algunos módulos se integran en el intérprete; estos
+proveen acceso a operaciones que no son parte del núcleo del lenguaje pero que
+sin embargo están integrados, tanto por eficiencia como para proveer acceso a
+primitivas del sistema operativo, como llamadas al sistema.  El conjunto de
+tales módulos es una opción de configuración el cual también depende de la
+plataforma subyacente.  Por ejemplo, el módulo :mod:`winreg` sólo se provee
+en sistemas Windows.  Un módulo en particular merece algo de atención:
+:mod:`sys`, el que está integrado en todos los intérpretes de Python.  Las
+variables ``sys.ps1`` y ``sys.ps2`` definen las cadenas usadas como cursores
+primarios y secundarios::
 
    >>> import sys
    >>> sys.ps1
@@ -272,13 +273,13 @@ prompts::
    C>
 
 
-These two variables are only defined if the interpreter is in interactive mode.
+Estas dos variables están solamente definidas si el intérprete está en modo interactivo.
 
-The variable ``sys.path`` is a list of strings that determines the interpreter's
-search path for modules. It is initialized to a default path taken from the
-environment variable :envvar:`PYTHONPATH`, or from a built-in default if
-:envvar:`PYTHONPATH` is not set.  You can modify it using standard list
-operations::
+La variable  ``sys.path`` es una lista de cadenas que determinan el camino de
+búsqueda del intérprete para los módulos.  Se inicializa por omisión a un
+camino tomado de la variable de entorno :envvar:`PYTHONPATH`, o a un valor
+predefinido en el intérprete si :envvar:`PYTHONPATH` no está configurada.  Lo
+podés modificar usando las operaciones estándar de listas::
 
    >>> import sys
    >>> sys.path.append('/ufs/guido/lib/python')

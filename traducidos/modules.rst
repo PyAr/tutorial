@@ -287,11 +287,11 @@ podés modificar usando las operaciones estándar de listas::
 
 .. _tut-dir:
 
-The :func:`dir` Function
-========================
+La función :func:`dir`
+======================
 
-The built-in function :func:`dir` is used to find out which names a module
-defines.  It returns a sorted list of strings::
+La función integrada :func:`dir` se usa par encontrar que nombres define un
+módulo.  Devuelve una lista ordenada de cadenas::
 
    >>> import fibo, sys
    >>> dir(fibo)
@@ -308,7 +308,7 @@ defines.  It returns a sorted list of strings::
     'setprofile', 'setrecursionlimit', 'settrace', 'stderr', 'stdin', 'stdout',
     'version', 'version_info', 'warnoptions']
 
-Without arguments, :func:`dir` lists the names you have defined currently::
+Sin argumentos, :func:`dir` lista los nombres que tenés actualmente definidos::
 
    >>> a = [1, 2, 3, 4, 5]
    >>> import fibo
@@ -316,12 +316,12 @@ Without arguments, :func:`dir` lists the names you have defined currently::
    >>> dir()
    ['__builtins__', '__doc__', '__file__', '__name__', 'a', 'fib', 'fibo', 'sys']
 
-Note that it lists all types of names: variables, modules, functions, etc.
+Notá que lista todos los tipos de nombres: variables, módulos, funciones, etc.
 
 .. index:: module: __builtin__
 
-:func:`dir` does not list the names of built-in functions and variables.  If you
-want a list of those, they are defined in the standard module
+:func:`dir` no lista los nombres de las funciones y variables integradas.  Si
+querés una lista de esos, están definidos en el módulo estándar
 :mod:`__builtin__`::
 
    >>> import __builtin__
@@ -354,31 +354,33 @@ want a list of those, they are defined in the standard module
 
 .. _tut-packages:
 
-Packages
+Paquetes
 ========
 
-Packages are a way of structuring Python's module namespace by using "dotted
-module names".  For example, the module name :mod:`A.B` designates a submodule
-named ``B`` in a package named ``A``.  Just like the use of modules saves the
-authors of different modules from having to worry about each other's global
-variable names, the use of dotted module names saves the authors of multi-module
-packages like NumPy or the Python Imaging Library from having to worry about
-each other's module names.
+Los paquetes son una manera de estructurar los espacios de nombres de Python
+usando "nombres de módulos con puntos".  Por ejemplo, el nombre de módulo
+:mod:`A.B` designa un submódulo llamado ``B`` en un paquete llamado ``A``.
+Tal como el uso de módulos evita que los autores de diferentes módulos tengan
+que preocuparse de los respectivos nombres de variables globales, el uso de
+nombres de módulos con puntos evita que los autores de paquetes de muchos
+módulos, como NumPy o la Biblioteca de Imágenes de Python (Python Imaging
+Library, o PIL), tengan que preocuparse de los respectivos nombres de módulos.
 
-Suppose you want to design a collection of modules (a "package") for the uniform
-handling of sound files and sound data.  There are many different sound file
-formats (usually recognized by their extension, for example: :file:`.wav`,
-:file:`.aiff`, :file:`.au`), so you may need to create and maintain a growing
-collection of modules for the conversion between the various file formats.
-There are also many different operations you might want to perform on sound data
-(such as mixing, adding echo, applying an equalizer function, creating an
-artificial stereo effect), so in addition you will be writing a never-ending
-stream of modules to perform these operations.  Here's a possible structure for
-your package (expressed in terms of a hierarchical filesystem)::
+Suponete que querés designar una colección de módulos (un "paquete") para el
+manejo uniforme de archivos y datos de sonidos.  Hay diferentes formatos de
+archivos de sonido (normalmente reconocidos por su extensión, por ejemplo:
+:file:`.wav`, :file:`.aiff`, :file:`.au`), por lo que tenés que crear y
+mantener una colección siempre creciente de módulos para la conversión entre
+los distintos formatos de archivos.  Hay muchas operaciones diferentes que
+quizás quieras ejecutar en los datos de sonido (como mezclarlos, añadir eco,
+aplicar una función ecualizadora, crear un efecto estéreo artificial), por lo
+que ademas estarás escribiendo una lista sin fin de módulos para realizar
+estas operaciones.  Aquí hay una posible estructura para tu paquete (expresados
+en términos de un sistema jerárquico de archivos)::
 
-   sound/                          Top-level package
-         __init__.py               Initialize the sound package
-         formats/                  Subpackage for file format conversions
+   sound/                          Paquete superior
+         __init__.py               Inicializa el paquete de sonido
+         formats/                  Subpaquete para conversiones de formato
                  __init__.py
                  wavread.py
                  wavwrite.py
@@ -387,28 +389,30 @@ your package (expressed in terms of a hierarchical filesystem)::
                  auread.py
                  auwrite.py
                  ...
-         effects/                  Subpackage for sound effects
+         effects/                  Subpaquete para efectos de sonido
                  __init__.py
                  echo.py
                  surround.py
                  reverse.py
                  ...
-         filters/                  Subpackage for filters
+         filters/                  Subpaquete para filtros
                  __init__.py
                  equalizer.py
                  vocoder.py
                  karaoke.py
                  ...
 
-When importing the package, Python searches through the directories on
-``sys.path`` looking for the package subdirectory.
+Al importar el paquete, Python busca a través de los directorios en
+``sys.path``, buscando el subdirectorio del paquete.
 
-The :file:`__init__.py` files are required to make Python treat the directories
-as containing packages; this is done to prevent directories with a common name,
-such as ``string``, from unintentionally hiding valid modules that occur later
-on the module search path. In the simplest case, :file:`__init__.py` can just be
-an empty file, but it can also execute initialization code for the package or
-set the ``__all__`` variable, described later.
+Los archivos :file:`__init__.py` se necesitan para hacer que Python trate
+los directorios como que contienen paquetes; esto se hace para prevenir
+directorios con un nombre común, como ``string``, de esconder sin intención
+a módulos válidos que se suceden luego en el camino de búsqueda de módulos.
+En el caso más simple, :file:`__init__.py`  puede ser solamente un archivo
+vacío, pero también puede ejecutar código de inicialización para el paquete
+o configurar la variable ``__all__``, descrita luego.
+
 
 Users of the package can import individual modules from the package, for
 example::

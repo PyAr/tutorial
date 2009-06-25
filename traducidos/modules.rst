@@ -413,65 +413,66 @@ En el caso más simple, :file:`__init__.py`  puede ser solamente un archivo
 vacío, pero también puede ejecutar código de inicialización para el paquete
 o configurar la variable ``__all__``, descrita luego.
 
-
-Users of the package can import individual modules from the package, for
-example::
+Los usuarios del paquete pueden importar módulos individuales del mismo, por
+ejemplo::
 
    import sound.effects.echo
 
-This loads the submodule :mod:`sound.effects.echo`.  It must be referenced with
-its full name. ::
+Esto carga el submódulo :mod:`sound.effects.echo`.  Debe hacerse referencia al
+mismo con el nombre completo. ::
 
    sound.effects.echo.echofilter(input, output, delay=0.7, atten=4)
 
-An alternative way of importing the submodule is::
+Otra alternativa para importar el submódulos es::
 
    from sound.effects import echo
 
-This also loads the submodule :mod:`echo`, and makes it available without its
-package prefix, so it can be used as follows::
+Esto también carga el submódulo :mod:`echo`, lo deja disponible sin su prefijo
+de paquete, por lo que puede usarse así::
 
    echo.echofilter(input, output, delay=0.7, atten=4)
 
-Yet another variation is to import the desired function or variable directly::
+Otra variación más es importar la función o variable deseadas directamente::
 
    from sound.effects.echo import echofilter
 
-Again, this loads the submodule :mod:`echo`, but this makes its function
-:func:`echofilter` directly available::
+De nuevo, esto carga el submódulo :mod:`echo`, pero deja directamente
+disponible a la función :func:`echofilter`::
 
    echofilter(input, output, delay=0.7, atten=4)
 
-Note that when using ``from package import item``, the item can be either a
-submodule (or subpackage) of the package, or some  other name defined in the
-package, like a function, class or variable.  The ``import`` statement first
-tests whether the item is defined in the package; if not, it assumes it is a
-module and attempts to load it.  If it fails to find it, an :exc:`ImportError`
-exception is raised.
+Notá que al usar ``from package import item`` el ítem puede ser tanto un
+submódulo (o subpaquete) del paquete, o algún otro nombre definido en el
+paquete, como una función, clase, o variable.  La declaración ``import``
+primero verifica si el ítem está definido en el paquete; si no, asume que es un
+módulo y trata de cargarlo.  Si no lo puede encontrar, se genera una excepción
+:exc:`ImportError`.
 
-Contrarily, when using syntax like ``import item.subitem.subsubitem``, each item
-except for the last must be a package; the last item can be a module or a
-package but can't be a class or function or variable defined in the previous
-item.
+Por otro lado, cuando se usa la sintaxis como
+``import item.subitem.subsubitem``, cada ítem excepto el último debe ser un
+paquete; el mismo puede ser un módulo o un paquete pero no puede ser una clase,
+función o variable definida en el ítem previo.
 
 
 .. _tut-pkg-import-star:
 
-Importing \* From a Package
----------------------------
+Importando \* desde un paquete
+------------------------------
 
 .. index:: single: __all__
 
-Now what happens when the user writes ``from sound.effects import *``?  Ideally,
-one would hope that this somehow goes out to the filesystem, finds which
-submodules are present in the package, and imports them all.  Unfortunately,
-this operation does not work very well on Windows platforms, where the
-filesystem does not always have accurate information about the case of a
-filename!  On these platforms, there is no guaranteed way to know whether a file
-:file:`ECHO.PY` should be imported as a module :mod:`echo`, :mod:`Echo` or
-:mod:`ECHO`.  (For example, Windows 95 has the annoying practice of showing all
-file names with a capitalized first letter.)  The DOS 8+3 filename restriction
-adds another interesting problem for long module names.
+Ahora, ¿qué sucede cuando el usuario escribe ``from sound.effects import *``?
+Idealmente, uno esperaría que esto de alguna manera vaya al sistema de
+archivos, encuentre cuales submódulos están presentes en el paquete, y los
+importe a todos.  Desafortunadamente, esta operación no trabaja muy bien en
+las plataformas Windows, donde el sistema de archivos no siempre tiene
+información precisa sobre mayúsculas y minúsculas.  En estas plataformas,
+no hay una manera garantizada de saber si el archivo `ECHO.PY` debería
+importarse como el módulo :mod:`echo`, :mod:`Echo` o :mod:`ECHO`. (Por ejemplo,
+Windows 95 tiene la molesta costumbre de mostrar todos los nombres de archivos
+con la primer letra en mayúsculas.)  La restricción de DOS de los nombres de
+archivos con la forma 8+3 agrega otro problema interesante para los nombres
+de módulos largos.
 
 The only solution is for the package author to provide an explicit index of the
 package.  The import statement uses the following convention: if a package's

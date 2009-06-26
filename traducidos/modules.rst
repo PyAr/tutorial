@@ -474,38 +474,40 @@ con la primer letra en mayúsculas.)  La restricción de DOS de los nombres de
 archivos con la forma 8+3 agrega otro problema interesante para los nombres
 de módulos largos.
 
-The only solution is for the package author to provide an explicit index of the
-package.  The import statement uses the following convention: if a package's
-:file:`__init__.py` code defines a list named ``__all__``, it is taken to be the
-list of module names that should be imported when ``from package import *`` is
-encountered.  It is up to the package author to keep this list up-to-date when a
-new version of the package is released.  Package authors may also decide not to
-support it, if they don't see a use for importing \* from their package.  For
-example, the file :file:`sounds/effects/__init__.py` could contain the following
-code::
+La única solución es que el autor del paquete provea un índice explícito del
+paquete.  La declaración ``import`` usa la siguiente convención: si el código
+del :file:`__init__.py` de un paquete define una lista llamada ``__all__``, se
+toma como la lista de los nombres de módulos que deberían ser importados cuando
+se hace ``from package import *``.  Es tarea del autor del paquete mantener
+actualizada esta lista cuando se libera una nueva versión del paquete.  Los
+autores de paquetes podrían decidir no soportarlo, si no ven un uso para
+importar \* en sus paquetes.  Por ejemplo, el archivo
+:file:`sounds/effects/__init__.py` podría contener el siguiente código::
 
    __all__ = ["echo", "surround", "reverse"]
 
-This would mean that ``from sound.effects import *`` would import the three
-named submodules of the :mod:`sound` package.
+Esto significaría que ``from sound.effects import *`` importaría esos tres
+submódulos del paquete :mod:`sound`.
 
-If ``__all__`` is not defined, the statement ``from sound.effects import *``
-does *not* import all submodules from the package :mod:`sound.effects` into the
-current namespace; it only ensures that the package :mod:`sound.effects` has
-been imported (possibly running any initialization code in :file:`__init__.py`)
-and then imports whatever names are defined in the package.  This includes any
-names defined (and submodules explicitly loaded) by :file:`__init__.py`.  It
-also includes any submodules of the package that were explicitly loaded by
-previous import statements.  Consider this code::
+
+Si no se define ``__all__``, la declaración ``from sound.effects import *``
+*no* importa todos los submódulos del paquete :mod:`sound.effects` al espacio
+de nombres actual; sólo se asegura que se haya importado el paquete
+:mod:`sound.effects` (posiblemente ejecutando algún código de inicialización
+que haya en :file:`__init__.py`) y luego importa aquellos nombres que estén
+definidos en el paquete.  Esto incluye cualquier nombre definido (y submódulos
+explícitamente cargados) por :file:`__init__.py`.  También incluye cualquier
+submódulo del paquete que pudiera haber sido explícitamente cargado por
+declaraciones ``import`` previas.  Considerá este código::
 
    import sound.effects.echo
    import sound.effects.surround
    from sound.effects import *
 
-In this example, the echo and surround modules are imported in the current
-namespace because they are defined in the :mod:`sound.effects` package when the
-``from...import`` statement is executed.  (This also works when ``__all__`` is
-defined.)
+En este ejemplo, los módulos *echo* y *surround* se importan en el espacio de
+nombre actual porque están definidos en el paquete :mod:`sound.effects` cuando
+se ejecuta la declaración ``from...import``.  (Esto también funciona cuando se
+define ``__all__``).
 
 Note that in general the practice of importing ``*`` from a module or package is
 frowned upon, since it often causes poorly readable code. However, it is okay to

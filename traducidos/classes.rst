@@ -15,41 +15,44 @@ base, una clase derivada puede sobreescribir cualquier método de su(s) clase(s)
 base, y un método puede llamar al método de la clase base con el mismo nombre.
 Los objetos pueden tener una cantidad arbitraria de datos privados.
 
-In C++ terminology, all class members (including the data members) are *public*,
-and all member functions are *virtual*.  There are no special constructors or
-destructors.  As in Modula-3, there are no shorthands for referencing the
-object's members from its methods: the method function is declared with an
-explicit first argument representing the object, which is provided implicitly by
-the call.  As in Smalltalk, classes themselves are objects, albeit in the wider
-sense of the word: in Python, all data types are objects.  This provides
-semantics for importing and renaming.  Unlike  C++ and Modula-3, built-in types
-can be used as base classes for extension by the user.  Also, like in C++ but
-unlike in Modula-3, most built-in operators with special syntax (arithmetic
-operators, subscripting etc.) can be redefined for class instances.
+En terminología de C++, todos los miembros de las clases (incluyendo los
+miembros de datos), son *públicos*, y todas las funciones miembro son
+*virtuales*.  No hay constructores o destructores especiales.  Como en
+Modula-3, no hay atajos para hacer referencia a los miembros del objeto desde
+sus métodos: la función método se declara con un primer argumento explícito que
+representa al objeto, el cual se provee implícitamente por la llamada.  Como
+en Smalltalk, las clases mismas son objetos, aunque en un más amplio sentido
+de la palabra: en Python, todos los tipos de datos son objetos.  Esto provee
+una semántica para importar y renombrar.  A diferencia de C++ y Modula-3, los
+tipos de datos integrados pueden usarse como clases base para que el usuario
+los extienda.  También, como en C++ pero a diferencia de Modula-3, la mayoría
+de los operadores integrados con sintáxis especial (operadores aritméticos, de
+subíndice, etc.) pueden ser redefinidos por instancias de la clase.
 
 
 .. _tut-terminology:
 
-A Word About Terminology
-========================
+Unas palabras sobre terminología
+================================
 
-Lacking universally accepted terminology to talk about classes, I will make
-occasional use of Smalltalk and C++ terms.  (I would use Modula-3 terms, since
-its object-oriented semantics are closer to those of Python than C++, but I
-expect that few readers have heard of it.)
+Sin haber una terminología universalmente aceptada sobre clases, haré uso
+ocasional de términos de Smalltalk y C++.  (Usaría términos de Modula-3, ya que
+su semántica orientada a objetos es más cercanas a Python que C++, pero no
+espero que muchos lectores hayan escuchado hablar de él).
 
-Objects have individuality, and multiple names (in multiple scopes) can be bound
-to the same object.  This is known as aliasing in other languages.  This is
-usually not appreciated on a first glance at Python, and can be safely ignored
-when dealing with immutable basic types (numbers, strings, tuples).  However,
-aliasing has an (intended!) effect on the semantics of Python code involving
-mutable objects such as lists, dictionaries, and most types representing
-entities outside the program (files, windows, etc.).  This is usually used to
-the benefit of the program, since aliases behave like pointers in some respects.
-For example, passing an object is cheap since only a pointer is passed by the
-implementation; and if a function modifies an object passed as an argument, the
-caller will see the change --- this eliminates the need for two different
-argument passing mechanisms as in Pascal.
+Los objetos tienen individualidad, y múltiples nombres (en muchos ámbitos)
+pueden vincularse al mismo objeto.  Esto se conoce como *aliasing* en otros
+lenguajes.  Normalmente no se aprecia esto a primera vista en Python, y puede
+ignorarse sin problemas cuando se maneja tipos básicos inmutables (números,
+cadenas, tuplas).  Sin embargo, el *aliasing*, o renombrado,  tiene un efecto
+(intencional!) sobre la semántica de código Python que involucra objetos
+mutables como listas, diccionarios, y la mayoría de tipos que representan
+entidades afuera del programa (archivos, ventanas, etc.).  Esto se usa
+normalmente para beneficio del programa, ya que los renombres funcionan como
+punteros en algunos aspectos.  Por ejemplo, pasar un objeto es barato ya que
+la implementación solamente pasa el puntero; y si una función modifica el
+objeto que fue pasado, el que la llama verá el cambio; esto elimina la
+necesidad de tener dos formas diferentes de pasar argumentos, como en Pascal.
 
 
 .. _tut-scopes:

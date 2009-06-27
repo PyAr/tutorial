@@ -44,7 +44,7 @@ el directorio actual, con el siguiente contenido::
        return resultado
 
 Ahora entrá al intérprete de Python e importá este módulo con la siguiente
-órden::
+orden::
 
    >>> import fibo
 
@@ -126,15 +126,15 @@ Cuando ejecutás un módulo de Python con ::
 
    python fibo.py <argumentos>
 
-el código en el módulo será ejecutado, tal como si lo hubieses importado, pero
-con ``__name__`` con el valor de ``"__main__"``.  Eso significa que agregando
-este código al final de tu módulo::
+...el código en el módulo será ejecutado, tal como si lo hubieses importado,
+pero con ``__name__`` con el valor de ``"__main__"``.  Eso significa que
+agregando este código al final de tu módulo::
 
    if __name__ == "__main__":
        import sys
        fib(int(sys.argv[1]))
 
-podés hacer que el archivo sea utilizable tanto como script como un módulo
+...podés hacer que el archivo sea utilizable tanto como script como un módulo
 importable, porque el código que analiza la linea de órdenes sólo se ejecuta
 si el módulo es ejecutado como archivo principal::
 
@@ -509,66 +509,67 @@ nombre actual porque están definidos en el paquete :mod:`sound.effects` cuando
 se ejecuta la declaración ``from...import``.  (Esto también funciona cuando se
 define ``__all__``).
 
-Note that in general the practice of importing ``*`` from a module or package is
-frowned upon, since it often causes poorly readable code. However, it is okay to
-use it to save typing in interactive sessions, and certain modules are designed
-to export only names that follow certain patterns.
+Notá que en general la práctica de importar ``*`` desde un módulo o paquete no
+se recomienda, ya que frecuentemente genera un código con mala legibilidad.
+Sin embargo, está bien usarlo para ahorrar tecleo en sesiones interactivas,
+y algunos módulos están diseñados para exportar sólo nombres que siguen
+ciertos patrones.
 
-Remember, there is nothing wrong with using ``from Package import
-specific_submodule``!  In fact, this is the recommended notation unless the
-importing module needs to use submodules with the same name from different
-packages.
+Recordá que no está mal usar ``from Package import specific_submodule``!  De
+hecho, esta notación se recomienda a menos que el módulo que estás importando
+necesite usar submódulos con el mismo nombre desde otros paquetes.
 
 
-Intra-package References
-------------------------
+Referencias internas en paquetes
+--------------------------------
 
-The submodules often need to refer to each other.  For example, the
-:mod:`surround` module might use the :mod:`echo` module.  In fact, such
-references are so common that the :keyword:`import` statement first looks in the
-containing package before looking in the standard module search path. Thus, the
-:mod:`surround` module can simply use ``import echo`` or ``from echo import
-echofilter``.  If the imported module is not found in the current package (the
-package of which the current module is a submodule), the :keyword:`import`
-statement looks for a top-level module with the given name.
+Los submódulos frecuentemente necesitan referirse unos a otros.  Por ejemplo,
+el módulo :mod:`surround` quizás necesite usar el módulo :mod:`echo` module.
+De hecho, tales referencias son tan comunes que la declaración
+:keyword:`import` primero mira en el paquete actual antes de mirar en el camino
+estándar de búsqueda de módulos.  Por lo tanto, el módulo :mod:`surround` puede
+simplemente hacer ``import echo`` o ``from echo import echofilter``.  Si el
+módulo importado no se encuentra en el paquete actual (el paquete del cual el
+módulo actual es un submódulo), la declaración :keyword:`import` busca en el
+nivel superior por un módulo con el nombre dado.
 
-When packages are structured into subpackages (as with the :mod:`sound` package
-in the example), you can use absolute imports to refer to submodules of siblings
-packages.  For example, if the module :mod:`sound.filters.vocoder` needs to use
-the :mod:`echo` module in the :mod:`sound.effects` package, it can use ``from
-sound.effects import echo``.
+Cuando se estructuran los paquetes en subpaquetes (como en el ejemplo
+:mod:`sound`), podés usar ``import`` absolutos para referirte a
+submódulos de paquetes hermanos.  Por ejemplo, si el módulo
+:mod:`sound.filters.vocoder` necesita usar el módulo :mod:`echo` en el paquete
+:mod:`sound.effects`, puede hacer ``from sound.effects import echo``.
 
-Starting with Python 2.5, in addition to the implicit relative imports described
-above, you can write explicit relative imports with the ``from module import
-name`` form of import statement. These explicit relative imports use leading
-dots to indicate the current and parent packages involved in the relative
-import. From the :mod:`surround` module for example, you might use::
+Desde Python 2.5, además de los ``import`` relativos implícitos descritos
+arriba, podés escribir ``import`` relativos explícitos con la declaración de la
+forma ``from module import name``.  Estos ``import`` relativos explícitos usan
+puntos adelante para indicar los paquetes actual o padres involucrados en el
+``import`` relativo. En el ejemplo :mod:`surround`, podrías hacer::
 
    from . import echo
    from .. import formats
    from ..filters import equalizer
 
-Note that both explicit and implicit relative imports are based on the name of
-the current module. Since the name of the main module is always ``"__main__"``,
-modules intended for use as the main module of a Python application should
-always use absolute imports.
+Notá que ambos ``import``, relativos explícitos e implícitos, se basan en el
+nombre del módulo actual.  Ya que el nombre del módulo principal es siempre
+``"__main__"``,  los módulos pensados para usarse como módulo principal de una
+aplicación Python siempre deberían usar ``import`` absolutos.
 
 
-Packages in Multiple Directories
+Paquetes en múltiple directorios
 --------------------------------
 
-Packages support one more special attribute, :attr:`__path__`.  This is
-initialized to be a list containing the name of the directory holding the
-package's :file:`__init__.py` before the code in that file is executed.  This
-variable can be modified; doing so affects future searches for modules and
-subpackages contained in the package.
+Los paquetes soportan un atributo especial más, :attr:`__path__`.  Este
+se inicializa, antes de que el código en ese archivo se ejecute, a una lista
+que contiene el nombre del directorio donde está el paquete.  Esta variable
+puede modificarse, afectando búsquedas futuras de módulos y subpaquetes
+contenidos en el paquete.
 
-While this feature is not often needed, it can be used to extend the set of
-modules found in a package.
+Aunque esta característica no se necesita frecuentemente, puede usarse para
+extender el conjunto de módulos que se encuentran en el paquete.
 
 
 .. rubric:: Footnotes
 
-.. [#] In fact function definitions are also 'statements' that are 'executed'; the
-   execution enters the function name in the module's global symbol table.
-
+.. [#] De hecho las definiciones de función son también 'declaraciones' que
+   se 'ejecutan';  la ejecución mete el nombre de la función en el espacio
+   de nombres global.

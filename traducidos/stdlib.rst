@@ -1,55 +1,55 @@
 .. _tut-brieftour:
 
-**********************************
-Brief Tour of the Standard Library
-**********************************
+****************************************
+Pequeño paseo por la Biblioteca Estándar
+****************************************
 
 
 .. _tut-os-interface:
 
-Operating System Interface
-==========================
+Interfaz al sistema operativo
+=============================
 
-The :mod:`os` module provides dozens of functions for interacting with the
-operating system::
+El módulo :mod:`os` provee docenas de funciones para interactuar
+con el sistema operativo::
 
    >>> import os
    >>> os.system('time 0:02')
    0
-   >>> os.getcwd()      # Return the current working directory
+   >>> os.getcwd()      # devuelve el directorio de trabajo actual
    'C:\\Python26'
    >>> os.chdir('/server/accesslogs')
 
-Be sure to use the ``import os`` style instead of ``from os import *``.  This
-will keep :func:`os.open` from shadowing the builtin :func:`open` function which
-operates much differently.
+Asegurate de usar el estilo ``import os`` en lugar de ``from os import *``.
+Esto evitará que :func:`os.open` oculte a la función integrada :func:`open`,
+que trabaja bastante diferente.
 
 .. index:: builtin: help
 
-The builtin :func:`dir` and :func:`help` functions are useful as interactive
-aids for working with large modules like :mod:`os`::
+Las funciones integradas :func:`dir` y :func:`help` son útiles como ayudas
+interactivas para trabajr con módulos grandes como :mod:`os`::
 
    >>> import os
    >>> dir(os)
-   <returns a list of all module functions>
+   <devuelve una lista de todas las funciones del módulo>
    >>> help(os)
-   <returns an extensive manual page created from the module's docstrings>
+   <devuelve un manual creado a partir de las documentaciones del módulo>
 
-For daily file and directory management tasks, the :mod:`shutil` module provides
-a higher level interface that is easier to use::
+Para tareas diarias de administración de archivos y directorios, el módulo
+:mod:`shutil` provee una interfaz de más alto nivel que es más fácil de usar::
 
    >>> import shutil
-   >>> shutil.copyfile('data.db', 'archive.db')
-   >>> shutil.move('/build/executables', 'installdir')
+   >>> shutil.copyfile('datos.db', 'archivo.db')
+   >>> shutil.move('/build/executables', 'dir_instalac')
 
 
 .. _tut-file-wildcards:
 
-File Wildcards
-==============
+Comodines de archivos
+=====================
 
-The :mod:`glob` module provides a function for making file lists from directory
-wildcard searches::
+El módulo :mod:`glob` provee una función para hacer listas de archivos a partir
+de búsquedas con comodines en directorios::
 
    >>> import glob
    >>> glob.glob('*.py')
@@ -58,46 +58,48 @@ wildcard searches::
 
 .. _tut-command-line-arguments:
 
-Command Line Arguments
-======================
+Argumentos de linea de órdenes
+==============================
 
-Common utility scripts often need to process command line arguments. These
-arguments are stored in the :mod:`sys` module's *argv* attribute as a list.  For
-instance the following output results from running ``python demo.py one two
-three`` at the command line::
+Los programas frecuentemente necesitan procesar argumentos de linea de órdes.
+Estos argumentos se almacenan en el atributo *argv* del módulo :mod:`sys` como
+una lista.  Por ejemplo, la siguiente salida resulta de ejecutar
+``python demo.py uno dos tres`` en la línea de órdenes::
 
    >>> import sys
    >>> print sys.argv
-   ['demo.py', 'one', 'two', 'three']
+   ['demo.py', 'uno', 'dos', 'tres']
 
-The :mod:`getopt` module processes *sys.argv* using the conventions of the Unix
-:func:`getopt` function.  More powerful and flexible command line processing is
-provided by the :mod:`optparse` module.
+El módulo :mod:`getopt` procesa *sys.argv* usando las convenciones de la
+función de Unix :func:`getopt`.  El módulo :mod:`optparse` provee un
+procesamiento más flexible de la linea de órdenes.
 
 
 .. _tut-stderr:
 
-Error Output Redirection and Program Termination
-================================================
+Redirección de la salida de error y finalización del programa
+=============================================================
 
-The :mod:`sys` module also has attributes for *stdin*, *stdout*, and *stderr*.
-The latter is useful for emitting warnings and error messages to make them
-visible even when *stdout* has been redirected::
+El módulo :mod:`sys` también tiene atributos para *stdin*, *stdout*, y
+*stderr*.  Este último es útil para emitir mensajes de alerta y error para
+que se vean incluso cuando se haya redireccionado *stdout*::
 
-   >>> sys.stderr.write('Warning, log file not found starting a new one\n')
-   Warning, log file not found starting a new one
+   >>> sys.stderr.write('Alerta, archivo de log no encontrado\n')
+   Alerta, archivo de log no encontrado
 
-The most direct way to terminate a script is to use ``sys.exit()``.
+La forma más directa de terminar un programa es usar ``sys.exit()``.
 
 
 .. _tut-string-pattern-matching:
 
-String Pattern Matching
-=======================
 
-The :mod:`re` module provides regular expression tools for advanced string
-processing. For complex matching and manipulation, regular expressions offer
-succinct, optimized solutions::
+Coincidencia en patrones de cadenas
+===================================
+
+El módulo :mod:`re` provee herramientas de expresiones regulares para un
+procesamiento avanzado de cadenas.  Para manipulación y coincidencias
+complejas, las expresiones regulares ofrecen soluciones concisas y
+optimizadas::
 
    >>> import re
    >>> re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
@@ -136,7 +138,7 @@ The :mod:`random` module provides tools for making random selections::
    >>> random.random()    # random float
    0.17970987693706186
    >>> random.randrange(6)    # random integer chosen from range(6)
-   4   
+   4
 
 
 .. _tut-internet-access:

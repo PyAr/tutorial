@@ -279,15 +279,15 @@ aplicarse a expresiones complejas y funciones anidadas::
    ['3.1', '3.14', '3.142', '3.1416', '3.14159']
 
 
-Nested List Comprehensions
---------------------------
+Listas por comprensión anidadas
+-------------------------------
 
-If you've got the stomach for it, list comprehensions can be nested. They are a
-powerful tool but -- like all powerful tools -- they need to be used carefully,
-if at all.
+Si tienes el estómago suficiente, las listas por comprensión pueden anidarse.
+Son una herramienta poderosa pero -- como toda herramienta poderosa -- deben
+usarse con cuidado, o ni siquiera usarse.
 
-Consider the following example of a 3x3 matrix held as a list containing three 
-lists, one list per row::
+Considera el siguiente ejemplo de una matriz de 3x3 como una lista que
+contiene tres listas, una por fila::
 
     >>> mat = [
     ...        [1, 2, 3],
@@ -295,31 +295,33 @@ lists, one list per row::
     ...        [7, 8, 9],
     ...       ]
 
-Now, if you wanted to swap rows and columns, you could use a list 
-comprehension::
+Ahora, si quisieras intercambiar filas y columnas, podrías usar una lista por
+comprensión::
 
-    >>> print [[row[i] for row in mat] for i in [0, 1, 2]]
+    >>> print [[fila[i] for fila in mat] for i in [0, 1, 2]]
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
 
-Special care has to be taken for the *nested* list comprehension:
+Se debe tener cuidado especial para la lista por comprensión *anidada*:
 
-    To avoid apprehension when nesting list comprehensions, read from right to
-    left.
+    Para evitar aprensión cuando se anidan lista por comprensión, lee de
+    derecha a izquierda.
 
-A more verbose version of this snippet shows the flow explicitly::
+Una versión más detallada de este retazo muestra el flujo de manera
+explícita::
 
     for i in [0, 1, 2]:
-        for row in mat:
-            print row[i],
+        for fila in mat:
+            print fila[i],
         print
 
-In real world, you should prefer builtin functions to complex flow statements. 
-The :func:`zip` function would do a great job for this use case::
+En el mundo real, deberías preferir funciones predefinidas a declaraciones con
+flujo complejo. La función :func:`zip` haría un buen trabajo para este caso de
+uso::
 
     >>> zip(*mat)
     [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 
-See :ref:`tut-unpacking-arguments` for details on the asterisk in this line.
+Ver :ref:`tut-unpacking-arguments` para detalles en el asterisk de esta línea.
 
 .. _tut-del:
 

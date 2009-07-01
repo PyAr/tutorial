@@ -231,21 +231,22 @@ y funciona exactamente así.
 .. versionadded:: 2.3
 
 
-List Comprehensions
--------------------
+Listas por comprensión
+----------------------
 
-List comprehensions provide a concise way to create lists without resorting to
-use of :func:`map`, :func:`filter` and/or :keyword:`lambda`. The resulting list
-definition tends often to be clearer than lists built using those constructs.
-Each list comprehension consists of an expression followed by a :keyword:`for`
-clause, then zero or more :keyword:`for` or :keyword:`if` clauses.  The result
-will be a list resulting from evaluating the expression in the context of the
-:keyword:`for` and :keyword:`if` clauses which follow it.  If the expression
-would evaluate to a tuple, it must be parenthesized. ::
+Las listas por comprensión proveen una forma concisa de crear listas sin tener
+que recurrir al uso de :func:`map`, :func:`filter` y/o :keyword:`lambda`. La
+definición resultante de la lista a menudo tiende a ser más clara que las
+listas formadas usando esas construcciones.
+Cada lista por comprensión consiste de una expresión seguida por una cláusula
+:keyword:`for`, luego cero o más cláusulas :keyword:`for` o :keyword:`if`. El
+resultado será una lista que resulta de evaluar la expresión en el contexto de
+las cláusulas :keyword:`for` y :keyword:`if` que sigan.  Si la expresión
+evaluase a una tupla, debe encerrarse entre paréntesis. ::
 
-   >>> freshfruit = ['  banana', '  loganberry ', 'passion fruit  ']
-   >>> [weapon.strip() for weapon in freshfruit]
-   ['banana', 'loganberry', 'passion fruit']
+   >>> frutafresca = ['  banana', '  mora de Logan ', 'maracuya  ']
+   >>> [arma.strip() for arma in frutafresca]
+   ['banana', 'mora de logan', 'maracuya']
    >>> vec = [2, 4, 6]
    >>> [3*x for x in vec]
    [6, 12, 18]
@@ -255,7 +256,7 @@ would evaluate to a tuple, it must be parenthesized. ::
    []
    >>> [[x,x**2] for x in vec]
    [[2, 4], [4, 16], [6, 36]]
-   >>> [x, x**2 for x in vec]	# error - parens required for tuples
+   >>> [x, x**2 for x in vec]	# error - se requieren paréntesis para tuplas
      File "<stdin>", line 1, in ?
        [x, x**2 for x in vec]
                   ^
@@ -271,8 +272,8 @@ would evaluate to a tuple, it must be parenthesized. ::
    >>> [vec1[i]*vec2[i] for i in range(len(vec1))]
    [8, 12, -54]
 
-List comprehensions are much more flexible than :func:`map` and can be applied
-to complex expressions and nested functions::
+Las listas por comprensión son mucho más flexibles que :func:`map` y pueden
+aplicarse a expresiones complejas y funciones anidadas::
 
    >>> [str(round(355/113.0, i)) for i in range(1,6)]
    ['3.1', '3.14', '3.142', '3.1416', '3.14159']

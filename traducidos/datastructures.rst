@@ -321,18 +321,18 @@ uso::
     >>> zip(*mat)
     [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 
-Ver :ref:`tut-unpacking-arguments` para detalles en el asterisk de esta línea.
+Ver :ref:`tut-unpacking-arguments` para detalles en el asterisco de esta línea.
 
 .. _tut-del:
 
-The :keyword:`del` statement
+La instrucción :keyword:`del`
 ============================
 
-There is a way to remove an item from a list given its index instead of its
-value: the :keyword:`del` statement.  This differs from the :meth:`pop` method
-which returns a value.  The :keyword:`del` statement can also be used to remove
-slices from a list or clear the entire list (which we did earlier by assignment
-of an empty list to the slice).  For example::
+Hay una manera de quitar un ítem de una lista dado su índice en lugar de su
+valor: la instrucción :keyword:`del`. Ésta es diferente del método :meth:`pop`,
+el cual devuelve un valor.  La instrucción :keyword:`del` también puede usarse
+para quitar secciones de una lista o vaciar la lista completa (lo que hacíamos
+antes asignando una lista vacía a la sección).  Por ejemplo::
 
    >>> a = [-1, 1, 66.25, 333, 333, 1234.5]
    >>> del a[0]
@@ -345,12 +345,12 @@ of an empty list to the slice).  For example::
    >>> a
    []
 
-:keyword:`del` can also be used to delete entire variables::
+:keyword:`del` puede usarse también para eliminar variables::
 
    >>> del a
 
-Referencing the name ``a`` hereafter is an error (at least until another value
-is assigned to it).  We'll find other uses for :keyword:`del` later.
+Referenciar al nombre ``a`` de aquí en más es un error (al menos hasta que se
+le asigne otro valor).  Veremos otros usos para :keyword:`del` más adelante.
 
 
 .. _tut-tuples:

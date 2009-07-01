@@ -102,25 +102,25 @@ complejas, las expresiones regulares ofrecen soluciones concisas y
 optimizadas::
 
    >>> import re
-   >>> re.findall(r'\bf[a-z]*', 'which foot or hand fell fastest')
-   ['foot', 'fell', 'fastest']
-   >>> re.sub(r'(\b[a-z]+) \1', r'\1', 'cat in the the hat')
-   'cat in the hat'
+   >>> re.findall(r'\bt[a-z]*', 'tres felices tigres comen trigo')
+   ['tres', 'tigres', 'trigo']
+   >>> re.sub(r'(\b[a-z]+) \1', r'\1', 'gato en el el sombrero')
+   'gato en el sombrero'
 
-When only simple capabilities are needed, string methods are preferred because
-they are easier to read and debug::
+Cuando se necesita algo más sencillo solamente, se prefieren los métodos de
+las cadenas porque son más fáciles de leer y depurar.
 
-   >>> 'tea for too'.replace('too', 'two')
-   'tea for two'
+   >>> 'te para tos'.replace('tos', 'dos')
+   'te para dos'
 
 
 .. _tut-mathematics:
 
-Mathematics
-===========
+Matemática
+==========
 
-The :mod:`math` module gives access to the underlying C library functions for
-floating point math::
+El módulo :mod:`math` permite el acceso a las funciones de la biblioteca C
+subyacente para la matemática de punto flotante::
 
    >>> import math
    >>> math.cos(math.pi / 4.0)
@@ -128,46 +128,47 @@ floating point math::
    >>> math.log(1024, 2)
    10.0
 
-The :mod:`random` module provides tools for making random selections::
+El módulo :mod:`random` provee herramientas para realizar selecciones al azar::
 
    >>> import random
-   >>> random.choice(['apple', 'pear', 'banana'])
-   'apple'
-   >>> random.sample(xrange(100), 10)   # sampling without replacement
+   >>> random.choice(['manzana', 'pera', 'banana'])
+   'manzana'
+   >>> random.sample(xrange(100), 10)   # elección sin reemplazo
    [30, 83, 16, 4, 8, 81, 41, 50, 18, 33]
-   >>> random.random()    # random float
+   >>> random.random()    # un float al azar
    0.17970987693706186
-   >>> random.randrange(6)    # random integer chosen from range(6)
+   >>> random.randrange(6)    # un entero al azar tomado de range(6)
    4
 
 
 .. _tut-internet-access:
 
-Internet Access
-===============
+Acceso a Internet
+=================
 
-There are a number of modules for accessing the internet and processing internet
-protocols. Two of the simplest are :mod:`urllib2` for retrieving data from urls
-and :mod:`smtplib` for sending mail::
+Hay varios módulos para acceder a internet y procesar sus protocolos.  Dos de
+los más simples son :mod:`urllib2` para traer data de URLs y :mod:`smtplib`
+para mandar correos::
 
    >>> import urllib2
    >>> for line in urllib2.urlopen('http://tycho.usno.navy.mil/cgi-bin/timer.pl'):
-   ...     if 'EST' in line or 'EDT' in line:  # look for Eastern Time
+   ...     if 'EST' in line or 'EDT' in line:  # buscamos la hora del este
    ...         print line
 
    <BR>Nov. 25, 09:43:32 PM EST
 
    >>> import smtplib
    >>> server = smtplib.SMTP('localhost')
-   >>> server.sendmail('soothsayer@example.org', 'jcaesar@example.org',
-   ... """To: jcaesar@example.org
-   ... From: soothsayer@example.org
+   >>> server.sendmail('soothsayer@ejemplo.org', 'jcaesar@ejemplo.org',
+   ... """To: jcaesar@ejemplo.org
+   ... From: soothsayer@ejemplo.org
    ...
-   ... Beware the Ides of March.
+   ... Ojo al piojo.
    ... """)
    >>> server.quit()
 
-(Note that the second example needs a mailserver running on localhost.)
+(Notá que el segundo ejemplo necesita un servidor de correo corriendo en la
+máquina local)
 
 
 .. _tut-dates-and-times:
@@ -227,7 +228,7 @@ Some Python users develop a deep interest in knowing the relative performance of
 different approaches to the same problem. Python provides a measurement tool
 that answers those questions immediately.
 
-For example, it may be tempting to use the tuple packing and unpacking feature
+For ejemplo, it may be tempting to use the tuple packing and unpacking feature
 instead of the traditional approach to swapping arguments. The :mod:`timeit`
 module quickly demonstrates a modest performance advantage::
 
@@ -254,7 +255,7 @@ development process.
 The :mod:`doctest` module provides a tool for scanning a module and validating
 tests embedded in a program's docstrings.  Test construction is as simple as
 cutting-and-pasting a typical call along with its results into the docstring.
-This improves the documentation by providing the user with an example and it
+This improves the documentation by providing the user with an ejemplo and it
 allows the doctest module to make sure the code remains true to the
 documentation::
 
@@ -292,7 +293,7 @@ Batteries Included
 ==================
 
 Python has a "batteries included" philosophy.  This is best seen through the
-sophisticated and robust capabilities of its larger packages. For example:
+sophisticated and robust capabilities of its larger packages. For ejemplo:
 
 * The :mod:`xmlrpclib` and :mod:`SimpleXMLRPCServer` modules make implementing
   remote procedure calls into an almost trivial task.  Despite the modules

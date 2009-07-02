@@ -441,7 +441,7 @@ Una pequeña demostración::
    set(['naranja', 'pera', 'manzana', 'banana'])
    >>> 'naranja' in fruta                 # verificación de pertenencia rápida
    True
-   >>> 'hierba' in fruta
+   >>> 'yerba' in fruta
    False
 
    >>> # Veamos las operaciones de conjuntos para las letras únicas de dos palabras

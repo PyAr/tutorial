@@ -424,38 +424,39 @@ una tupla, y el desempaquetado funciona con cualquier secuencia.
 
 .. _tut-sets:
 
-Sets
-====
+Conjuntos
+=========
 
-Python also includes a data type for *sets*.  A set is an unordered collection
-with no duplicate elements.  Basic uses include membership testing and
-eliminating duplicate entries.  Set objects also support mathematical operations
-like union, intersection, difference, and symmetric difference.
+Python también incluye un tipo de dato para *conjuntos*.  Un conjunto es una
+colección no ordenada y sin elementos repetidos.  Los usos básicos de éstos
+incluyen verificación de pertenencia y eliminación de entradas duplicadas.
+Los conjuntos también soportan operaciones matemáticas como la unión,
+intersección, diferencia, y diferencia simétrica.
 
-Here is a brief demonstration::
+Una pequeña demostración::
 
-   >>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
-   >>> fruit = set(basket)               # create a set without duplicates
-   >>> fruit
-   set(['orange', 'pear', 'apple', 'banana'])
-   >>> 'orange' in fruit                 # fast membership testing
+   >>> canasta = ['manzana', 'naranja', 'manzana', 'pera', 'naranja', 'banana']
+   >>> fruta = set(canasta)               # crea un conjunto sin repetidos
+   >>> fruta
+   set(['naranja', 'pera', 'manzana', 'banana'])
+   >>> 'naranja' in fruta                 # verificación de pertenencia rápida
    True
-   >>> 'crabgrass' in fruit
+   >>> 'hierba' in fruta
    False
 
-   >>> # Demonstrate set operations on unique letters from two words
+   >>> # Veamos las operaciones de conjuntos para las letras únicas de dos palabras
    ...
    >>> a = set('abracadabra')
    >>> b = set('alacazam')
-   >>> a                                  # unique letters in a
+   >>> a                                  # letras únicas en a
    set(['a', 'r', 'b', 'c', 'd'])
-   >>> a - b                              # letters in a but not in b
+   >>> a - b                              # letras en a pero no en b
    set(['r', 'd', 'b'])
    >>> a | b                              # letters in either a or b
    set(['a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'])
-   >>> a & b                              # letters in both a and b
+   >>> a & b                              # letras en a y en b
    set(['a', 'c'])
-   >>> a ^ b                              # letters in a or b but not both
+   >>> a ^ b                              # letras en a o b pero no en ambos
    set(['r', 'd', 'b', 'm', 'z', 'l'])
 
 

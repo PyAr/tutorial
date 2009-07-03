@@ -61,7 +61,7 @@ The :ref:`glossary` is also worth going through.
    floatingpoint.rst
 
 
-.. raw:: pdf\n\n    PageBreak\n\n
+.. .. raw:: pdf\n\n    PageBreak\n\n
 
-.. contents::
+.. .. contents::
 

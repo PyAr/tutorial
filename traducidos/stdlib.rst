@@ -61,7 +61,7 @@ de búsquedas con comodines en directorios::
 Argumentos de linea de órdenes
 ==============================
 
-Los programas frecuentemente necesitan procesar argumentos de linea de órdes.
+Los programas frecuentemente necesitan procesar argumentos de linea de órdenes.
 Estos argumentos se almacenan en el atributo *argv* del módulo :mod:`sys` como
 una lista.  Por ejemplo, la siguiente salida resulta de ejecutar
 ``python demo.py uno dos tres`` en la línea de órdenes::

@@ -135,16 +135,16 @@ sin un índice explícito.  Por ejemplo::
 
 .. _tut-lists-as-queues:
 
-Usando Listas como Filas
+Usando listas como colas
 ------------------------
 
 .. sectionauthor:: Ka-Ping Yee <ping@lfw.org>
 
 
-También puedes usar una lista convenientemente como una fila, donde el primer
+También puedes usar una lista convenientemente como una cola, donde el primer
 elemento añadido es el primer elemento retirado ("primero en entrar, primero
-en salir").  Para agregar un ítem al final de la fila, use :meth:`append`.
-Para retirar un ítem del frente de la fila, use :meth:`pop` con ``0`` como
+en salir").  Para agregar un ítem al final de la cola, use :meth:`append`.
+Para retirar un ítem del frente de la pila, use :meth:`pop` con ``0`` como
 índice. Por ejemplo::
 
    >>> queue = ["Eric", "John", "Michael"]
@@ -160,7 +160,7 @@ Para retirar un ítem del frente de la fila, use :meth:`pop` con ``0`` como
 
 .. _tut-functional:
 
-Herramientas de Programación Funcional
+Herramientas de programación funcional
 --------------------------------------
 
 Hay tres funciones integradas que son muy útiles cuando se usan con listas:
@@ -218,7 +218,7 @@ resultado y al siguiente ítem, y así sucesivamente. Por ejemplo, ::
    >>> def sum(sec):
    ...     def sumar(x,y): return x+y
    ...     return reduce(sumar, sec, 0)
-   ... 
+   ...
    >>> sum(range(1, 11))
    55
    >>> sum([])

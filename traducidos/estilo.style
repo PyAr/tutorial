@@ -1,0 +1,17 @@
+{"pageSetup": {
+    "firstTemplate": "cutePage"
+  },
+  "pageTemplates" : {
+    "cutePage": {
+        "frames": [
+            ["2%", "2%", "96%", "96%"]
+        ],
+        "showHeader" : true,
+        "showFooter" : true,
+        "defaultHeader" : "Tutorial de Python",
+        "defaultFooter" : "###Page###",
+        "gutterMargin" : ".75cm"
+    }
+  }
+}
+

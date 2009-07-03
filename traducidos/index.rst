@@ -1,7 +1,7 @@
 .. _tutorial-index:
 
 ######################
-  The Python tutorial 
+  The Python tutorial
 ######################
 
 :Release: |version|
@@ -59,3 +59,9 @@ The :ref:`glossary` is also worth going through.
    whatnow.rst
    interactive.rst
    floatingpoint.rst
+
+
+.. raw:: pdf\n\n    PageBreak\n\n
+
+.. contents::
+

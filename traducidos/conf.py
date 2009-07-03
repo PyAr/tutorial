@@ -204,7 +204,7 @@ latex_documents = [
 # A comma-separated list of custom stylesheets. Example:
 # stylesheets=["fruity.json", "a4paper.json", "verasans.json"]
 #pdf_stylesheets = ['sphinx','b5']
-pdf_stylesheets = ['eightpoint','b5','sphinx','estilo']
+pdf_stylesheets = ['eightpoint','a5','sphinx','estilo']
 # What to do when a literal block is too wide
 pdf_fit_mode = 'shrink'
 pdf_break_level = 2

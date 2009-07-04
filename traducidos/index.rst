@@ -41,7 +41,7 @@ language's flavor and style. After reading it, you will be able to read and
 write Python modules and programs, and you will be ready to learn more about the
 various Python library modules described in the Python Library Reference.
 
-The :ref:`glossary` is also worth going through.
+The `glossary` is also worth going through.
 
 .. toctree::
 

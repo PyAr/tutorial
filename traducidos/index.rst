@@ -60,8 +60,3 @@ The :ref:`glossary` is also worth going through.
    interactive.rst
    floatingpoint.rst
 
-
-.. .. raw:: pdf\n\n    PageBreak\n\n
-
-.. .. contents::
-

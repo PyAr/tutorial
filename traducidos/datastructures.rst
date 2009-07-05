@@ -462,38 +462,41 @@ Una pequeña demostración::
 
 .. _tut-dictionaries:
 
-Dictionaries
+Diccionarios
 ============
 
-Another useful data type built into Python is the *dictionary* (see
-:ref:`typesmapping`). Dictionaries are sometimes found in other languages as
-"associative memories" or "associative arrays".  Unlike sequences, which are
-indexed by a range of numbers, dictionaries are indexed by *keys*, which can be
-any immutable type; strings and numbers can always be keys.  Tuples can be used
-as keys if they contain only strings, numbers, or tuples; if a tuple contains
-any mutable object either directly or indirectly, it cannot be used as a key.
-You can't use lists as keys, since lists can be modified in place using index
-assignments, slice assignments, or methods like :meth:`append` and
+Otro tipo de dato útil incluído en Python el el *diccionario* (ver
+:ref:`typesmapping`). Los diccionarios se encuentran a veces en otros lenguajes
+como "memorias asociativas" o "arreglos asociativos". A diferencia de las
+secuencias, que se indexan mediante un rango numérico, los diccionarios se
+indexan con *claves*, que pueden ser cualquier tipo inmutable; las cadenas y
+números siempre pueden ser claves.  Las tuplas pueden usarse como claves si
+solamente contienen cadenas, números o tuplas; si una tupla contiene cualquier
+objeto mutable directa o indirectamente, no puede usarse como clave.
+No puedes usar listas como claves, ya que las listas pueden modificarse usando
+asignación por índice, asignación por sección, o métodos como :meth:`append` y
 :meth:`extend`.
 
-It is best to think of a dictionary as an unordered set of *key: value* pairs,
-with the requirement that the keys are unique (within one dictionary). A pair of
-braces creates an empty dictionary: ``{}``. Placing a comma-separated list of
-key:value pairs within the braces adds initial key:value pairs to the
-dictionary; this is also the way dictionaries are written on output.
+Lo mejor es pensar en un diccionario como un conjunto no ordenado de pares
+*clave: valor*, con el requerimiento de que las claves sean únicas (dentro de
+un diccionario en particular). Un par de llaves crean un diccionario vacío:
+``{}``. Colocar una lista de pares clave:valor separados por comas entre las
+llaves añade pares clave:valor iniciales al diccionario; esta también es la
+forma en que los diccionarios se presentan en la salida.
 
-The main operations on a dictionary are storing a value with some key and
-extracting the value given the key.  It is also possible to delete a key:value
-pair with ``del``. If you store using a key that is already in use, the old
-value associated with that key is forgotten.  It is an error to extract a value
-using a non-existent key.
+Las operaciones principales sobre un diccionario son guardar un valor con una
+clave y extraer ese valor dada la clave.  También es posible borrar un par
+clave:valor con ``del``. Si usas una clave que ya está en uso para guardar un
+valor, el valor que estaba asociado con esa clave se pierde.  Es un error
+extraer un valor usando una clave no existente.
 
-The :meth:`keys` method of a dictionary object returns a list of all the keys
-used in the dictionary, in arbitrary order (if you want it sorted, just apply
-the :meth:`sort` method to the list of keys).  To check whether a single key is
-in the dictionary, use the :keyword:`in` keyword.
+El método :meth:`keys` de un diccionario devuelve una lista de todas las claves
+en uso de ese diccionario, en un orden arbitrario (si la quieres ordenada,
+simplemente usa el metodo :meth:`sort` sobre la lista de claves).  Para
+verificar si una clave está en el diccionario, utiliza la palabra clave
+:keyword:`in`.
 
-Here is a small example using a dictionary::
+Un pequeño ejemplo de uso de un diccionario::
 
    >>> tel = {'jack': 4098, 'sape': 4139}
    >>> tel['guido'] = 4127
@@ -510,21 +513,22 @@ Here is a small example using a dictionary::
    >>> 'guido' in tel
    True
 
-The :func:`dict` constructor builds dictionaries directly from lists of
-key-value pairs stored as tuples.  When the pairs form a pattern, list
-comprehensions can compactly specify the key-value list. ::
+El constructor :func:`dict` crea un diccionario directamente desde listas de
+pares clave-valor guardados como tuplas.  Cuando los pares siguen un patrón,
+se puede especificar de forma compacta la lista de pares clave-valor por
+comprensión. ::
 
    >>> dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
    {'sape': 4139, 'jack': 4098, 'guido': 4127}
    >>> dict([(x, x**2) for x in (2, 4, 6)])     # use a list comprehension
    {2: 4, 4: 16, 6: 36}
 
-Later in the tutorial, we will learn about Generator Expressions which are even
-better suited for the task of supplying key-values pairs to the :func:`dict`
-constructor.
+Más adelante en este tutorial, aprenderemos acerca de Expresiones Generadoras
+que están mejor preparadas para la tarea de proveer pares clave-valor al constructor
+:func:`dict`.
 
-When the keys are simple strings, it is sometimes easier to specify pairs using
-keyword arguments::
+Cuando las claves son cadenas simples, a veces resulta más fácil especificar
+los pares usando argumentos por palabra clave::
 
    >>> dict(sape=4139, guido=4127, jack=4098)
    {'sape': 4139, 'jack': 4098, 'guido': 4127}

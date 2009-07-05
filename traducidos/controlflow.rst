@@ -489,17 +489,17 @@ operador ``**``\::
 
 .. _tut-lambda:
 
-Lambda Forms
-------------
+Formas con Lambda
+--------------------------
 
-By popular demand, a few features commonly found in functional programming
-languages like Lisp have been added to Python.  With the :keyword:`lambda`
-keyword, small anonymous functions can be created. Here's a function that
-returns the sum of its two arguments: ``lambda a, b: a+b``.  Lambda forms can be
-used wherever function objects are required.  They are syntactically restricted
-to a single expression.  Semantically, they are just syntactic sugar for a
-normal function definition.  Like nested function definitions, lambda forms can
-reference variables from the containing scope::
+Por demanda popular, algunas características comunmente encontradas en lenguajes
+de programación funcionales como Lisp fueron añadidas a Python. Con la palabra
+reservada :keyword:`lambda` se pueden crear pequeñas funciones anónimas. Esta es
+una función que retorna la suma de sus dos argumentos: ``lambda a, b: a+b``.  
+Las formas con lambda pueden ser usadas en cualquier lugar que se requieran 
+funciones. Semánticamente, son solo azúcar sintáctica para la definición de funciones.
+Cómo en la definición de funciones anidadas, las formas con lambda pueden referenciar
+variables del ámbito en el que son contenidas:::
 
    >>> def make_incrementor(n):
    ...     return lambda x: x + n

@@ -1,20 +1,21 @@
 .. _tut-morecontrol:
 
-***********************
-More Control Flow Tools
-***********************
+*************************************
+Más herramientas para Control de Flujo
+*************************************
 
-Besides the :keyword:`while` statement just introduced, Python knows the usual
-control flow statements known from other languages, with some twists.
+Además de la sentencia :keyword:`while` que acabamos de introducir,
+Python entiende las sentencias de control de flujo que podemos encontrar en otros
+lenguajes, con algunos cambios.
 
 
 .. _tut-if:
 
-:keyword:`if` Statements
-========================
+La Sentencia :keyword:`if` 
+===============
 
-Perhaps the most well-known statement type is the :keyword:`if` statement.  For
-example::
+Tal vez el tipo más conocido de sentencias sea la sentencia :keyword:`if`.  Por
+ejemplo::
 
    >>> x = int(raw_input("Please enter an integer: "))
    >>> if x < 0:
@@ -28,28 +29,29 @@ example::
    ...      print 'More'
    ... 
 
-There can be zero or more :keyword:`elif` parts, and the :keyword:`else` part is
-optional.  The keyword ':keyword:`elif`' is short for 'else if', and is useful
-to avoid excessive indentation.  An  :keyword:`if` ... :keyword:`elif` ...
-:keyword:`elif` ... sequence is a substitute for the ``switch`` or
-``case`` statements found in other languages.
+Puede haber cero o más bloques :keyword:`elif`, y el bloque :keyword:`else` es 
+opcional. La palabra reservada ':keyword:`elif`' es una abreviación de 'else if', y es
+útil para evitar identación excesiva. Una sequencia :keyword:`if` ... :keyword:`elif` ...
+:keyword:`elif` ... sustituye las sentencias ``switch`` o ``case`` encontradas en otros
+lenguajes.
 
 
 .. _tut-for:
 
-:keyword:`for` Statements
-=========================
+La Sentencia :keyword:`for`
+================
 
 .. index::
    statement: for
    statement: for
 
-The :keyword:`for` statement in Python differs a bit from what you may be used
-to in C or Pascal.  Rather than always iterating over an arithmetic progression
-of numbers (like in Pascal), or giving the user the ability to define both the
-iteration step and halting condition (as C), Python's :keyword:`for` statement
-iterates over the items of any sequence (a list or a string), in the order that
-they appear in the sequence.  For example (no pun intended):
+La sentencia :keyword:`for` en Python difiere un poco de lo que uno puede estar
+acostumbrado en lenguajes como C o Pascal. En lugar de siempre iterar sobre una
+progresión aritmética de números (como en Pascal) o darle al usuario la posibilidad de
+definir tanto el paso de la iteración y condición de fin (como en C), la sentencia 
+:keyword:`for` de Python itera sobre los items de cualquier sequencia (una lista
+o una cadena de texto), en el orden que aparcen en la secuencia. Por ejemplo
+(no pun intended):
 
 .. One suggestion was to give a real C example here, but that may only serve to
    confuse non-C programmers.
@@ -65,11 +67,10 @@ they appear in the sequence.  For example (no pun intended):
    window 6
    defenestrate 12
 
-It is not safe to modify the sequence being iterated over in the loop (this can
-only happen for mutable sequence types, such as lists).  If you need to modify
-the list you are iterating over (for example, to duplicate selected items) you
-must iterate over a copy.  The slice notation makes this particularly
-convenient::
+No es seguro modificar la secuencia sobre la que se está iterando en el loop (esto solo
+es posible para tipos de secuencias mutables, como las listas). Si se necesita modificar
+la lista sobre la que se está iterando (por ejemplo, para duplicar items seleccionados)
+se debe iterar sobre una copia. La notación de rebanada es conveniente para esto::
 
    >>> for x in a[:]: # make a slice copy of the entire list
    ...    if len(x) > 6: a.insert(0, x)
@@ -80,20 +81,20 @@ convenient::
 
 .. _tut-range:
 
-The :func:`range` Function
-==========================
+La Función :func:`range`
+==============
 
-If you do need to iterate over a sequence of numbers, the built-in function
-:func:`range` comes in handy.  It generates lists containing arithmetic
-progressions::
+Si se necesita iterar sobre una secuencia de números, es apropiado utilizar
+la función incorporada :func:`range`.  Genera una lista conteniendo progresiones
+aritméticas::
 
    >>> range(10)
    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-The given end point is never part of the generated list; ``range(10)`` generates
-a list of 10 values, the legal indices for items of a sequence of length 10.  It
-is possible to let the range start at another number, or to specify a different
-increment (even negative; sometimes this is called the 'step')::
+El valor final dado nunca esparte de la lista; ``range(10)`` genera una lista de 10
+valores, los índices correspondientes para los items de una secuencia de longitud 10.
+Es posible hacer que el rango empiece con otro número, o especificar un incremento
+diferente (incluso negativos; algunas veces se lo llama 'paso')::
 
    >>> range(5, 10)
    [5, 6, 7, 8, 9]
@@ -102,8 +103,8 @@ increment (even negative; sometimes this is called the 'step')::
    >>> range(-10, -100, -30)
    [-10, -40, -70]
 
-To iterate over the indices of a sequence, combine :func:`range` and :func:`len`
-as follows::
+Para iterar sobre los índices de una secuencia, se combina :func:`range` y :func:`len`
+así::
 
    >>> a = ['Mary', 'had', 'a', 'little', 'lamb']
    >>> for i in range(len(a)):
@@ -118,20 +119,20 @@ as follows::
 
 .. _tut-break:
 
-:keyword:`break` and :keyword:`continue` Statements, and :keyword:`else` Clauses on Loops
+Las Sentencias :keyword:`break` y :keyword:`continue`, y la Clausula :keyword:`else` en Loops
 =========================================================================================
 
-The :keyword:`break` statement, like in C, breaks out of the smallest enclosing
-:keyword:`for` or :keyword:`while` loop.
+La sentencia :keyword:`break`, como en C, termina el loop :keyword:`for` o 
+:keyword:`while` más anidado.
 
-The :keyword:`continue` statement, also borrowed from C, continues with the next
-iteration of the loop.
+La sentencia :keyword:`continue`, también tomada prestada de C, continua
+con la próxima iteración del loop.
 
-Loop statements may have an ``else`` clause; it is executed when the loop
-terminates through exhaustion of the list (with :keyword:`for`) or when the
-condition becomes false (with :keyword:`while`), but not when the loop is
-terminated by a :keyword:`break` statement.  This is exemplified by the
-following loop, which searches for prime numbers::
+Las setencias de loop pueden tener una clausula ``else``; es ejecutada cuando
+el loop termina luego de agotar la lista (con :keyword:`for`) o cuando la condición
+se hace falsa (con :keyword:`while`), pero no cuando el loop es terminado
+con la sentencia :keyword:`break`. Se ejemplifica en el siguiente loop, que busca
+números primos::
 
    >>> for n in range(2, 10):
    ...     for x in range(2, n):
@@ -154,11 +155,12 @@ following loop, which searches for prime numbers::
 
 .. _tut-pass:
 
-:keyword:`pass` Statements
-==========================
+La Sentencia :keyword:`pass` 
+==================
 
-The :keyword:`pass` statement does nothing. It can be used when a statement is
-required syntactically but the program requires no action. For example::
+La sentencia :keyword:`pass` no hace nada. Se puede usar cuando una sentencia
+es requerida por la sintáxis pero el programa no requiere ninguna acción. 
+Por ejemplo::
 
    >>> while True:
    ...       pass # Busy-wait for keyboard interrupt
@@ -167,11 +169,11 @@ required syntactically but the program requires no action. For example::
 
 .. _tut-functions:
 
-Defining Functions
-==================
+Definiendo funciones
+=============
 
-We can create a function that writes the Fibonacci series to an arbitrary
-boundary::
+Podemos crear una función que escriba la serie de Fibonacci hasta una límite
+determinado::
 
    >>> def fib(n):    # write Fibonacci series up to n
    ...     """Print a Fibonacci series up to n."""
@@ -189,38 +191,38 @@ boundary::
    single: docstrings
    single: strings, documentation
 
-The keyword :keyword:`def` introduces a function *definition*.  It must be
-followed by the function name and the parenthesized list of formal parameters.
-The statements that form the body of the function start at the next line, and
-must be indented.  The first statement of the function body can optionally be a
-string literal; this string literal is the function's documentation string, or
-:dfn:`docstring`.
+La palabra reservada :keyword:`def` de una para *definir* funciones.  Debe seguirle
+el nombre de la función y la lista de parámetros formales entre paréntesis. Las 
+sentencias que forman el cuerpo de la función empiezan en la linea siguiente, y deben
+estar identadas. La primer sentencia del cuerpo de la función puede ser opcionalmente
+una cadena de texto litaral; esta es la cadena de texto de documentación de la 
+función, o :dfn:`docstring`.
 
-There are tools which use docstrings to automatically produce online or printed
-documentation, or to let the user interactively browse through code; it's good
-practice to include docstrings in code that you write, so try to make a habit of
-it.
+Hay herramientas que usan las docstrings para producir automáticamente 
+documentación en líne o imprimible, o para permitirle al usuario que navegue el
+código en forma interactiva; es una buena práctica incluir docstrings enel código
+que uno escriba, así que se debe intentar hacer un hábito de esto.
 
-The *execution* of a function introduces a new symbol table used for the local
-variables of the function.  More precisely, all variable assignments in a
-function store the value in the local symbol table; whereas variable references
-first look in the local symbol table, then in the local symbol tables of
-enclosing functions, then in the global symbol table, and finally in the table
-of built-in names. Thus, global variables cannot be directly assigned a value
-within a function (unless named in a :keyword:`global` statement), although they
-may be referenced.
+La *ejecución* de una función introduce una nueva tabla de símbolos usada para las
+variables locales de la función. Más precisamente, todas las asignaciones de variables
+en la función almacenan el valor en la tabla de símbolos local; así mismo la referencia
+a variables primero mira la tabla de símbolos local, luego en la tabla de símbolos local
+de las funciones externas, luego la tabla de sínbolos global, y finalmente la tabla de
+nombres predefinidos. Así, no se les puede asignar directamente un valor a las
+variables globales dentro de una función (a menos se las nombre en la sentencia
+:keyword:`global`), aunque si pueden ser referenciadas.
 
-The actual parameters (arguments) to a function call are introduced in the local
-symbol table of the called function when it is called; thus, arguments are
-passed using *call by value* (where the *value* is always an object *reference*,
-not the value of the object). [#]_ When a function calls another function, a new
-local symbol table is created for that call.
+Los parámetros reales (arguementos) de una función se introducen
+en la tabla de símbolos local de la función llamada cuando esta es llamada; así, los
+argumentos son pasados *por valor* (dónde el *valor* es siempre una *referencia*
+a un objeto, no el valor del objeto). [#]_ Cuando una función llama a otra función,
+una nueva tabla de símbolos local es creada para esa llamada.
 
-A function definition introduces the function name in the current symbol table.
-The value of the function name has a type that is recognized by the interpreter
-as a user-defined function.  This value can be assigned to another name which
-can then also be used as a function.  This serves as a general renaming
-mechanism::
+La definición de una función introduce el nombre de la función en la tabla de
+símbolos actual. El valor del nombre de la función tiene un tipo que es reconocido
+por el interprete como una función definida por el usuario. Este valor puede ser 
+asignado a otro nombre que luego puede ser usado ocmo una función. Esto sirve como
+un mecanismo general para renombrar::
 
    >>> fib
    <function fib at 10042ed0>
@@ -228,19 +230,19 @@ mechanism::
    >>> f(100)
    1 1 2 3 5 8 13 21 34 55 89
 
-You might object that ``fib`` is not a function but a procedure.  In Python,
-like in C, procedures are just functions that don't return a value.  In fact,
-technically speaking, procedures do return a value, albeit a rather boring one.
-This value is called ``None`` (it's a built-in name).  Writing the value
-``None`` is normally suppressed by the interpreter if it would be the only value
-written.  You can see it if you really want to using :keyword:`print`::
+Se puede objetar que ``fib`` no es una función, sino un procedimiento. En Python,
+como en C, los procedimientos son solo funciones que no retornan un valor. De hecho,
+tecnicamente hablando, los procedimientos si retornan un valor, aunque uno aburrido.
+Este valor es llamada ``None`` (es un nombre predefinido).  El intérprete por lo 
+general no escribe el valor ``None`` si va a ser el único valor escrito. Si realmente
+se quiere, se puede verlo usando :keyword:`print`::
 
    >>> fib(0)
    >>> print fib(0)
    None
 
-It is simple to write a function that returns a list of the numbers of the
-Fibonacci series, instead of printing it::
+Es simple escribir una función que retorne una lista con los números de la serie de 
+Fibonacci en lugar de imprimirlos::
 
    >>> def fib2(n): # return Fibonacci series up to n
    ...     """Return a list containing the Fibonacci series up to n."""
@@ -255,22 +257,23 @@ Fibonacci series, instead of printing it::
    >>> f100                # write the result
    [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 
-This example, as usual, demonstrates some new Python features:
+Este ejemplo, como es usual, demuestra algunas características más de Python:
 
-* The :keyword:`return` statement returns with a value from a function.
-  :keyword:`return` without an expression argument returns ``None``. Falling off
-  the end of a procedure also returns ``None``.
+* La sentencia :keyword:`return` devuelve un valor en una función.
+  :keyword:`return` sin una expresión como argumento retorna ``None``. Si se
+  alcanza el final de un procedimiento, también se retorna ``None``.
 
-* The statement ``result.append(b)`` calls a *method* of the list object
-  ``result``.  A method is a function that 'belongs' to an object and is named
-  ``obj.methodname``, where ``obj`` is some object (this may be an expression),
-  and ``methodname`` is the name of a method that is defined by the object's type.
-  Different types define different methods.  Methods of different types may have
-  the same name without causing ambiguity.  (It is possible to define your own
-  object types and methods, using *classes*, as discussed later in this tutorial.)
-  The method :meth:`append` shown in the example is defined for list objects; it
+* La sentencia ``result.append(b)`` llama al *método* del objeto lista ``result``.  
+  Un método es una función que 'pertenece' a unobjeto y se nombra 
+  ``obj.methodname``, dónde ``obj`` es algún objeto (puede ser una expresión),
+  y ``methodname`` es el nombre del método que está definido por el tipo del objeto.
+  Distintos tipos definen distintos métodos. Métodos de diferentes tipos pueden tener 
+  el mismo nombre sin causar ambiguedad. (Es posible definir tipos de objetos propios,
+  y métodos, usando *clases*, como se discutirá más adelante en el tutorial).
+  El método :meth:`append` mostrado en el ejemplo está definidio para objetos lista;
+  añade un nuevo elemento al final de la lista. En este ejemplo es equivalente a
   adds a new element at the end of the list.  In this example it is equivalent to
-  ``result = result + [b]``, but more efficient.
+  ``result = result + [b]``, pero más eficiente.
 
 
 .. _tut-defining:

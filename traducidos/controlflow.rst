@@ -278,21 +278,21 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
 
 .. _tut-defining:
 
-More on Defining Functions
+Más sobre Definición de Funciones
 ==========================
 
-It is also possible to define functions with a variable number of arguments.
-There are three forms, which can be combined.
+También es posible definir funciones with un número variable de argumentos. Hay
+tres formas que pueden ser combinadas.
 
 
 .. _tut-defaultargs:
 
-Default Argument Values
------------------------
+Argumentos con Valores por Defecto
+-------------------------------------------------
 
-The most useful form is to specify a default value for one or more arguments.
-This creates a function that can be called with fewer arguments than it is
-defined to allow.  For example::
+La forma más útil es especificar un valor por defecto para  uno o más argumentos.
+Esto crea una función que puede ser llamada con menos argumentos que los que
+permite. Por ejemplo::
 
    def ask_ok(prompt, retries=4, complaint='Yes or no, please!'):
        while True:
@@ -303,14 +303,14 @@ defined to allow.  For example::
            if retries < 0: raise IOError, 'refusenik user'
            print complaint
 
-This function can be called either like this: ``ask_ok('Do you really want to
-quit?')`` or like this: ``ask_ok('OK to overwrite the file?', 2)``.
+Esta función puede ser llamada tanto así: ``ask_ok('Do you really want to
+quit?')`` como así: ``ask_ok('OK to overwrite the file?', 2)``.
 
-This example also introduces the :keyword:`in` keyword. This tests whether or
-not a sequence contains a certain value.
+Este ejemplo también introduce la palabra reservada :keyword:`in`. Prueba si una 
+secuencia contiene o no un determinado valor.
 
-The default values are evaluated at the point of function definition in the
-*defining* scope, so that ::
+Los valores por defecto son evaluados en el momento de la definición de la función, en
+el ámbito de *definición*, entonces::
 
    i = 5
 
@@ -320,12 +320,12 @@ The default values are evaluated at the point of function definition in the
    i = 6
    f()
 
-will print ``5``.
+imprimirá ``5``.
 
-**Important warning:**  The default value is evaluated only once. This makes a
-difference when the default is a mutable object such as a list, dictionary, or
-instances of most classes.  For example, the following function accumulates the
-arguments passed to it on subsequent calls::
+**Advertencia importante:**  El valor por defecto es evaluado solo una vez. Existe una
+diferencia cuando el valor por defecto es un objeto mutable como una lista, diccionario,
+o instancia de la mayoría de las calses. Por ejemplo, la siguiente función acumula los 
+argumentos que se le pasan en sbusiguientes llamadas::
 
    def f(a, L=[]):
        L.append(a)
@@ -335,14 +335,14 @@ arguments passed to it on subsequent calls::
    print f(2)
    print f(3)
 
-This will print ::
+Imprimirá::
 
    [1]
    [1, 2]
    [1, 2, 3]
 
-If you don't want the default to be shared between subsequent calls, you can
-write the function like this instead::
+Si no se quiere que el valor por defecto sea compartido entre subsiguientes llamdas,
+se pueden escribir la función así::
 
    def f(a, L=None):
        if L is None:
@@ -353,11 +353,11 @@ write the function like this instead::
 
 .. _tut-keywordargs:
 
-Keyword Arguments
------------------
+Palabras Claves como Argumentos
+---------------------------------------------
 
-Functions can also be called using keyword arguments of the form ``keyword =
-value``.  For instance, the following function::
+Las funciones también puede ser llamadas usando palabras claves como argumentos
+de la forma ``keyword = value``.  Por ejemplo, la siguiente función::
 
    def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
        print "-- This parrot wouldn't", action,
@@ -365,26 +365,27 @@ value``.  For instance, the following function::
        print "-- Lovely plumage, the", type
        print "-- It's", state, "!"
 
-could be called in any of the following ways::
+puede ser llamada de cualquiera de las siguientes formas::
 
    parrot(1000)
    parrot(action = 'VOOOOOM', voltage = 1000000)
    parrot('a thousand', state = 'pushing up the daisies')
    parrot('a million', 'bereft of life', 'jump')
 
-but the following calls would all be invalid::
+pero estas otras llamadas serían todas inválidas::
 
    parrot()                     # required argument missing
    parrot(voltage=5.0, 'dead')  # non-keyword argument following keyword
    parrot(110, voltage=220)     # duplicate value for argument
    parrot(actor='John Cleese')  # unknown keyword
 
-In general, an argument list must have any positional arguments followed by any
-keyword arguments, where the keywords must be chosen from the formal parameter
-names.  It's not important whether a formal parameter has a default value or
-not.  No argument may receive a value more than once --- formal parameter names
-corresponding to positional arguments cannot be used as keywords in the same
-calls. Here's an example that fails due to this restriction::
+En general, una lista de argumentos debe tener todos sus argumentos posicionales
+seguidos por los argumentos de palabra clave, dónde las palabras claves deben ser
+elegidas entre los nombres de los parámetros formales. No es importante si un 
+parámetro formal tiene un valor por defecto o no. Ningún argumento puede recibir
+un valor más de una vez (los nombres de parámetros formales correspondientes a 
+argumentos posicionales no pueden ser usados como palabras clave en la misma
+llamada. Aquí hay un ejemplo que falla debido a esta restricción::
 
    >>> def function(a):
    ...     pass
@@ -394,13 +395,13 @@ calls. Here's an example that fails due to this restriction::
      File "<stdin>", line 1, in ?
    TypeError: function() got multiple values for keyword argument 'a'
 
-When a final formal parameter of the form ``**name`` is present, it receives a
-dictionary (see :ref:`typesmapping`) containing all keyword arguments except for
-those corresponding to a formal parameter.  This may be combined with a formal
-parameter of the form ``*name`` (described in the next subsection) which
-receives a tuple containing the positional arguments beyond the formal parameter
-list.  (``*name`` must occur before ``**name``.) For example, if we define a
-function like this::
+Cuando un parámetro formal de la forma ``**name`` está presente al final, recive
+un diccionario (ver :ref:`typesmapping`) conteniendo todos los argumentos de palabras
+clave excepto aquellos correspondientes a un parámetro formal. Esto puede ser 
+combinado con un parámetro formal de la forma ``*name`` (descripto en la siguiente
+subsección) que recibe una tupla conteniendo los argumentos pocicionales además de
+lalista de parámetros formales. (``*name`` debe ocurrir antes de ``**name``).
+Por ejemplo, si definimos una función así::
 
    def cheeseshop(kind, *arguments, **keywords):
        print "-- Do you have any", kind, '?'
@@ -411,7 +412,7 @@ function like this::
        keys.sort()
        for kw in keys: print kw, ':', keywords[kw]
 
-It could be called like this::
+Puede ser llamada así::
 
    cheeseshop('Limburger', "It's very runny, sir.",
               "It's really very, VERY runny, sir.",
@@ -419,7 +420,7 @@ It could be called like this::
               shopkeeper='Michael Palin',
               sketch='Cheese Shop Sketch')
 
-and of course it would print::
+y por supuesto imprimirá::
 
    -- Do you have any Limburger ?
    -- I'm sorry, we're all out of Limburger
@@ -430,10 +431,10 @@ and of course it would print::
    shopkeeper : Michael Palin
    sketch : Cheese Shop Sketch
 
-Note that the :meth:`sort` method of the list of keyword argument names is
-called before printing the contents of the ``keywords`` dictionary; if this is
-not done, the order in which the arguments are printed is undefined.
-
+Se debe notar que el método :meth:`sort` de la lista de nombres de argumentos 
+de palabra clave es llamado antes de imprimir el contenido del diccionario 
+``keywords``; si esto no se hace, el orden en que los argumentos son impresos
+no está definido.
 
 .. _tut-arbitraryargs:
 

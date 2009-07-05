@@ -115,46 +115,48 @@ La declaración :keyword:`try` funciona de la siguiente manera:
   si no se encuentra a nada que la maneje, es una *excepción no manejada*, y la
   ejecución se frena con un mensaje como los mostrado arriba.
 
-A :keyword:`try` statement may have more than one except clause, to specify
-handlers for different exceptions.  At most one handler will be executed.
-Handlers only handle exceptions that occur in the corresponding try clause, not
-in other handlers of the same :keyword:`try` statement.  An except clause may
-name multiple exceptions as a parenthesized tuple, for example::
+Una declaración :keyword:`try` puede tener más de un :keyword:`except`, para
+especificar manejadores para distintas excepciones. A lo sumo un manejador será
+ejecutado.  Sólo se manejan excepciones que ocurren en el correspondiente
+:keyword:`try`, no en otros manejadores del mismo :keyword:`try`.  Un
+:keyword:`except` puede nombrar múltiples excepciones usando paréntesis, por
+ejemplo::
 
    ... except (RuntimeError, TypeError, NameError):
    ...     pass
 
-The last except clause may omit the exception name(s), to serve as a wildcard.
-Use this with extreme caution, since it is easy to mask a real programming error
-in this way!  It can also be used to print an error message and then re-raise
-the exception (allowing a caller to handle the exception as well)::
+El último :keyword:`except` puede omitir nombrar qué excepción captura, para
+servir como comodín.  Usá esto con extremo cuidado, ya que de esta manera es
+fácil ocultar un error real de programación.  También puede usarse para mostrar
+un mensaje de error y luego re-generar la excepción (permitiéndole al que llama
+manejar también la excepción)::
 
    import sys
 
    try:
-       f = open('myfile.txt')
+       f = open('miarchivo.txt')
        s = f.readline()
        i = int(s.strip())
    except IOError as (errno, strerror):
-       print "I/O error({0}): {1}".format(errno, strerror)
+       print "Error E/S ({0}): {1}".format(errno, strerror)
    except ValueError:
-       print "Could not convert data to an integer."
+       print "No pude convertir el dato a un entero."
    except:
-       print "Unexpected error:", sys.exc_info()[0]
+       print "Error inesperado:", sys.exc_info()[0]
        raise
 
-The :keyword:`try` ... :keyword:`except` statement has an optional *else
-clause*, which, when present, must follow all except clauses.  It is useful for
-code that must be executed if the try clause does not raise an exception.  For
-example::
+Las declaraciones :keyword:`try` ... :keyword:`except` tienen un *bloque else*
+opcional, el cual, cuando está presente, debe seguir a los except.  Es útil
+para aquel código que debe ejecutarse si el *bloque try* no genera una
+excepción.  Por ejemplo::
 
    for arg in sys.argv[1:]:
        try:
            f = open(arg, 'r')
        except IOError:
-           print 'cannot open', arg
+           print 'no pude abrir', arg
        else:
-           print arg, 'has', len(f.readlines()), 'lines'
+           print arg, 'tiene', len(f.readlines()), 'lineas'
            f.close()
 
 The use of the :keyword:`else` clause is better than adding additional code to

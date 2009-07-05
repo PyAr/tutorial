@@ -438,16 +438,16 @@ no está definido.
 
 .. _tut-arbitraryargs:
 
-Arbitrary Argument Lists
-------------------------
+Listas de Argumentos Arbritrarios
+--------------------------------------------
 
 .. index::
   statement: *  
 
-Finally, the least frequently used option is to specify that a function can be
-called with an arbitrary number of arguments.  These arguments will be wrapped
-up in a tuple.  Before the variable number of arguments, zero or more normal
-arguments may occur. ::
+Finalmente, la opción menos frecuentemente usada es especificar que una función
+puede ser llamada con un número arbitrario de argumentos.  Estos argumentos serán
+organizados en una tupla. Antes del número variable de argumentos, cero o más 
+argumentos normales pueden estar presentes.::
 
    def fprintf(file, template, *args):
        file.write(template.format(args))
@@ -455,15 +455,15 @@ arguments may occur. ::
 
 .. _tut-unpacking-arguments:
 
-Unpacking Argument Lists
-------------------------
+Desempaquetando una Lista de Argumentos
+----------------------------------------------------------
 
-The reverse situation occurs when the arguments are already in a list or tuple
-but need to be unpacked for a function call requiring separate positional
-arguments.  For instance, the built-in :func:`range` function expects separate
-*start* and *stop* arguments.  If they are not available separately, write the
-function call with the  ``*``\ -operator to unpack the arguments out of a list
-or tuple::
+La situación inversaa ocurre cuando los argumentos ya están en una lista o tupla
+pero necesitan sen desempaquetados para llamar a una función que requiere 
+argumentos posicionales separados. Por ejemplo, la función predefinida :func:`range` 
+espera los argumentos *inicio* y *fin*.  Si no están disponibles en forma separada,
+se puede escribir la llamada a la función con el operador para desempaquetar 
+argumentos de una lista o una tupla ``*``\::
 
    >>> range(3, 6)             # normal call with separate arguments
    [3, 4, 5]
@@ -474,8 +474,8 @@ or tuple::
 .. index::
   statement: **
 
-In the same fashion, dictionaries can deliver keyword arguments with the ``**``\
--operator::
+Del mismo modo, los diccionarios pueden entregar argumentos de palabra clave con el 
+operador ``**``\::
 
    >>> def parrot(voltage, state='a stiff', action='voom'):
    ...     print "-- This parrot wouldn't", action,

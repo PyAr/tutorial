@@ -1,46 +1,48 @@
 .. _tut-errors:
 
 *********************
-Errors and Exceptions
+Errores y excepciones
 *********************
 
-Until now error messages haven't been more than mentioned, but if you have tried
-out the examples you have probably seen some.  There are (at least) two
-distinguishable kinds of errors: *syntax errors* and *exceptions*.
+Hasta ahora los mensajes de error no habían sido más que mencionados, pero si
+intentaste los ejemplos probablemente hayas visto algunos.  Hay (al menos) dos
+tipos diferentes de errores: *errores de sintaxis* y *excepciones*.
 
 
 .. _tut-syntaxerrors:
 
-Syntax Errors
-=============
+Errores de sintaxis
+===================
 
-Syntax errors, also known as parsing errors, are perhaps the most common kind of
-complaint you get while you are still learning Python::
+Los errores de sintaxis, también conocidos como errores de interpretación, son
+quizás el tipo de queja más común que tenés cuando todavía estás aprendiendo
+Python::
 
-   >>> while True print 'Hello world'
+   >>> while True print 'Hola mundo'
      File "<stdin>", line 1, in ?
-       while True print 'Hello world'
+       while True print 'Hola mundo'
                       ^
    SyntaxError: invalid syntax
 
-The parser repeats the offending line and displays a little 'arrow' pointing at
-the earliest point in the line where the error was detected.  The error is
-caused by (or at least detected at) the token *preceding* the arrow: in the
-example, the error is detected at the keyword :keyword:`print`, since a colon
-(``':'``) is missing before it.  File name and line number are printed so you
-know where to look in case the input came from a script.
+El intérprete repite la linea culpable y muestra una pequeña 'flecha'
+que apunta al primer lugar donde se detectó el error.  Este es causado por (o
+al menos detectado en) el símbolo que *precede* a la flecha: en el ejemplo,
+el error se detecta en el :keyword:`print`, ya que faltan dos puntos (``':'``)
+antes del mismo.  Se muestran el nombre del archivo y el número de linea para
+que sepas dónde mirar en caso de que la entrada venga de un programa.
 
 
 .. _tut-exceptions:
 
-Exceptions
-==========
+Excepciones
+===========
 
-Even if a statement or expression is syntactically correct, it may cause an
-error when an attempt is made to execute it. Errors detected during execution
-are called *exceptions* and are not unconditionally fatal: you will soon learn
-how to handle them in Python programs.  Most exceptions are not handled by
-programs, however, and result in error messages as shown here::
+Incluso si la declaración o expresión es sintácticamente correcta, puede
+generar un error cuando se intenta ejecutarla.  Los errores detectados durante
+la ejecución se llaman *excepciones*, y no son incondicionalmente fatales:
+pronto aprenderás cómo manejarlos en los programas en Python.  Sin embargo, la
+mayoría de las excepciones no son manejadas por los programas, y resultan en
+mensajes de error como los mostrados aquí::
 
    >>> 10 * (1/0)
    Traceback (most recent call last):
@@ -55,61 +57,63 @@ programs, however, and result in error messages as shown here::
      File "<stdin>", line 1, in ?
    TypeError: cannot concatenate 'str' and 'int' objects
 
-The last line of the error message indicates what happened. Exceptions come in
-different types, and the type is printed as part of the message: the types in
-the example are :exc:`ZeroDivisionError`, :exc:`NameError` and :exc:`TypeError`.
-The string printed as the exception type is the name of the built-in exception
-that occurred.  This is true for all built-in exceptions, but need not be true
-for user-defined exceptions (although it is a useful convention). Standard
-exception names are built-in identifiers (not reserved keywords).
+La última linea de los mensajes de error indica qué sucedió.  Las excepciones
+vienen de distintos tipos, y el tipo se imprime como parte del mensaje: los
+tipos en el ejemplo son: :exc:`ZeroDivisionError`, :exc:`NameError` y
+:exc:`TypeError`.  La cadena mostrada como tipo de la excepción es el nombre de
+la excepción integrada que ocurrió.  Esto es verdad para todas las excepciones
+integradas al intérprete, pero no necesita ser verdad para excepciones
+definidas por el usuario (aunque es una convención útil).  Los nombres de las
+excepciones estándar son identificadores integrados al intérprete (no son
+palabras clave reservadas).
 
-The rest of the line provides detail based on the type of exception and what
-caused it.
+El resto de la linea provee un detalle basado en el tipo de la excepción y qué
+la causó.
 
-The preceding part of the error message shows the context where the exception
-happened, in the form of a stack traceback. In general it contains a stack
-traceback listing source lines; however, it will not display lines read from
-standard input.
+La parte anterior del mensaje de error muestra el contexto donde la excepción
+sucedió, en la forma de un ***stack traceback*** listando lineas fuente; sin
+embargo, no mostrará lineas leídas de la entrada estándar.
 
-:ref:`bltin-exceptions` lists the built-in exceptions and their meanings.
+:ref:`bltin-exceptions` lista las excepciones integradas y sus significados.
 
 
 .. _tut-handling:
 
-Handling Exceptions
-===================
+Manejando excepciones
+=====================
 
-It is possible to write programs that handle selected exceptions. Look at the
-following example, which asks the user for input until a valid integer has been
-entered, but allows the user to interrupt the program (using :kbd:`Control-C` or
-whatever the operating system supports); note that a user-generated interruption
-is signalled by raising the :exc:`KeyboardInterrupt` exception. ::
+Es posible escribir programas que manejen las excepciones que quiera.  Mirá el
+siguiente ejemplo, que le pide al usuario una entrada hasta que ingrese un
+entero válido, pero permite al usuario interrumpir el programa (usando
+:kbd:`Control-C` o lo que sea que el sistema operativo soporte); notá que una
+interrupción generada por el usuario se señaliza generando la excepción
+:exc:`KeyboardInterrupt`. ::
 
    >>> while True:
    ...     try:
-   ...         x = int(raw_input("Please enter a number: "))
+   ...         x = int(raw_input(u"Por favor ingrese un número: "))
    ...         break
    ...     except ValueError:
-   ...         print "Oops!  That was no valid number.  Try again..."
-   ...     
+   ...         print u"Oops!  No era válido.  Intente nuevamente..."
+   ...
 
-The :keyword:`try` statement works as follows.
+La declaración :keyword:`try` funciona de la siguiente manera:
 
-* First, the *try clause* (the statement(s) between the :keyword:`try` and
-  :keyword:`except` keywords) is executed.
+* Primero, se ejecuta el *bloque try* (el código entre las declaraciones
+  :keyword:`try` y :keyword:`except`).
 
-* If no exception occurs, the *except clause* is skipped and execution of the
-  :keyword:`try` statement is finished.
+* Si no ocurre ninguna excepción, el *bloque except* se saltea y termina la
+  ejecución de la declaración :keyword:`try`.
 
-* If an exception occurs during execution of the try clause, the rest of the
-  clause is skipped.  Then if its type matches the exception named after the
-  :keyword:`except` keyword, the except clause is executed, and then execution
-  continues after the :keyword:`try` statement.
+* Si ocurre una excepción durante la ejecución del *bloque try*, el resto del
+  bloque se saltea.  Luego, si su tipo coincide con la excepción nombrada luego
+  del :keyword:`except`, se ejecuta el *bloque except*, y la ejecución continúa
+  luego de la declaración :keyword:`try`.
 
-* If an exception occurs which does not match the exception named in the except
-  clause, it is passed on to outer :keyword:`try` statements; if no handler is
-  found, it is an *unhandled exception* and execution stops with a message as
-  shown above.
+* Si ocurre una excepción que no coincide con la excepción nombrada en el
+  :keyword:`except`, esta se pasa a declaraciones :keyword:`try` de más afuera;
+  si no se encuentra a nada que la maneje, es una *excepción no manejada*, y la
+  ejecución se frena con un mensaje como los mostrado arriba.
 
 A :keyword:`try` statement may have more than one except clause, to specify
 handlers for different exceptions.  At most one handler will be executed.
@@ -199,12 +203,12 @@ indirectly) in the try clause. For example::
 
    >>> def this_fails():
    ...     x = 1/0
-   ... 
+   ...
    >>> try:
    ...     this_fails()
    ... except ZeroDivisionError as detail:
    ...     print 'Handling run-time error:', detail
-   ... 
+   ...
    Handling run-time error: integer division or modulo by zero
 
 
@@ -256,12 +260,12 @@ directly or indirectly.  For example::
    ...         self.value = value
    ...     def __str__(self):
    ...         return repr(self.value)
-   ... 
+   ...
    >>> try:
    ...     raise MyError(2*2)
    ... except MyError as e:
    ...     print 'My exception occurred, value:', e.value
-   ... 
+   ...
    My exception occurred, value: 4
    >>> raise MyError, 'oops!'
    Traceback (most recent call last):
@@ -331,7 +335,7 @@ example::
    ...     raise KeyboardInterrupt
    ... finally:
    ...     print 'Goodbye, world!'
-   ... 
+   ...
    Goodbye, world!
    Traceback (most recent call last):
      File "<stdin>", line 2, in ?

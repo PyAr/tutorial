@@ -536,43 +536,43 @@ los pares usando argumentos por palabra clave::
 
 .. _tut-loopidioms:
 
-Looping Techniques
-==================
+Técnicas de iteración
+=====================
 
-When looping through dictionaries, the key and corresponding value can be
-retrieved at the same time using the :meth:`iteritems` method. ::
+Cuando iteramos sobre diccionarios, se pueden obtener al mismo tiempo la clave
+y su valor correspondiente usando el método :meth:`iteritems`. ::
 
-   >>> knights = {'gallahad': 'the pure', 'robin': 'the brave'}
+   >>> caballeros = {'gallahad': 'el puro', 'robin': 'el valiente'}
    >>> for k, v in knights.iteritems():
    ...     print k, v
    ...
-   gallahad the pure
-   robin the brave
+   gallahad el puro
+   robin el valiente
 
-When looping through a sequence, the position index and corresponding value can
-be retrieved at the same time using the :func:`enumerate` function. ::
+Cuando se itera sobre una secuencia, se puede obtener el índice de posición
+junto a su valor correspondiente usando la función :func:`enumerate`. ::
 
-   >>> for i, v in enumerate(['tic', 'tac', 'toe']):
+   >>> for i, v in enumerate(['ta', 'te', 'ti']):
    ...     print i, v
    ...
-   0 tic
-   1 tac
-   2 toe
+   0 ta
+   1 te
+   2 ti
 
-To loop over two or more sequences at the same time, the entries can be paired
-with the :func:`zip` function. ::
+Para iterar sobre dos o más secuencias al mismo tiempo, los valores pueden
+emparejarse con la función :func:`zip`. ::
 
-   >>> questions = ['name', 'quest', 'favorite color']
-   >>> answers = ['lancelot', 'the holy grail', 'blue']
-   >>> for q, a in zip(questions, answers):
-   ...     print 'What is your {0}?  It is {1}.'.format(q, a)
+   >>> preguntas = ['nombre', 'mision', 'color favorito']
+   >>> respuestas = ['lancelot', 'el santo grial', 'azul']
+   >>> for p, r in zip(preguntas, respuestas):
+   ...     print 'Cual es tu {0}?  {1}.'.format(p, r)
    ...	
-   What is your name?  It is lancelot.
-   What is your quest?  It is the holy grail.
-   What is your favorite color?  It is blue.
+   Cual es tu nombre?  lancelot.
+   Cual es tu mision?  el santo grial.
+   Cual es tu color favorito?  azul.
 
-To loop over a sequence in reverse, first specify the sequence in a forward
-direction and then call the :func:`reversed` function. ::
+Para iterar sobre una secuencia en orden inverso, se especifica primero la
+secuencia al derecho y luego se llama a la función :func:`reversed`. ::
 
    >>> for i in reversed(xrange(1,10,2)):
    ...     print i
@@ -583,17 +583,17 @@ direction and then call the :func:`reversed` function. ::
    3
    1
 
-To loop over a sequence in sorted order, use the :func:`sorted` function which
-returns a new sorted list while leaving the source unaltered. ::
+Para iterar sobre una secuencia ordenada, se utiliza la función :func:`sorted`
+la cual devuelve una nueva lista ordenada dejando a la original intacta. ::
 
-   >>> basket = ['apple', 'orange', 'apple', 'pear', 'orange', 'banana']
-   >>> for f in sorted(set(basket)):
+   >>> canasta = ['manzana', 'naranja', 'manzana', 'pera', 'naranja', 'banana']
+   >>> for f in sorted(set(canasta)):
    ...     print f
    ... 	
-   apple
    banana
-   orange
-   pear
+   manzana
+   naranja
+   pera
 
 
 .. _tut-conditions:

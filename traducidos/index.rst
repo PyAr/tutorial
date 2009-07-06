@@ -1,47 +1,51 @@
 .. _tutorial-index:
 
 ######################
-  The Python tutorial
+  Tutorial de Python
 ######################
 
 :Release: |version|
 :Date: |today|
 
-Python is an easy to learn, powerful programming language. It has efficient
-high-level data structures and a simple but effective approach to
-object-oriented programming. Python's elegant syntax and dynamic typing,
-together with its interpreted nature, make it an ideal language for scripting
-and rapid application development in many areas on most platforms.
+Python es un lenguaje de programación poderoso y fácil de aprender. Cuenta con
+estructuras de datos eficientes y de alto nivel y un enfoque simple pero
+efectivo a la programación orientada a objetos. La elegante sintaxis de Python
+y su tipado dinámico, junto con su naturaleza interpretada, hacen de éste un
+lenguaje ideal para scripting y desarrollo rápido de aplicaciones en diversas
+áreas y sobre la mayoría de las plataformas.
 
-The Python interpreter and the extensive standard library are freely available
-in source or binary form for all major platforms from the Python Web site,
-http://www.python.org/, and may be freely distributed. The same site also
-contains distributions of and pointers to many free third party Python modules,
-programs and tools, and additional documentation.
+El intérprete de Python y la extensa biblioteca estándar están a libre
+disposición en forma binaria y de código fuente para las principales
+plataformas desde el sitio web de Python, http://www.python.org/, y puede
+distribuirse libremente. El mismo sitio contiene también distribuciones y
+enlaces de muchos módulos libres de Python de terceros, programas y
+herramientas, y documentación adicional.
 
-The Python interpreter is easily extended with new functions and data types
-implemented in C or C++ (or other languages callable from C). Python is also
-suitable as an extension language for customizable applications.
+El intérprete de Python puede extenderse fácilmente con nuevas funcionalidades
+y tipos de datos implementados en C o C++ (u otros lenguajes accesibles desde
+C). Python también puede usarse como un lenguaje de extensiones para
+aplicaciones personalizables.
 
-This tutorial introduces the reader informally to the basic concepts and
-features of the Python language and system. It helps to have a Python
-interpreter handy for hands-on experience, but all examples are self-contained,
-so the tutorial can be read off-line as well.
+Este tutorial introduce de manera informal al lector a los conceptos y
+características básicas del lenguaje y el sistema de Python. Es bueno tener un
+interprete de Python a mano para experimentar, sin embargo todos los ejemplos
+están aislados, por lo tanto el tutorial puede leerse estando desconectado.
 
-For a description of standard objects and modules, see the Python Library
-Reference document. The Python Reference Manual gives a more formal definition
-of the language. To write extensions in C or C++, read Extending and Embedding
-the Python Interpreter and Python/C API Reference. There are also several books
-covering Python in depth.
+Para una descripción de los objetos y módulos estándar, mira la Referencia de
+la Biblioteca de Python. El Manual de Referencia de Python provee una
+definición más formal del lenguaje. Para escribir extensiones en C o C++, lee
+Extendiendo e Integrando el Intérprete de Python y la Referencia de la API
+Python/C. Hay también numerosos libros que tratan a Python en profundidad.
 
-This tutorial does not attempt to be comprehensive and cover every single
-feature, or even every commonly used feature. Instead, it introduces many of
-Python's most noteworthy features, and will give you a good idea of the
-language's flavor and style. After reading it, you will be able to read and
-write Python modules and programs, and you will be ready to learn more about the
-various Python library modules described in the Python Library Reference.
+Este tutorial no pretende ser exhaustivo ni tratar cada una de las
+características, o siquiera las características más usadas. En cambio,
+introduce la mayoría de las características más notables de Python, y te dará
+una buena idea del gusto y estilo del lenguaje. Luego de leerlo, serás capaz
+de leer y escribir módulos y programas en Python, y estarás listo para aprender
+más de los variados módulos de la biblioteca de Python descriptos en la
+Referencia de la Biblioteca de Python.
 
-The `glossary` is also worth going through.
+También vale la pena mirar el `glosario`.
 
 .. toctree::
 

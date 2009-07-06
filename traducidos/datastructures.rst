@@ -598,47 +598,49 @@ la cual devuelve una nueva lista ordenada dejando a la original intacta. ::
 
 .. _tut-conditions:
 
-More on Conditions
-==================
+Más acerca de condiciones
+=========================
 
-The conditions used in ``while`` and ``if`` statements can contain any
-operators, not just comparisons.
+Las condiciones usadas en las instrucciones ``while`` e ``if`` pueden contener
+cualquier operador, no sólo comparaciones.
 
-The comparison operators ``in`` and ``not in`` check whether a value occurs
-(does not occur) in a sequence.  The operators ``is`` and ``is not`` compare
-whether two objects are really the same object; this only matters for mutable
-objects like lists.  All comparison operators have the same priority, which is
-lower than that of all numerical operators.
+Los operadores de comparación ``in`` y ``not in`` verifican si un valor está
+(o no está) en una secuencia. Los operadores ``is`` e ``is not`` comparan si
+dos objetos son realmente el mismo objeto; esto es significativo sólo para
+objetos mutables como las listas.  Todos los operadores de comparación tienen
+la misma prioridad, la cual es menor que la de todos los operadores numéricos.
 
-Comparisons can be chained.  For example, ``a < b == c`` tests whether ``a`` is
-less than ``b`` and moreover ``b`` equals ``c``.
+Las comparaciones pueden encadenarse.  Por ejemplo, ``a < b == c`` verifica si
+``a`` es menor que ``b`` y además si ``b`` es igual a ``c``.
 
-Comparisons may be combined using the Boolean operators ``and`` and ``or``, and
-the outcome of a comparison (or of any other Boolean expression) may be negated
-with ``not``.  These have lower priorities than comparison operators; between
-them, ``not`` has the highest priority and ``or`` the lowest, so that ``A and
-not B or C`` is equivalent to ``(A and (not B)) or C``. As always, parentheses
-can be used to express the desired composition.
+Las comparaciones pueden combinarse mediante los operadores Booleanos ``and`` y
+``or``, y el resultado de una comparación (o de cualquier otra expresión
+Booleana) puede negarse con ``not``.  Éstos tienen prioridades menores que los
+operadores de comparación; entre ellos ``not`` tienen la mayor prioridad y
+``or`` la menor, o sea que ``A and not B or C`` equivale a
+``(A and (not B)) or C``. Como siempre, los paréntesis pueden usarse para
+expresar la composición deseada.
 
-The Boolean operators ``and`` and ``or`` are so-called *short-circuit*
-operators: their arguments are evaluated from left to right, and evaluation
-stops as soon as the outcome is determined.  For example, if ``A`` and ``C`` are
-true but ``B`` is false, ``A and B and C`` does not evaluate the expression
-``C``.  When used as a general value and not as a Boolean, the return value of a
-short-circuit operator is the last evaluated argument.
+Los operadores Booleanos ``and`` y ``or`` son los llamados operadores
+*cortocircuito*: sus argumentos se evalúan de izquierda a derecha, y la
+evaluación se detiene en el momento en el que se determina su resultado. Por
+ejemplo, si ``A`` y ``C`` son verdaderas pero ``B`` es falsa, en
+``A and B and C`` no se evalúa la expresión ``C``.  Cuando se usa como un valor
+general y no como un Booleano, el valor devuelto de un operador cortocircuito
+es el último argumento evaluado.
 
-It is possible to assign the result of a comparison or other Boolean expression
-to a variable.  For example, ::
+Es posible asignar el resultado de una comparación u otra expresión Booleana a
+una variable.  Por ejemplo, ::
 
-   >>> string1, string2, string3 = '', 'Trondheim', 'Hammer Dance'
-   >>> non_null = string1 or string2 or string3
-   >>> non_null
+   >>> cadena1, cadena2, cadena3 = '', 'Trondheim', 'Paso Hammer'
+   >>> non_nulo = cadena1 or cadena2 or cadena3
+   >>> non_nulo
    'Trondheim'
 
-Note that in Python, unlike C, assignment cannot occur inside expressions. C
-programmers may grumble about this, but it avoids a common class of problems
-encountered in C programs: typing ``=`` in an expression when ``==`` was
-intended.
+Nota que en Python, a diferencia de C, la asignación no puede ocurrir dentro de
+expresiones. Los programadores de C pueden renegar por esto, pero es algo que
+evita un tipo de problema común encontrado en programas en C: escribir ``=`` en
+una expresión cuando lo que se quiere escribir es ``==``.
 
 
 .. _tut-comparing:

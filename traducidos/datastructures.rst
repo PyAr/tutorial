@@ -452,7 +452,7 @@ Una pequeña demostración::
    set(['a', 'r', 'b', 'c', 'd'])
    >>> a - b                              # letras en a pero no en b
    set(['r', 'd', 'b'])
-   >>> a | b                              # letters in either a or b
+   >>> a | b                              # letras en a o en b
    set(['a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'])
    >>> a & b                              # letras en a y en b
    set(['a', 'c'])

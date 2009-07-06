@@ -355,7 +355,7 @@ le asigne otro valor).  Veremos otros usos para :keyword:`del` más adelante.
 
 .. _tut-tuples:
 
-Tuplas y Secuencias
+Tuplas y secuencias
 ===================
 
 Vimos que las listas y cadenas tienen propiedades en común, como el indexado y
@@ -465,7 +465,7 @@ Una pequeña demostración::
 Diccionarios
 ============
 
-Otro tipo de dato útil incluído en Python el el *diccionario* (ver
+Otro tipo de dato útil incluído en Python es el *diccionario* (ver
 :ref:`typesmapping`). Los diccionarios se encuentran a veces en otros lenguajes
 como "memorias asociativas" o "arreglos asociativos". A diferencia de las
 secuencias, que se indexan mediante un rango numérico, los diccionarios se

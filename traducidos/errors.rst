@@ -71,8 +71,10 @@ El resto de la linea provee un detalle basado en el tipo de la excepción y qué
 la causó.
 
 La parte anterior del mensaje de error muestra el contexto donde la excepción
-sucedió, en la forma de un ***stack traceback*** listando lineas fuente; sin
-embargo, no mostrará lineas leídas de la entrada estándar.
+sucedió, en la forma de un *stack traceback* listando lineas fuente; sin
+embargo, no mostrará lineas leídas de la entrada estándar.  El *traceback*
+es el listado del *stack* de funciones por los cuales pasó la excepción
+generada, indicando las mismas y más datos para analizar mejor el problema.
 
 :ref:`bltin-exceptions` lista las excepciones integradas y sus significados.
 
@@ -159,45 +161,45 @@ excepción.  Por ejemplo::
            print arg, 'tiene', len(f.readlines()), 'lineas'
            f.close()
 
-The use of the :keyword:`else` clause is better than adding additional code to
-the :keyword:`try` clause because it avoids accidentally catching an exception
-that wasn't raised by the code being protected by the :keyword:`try` ...
-:keyword:`except` statement.
+El uso del :keyword:`else` es mejor que agregar código adicional en el
+:keyword:`try` poruqe evita capturar accidentalmente una excepción que no fue
+generada por el código que está protegido por la declaración :keyword:`try` ...
+:keyword:`except`.
 
-When an exception occurs, it may have an associated value, also known as the
-exception's *argument*. The presence and type of the argument depend on the
-exception type.
+Cuando ocurre una excepción, puede tener un valor asociado, también conocido
+como el *argumento* de la excepción.  La presencia y el tipo de argumento
+depende del tipo de excepción.
 
-The except clause may specify a variable after the exception name (or tuple).
-The variable is bound to an exception instance with the arguments stored in
-``instance.args``.  For convenience, the exception instance defines
-:meth:`__getitem__` and :meth:`__str__` so the arguments can be accessed or
-printed directly without having to reference ``.args``.
+El :keyword:`except` puede especificar una variable luego del nombre (o tupla)
+de excepción(es).  La variable se vincula a una instancia de excepción con los
+argumentos almacenados en ``instance.args``.  Por conveniencia, la instancia
+de excepción define :meth:`__getitem__` y :meth:`__str__` para que se pueda
+acceder o mostrar los argumentos directamente, sin necesidad de hacer
+referencia a ``.args``.
 
-But use of ``.args`` is discouraged.  Instead, the preferred use is to pass a
-single argument to an exception (which can be a tuple if multiple arguments are
-needed) and have it bound to the ``message`` attribute.  One may also
-instantiate an exception first before raising it and add any attributes to it as
-desired. ::
+Pero se recomienda no usar ``.args``.  En cambio, el uso preferido es pasar un
+único argumento a la excepción (que puede ser una tupla se se necesitan varios
+argumentos) y vincularlo al atributo ``message``.  Uno también puede instanciar
+una excepción antes de generarla, y agregarle cualquier atributo que uno desee::
 
    >>> try:
-   ...    raise Exception('spam', 'eggs')
+   ...    raise Exception('carne', 'huevos')
    ... except Exception as inst:
-   ...    print type(inst)     # the exception instance
-   ...    print inst.args      # arguments stored in .args
-   ...    print inst           # __str__ allows args to printed directly
-   ...    x, y = inst          # __getitem__ allows args to be unpacked directly
+   ...    print type(inst)     # la instancia de excepción
+   ...    print inst.args      # argumentos guardados en .args
+   ...    print inst           # __str__ permite imprimir args directamente
+   ...    x, y = inst          # __getitem__ permite usar args directamente
    ...    print 'x =', x
    ...    print 'y =', y
    ...
    <type 'exceptions.Exception'>
-   ('spam', 'eggs')
-   ('spam', 'eggs')
-   x = spam
-   y = eggs
+   ('carne', 'huevos')
+   ('carne', 'huevos')
+   x = carne
+   y = huevos
 
-If an exception has an argument, it is printed as the last part ('detail') of
-the message for unhandled exceptions.
+Si una excepción tiene un argumento, este se imprime como la última parte (el
+'detalle') del mensaje para las excepciones que no están manejadas.
 
 Exception handlers don't just handle exceptions if they occur immediately in the
 try clause, but also if they occur inside functions that are called (even

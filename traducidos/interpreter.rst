@@ -1,58 +1,58 @@
 .. _tut-using:
 
-****************************
-Using the Python Interpreter
-****************************
+*****************************
+Usando el Intérprete de Python
+*****************************
 
 
 .. _tut-invoking:
 
-Invoking the Interpreter
+Invocando al Intérprete
 ========================
 
-The Python interpreter is usually installed as :file:`/usr/local/bin/python` on
-those machines where it is available; putting :file:`/usr/local/bin` in your
-Unix shell's search path makes it possible to start it by typing the command ::
+Por lo general, el intérprete de Python se instala en file:`/usr/local/bin/python` en las
+máquinas dónde está disponible; poner :file:`/usr/local/bin` en el camino de búsqueda
+de tu intérprete de comandos Unix hace posible iniciarlo tipeando el comando::
 
    python
 
-to the shell.  Since the choice of the directory where the interpreter lives is
-an installation option, other places are possible; check with your local Python
-guru or system administrator.  (E.g., :file:`/usr/local/python` is a popular
-alternative location.)
+en la terminal.  Ya que la elección del directorio dónde vivirá el intérprete es una
+opción del proceso de instalación, puede estar en otros lugares; consultá a tu Gurú
+Python local o administrador de sistemas. (Por ejemplo, :file:`/usr/local/python` es una
+alternativa popular).
 
-On Windows machines, the Python installation is usually placed in
-:file:`C:\\Python26`, though you can change this when you're running the
-installer.  To add this directory to your path,  you can type the following
-command into the command prompt in a DOS box::
+En máquinas con Windows, la instalación de Python por lo general se encuentra en
+:file:`C:\\Python26`, aunque se puede cambiar durante la instalación. Para añadir este
+directorio al camino, puedes tipear el siguiente comando en el prompt de DOS::
 
    set path=%path%;C:\python26
 
-Typing an end-of-file character (:kbd:`Control-D` on Unix, :kbd:`Control-Z` on
-Windows) at the primary prompt causes the interpreter to exit with a zero exit
-status.  If that doesn't work, you can exit the interpreter by typing the
-following commands: ``import sys; sys.exit()``.
+Se puede salir del intérprete con estado de salida cero tipeando el caracter de fin
+de archivo (:kbd:`Control-D` en Unix, :kbd:`Control-Z` en Windows) en el prompt
+primario. Si esto no funciona, se puede salir del intérprete tipeando el siguiente 
+comando: ``import sys; sys.exit()``.
 
-The interpreter's line-editing features usually aren't very sophisticated.  On
-Unix, whoever installed the interpreter may have enabled support for the GNU
-readline library, which adds more elaborate interactive editing and history
-features. Perhaps the quickest check to see whether command line editing is
-supported is typing Control-P to the first Python prompt you get.  If it beeps,
-you have command line editing; see Appendix :ref:`tut-interacting` for an
-introduction to the keys.  If nothing appears to happen, or if ``^P`` is echoed,
-command line editing isn't available; you'll only be able to use backspace to
-remove characters from the current line.
+Las características para editar líneas del intérprete no son muy sofisticadas.
+En Unix, quien instale el intérpreté tendrá habilitado el soporte para la biblioteca
+GNU readlines, que añade una edición interactiva más elaborada e historia. Tal vez la
+forma más rápida de detectar si las características de edición están presentes es 
+tipear Control-P en el primer prompt de Python que aparezca. Si se escucha un beep,
+las características están presentes; ver Apéndice :ref:`tut-interacting` para una 
+introducción a las teclas. Si no pasa nada, o si aparece ``^P``, estas características
+no están disponibles; solo vas a poder usar backspace para borrar los caracteres de la
+línea actual.
 
-The interpreter operates somewhat like the Unix shell: when called with standard
-input connected to a tty device, it reads and executes commands interactively;
-when called with a file name argument or with a file as standard input, it reads
-and executes a *script* from that file.
+La forma de operar del intérprete es parecida a la línea de comandos de Unix: cuando
+se la llama con la entrada estándar conectada a un dispostivo tty, lee y ejecuta
+comandos en forma interactiva; cuando es llamada con un nombre de archivo como
+argumento o con un archivo como entrada estánddar, lee y ejecuta un *script* del
+archivo.
 
-A second way of starting the interpreter is ``python -c command [arg] ...``,
-which executes the statement(s) in *command*, analogous to the shell's
-:option:`-c` option.  Since Python statements often contain spaces or other
-characters that are special to the shell, it is best to quote  *command* in its
-entirety with double quotes.
+Una segunda forma de iniciar el intérprete es ``python -c command [arg] ...``,
+que ejecuta las sentencias en *command*, similar a la opción :option:`-c` de la línea
+de comandos. Ya que las sentencias de Python suelen tener espacios en blanco u otros
+caracteres que son especiales en la línea de comandos, es mejor citar *command* 
+entre comillas dobles.
 
 Some Python modules are also useful as scripts.  These can be invoked using
 ``python -m module [arg] ...``, which executes the source file for *module* as

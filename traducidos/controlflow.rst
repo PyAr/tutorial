@@ -513,41 +513,42 @@ variables del ámbito en el que son contenidas:::
 
 .. _tut-docstrings:
 
-Documentation Strings
----------------------
+Cadenas de texto de Documentación
+------------------------------------------------
 
 .. index::
    single: docstrings
    single: documentation strings
    single: strings, documentation
 
-There are emerging conventions about the content and formatting of documentation
-strings.
+Hay convenciones emergentes sobre el contenido y formato de las cadenas de texto
+de documentación.
 
-The first line should always be a short, concise summary of the object's
-purpose.  For brevity, it should not explicitly state the object's name or type,
-since these are available by other means (except if the name happens to be a
-verb describing a function's operation).  This line should begin with a capital
-letter and end with a period.
+La primer línea debe esr siempre un resumen corto y conciso del propósito del objeto.
+Para ser breve, no debe mencionar explícitamente el nombre o tipo del objeto, ya que
+estos están disponibles de otros modos (excepto si el nombre es un verbo que describe
+el funcionamiento de la función). Esta línea debe emepzar con una letra mayúscula y
+terminar con un punto.
 
-If there are more lines in the documentation string, the second line should be
-blank, visually separating the summary from the rest of the description.  The
-following lines should be one or more paragraphs describing the object's calling
-conventions, its side effects, etc.
+Si hay más líneas en la cadena de texto de documentación, la segunda línea debe estar
+en blanco, separando visualmente el resumen del resto de la descripción. Las líneas
+siguientes deben ser no o más párrafos describiendo las convenciones para llamar al
+objeto, efectos secundarios, etc.
 
-The Python parser does not strip indentation from multi-line string literals in
-Python, so tools that process documentation have to strip indentation if
-desired.  This is done using the following convention. The first non-blank line
-*after* the first line of the string determines the amount of indentation for
-the entire documentation string.  (We can't use the first line since it is
-generally adjacent to the string's opening quotes so its indentation is not
-apparent in the string literal.)  Whitespace "equivalent" to this indentation is
-then stripped from the start of all lines of the string.  Lines that are
-indented less should not occur, but if they occur all their leading whitespace
-should be stripped.  Equivalence of whitespace should be tested after expansion
-of tabs (to 8 spaces, normally).
+El analizador de Python no quita la identación de las cadenas de texto literales
+multi-líneas, entonces las herramientas que procesan documentación tienen que quitar
+la identación si así lo quieren. Esto se hace mediante la siguiente convención. La
+primer línea que no está en blanco *siguiente* a la primer línea de la cadena determina
+la cantidad de identación para toda la cadena de documentación. (No podemos usar la
+primer línea ya que generalmente es adyasente a las comillas de apertura de la cadena
+y la identación no se nota en la cadena de texto). Los espacios en blanco 
+"equivalentes" a esta identación son luego quitados del comienzo de cada línea en la 
+cadena. No deberían haber líneas con menor identación, pero si las hay todos los 
+espacios en blanco del comienzo deben ser quitados. La equivalentecia de espacios
+en blanco debe ser verificada luego de la expanción de tabs (a 8 espacios, 
+normalmente).
 
-Here is an example of a multi-line docstring::
+Este es un ejemplo de un docstring multi-línea::
 
    >>> def my_function():
    ...     """Do nothing, but document it.
@@ -564,55 +565,57 @@ Here is an example of a multi-line docstring::
 
 .. _tut-codingstyle:
 
-Intermezzo: Coding Style
+Intermezzo: Estilo de Codificación
 ========================
 
 .. sectionauthor:: Georg Brandl <georg@python.org>
 .. index:: pair: coding; style
 
-Now that you are about to write longer, more complex pieces of Python, it is a
-good time to talk about *coding style*.  Most languages can be written (or more
-concise, *formatted*) in different styles; some are more readable than others.
-Making it easy for others to read your code is always a good idea, and adopting
-a nice coding style helps tremendously for that.
+Ahora que estás a punto de escribir piezas de Python más largas y complejas, es un 
+buen momento para hablar sobre *estilo de codificación*. La mayoría de los lenguajes
+pueden ser escritos (o mejor dicho, *formateados*) con diferentes estilos; algunos son
+mas fáciles de leer que otros. Hacer que tu código sea más fácil de leer por otros es 
+siempre una buena idea, y adoptar un buen estilo de codificación ayuda 
+tremendamente a lograrlo.
 
-For Python, :pep:`8` has emerged as the style guide that most projects adhere to;
-it promotes a very readable and eye-pleasing coding style.  Every Python
-developer should read it at some point; here are the most important points
-extracted for you:
+Para Python, :pep:`8` se erigió como la guía de estilo a la que más proyectos 
+adhirieron; promueve un estilo de codificación fácil de leer y amable con los ojos. Todos
+los desarrolladores Python deben leerlo en algún momento; aquí están extraídos 
+los puntos más importantes:
 
-* Use 4-space indentation, and no tabs.
+* Usar identación de 4 espacions, no tabs.
 
-  4 spaces are a good compromise between small indentation (allows greater
-  nesting depth) and large indentation (easier to read).  Tabs introduce
-  confusion, and are best left out.
+  4 espacios son un buen compromiso entre identación pequeña (permite mayor nivel
+  de identación) e identación grande (más fácil de leer). Los tabs introducen confusión
+  y es mejor dejarlos de lado.
 
-* Wrap lines so that they don't exceed 79 characters.
+* Recortar las líneas para que no superen los 79 caracteres.
 
-  This helps users with small displays and makes it possible to have several
-  code files side-by-side on larger displays.
+  Esto ayuda a los usuarios con pequeñas pantallas y hace posible tener varios archívos
+  de código abiertos, uno al lado del otro, en pantallas grandes.
 
-* Use blank lines to separate functions and classes, and larger blocks of
-  code inside functions.
+* Usar líneas en blanco para separar funciones y clases, y bloques grandes de código
+   dentro de funciones.
 
-* When possible, put comments on a line of their own.
+* Cuando sea posible, poner comentarios en una sola línea.
 
-* Use docstrings.
+* Usar docstrings.
 
-* Use spaces around operators and after commas, but not directly inside
-  bracketing constructs: ``a = f(1, 2) + g(3, 4)``.
+* Usar espacios alrededor de operadores y luego de las comas, pero no directamente
+   dentro de paréntesis: ``a = f(1, 2) + g(3, 4)``.
 
-* Name your classes and functions consistently; the convention is to use
-  ``CamelCase`` for classes and ``lower_case_with_underscores`` for functions
-  and methods.  Always use ``self`` as the name for the first method argument.
+* Nombrar las clases y funciones consistentemente; la convención es usar 
+   ``NotacionCamello`` para clases y ``minusculas_con_guiones_bajos`` para funciones
+  y métodos. Siempre usar ``self`` como el nombre para el primer argumento en los 
+  métodos.
 
-* Don't use fancy encodings if your code is meant to be used in international
-  environments.  Plain ASCII works best in any case.
+* No usar codificaciones estrafalarias si se espera usar el código en entornos 
+   internacionales. ASCII plano funciona bien en la mayoría de los casos. 
 
 
 .. rubric:: Footnotes
 
-.. [#] Actually, *call by object reference* would be a better description,
-   since if a mutable object is passed, the caller will see any changes the
-   callee makes to it (items inserted into a list).
+.. [#] En realidad, *llamadas por referencia de objeto* sería una mejor descripción, 
+   ya que si un objeto mutable es pasado, quien realiza la llamaba verá cualquier cambio
+   que el llamado realice sobre el mismo (como items insertados en una lista).
 

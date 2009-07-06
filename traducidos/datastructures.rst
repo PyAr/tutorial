@@ -645,20 +645,21 @@ una expresión cuando lo que se quiere escribir es ``==``.
 
 .. _tut-comparing:
 
-Comparing Sequences and Other Types
+Comparando secuencias y otros tipos
 ===================================
 
-Sequence objects may be compared to other objects with the same sequence type.
-The comparison uses *lexicographical* ordering: first the first two items are
-compared, and if they differ this determines the outcome of the comparison; if
-they are equal, the next two items are compared, and so on, until either
-sequence is exhausted. If two items to be compared are themselves sequences of
-the same type, the lexicographical comparison is carried out recursively.  If
-all items of two sequences compare equal, the sequences are considered equal.
-If one sequence is an initial sub-sequence of the other, the shorter sequence is
-the smaller (lesser) one.  Lexicographical ordering for strings uses the ASCII
-ordering for individual characters.  Some examples of comparisons between
-sequences of the same type::
+Las secuencias pueden compararse con otros objetos del mismo tipo de secuencia.
+La comparación usa orden *lexicográfico*: primero se comparan los dos primeros
+ítems, si son diferentes esto ya determina el resultado de la comparación; si
+son iguales, se comparan los siguientes dos ítems, y así sucesivamente hasta
+llegar al final de alguna de las secuencias. Si dos ítems a comparar son ambos
+secuencias del mismo tipo, la comparación lexicográfica es recursiva.  Si todos
+los ítems de dos secuencias resultan iguales, se considera que las secuencias
+son iguales.
+Si una secuencia es una subsecuencia inicial de la otra, la secuencia más corta
+es la menor. El orden lexicográfico para cadenas de caracteres utiliza el orden
+ASCII para caracteres individuales.  Algunos ejemplos de comparaciones entre
+secuencias del mismo tipo::
 
    (1, 2, 3)              < (1, 2, 4)
    [1, 2, 3]              < [1, 2, 4]
@@ -668,15 +669,16 @@ sequences of the same type::
    (1, 2, 3)             == (1.0, 2.0, 3.0)
    (1, 2, ('aa', 'ab'))   < (1, 2, ('abc', 'a'), 4)
 
-Note that comparing objects of different types is legal.  The outcome is
-deterministic but arbitrary: the types are ordered by their name. Thus, a list
-is always smaller than a string, a string is always smaller than a tuple, etc.
-[#]_ Mixed numeric types are compared according to their numeric value, so 0
-equals 0.0, etc.
+Observa que comparar objetos de diferentes tipos es legal. El resultado es
+determinístico pero arbitrario: los tipos se ordenan por su nombre. Por lo
+tanto, una lista siempre evalúa como menor que una cadena (nota del t.:
+list < string), etc.
+[#]_ Tipos numéricos diferentes se comparan a su valor numérico, o sea 0 es
+igual a 0.0, etc.
 
 
 .. rubric:: Footnotes
 
-.. [#] The rules for comparing objects of different types should not be relied upon;
-   they may change in a future version of the language.
+.. [#] No confiar demasiado en las reglas para comparar objetos de diferentes
+tipos; pueden cambiar en una versión futura del lenguaje.
 

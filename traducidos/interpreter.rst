@@ -54,23 +54,22 @@ de comandos. Ya que las sentencias de Python suelen tener espacios en blanco u o
 caracteres que son especiales en la línea de comandos, es mejor citar *command* 
 entre comillas dobles.
 
-Some Python modules are also useful as scripts.  These can be invoked using
-``python -m module [arg] ...``, which executes the source file for *module* as
-if you had spelled out its full name on the command line.
+Algunos módulos de Python son también útiles como scripts. Pueden ser invocados 
+usando ``python -m module [arg] ...``, que ejecuta el código de *module* como si se
+hubiese tipeado su nombre completo en la línea de comandos.
 
-Note that there is a difference between ``python file`` and ``python <file``.
-In the latter case, input requests from the program, such as calls to
-:func:`input` and :func:`raw_input`, are satisfied from *file*.  Since this file
-has already been read until the end by the parser before the program starts
-executing, the program will encounter end-of-file immediately.  In the former
-case (which is usually what you want) they are satisfied from whatever file or
-device is connected to standard input of the Python interpreter.
+Notá que existe una diferencia entre ``python file`` y ``python <file``.
+En el último caso, la entrada solicitada por el programa, como en llamadas a 
+:func:`input` y :func:`raw_input`, son satisfechas desde *file*. Ya que este archivo ya 
+fue leído hasta el final por el analizador antes de que el programa empiece su
+ejecución, se encontrará el fin de archivo enseguida. En el primer caso (lo
+que usualmente vas a querer) son satisfechas por cualquier archivo o dispositivo que 
+esté conectado a la entrada estándar del intérprete de Python.
 
-When a script file is used, it is sometimes useful to be able to run the script
-and enter interactive mode afterwards.  This can be done by passing :option:`-i`
-before the script.  (This does not work if the script is read from standard
-input, for the same reason as explained in the previous paragraph.)
-
+Cuando se usa un script, a veces es útil correr primero el script y luego entrar al modo
+interactivo. Esto se puede hacer pasándole la opción :option:`-i` antes del nombre del
+script. (Esto no funciona si el script es leido desde la entrada estándar, por la misma
+razón explicada en el párrafo anterior).
 
 .. _tut-argpassing:
 

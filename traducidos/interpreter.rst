@@ -73,19 +73,19 @@ razón explicada en el párrafo anterior).
 
 .. _tut-argpassing:
 
-Argument Passing
+Pasaje de Argumentos
 ----------------
 
-When known to the interpreter, the script name and additional arguments
-thereafter are passed to the script in the variable ``sys.argv``, which is a
-list of strings.  Its length is at least one; when no script and no arguments
-are given, ``sys.argv[0]`` is an empty string.  When the script name is given as
-``'-'`` (meaning  standard input), ``sys.argv[0]`` is set to ``'-'``.  When
-:option:`-c` *command* is used, ``sys.argv[0]`` is set to ``'-c'``.  When
-:option:`-m` *module* is used, ``sys.argv[0]``  is set to the full name of the
-located module.  Options found after  :option:`-c` *command* or :option:`-m`
-*module* are not consumed  by the Python interpreter's option processing but
-left in ``sys.argv`` for  the command or module to handle.
+Cuando son conocidos por el intérprete, el nombre del escript y los argumentos
+adicionales son entonces pasados al script en la variable ``sys.argv``, una lista de
+cadenas de texto. Su logitud es al menos uno; cuando ningún script o argumentos
+son pasados, ``sys.argv[0]`` es una cadena vacía. Cuando se pasa el nombre del
+script con ``'-'`` (lo que significa la entrada estándar), ``sys.argv[0]`` vale ``'-'``.  
+Cuando se usa :option:`-c` *command*, ``sys.argv[0]`` vale ``'-c'``.  Cuando se usa
+:option:`-m` *module*, ``sys.argv[0]``  toma el valor del nombre completo del 
+módulo. Las opciones encontradas luego de :option:`-c` *command* o :option:`-m`
+*module* no son consumidas por el procesador de opciones de Python pero de todas
+formas almacenadas en ``sys.argv`` para ser manejadas por el comando o módulo.
 
 
 .. _tut-interactive:

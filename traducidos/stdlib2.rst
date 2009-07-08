@@ -1,8 +1,8 @@
 .. _tut-brieftourtwo:
 
-*********************************************
-Brief Tour of the Standard Library -- Part II
-*********************************************
+*************************************************
+Pequeño pase por la Bibliotec Estándar - Parte II
+*************************************************
 
 This second tour covers more advanced modules that support professional
 programming needs.  These modules rarely occur in small scripts.
@@ -10,9 +10,11 @@ programming needs.  These modules rarely occur in small scripts.
 
 .. _tut-output-formatting:
 
-Output Formatting
+Formato de salida
 =================
 
+El módulo :mod:`repr` provee una versión de :func:`repr` personalizada
+para mostrar abreviados
 The :mod:`repr` module provides a version of :func:`repr` customized for
 abbreviated displays of large or deeply nested containers::
 

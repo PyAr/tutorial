@@ -201,80 +201,82 @@ una excepción antes de generarla, y agregarle cualquier atributo que uno desee:
 Si una excepción tiene un argumento, este se imprime como la última parte (el
 'detalle') del mensaje para las excepciones que no están manejadas.
 
-Exception handlers don't just handle exceptions if they occur immediately in the
-try clause, but also if they occur inside functions that are called (even
-indirectly) in the try clause. For example::
+Los manejadores de excpeciones no manejan solamente las excepciones que
+ocurren en el *bloque try*, también manejan las excepciones que ocurren
+dentro de las funciones que se llaman (inclusive indirectamente) dentro del
+*bloque try*. Por ejemplo::
 
-   >>> def this_fails():
+   >>> def esto_falla():
    ...     x = 1/0
    ...
    >>> try:
-   ...     this_fails()
+   ...     esto_falla()
    ... except ZeroDivisionError as detail:
-   ...     print 'Handling run-time error:', detail
+   ...     print 'Manejando error en tiempo de ejecucion:', detail
    ...
-   Handling run-time error: integer division or modulo by zero
+   Manejando error en tiempo de ejecucion: integer division or modulo by zero
 
 
 .. _tut-raising:
 
-Raising Exceptions
-==================
+Lanzando excpeciones
+====================
 
-The :keyword:`raise` statement allows the programmer to force a specified
-exception to occur. For example::
+La instrucción :keyword:`raise` permite al programador forzar a que ocurra
+una excepción especifica. Por ejemplo::
 
-   >>> raise NameError, 'HiThere'
+   >>> raise NameError, 'Hola'
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
-   NameError: HiThere
+   NameError: Hola
 
-The first argument to :keyword:`raise` names the exception to be raised.  The
-optional second argument specifies the exception's argument.  Alternatively, the
-above could be written as ``raise NameError('HiThere')``.  Either form works
-fine, but there seems to be a growing stylistic preference for the latter.
+El primer argumento de :keyword:`raise` nombra la excpeción que se lanzará. El
+segundo (opcional) especifíca el argumento de la excepción. También se podría
+haber escrito como ``raise NameError('HiThere')``. Amabas formas funcionan bien,
+pero parece haber una creciente preferencia de estilo por la anterior.
 
-If you need to determine whether an exception was raised but don't intend to
-handle it, a simpler form of the :keyword:`raise` statement allows you to
-re-raise the exception::
+Si necesitas determinar cuando una excepción fue lanzada pero no intentas
+manejarla, una forma simplificada de la instrucción :keyword:`raise` te permite
+relanazarla::
 
    >>> try:
-   ...     raise NameError, 'HiThere'
+   ...     raise NameError, 'Hola'
    ... except NameError:
-   ...     print 'An exception flew by!'
+   ...     print 'Volo una excepcion!'
    ...     raise
    ...
-   An exception flew by!
+   Volo una excpecion!
    Traceback (most recent call last):
      File "<stdin>", line 2, in ?
-   NameError: HiThere
+   NameError: Hola
 
 
 .. _tut-userexceptions:
 
-User-defined Exceptions
-=======================
+Excepciones definidas por el usuario
+====================================
 
-Programs may name their own exceptions by creating a new exception class.
-Exceptions should typically be derived from the :exc:`Exception` class, either
-directly or indirectly.  For example::
+Los programas pueden nombrar sus propias excepciones creando una nueva calse
+excecpción.
+Las excepciones, tipícamente, deberán derivar de la clase :exc:`Exception`,
+directa o indirectamente. Por ejemplo::
 
-   >>> class MyError(Exception):
-   ...     def __init__(self, value):
-   ...         self.value = value
+   >>> class MiError(Exception):
+   ...     def __init__(self, valor):
+   ...         self.valor = valor
    ...     def __str__(self):
-   ...         return repr(self.value)
+   ...         return repr(self.valor)
    ...
    >>> try:
-   ...     raise MyError(2*2)
+   ...     raise MiError(2*2)
    ... except MyError as e:
-   ...     print 'My exception occurred, value:', e.value
+   ...     print 'Ocurrio mi excepcion, valor:', e.valor
    ...
-   My exception occurred, value: 4
-   >>> raise MyError, 'oops!'
+   Ocurrio mi excepcion, valor: 4
+   >>> raise MiError, 'oops!'
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
-   __main__.MyError: 'oops!'
+   __main__.MiError: 'oops!'
 
 In this example, the default :meth:`__init__` of :class:`Exception` has been
 overridden.  The new behavior simply creates the *value* attribute.  This

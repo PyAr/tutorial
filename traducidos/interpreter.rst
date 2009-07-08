@@ -90,29 +90,29 @@ formas almacenadas en ``sys.argv`` para ser manejadas por el comando o módulo.
 
 .. _tut-interactive:
 
-Interactive Mode
+Modo Interactivo
 ----------------
 
-When commands are read from a tty, the interpreter is said to be in *interactive
-mode*.  In this mode it prompts for the next command with the *primary prompt*,
-usually three greater-than signs (``>>>``); for continuation lines it prompts
-with the *secondary prompt*, by default three dots (``...``). The interpreter
-prints a welcome message stating its version number and a copyright notice
-before printing the first prompt::
+Se dice que estamos usando el intérprete en modo interactivo, cuando los comandos
+son leídos desde una tty. En este modo espera el siguiente comando con el *prompt
+primario*, usualmente tres signos mayor-que (``>>>``); para las líneas de 
+continuación espera con el *prompt secundario*, por defecto tres puntos (``...``). 
+Antes de mostrar el prompt primario, el intérprete muestra un mensaje de bienvenida 
+reportando su número de versión y una nota de copyright::
 
    python
    Python 2.6 (#1, Feb 28 2007, 00:02:06)
    Type "help", "copyright", "credits" or "license" for more information.
    >>>
 
-Continuation lines are needed when entering a multi-line construct. As an
-example, take a look at this :keyword:`if` statement::
+Las líneas de continuación son necesarias cuando queremos ingresar un constructor
+multi-línea. Como en el ejemplo, mirá la sentencia :keyword:`if`::
 
    >>> the_world_is_flat = 1
    >>> if the_world_is_flat:
    ...     print "Be careful not to fall off!"
    ... 
-   Be careful not to fall off!
+   ¡Tené cuidado de no caerte!
 
 
 .. _tut-interp:

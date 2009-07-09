@@ -344,21 +344,22 @@ not want to run a full list sort::
 
 .. _tut-decimal-fp:
 
-Decimal Floating Point Arithmetic
-=================================
+Aritmética de punto flotante decimal
+====================================
 
-The :mod:`decimal` module offers a :class:`Decimal` datatype for decimal
-floating point arithmetic.  Compared to the built-in :class:`float`
-implementation of binary floating point, the new class is especially helpful for
-financial applications and other uses which require exact decimal
-representation, control over precision, control over rounding to meet legal or
-regulatory requirements, tracking of significant decimal places, or for
-applications where the user expects the results to match calculations done by
-hand.
+El módulo :mod:`decimal` provee un tipo de dato :class:`Decimal` para soportar
+aritmética de punto flotante decimal. Comparado con :class:`float`, la
+implementación de punto flotante binario incluida, la nueva clase es muy útil
+especialmente para aplicaciones financieras y para cualquier uso que requiera
+una representación decimal exacta, control de la precisión, control del
+redondeo para satisfacer requerimientos legales o reglamentarios, seguimiento
+de cifras significativas, o para aplicaciones donde el usuario espera que los
+resultados coincidan con cálculos hechos a mano.
 
-For example, calculating a 5% tax on a 70 cent phone charge gives different
-results in decimal floating point and binary floating point. The difference
-becomes significant if the results are rounded to the nearest cent::
+Por ejemplo, calcular un impuesto del 5% de una tarifa telefónica de 70
+centavos da resultados distintos con punto flotante decimal y punto flotante
+binario. La diferencia se vuelve importante si los resultados se redondean al
+centavo más próximo::
 
    >>> from decimal import *
    >>> Decimal('0.70') * Decimal('1.05')
@@ -366,13 +367,14 @@ becomes significant if the results are rounded to the nearest cent::
    >>> .70 * 1.05
    0.73499999999999999
 
-The :class:`Decimal` result keeps a trailing zero, automatically inferring four
-place significance from multiplicands with two place significance.  Decimal
-reproduces mathematics as done by hand and avoids issues that can arise when
-binary floating point cannot exactly represent decimal quantities.
+El resultado con :class:`Decimal` conserva un cero al final, calculando
+automáticamente cuatro cifras significativas a partir de los multiplicandos con
+dos cifras significativas.  Decimal reproduce la matemática como se la hace a
+mano, y evita problemas que pueden surgir cuando el punto flotante binario no
+puede representar exactamente cantidades decimales.
 
-Exact representation enables the :class:`Decimal` class to perform modulo
-calculations and equality tests that are unsuitable for binary floating point::
+La representación exacta permite a la clase :class:`Decimal` hacer cálculos de
+modulo y pruebas de igualdad que son inadecuadas para punto flotante binario::
 
    >>> Decimal('1.00') % Decimal('.10')
    Decimal("0.00")
@@ -384,7 +386,7 @@ calculations and equality tests that are unsuitable for binary floating point::
    >>> sum([0.1]*10) == 1.0
    False
 
-The :mod:`decimal` module provides arithmetic with as much precision as needed::
+El módulo :mod:`decimal` provee aritmética con tanta precisión como haga falta::
 
    >>> getcontext().prec = 36
    >>> Decimal(1) / Decimal(7)

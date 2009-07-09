@@ -138,7 +138,7 @@ flujo de errores estándar; las salidas normales de comandos ejecutados se escri
 la salida estándar.
 
 Al tipear el caracter de interrupción (por lo general Control-C o DEL) en el prompt
-primario o secundario, cancela la entrada y retorna al promt primario. [#]_
+primario o secundario, se cancela la entrada y retorna al promt primario. [#]_
 Tipear una interrupción mientras un comando se están ejecutando lanza la excepción
 :exc:`KeyboardInterrupt`, que puede ser manejada con una sentencia :keyword:`try`.
 
@@ -213,30 +213,30 @@ caracteres del archivo.
 
 .. _tut-startup:
 
-The Interactive Startup File
+El Archivo de Inicio Interactivo
 ----------------------------
 
-When you use Python interactively, it is frequently handy to have some standard
-commands executed every time the interpreter is started.  You can do this by
-setting an environment variable named :envvar:`PYTHONSTARTUP` to the name of a
-file containing your start-up commands.  This is similar to the :file:`.profile`
-feature of the Unix shells.
+Cuando usás Python en forma interactiva, suele ser útil que algunos comandos 
+estándar se ejecuten cada vez que el intérprete se inicia. Podés hacer esto 
+configurando la variable de entorno :envvar:`PYTHONSTARTUP` con el nombre de un
+archivo que contenga tus comandos de inicio. Esto es similar al archivo :file:`.profile`
+en los intérpretes de comandos de Unix.
 
 .. XXX This should probably be dumped in an appendix, since most people
    don't use Python interactively in non-trivial ways.
 
-This file is only read in interactive sessions, not when Python reads commands
-from a script, and not when :file:`/dev/tty` is given as the explicit source of
-commands (which otherwise behaves like an interactive session).  It is executed
-in the same namespace where interactive commands are executed, so that objects
-that it defines or imports can be used without qualification in the interactive
-session. You can also change the prompts ``sys.ps1`` and ``sys.ps2`` in this
-file.
+Este archivo es solo leído en las sesiones interactivas del intérprete, no cuando Python
+leer comandos de un script ni cuando file:`/dev/tty` se explicita como una fuente de
+comandos (que de otro modo se comporta como una sesión interactiva). Se ejecuta
+en el mismo espacio de nombres en el que los comandos interactivos se ejecutan, 
+entonces los objetos que define o importa pueden ser usandos sin cualificaciones en 
+la sesión interactiva. En este archivo también podés cambiar los prompts ``sys.ps1``
+y ``sys.ps2``.
 
-If you want to read an additional start-up file from the current directory, you
-can program this in the global start-up file using code like ``if
-os.path.isfile('.pythonrc.py'): execfile('.pythonrc.py')``.  If you want to use
-the startup file in a script, you must do this explicitly in the script::
+Sin querés leer un archivo de inicio adicional desde el directorio actual, podés 
+programarlo en el archivo de inicio global usando algo como ``if
+os.path.isfile('.pythonrc.py'): execfile('.pythonrc.py')``.  Si querés usar el archivo de
+inicio en un script, tenés que hacer lo siguiente en forma explífica en el script::
 
    import os
    filename = os.environ.get('PYTHONSTARTUP')
@@ -246,5 +246,5 @@ the startup file in a script, you must do this explicitly in the script::
 
 .. rubric:: Footnotes
 
-.. [#] A problem with the GNU Readline package may prevent this.
+.. [#] Un problema con el paquete GNU Readline puede evitar que funcione.
 

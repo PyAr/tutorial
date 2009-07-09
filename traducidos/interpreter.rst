@@ -145,32 +145,30 @@ Tipear una interrupción mientras un comando se están ejecutando lanza la excep
 
 .. _tut-scripts:
 
-Executable Python Scripts
+Scripts Python Ejecutables
 -------------------------
 
-On BSD'ish Unix systems, Python scripts can be made directly executable, like
-shell scripts, by putting the line ::
+En los sistemas Unix tipo BSD, los scripts Python pueden convertirse directamente en
+ejecutables, como scripts del intérprete de comandos, poniendo la linea::
 
    #! /usr/bin/env python
 
-(assuming that the interpreter is on the user's :envvar:`PATH`) at the beginning
-of the script and giving the file an executable mode.  The ``#!`` must be the
-first two characters of the file.  On some platforms, this first line must end
-with a Unix-style line ending (``'\n'``), not a Mac OS (``'\r'``) or Windows
-(``'\r\n'``) line ending.  Note that the hash, or pound, character, ``'#'``, is
-used to start a comment in Python.
+al principio del script y dándole al archivo permisos de ejecución
+(asumiendo que el intérprete están en la variable de entorno :envvar:`PATH` del
+usuario).  ``#!`` deben ser los primeros dos caracteres del archivo. En algunas
+plataformas, la primer línea debe terminar al estilo Unix (``'\n'``), no como en Mac OS 
+(``'\r'``) o Windows (``'\r\n'``).  Notá que el caracter numeral ``'#'`` se usa en 
+Python para comenzar un comentario.
 
-The script can be given an executable mode, or permission, using the
-:program:`chmod` command::
+Se le puede dar permisos de ejecución al script usando el comando :program:`chmod`::
 
    $ chmod +x myscript.py
 
-On Windows systems, there is no notion of an "executable mode".  The Python
-installer automatically associates ``.py`` files with ``python.exe`` so that
-a double-click on a Python file will run it as a script.  The extension can
-also be ``.pyw``, in that case, the console window that normally appears is
-suppressed.
-
+En sistemas Windows, no existe la noción de "modo ejecutable". El instalador de
+Python asocia automáticamente la extensión ``.py`` con ``python.exe`` para que
+al hacerle doble click a un archivo Python se corra el script. La extensión también
+puede ser ``.pyw``, en este caso, la ventana con la consola que normalmente aparece
+es omitida.
 
 Source Code Encoding
 --------------------

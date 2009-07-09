@@ -117,30 +117,30 @@ multi-línea. Como en el ejemplo, mirá la sentencia :keyword:`if`::
 
 .. _tut-interp:
 
-The Interpreter and Its Environment
+El Intérprete y su Entorno
 ===================================
 
 
 .. _tut-error:
 
-Error Handling
+Manejo de Errores
 --------------
 
-When an error occurs, the interpreter prints an error message and a stack trace.
-In interactive mode, it then returns to the primary prompt; when input came from
-a file, it exits with a nonzero exit status after printing the stack trace.
-(Exceptions handled by an :keyword:`except` clause in a :keyword:`try` statement
-are not errors in this context.)  Some errors are unconditionally fatal and
-cause an exit with a nonzero exit; this applies to internal inconsistencies and
-some cases of running out of memory.  All error messages are written to the
-standard error stream; normal output from executed commands is written to
-standard output.
+Cuando ocurre un error, el intérprete imprime un mensaje de error y el trazado
+de la pila. En el modo interactivo, luego retorna al prompt primario; cuando la entrada 
+viene de un archivo, el programa termina con código de salida distinto a cero luego de 
+imprimir el trazado de la pila. (Las excepciones manejadas por una clausula 
+:keyword:`except` en una sentecina a :keyword:`try` no son errores en este
+contexto). Algunos errores son incondicionalmente fatales y causan una terminación
+con código de salida distinto de cero; esto se debe a inconcistencias internas o a que
+el intérprete se queda sin memoria. Todos los mensajes de error se escriben en el
+flujo de errores estándar; las salidas normales de comandos ejecutados se escribe en
+la salida estándar.
 
-Typing the interrupt character (usually Control-C or DEL) to the primary or
-secondary prompt cancels the input and returns to the primary prompt. [#]_
-Typing an interrupt while a command is executing raises the
-:exc:`KeyboardInterrupt` exception, which may be handled by a :keyword:`try`
-statement.
+Al tipear el caracter de interrupción (por lo general Control-C o DEL) en el prompt
+primario o secundario, cancela la entrada y retorna al promt primario. [#]_
+Tipear una interrupción mientras un comando se están ejecutando lanza la excepción
+:exc:`KeyboardInterrupt`, que puede ser manejada con una sentencia :keyword:`try`.
 
 
 .. _tut-scripts:

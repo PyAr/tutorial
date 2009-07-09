@@ -170,45 +170,45 @@ al hacerle doble click a un archivo Python se corra el script. La extensión tam
 puede ser ``.pyw``, en este caso, la ventana con la consola que normalmente aparece
 es omitida.
 
-Source Code Encoding
+Codificación del Código Fuente
 --------------------
 
-It is possible to use encodings different than ASCII in Python source files. The
-best way to do it is to put one more special comment line right after the ``#!``
-line to define the source file encoding::
+Es posible utilizar una codifición distinta a ASCII en el código fuente de Pyhton. La
+mejor forma de hacerlo es poner otro comentario especial enseguida después de
+la línea con ``#!`` para definir la codificación::
 
    # -*- coding: encoding -*- 
 
 
-With that declaration, all characters in the source file will be treated as
-having the encoding *encoding*, and it will be possible to directly write
-Unicode string literals in the selected encoding.  The list of possible
-encodings can be found in the Python Library Reference, in the section on
-:mod:`codecs`.
+Con esa declaración, todos los caracteres en el archivo fuente serán traducidos 
+utilizando la codificación *encoding*, y será posible escribir directamente cadenas de
+texto literales Unicode en la codificación seleccionada. La lista de posibles 
+codificaciones se puede encontrar en la Referencia de la Biblioteca de Python, en la
+sección sobre :mod:`codecs`.
 
-For example, to write Unicode literals including the Euro currency symbol, the
-ISO-8859-15 encoding can be used, with the Euro symbol having the ordinal value
-164.  This script will print the value 8364 (the Unicode codepoint corresponding
-to the Euro symbol) and then exit::
+Por ejemplo, para esrcibir literales Unicode, incluyendo el símbolo de la moneda Euro,
+se puede usar la codificación ISO-8859-15, en la que el símbolo Euro tiene el valor
+164. Este script imprimirá el valor 8364 (el código Unicode correspondiente al símbolo
+Euro) y luego saldrá::
 
    # -*- coding: iso-8859-15 -*-
 
    currency = u"€"
    print ord(currency)
 
-If your editor supports saving files as ``UTF-8`` with a UTF-8 *byte order mark*
-(aka BOM), you can use that instead of an encoding declaration. IDLE supports
-this capability if ``Options/General/Default Source Encoding/UTF-8`` is set.
-Notice that this signature is not understood in older Python releases (2.2 and
-earlier), and also not understood by the operating system for script files with
-``#!`` lines (only used on Unix systems).
+Si tu editor tiene soporte para guardar archivos como ``UTF-8`` con 
+*marca de orden de byte* UTF-8 (también conocida como BOM), podés usar eso en
+lugar de la declaración de codificación. IDLE lo soporta si se activa 
+``Options/General/Default Source Encoding/UTF-8``.
+Notá que esto no funciona en versiones antiguas de Python (2.2 y anteriores), ni por
+el sistema operativo en scripts con la línea con ``#!`` (solo usado en sistemas Unix).
 
-By using UTF-8 (either through the signature or an encoding declaration),
-characters of most languages in the world can be used simultaneously in string
-literals and comments.  Using non-ASCII characters in identifiers is not
-supported. To display all these characters properly, your editor must recognize
-that the file is UTF-8, and it must use a font that supports all the characters
-in the file.
+Usando UTF-8 (ya sea mediante BOM o la declaración de codificación), los caracteres
+de la mayoría de los idiomas del mundo pueden ser usados simultaneamente en 
+cadenas de texto o comentarios. No se soporta usar carcteres no-ASCII en 
+identificadores. Para mostrar todos estos caracteres en forma apropiada, tu editor
+debe reconocer que el archivo es UTF-8, y debe usar una fuente que soporte todos los
+caracteres del archivo.
 
 
 .. _tut-startup:

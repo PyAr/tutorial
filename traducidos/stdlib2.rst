@@ -280,18 +280,18 @@ applications include caching objects that are expensive to create::
 
 .. _tut-list-tools:
 
-Tools for Working with Lists
-============================
+Herramientas para trabajar con listas
+=====================================
 
-Many data structure needs can be met with the built-in list type. However,
-sometimes there is a need for alternative implementations with different
-performance trade-offs.
+Muchas necesidades de estructuras de datos pueden ser satisfechas con el tipo
+lista integrado. Sin embargo, a veces se hacen necesarias implementaciones
+alternativas con rendimientos distintos.
 
-The :mod:`array` module provides an :class:`array()` object that is like a list
-that stores only homogenous data and stores it more compactly.  The following
-example shows an array of numbers stored as two byte unsigned binary numbers
-(typecode ``"H"``) rather than the usual 16 bytes per entry for regular lists of
-python int objects::
+El módulo :mod:`array` provee un objeto :class:`array()` (vector) que es como
+una lista que almacena sólo datos homogéneos y de una manera más compacta.  Los
+ejemplos a continuación muestran un vector de números guardados como dos
+números binarios sin signo de dos bytes (código de tipo ``"H"``) en lugar de
+los 16 bytes por elemento habituales en listas de objetos int de python::
 
    >>> from array import array
    >>> a = array('H', [4000, 10, 700, 22222])
@@ -300,45 +300,45 @@ python int objects::
    >>> a[1:3]
    array('H', [10, 700])
 
-The :mod:`collections` module provides a :class:`deque()` object that is like a
-list with faster appends and pops from the left side but slower lookups in the
-middle. These objects are well suited for implementing queues and breadth first
-tree searches::
+El módulo :mod:`collections` provee un objeto :class:`deque()` que es como una
+lista más rápida para agregar y quitar elementos por el lado izquierdo pero
+búsquedas más lentas por el medio. Estos objetos son adecuados para implementar
+colas y árboles de búsqueda a lo ancho::
 
    >>> from collections import deque
-   >>> d = deque(["task1", "task2", "task3"])
-   >>> d.append("task4")
-   >>> print "Handling", d.popleft()
-   Handling task1
+   >>> d = deque(["tarea1", "tarea2", "tarea3"])
+   >>> d.append("tarea4")
+   >>> print "Realizando", d.popleft()
+   Realizando tarea1
 
-   unsearched = deque([starting_node])
-   def breadth_first_search(unsearched):
-       node = unsearched.popleft()
-       for m in gen_moves(node):
+   no_visitado = deque([nodo_inicial])
+   def busqueda_a_lo_ancho(no_visitado):
+       nodo = no_visitado.popleft()
+       for m in gen_moves(nodo):
            if is_goal(m):
                return m
-           unsearched.append(m)
+           no_visitado.append(m)
 
-In addition to alternative list implementations, the library also offers other
-tools such as the :mod:`bisect` module with functions for manipulating sorted
-lists::
+Además de las implementaciones alternativas de listas, la biblioteca ofrece
+otras herramientas como el módulo :mod:`bisect` con funciones para manipular
+listas ordenadas::
 
    >>> import bisect
-   >>> scores = [(100, 'perl'), (200, 'tcl'), (400, 'lua'), (500, 'python')]
-   >>> bisect.insort(scores, (300, 'ruby'))
-   >>> scores
+   >>> puntajes = [(100, 'perl'), (200, 'tcl'), (400, 'lua'), (500, 'python')]
+   >>> bisect.insort(puntajes, (300, 'ruby'))
+   >>> puntajes
    [(100, 'perl'), (200, 'tcl'), (300, 'ruby'), (400, 'lua'), (500, 'python')]
 
-The :mod:`heapq` module provides functions for implementing heaps based on
-regular lists.  The lowest valued entry is always kept at position zero.  This
-is useful for applications which repeatedly access the smallest element but do
-not want to run a full list sort::
+El módulo :mod:`heapq` provee funciones para implementar heaps basados en
+listas comunes. El menor valor ingresado se mantiene en la posición cero.  Esto
+es útil para aplicaciones que acceden seguido al elemento más chico pero no
+quieren hacer una orden completo de la lista::
 
    >>> from heapq import heapify, heappop, heappush
-   >>> data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
-   >>> heapify(data)                      # rearrange the list into heap order
-   >>> heappush(data, -5)                 # add a new entry
-   >>> [heappop(data) for i in range(3)]  # fetch the three smallest entries
+   >>> datos = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
+   >>> heapify(datos)                      # acomodamos la lista a orden de heap
+   >>> heappush(datos, -5)                 # agregamos un elemento
+   >>> [heappop(datos) for i in range(3)]  # traemos los tres elementos más chicos
    [-5, 0, 1]
 
 

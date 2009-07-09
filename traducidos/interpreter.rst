@@ -126,10 +126,10 @@ El Intérprete y su Entorno
 Manejo de Errores
 --------------
 
-Cuando ocurre un error, el intérprete imprime un mensaje de error y el trazado
-de la pila. En el modo interactivo, luego retorna al prompt primario; cuando la entrada 
+Cuando ocurre un error, el intérprete imprime un mensaje de error y la traza del error. 
+En el modo interactivo, luego retorna al prompt primario; cuando la entrada 
 viene de un archivo, el programa termina con código de salida distinto a cero luego de 
-imprimir el trazado de la pila. (Las excepciones manejadas por una clausula 
+imprimir la traza delerror. (Las excepciones manejadas por una clausula 
 :keyword:`except` en una sentecina a :keyword:`try` no son errores en este
 contexto). Algunos errores son incondicionalmente fatales y causan una terminación
 con código de salida distinto de cero; esto se debe a inconcistencias internas o a que

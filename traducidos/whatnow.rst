@@ -4,7 +4,7 @@
 ¿Y ahora qué?
 *************
 
-Leer este tutorial probablemente reforzó tu interés por usar Python ---
+Leer este tutorial probablemente reforzó tu interés por usar Python,
 deberías estar ansioso por aplicar Python a la resolución de tus problemas
 reales. ¿A dónde deberías ir para aprender más?
 
@@ -16,7 +16,7 @@ documentos que encontrarás en este juego son:
   Deberías hojear este manual, que tiene material de referencia completo (si
   bien breve) sobre tipos, funciones y módulos de la biblioteca estándar.
   La distribución de Python estándar incluye un *montón* de código adicional.
-  Hay módulos para leer archivos de correo de Unix, obtener documentos via
+  Hay módulos para leer archivos de correo de Unix, obtener documentos vía
   HTTP, generar números aleatorios, interpretar opciones de línea de comandos,
   escribir programas CGI, comprimir datos, y muchas otras tareas. Un vistazo
   por la Referencia de Biblioteca te dará una idea de lo que hay disponible.
@@ -26,7 +26,7 @@ documentos que encontrarás en este juego son:
 
 * :ref:`reference-index`: Una descripción en detalle de la sintaxis y semántica
   de Python. Es una lectura pesada, pero útil como guía completa al lenguaje en
-  sí.
+  si.
 
 Más recursos sobre Python:
 
@@ -45,8 +45,8 @@ Más recursos sobre Python:
 
 * http://aspn.activestate.com/ASPN/Python/Cookbook/: El Recetario de Python es
   una colección de tamaño considerable de ejemplos de código, módulos más
-  grandes, y scripts útiles. Las contribuciones particularmente notorias están
-  recolectadas en un libro también titulado Recetario de Python
+  grandes, y programas útiles. Las contribuciones particularmente notorias
+  están recolectadas en un libro también titulado Recetario de Python
   (O'Reilly & Associates, ISBN 0-596-00797-3.)
 
 Para preguntas relacionadas con Python y reportes de problemas puedes escribir
@@ -57,14 +57,8 @@ retransmitidos al otro.  Hay alrededor de 120 mensajes diarios (con picos de
 hasta varios cientos), haciendo (y respondiendo) preguntas, sugiriendo nuevas
 características, y anunciando nuevos módulos. Antes de escribir, asegúrate de
 haber revisado la lista de `Preguntas Frecuentes
-<http://www.python.org/doc/faq/>`_ (también llamado el FAQ), o búscalo en
-el directorio :file:`Misc/` de la distribución en código fuente de Python.
+<http://www.python.org/doc/faq/>`_ (también llamado el FAQ), o buscalo en
+el directorio :file:`Misc/` de la distribución de código fuente de Python.
 Hay archivos de la lista de correo disponibles en
 http://mail.python.org/pipermail/. El FAQ responde a muchas de las preguntas
 que aparecen una y otra vez, y puede que ya contenga la solución a tu problema.
-
-.. Cifra de envíos basada en el promedio de actividad de los últimos seis meses
-   de acuerdo a www.egroups.com; Ene. 2000 - Junio 2000: 21272 mensajes / 182
-   días = 116.9 mensajes / día e incrementándose. (XXX cifras actualizadas?)
-
-

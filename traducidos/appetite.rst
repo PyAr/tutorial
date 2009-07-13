@@ -4,31 +4,31 @@
 Saciando tu apetito
 *******************
 
-Si trabajas mucho con computadoras, eventualmente encontrarás que te gustaría
-automatizar alguna tarea. Por ejemplo, podrías desear realizar una búsqueda
+Si trabajás mucho con computadoras, eventualmente encontrarás que te gustaría
+automatizar alguna tarea.  Por ejemplo, podrías desear realizar una búsqueda
 y reemplazo en un gran número de archivos de texto, o renombrar y reorganizar
-un montón de archivos con fotos de una manera compleja. Tal vez quieras escribir
-alguna pequeña base de datos personalizada, personalizada, o una aplicación 
+un montón de archivos con fotos de una manera compleja.  Tal vez quieras
+escribir alguna pequeña base de datos personalizada, o una aplicación
 especializada con interfaz gráfica, o un juego simple.
 
-Si eres un desarrollador de software profesional, tal vez necesites trabajar
+Si sos un desarrollador de software profesional, tal vez necesites trabajar
 con varias bibliotecas de C/C++/Java pero encuentres que se hace lento el ciclo
-usual de escribir/compilar/testear/recompilar. Tal vez estás escribiendo una
+usual de escribir/compilar/testear/recompilar.  Tal vez estás escribiendo una
 batería de pruebas para una de esas bibliotecas y encuentres que escribir el
-código de testeo se hace una tarea tediosa. O tal vez has escrito un programa
-al que le vendría bien un lenguaje de extensión, y no quieres diseñar/implementar
-todo un nuevo lenguaje para tu aplicación.
+código de testeo se hace una tarea tediosa.  O tal vez has escrito un programa
+al que le vendría bien un lenguaje de extensión, y no quieres
+diseñar/implementar todo un nuevo lenguaje para tu aplicación.
 
 Python es el lenguaje justo para ti.
 
-Podrías escribir un script en el interprete de comandos o un archivo por lotes
-de Windows para algunas de estas tareas, pero los scripts se lucen para mover
-archivos de un lado a otro y para modificar datos de texto, no para aplicaciones
-con interfaz de usuario o juegos. Podrías escribir un programa en C/C++/Java, 
-pero puede tomar mucho tiempo de desarrollo obtener al menos un primer borrador
-del programa. Python es más fácil de usar, está disponible para sistemas
-operativos Windows, MacOS X y Unix, y te ayudará a realizar tu tarea más
-velozmente.
+Podrías escribir un script (o programa) en el interprete de comandos o un
+archivo por lotes de Windows para algunas de estas tareas, pero los scripts se
+lucen para mover archivos de un lado a otro y para modificar datos de texto,
+no para aplicaciones con interfaz de usuario o juegos.  Podrías escribir un
+programa en C/C++/Java, pero puede tomar mucho tiempo de desarrollo obtener
+al menos un primer borrador del programa.  Python es más fácil de usar, está
+disponible para sistemas operativos Windows, MacOS X y Unix, y te ayudará a
+realizar tu tarea más velozmente.
 
 Python es fácil de usar, pero es un lenguaje de programación de verdad,
 ofreciendo mucho mucho mayor estructura y soporte para programas grandes que lo
@@ -42,7 +42,7 @@ en Python que en esos lenguajes.
 
 Python te permite separar tu programa en módulos que pueden reusarse en otros
 programas en Python. Viene con una gran colección de módulos estándar que
-puedes usar como base de tus programas --- o como ejemplos para empezar a 
+puedes usar como base de tus programas --- o como ejemplos para empezar a
 aprender a programar en Python. Algunos de estos módulos proveen cosas como
 entrada/salida a archivos, llamadas al sistema, sockets, e incluso interfaces
 a sistemas de interfaz gráfica de usuario como Tk.

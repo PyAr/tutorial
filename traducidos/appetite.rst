@@ -76,7 +76,7 @@ de extensión o de comando para esa aplicación.
 
 Por cierto, el lenguaje recibe su nombre del programa de televisión de la BBC
 "Monty Python's Flying Circus" y no tiene nada que ver con reptiles.  Hacer
-referencias a cortos de Monty Python en la documentación no sólo esta
+referencias a sketches de Monty Python en la documentación no sólo esta
 permitido, ¡sino que también está bien visto!
 
 Ahora que ya estás emocionado con Python, querrás verlo en más detalle.  Como

@@ -13,12 +13,12 @@ decimal ::
 
    0.125
 
-tiene el valor 1/10 + 2/100 + 5/1000, y de la misma manera la fracción
+...tiene el valor 1/10 + 2/100 + 5/1000, y de la misma manera la fracción
 binaria ::
 
    0.001
 
-tiene el valor 0/2 + 0/4 + 1/8.  Estas dos fracciones tienen valores
+...tiene el valor 0/2 + 0/4 + 1/8.  Estas dos fracciones tienen valores
 idénticos, la única diferencia real es que la primera está escrita en
 notación fraccional en base 10 y la segunda en base 2.
 
@@ -33,16 +33,16 @@ fracción 1/3.  Podés aproximarla como una fracción de base 10 ::
 
    0.3
 
-o, mejor, ::
+...o, mejor, ::
 
 
    0.33
 
-o, mejor, ::
+...o, mejor, ::
 
    0.333
 
-y así.  No importa cuantos dígitos desees escribir, el resultado nunca será
+...y así.  No importa cuantos dígitos desees escribir, el resultado nunca será
 exactamente 1/3, pero será una aproximación cada vez mejor de 1/3.
 
 De la misma manera, no importa cuantos dígitos en base 2 quieras usar, el
@@ -83,9 +83,9 @@ exactamente para todos los flotantes finitos *X*, pero redondeando a 16
 dígitos no es suficiente para que sea verdadero.
 
 Notá que esta es la verdadera naturaleza del punto flotante binario: no es
-un bug de Python, y tampoco es un bug en tu código.  Verás lo mismo en todos
+un error de Python, y tampoco es un error en tu código.  Verás lo mismo en todos
 los lenguajes que soportan la aritmética de punto flotante de tu hardware (a
-pesar de que en algunos lenguajes por default no *muestren* la diferencia, o
+pesar de que en algunos lenguajes por omisión no *muestren* la diferencia, o
 no lo hagan en todos los modos de salida).
 
 La función integrada :func: `str` de Python produce sólo 12 dígitos
@@ -104,7 +104,7 @@ A esta se siguen otras sorpresas.  Por ejemplo, luego de ver::
    >>> 0.1
    0.10000000000000001
 
-quizás estés tentado de usar la función :func:`round` para recortar el
+...quizás estés tentado de usar la función :func:`round` para recortar el
 resultado al dígito que esperabas.  Pero es lo mismo::
 
    >>> round(0.1, 1)
@@ -176,11 +176,11 @@ Reescribiendo ::
 
    1 / 10 ~= J / (2**N)
 
-como ::
+...como ::
 
    J ~= 2**N / 10
 
-y recordando que *J* tiene exactamente 53 bits (es ``>= 2**52`` pero
+...y recordando que *J* tiene exactamente 53 bits (es ``>= 2**52`` pero
 ``< 2**53``), el mejor valor para *N* es 56::
 
    >>> 2**52
@@ -224,7 +224,7 @@ de sus 30 dígitos más significativos::
    >>> 7205759403792794 * 10**30 / 2**56
    100000000000000005551115123125L
 
-lo que significa que el valor exacto almacenado en la computadora es
+...lo que significa que el valor exacto almacenado en la computadora es
 aproximadamente igual al valor decimal 0.100000000000000005551115123125.
 Redondeando eso a 17 dígitos significativos da el 0.10000000000000001 que
 Python muestra (bueno, mostraría en cualquier plataforma que cumpla con 754

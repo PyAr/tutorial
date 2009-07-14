@@ -17,16 +17,16 @@ La Sentencia :keyword:`if`
 Tal vez el tipo más conocido de sentencias sea la sentencia :keyword:`if`.  Por
 ejemplo::
 
-   >>> x = int(raw_input("Please enter an integer: "))
+   >>> x = int(raw_input("Ingresá un entero, por favor: "))
    >>> if x < 0:
    ...      x = 0
-   ...      print 'Negative changed to zero'
+   ...      print 'Negativo cambiado a cero'
    ... elif x == 0:
-   ...      print 'Zero'
+   ...      print 'Cero'
    ... elif x == 1:
-   ...      print 'Single'
+   ...      print 'Simple'
    ... else:
-   ...      print 'More'
+   ...      print 'Mas'
    ... 
 
 Puede haber cero o más bloques :keyword:`elif`, y el bloque :keyword:`else` es 
@@ -58,7 +58,7 @@ o una cadena de texto), en el orden que aparecen en la secuencia. Por ejemplo
 
 ::
 
-   >>> # Measure some strings:
+   >>> # Midiendo cadenas de texto
    ... a = ['cat', 'window', 'defenestrate']
    >>> for x in a:
    ...     print x, len(x)
@@ -72,7 +72,7 @@ es posible para tipos de secuencias mutables, como las listas). Si se necesita m
 la lista sobre la que se está iterando (por ejemplo, para duplicar items seleccionados)
 se debe iterar sobre una copia. La notación de rebanada es conveniente para esto::
 
-   >>> for x in a[:]: # make a slice copy of the entire list
+   >>> for x in a[:]: # hacer una copia por rebanada de toda la lista
    ...    if len(x) > 6: a.insert(0, x)
    ... 
    >>> a
@@ -137,20 +137,20 @@ números primos::
    >>> for n in range(2, 10):
    ...     for x in range(2, n):
    ...         if n % x == 0:
-   ...             print n, 'equals', x, '*', n/x
+   ...             print n, 'es igual a ', x, '*', n/x
    ...             break
    ...     else:
-   ...         # loop fell through without finding a factor
-   ...         print n, 'is a prime number'
+   ...         # sigue el bucle sin encontrar un factor
+   ...         print n, 'es un numero primo'
    ... 
-   2 is a prime number
-   3 is a prime number
-   4 equals 2 * 2
-   5 is a prime number
-   6 equals 2 * 3
-   7 is a prime number
-   8 equals 2 * 4
-   9 equals 3 * 3
+   2 es un numero primo
+   3 es un numero primo
+   4 es igual a 2 * 2
+   5 es un numero primo
+   6 es igual a 2 * 3
+   7 es un numero primo
+   8 es igual a 2 * 4
+   9 es igual a 3 * 3
 
 
 .. _tut-pass:
@@ -163,7 +163,7 @@ es requerida por la sintáxis pero el programa no requiere ninguna acción.
 Por ejemplo::
 
    >>> while True:
-   ...       pass # Busy-wait for keyboard interrupt
+   ...       pass # Espera ocupada hasta iterrupción de teclado
    ... 
 
 
@@ -175,14 +175,14 @@ Definiendo funciones
 Podemos crear una función que escriba la serie de Fibonacci hasta una límite
 determinado::
 
-   >>> def fib(n):    # write Fibonacci series up to n
-   ...     """Print a Fibonacci series up to n."""
+   >>> def fib(n):    # escribe la serie de Fibonacci hasta n
+   ...     """Escribe la serie de Fibonacci hasta n."""
    ...     a, b = 0, 1
    ...     while b < n:
    ...         print b,
    ...         a, b = b, a+b
    ... 
-   >>> # Now call the function we just defined:
+   >>> # Ahora llamamos a la funcion que acabamos de definir:
    ... fib(2000)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
 
@@ -244,17 +244,17 @@ se quiere, se puede verlo usando :keyword:`print`::
 Es simple escribir una función que retorne una lista con los números de la serie de 
 Fibonacci en lugar de imprimirlos::
 
-   >>> def fib2(n): # return Fibonacci series up to n
-   ...     """Return a list containing the Fibonacci series up to n."""
+   >>> def fib2(n): # retorna la seri de Fibonacci hasta n
+   ...     """Retorna una lista conteniendo la serie de Fibonacci hasta n."""
    ...     result = []
    ...     a, b = 0, 1
    ...     while b < n:
-   ...         result.append(b)    # see below
+   ...         result.append(b)    # ver abajo
    ...         a, b = b, a+b
    ...     return result
    ... 
-   >>> f100 = fib2(100)    # call it
-   >>> f100                # write the result
+   >>> f100 = fib2(100)    # llamarla
+   >>> f100                # escribir el resultado
    [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 
 Este ejemplo, como es usual, demuestra algunas características más de Python:
@@ -373,10 +373,10 @@ puede ser llamada de cualquiera de las siguientes formas::
 
 pero estas otras llamadas serían todas inválidas::
 
-   parrot()                     # required argument missing
-   parrot(voltage=5.0, 'dead')  # non-keyword argument following keyword
-   parrot(110, voltage=220)     # duplicate value for argument
-   parrot(actor='John Cleese')  # unknown keyword
+   parrot()                     # falta argumento obligatorio
+   parrot(voltage=5.0, 'dead')  # argumento no-de palabra clave seguido de uno que si
+   parrot(110, voltage=220)     # valor duplicado para argumento
+   parrot(actor='John Cleese')  # palabra clave desconocida
 
 En general, una lista de argumentos debe tener todos sus argumentos posicionales
 seguidos por los argumentos de palabra clave, dónde las palabras claves deben ser
@@ -464,10 +464,10 @@ espera los argumentos *inicio* y *fin*.  Si no están disponibles en forma separ
 se puede escribir la llamada a la función con el operador para desempaquetar 
 argumentos de una lista o una tupla ``*``\::
 
-   >>> range(3, 6)             # normal call with separate arguments
+   >>> range(3, 6)             # llamada normal con argumentos separados
    [3, 4, 5]
    >>> args = [3, 6]
-   >>> range(*args)            # call with arguments unpacked from a list
+   >>> range(*args)            # llamada con argumentos desempaquetados de una lista
    [3, 4, 5]
 
 .. index::
@@ -550,16 +550,16 @@ normalmente).
 Este es un ejemplo de un docstring multi-línea::
 
    >>> def my_function():
-   ...     """Do nothing, but document it.
+   ...     """No hace mas que documentar la funcion.
    ... 
-   ...     No, really, it doesn't do anything.
+   ...     No, de verdad. No hace nada.
    ...     """
    ...     pass
    ... 
    >>> print my_function.__doc__
-   Do nothing, but document it.
+   No hace mas que documentar la funcion.
 
-       No, really, it doesn't do anything.
+   No, de verdad. No hace nada.
 
 
 .. _tut-codingstyle:

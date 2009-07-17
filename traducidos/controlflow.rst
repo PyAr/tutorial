@@ -1,8 +1,8 @@
 .. _tut-morecontrol:
 
-*************************************
+**************************************
 Más herramientas para Control de Flujo
-*************************************
+**************************************
 
 Además de la sentencia :keyword:`while` que acabamos de introducir,
 Python soporta las sentencias de control de flujo que podemos encontrar en
@@ -30,8 +30,8 @@ ejemplo::
    ... 
 
 Puede haber cero o más bloques :keyword:`elif`, y el bloque :keyword:`else` es 
-opcional. La palabra reservada ':keyword:`elif`' es una abreviación de 'else if'
-, y es útil para evitar identación excesiva. Una secuencia :keyword:`if` ...
+opcional. La palabra reservada ':keyword:`elif`' es una abreviación de 'else
+if', y es útil para evitar identación excesiva. Una secuencia :keyword:`if` ...
 :keyword:`elif` ... :keyword:`elif` ... sustituye las sentencias ``switch``
 o ``case`` encontradas en otros lenguajes.
 
@@ -86,8 +86,8 @@ La Función :func:`range`
 ========================
 
 Si se necesita iterar sobre una secuencia de números, es apropiado utilizar
-la función incorporada :func:`range`.  Genera una lista conteniendo progresiones
-aritméticas::
+la función incorporada :func:`range`.  Genera una lista conteniendo
+progresiones aritméticas::
 
    >>> range(10)
    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -95,8 +95,8 @@ aritméticas::
 El valor final dado nunca es parte de la lista; ``range(10)`` genera una lista
 de 10 valores, los índices correspondientes para los items de una secuencia de
 longitud 10. Es posible hacer que el rango empiece con otro número, o
-especificar un incremento diferente (incluso negativo; algunas veces se lo llama
-'paso')::
+especificar un incremento diferente (incluso negativo; algunas veces se lo
+llama 'paso')::
 
    >>> range(5, 10)
    [5, 6, 7, 8, 9]
@@ -159,7 +159,7 @@ loop, que busca números primos::
 .. _tut-pass:
 
 La Sentencia :keyword:`pass` 
-=================
+============================
 
 La sentencia :keyword:`pass` no hace nada. Se puede usar cuando una sentencia
 es requerida por la sintáxis pero el programa no requiere ninguna acción. 
@@ -173,7 +173,7 @@ Por ejemplo::
 .. _tut-functions:
 
 Definiendo funciones
-============
+====================
 
 Podemos crear una función que escriba la serie de Fibonacci hasta un límite
 determinado::
@@ -202,25 +202,26 @@ función puede ser opcionalmente una cadena de texto literal; esta es la cadena
 de texto de documentación de la función, o :dfn:`docstring`.
 
 Hay herramientas que usan las docstrings para producir automáticamente 
-documentación en línea o imprimible, o para permitirle al usuario que navegue el
-código en forma interactiva; es una buena práctica incluir docstrings en el
+documentación en línea o imprimible, o para permitirle al usuario que navegue
+el código en forma interactiva; es una buena práctica incluir docstrings en el
 código que uno escribe, por lo que se debe intentar hacer un hábito de esto.
 
 La *ejecución* de una función introduce una nueva tabla de símbolos usada para
-las variables locales de la función. Más precisamente, todas las asignaciones de
-variables en la función almacenan el valor en la tabla de símbolos local; así
-mismo la referencia a variables primero mira la tabla de símbolos local, luego
-en la tabla de símbolos local de las funciones externas, luego la tabla de
-símbolos global, y finalmente la tabla de nombres predefinidos. Así, no se les
-puede asignar directamente un valor a las variables globales dentro de una
+las variables locales de la función. Más precisamente, todas las asignaciones
+de variables en la función almacenan el valor en la tabla de símbolos local;
+así mismo la referencia a variables primero mira la tabla de símbolos local,
+luego en la tabla de símbolos local de las funciones externas, luego la tabla
+de símbolos global, y finalmente la tabla de nombres predefinidos. Así, no se
+les puede asignar directamente un valor a las variables globales dentro de una
 función (a menos se las nombre en la sentencia :keyword:`global`), aunque si
 pueden ser referenciadas.
 
 Los parámetros reales (argumentos) de una función se introducen
-en la tabla de símbolos local de la función llamada cuando esta es llamada; así,
-los argumentos son pasados *por valor* (dónde el *valor* es siempre una 
-*referencia* a un objeto, no el valor del objeto). [#]_ Cuando una función llama
-a otra función, una nueva tabla de símbolos local es creada para esa llamada.
+en la tabla de símbolos local de la función llamada cuando esta es llamada;
+así, los argumentos son pasados *por valor* (dónde el *valor* es siempre una 
+*referencia* a un objeto, no el valor del objeto). [#]_ Cuando una función
+llama a otra función, una nueva tabla de símbolos local es creada para esa
+llamada.
 
 La definición de una función introduce el nombre de la función en la tabla de
 símbolos actual. El valor del nombre de la función tiene un tipo que es
@@ -236,8 +237,9 @@ función. Esto sirve como un mecanismo general para renombrar::
 
 Se puede objetar que ``fib`` no es una función, sino un procedimiento. En
 Python, como en C, los procedimientos son solo funciones que no retornan un
-valor. De hecho, técnicamente hablando, los procedimientos si retornan un valor,
-aunque uno aburrido. Este valor es llamada ``None`` (es un nombre predefinido).
+valor. De hecho, técnicamente hablando, los procedimientos si retornan un
+valor, aunque uno aburrido. Este valor es llamada ``None`` (es un nombre
+predefinido).
 El intérprete por lo general no escribe el valor ``None`` si va a ser el único
 valor escrito. Si realmente se quiere, se puede verlo usando :keyword:`print`::
 
@@ -245,8 +247,8 @@ valor escrito. Si realmente se quiere, se puede verlo usando :keyword:`print`::
    >>> print fib(0)
    None
 
-Es simple escribir una función que retorne una lista con los números de la serie
-de Fibonacci en lugar de imprimirlos::
+Es simple escribir una función que retorne una lista con los números de la
+serie de Fibonacci en lugar de imprimirlos::
 
    >>> def fib2(n): # retorna la seri de Fibonacci hasta n
    ...     """Retorna una lista conteniendo la serie de Fibonacci hasta n."""
@@ -272,18 +274,19 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
   Un método es una función que 'pertenece' a un objeto y se nombra 
   ``obj.methodname``, dónde ``obj`` es algún objeto (puede ser una expresión),
   y ``methodname`` es el nombre del método que está definido por el tipo del
-  objeto. Distintos tipos definen distintos métodos. Métodos de diferentes tipos
-  pueden tener el mismo nombre sin causar ambigüedad. (Es posible definir tipos
-  de objetos propios, y métodos, usando *clases*, como se discutirá más adelante en el tutorial).
-  El método :meth:`append` mostrado en el ejemplo está definido para objetos lista;
-  añade un nuevo elemento al final de la lista. En este ejemplo es equivalente a
-  ``result = result + [b]``, pero más eficiente.
+  objeto. Distintos tipos definen distintos métodos. Métodos de diferentes
+  tipos pueden tener el mismo nombre sin causar ambigüedad. (Es posible definir
+  tipos de objetos propios, y métodos, usando *clases*, como se discutirá más
+  adelante en el tutorial).
+  El método :meth:`append` mostrado en el ejemplo está definido para objetos
+  lista; añade un nuevo elemento al final de la lista. En este ejemplo es
+  equivalente a ``result = result + [b]``, pero más eficiente.
 
 
 .. _tut-defining:
 
 Más sobre Definición de Funciones
-====================
+=================================
 
 También es posible definir funciones con un número variable de argumentos. Hay
 tres formas que pueden ser combinadas.
@@ -292,11 +295,11 @@ tres formas que pueden ser combinadas.
 .. _tut-defaultargs:
 
 Argumentos con Valores por Defecto
--------------------------------------------------
+----------------------------------
 
-La forma más útil es especificar un valor por defecto para  uno o más argumentos.
-Esto crea una función que puede ser llamada con menos argumentos que los que
-permite. Por ejemplo::
+La forma más útil es especificar un valor por defecto para  uno o más
+argumentos. Esto crea una función que puede ser llamada con menos argumentos
+que los que permite. Por ejemplo::
 
    def pedir_confirmacion(prompt, reintentos=4, queja='Si o no, por favor!'):
        while True:
@@ -307,14 +310,15 @@ permite. Por ejemplo::
            if reintentos < 0: raise IOError, 'usuario duro'
            print queja
 
-Esta función puede ser llamada tanto así: ``pedir_confirmacion('¿Realmente queres
-salir?')`` como así: ``pedir_confirmacion('¿Sobreescribir archivo?', 2)``.
+Esta función puede ser llamada tanto así: ``pedir_confirmacion('¿Realmente
+queres salir?')`` como así: ``pedir_confirmacion('¿Sobreescribir archivo?',
+2)``.
 
-Este ejemplo también introduce la palabra reservada :keyword:`in`. Prueba si una 
-secuencia contiene o no un determinado valor.
+Este ejemplo también introduce la palabra reservada :keyword:`in`. Prueba si
+una secuencia contiene o no un determinado valor.
 
-Los valores por defecto son evaluados en el momento de la definición de la función, en
-el ámbito de *definición*, entonces::
+Los valores por defecto son evaluados en el momento de la definición de la
+función, en el ámbito de *definición*, entonces::
 
    i = 5
 
@@ -326,10 +330,11 @@ el ámbito de *definición*, entonces::
 
 imprimirá ``5``.
 
-**Advertencia importante:**  El valor por defecto es evaluado solo una vez. Existe una
-diferencia cuando el valor por defecto es un objeto mutable como una lista, diccionario,
-o instancia de la mayoría de las clases. Por ejemplo, la siguiente función acumula los 
-argumentos que se le pasan en subsiguientes llamadas::
+**Advertencia importante:**  El valor por defecto es evaluado solo una vez.
+Existe una diferencia cuando el valor por defecto es un objeto mutable como una
+lista, diccionario, o instancia de la mayoría de las clases. Por ejemplo, la
+siguiente función acumula los argumentos que se le pasan en subsiguientes
+llamadas::
 
    def f(a, L=[]):
        L.append(a)
@@ -345,8 +350,8 @@ Imprimirá::
    [1, 2]
    [1, 2, 3]
 
-Si no se quiere que el valor por defecto sea compartido entre subsiguientes llamadas,
-se pueden escribir la función así::
+Si no se quiere que el valor por defecto sea compartido entre subsiguientes
+llamadas, se pueden escribir la función así::
 
    def f(a, L=None):
        if L is None:
@@ -358,7 +363,7 @@ se pueden escribir la función así::
 .. _tut-keywordargs:
 
 Palabras Claves como Argumentos
----------------------------------------------
+-------------------------------
 
 Las funciones también puede ser llamadas usando palabras claves como argumentos
 de la forma ``keyword = value``.  Por ejemplo, la siguiente función::
@@ -378,18 +383,20 @@ puede ser llamada de cualquiera de las siguientes formas::
 
 pero estas otras llamadas serían todas inválidas::
 
-   loro()                     # falta argumento obligatorio
-   loro(tension=5.0, 'muerto')  # argumento no-de palabra clave seguido de uno que si
-   loro(110, tension=220)     # valor duplicado para argumento
-   loro(actor='Juan Garau')  # palabra clave desconocida
+   loro()                      # falta argumento obligatorio
+   loro(tension=5.0, 'muerto') # argumento no-de palabra clave seguido de
+                               # uno que si
+   loro(110, tension=220)      # valor duplicado para argumento
+   loro(actor='Juan Garau')    # palabra clave desconocida
 
-En general, una lista de argumentos debe tener todos sus argumentos posicionales
-seguidos por los argumentos de palabra clave, dónde las palabras claves deben ser
-elegidas entre los nombres de los parámetros formales. No es importante si un 
-parámetro formal tiene un valor por defecto o no. Ningún argumento puede recibir
-un valor más de una vez (los nombres de parámetros formales correspondientes a 
-argumentos posiciónales no pueden ser usados como palabras clave en la misma
-llamada). Aquí hay un ejemplo que falla debido a esta restricción::
+En general, una lista de argumentos debe tener todos sus argumentos
+posicionales seguidos por los argumentos de palabra clave, dónde las palabras
+claves deben ser elegidas entre los nombres de los parámetros formales. No es
+importante si un parámetro formal tiene un valor por defecto o no. Ningún
+argumento puede recibir un valor más de una vez (los nombres de parámetros
+formales correspondientes a argumentos posiciónales no pueden ser usados como
+palabras clave en la misma llamada). Aquí hay un ejemplo que falla debido a
+esta restricción::
 
    >>> def function(a):
    ...     pass
@@ -399,13 +406,13 @@ llamada). Aquí hay un ejemplo que falla debido a esta restricción::
      File "<stdin>", line 1, in ?
    TypeError: function() got multiple values for keyword argument 'a'
 
-Cuando un parámetro formal de la forma ``**name`` está presente al final, recive
-un diccionario (ver :ref:`typesmapping`) conteniendo todos los argumentos de palabras
-clave excepto aquellos correspondientes a un parámetro formal. Esto puede ser 
-combinado con un parámetro formal de la forma ``*name`` (descripto en la siguiente
-subsección) que recibe una tupla conteniendo los argumentos posicionales además de
-la lista de parámetros formales. (``*name`` debe ocurrir antes de ``**name``).
-Por ejemplo, si definimos una función así::
+Cuando un parámetro formal de la forma ``**name`` está presente al final,
+recive un diccionario (ver :ref:`typesmapping`) conteniendo todos los
+argumentos de palabras clave excepto aquellos correspondientes a un parámetro
+formal. Esto puede ser combinado con un parámetro formal de la forma ``*name``
+(descripto en la siguiente subsección) que recibe una tupla conteniendo los
+argumentos posicionales además de la lista de parámetros formales. (``*name``
+debe ocurrir antes de ``**name``). Por ejemplo, si definimos una función así::
 
    def ventadequeso(tipo, *argumentos, **palabrasclaves):
        print "-- ¿Tiene", tipo, '?'
@@ -437,21 +444,21 @@ y por supuesto imprimirá::
 
 Se debe notar que el método :meth:`sort` de la lista de nombres de argumentos 
 de palabra clave es llamado antes de imprimir el contenido del diccionario 
-``palabrasclaves``; si esto no se hace, el orden en que los argumentos son impresos
-no está definido.
+``palabrasclaves``; si esto no se hace, el orden en que los argumentos son
+impresos no está definido.
 
 .. _tut-arbitraryargs:
 
 Listas de Argumentos Arbitrarios
---------------------------------------------
+--------------------------------
 
 .. index::
   statement: *  
 
-Finalmente, la opción menos frecuentemente usada es especificar que una función
-puede ser llamada con un número arbitrario de argumentos.  Estos argumentos serán
-organizados en una tupla. Antes del número variable de argumentos, cero o más 
-argumentos normales pueden estar presentes.::
+Finalmente, la opción menos frecuentemente usada es especificar que una
+función puede ser llamada con un número arbitrario de argumentos.  Estos
+argumentos serán organizados en una tupla. Antes del número variable de
+argumentos, cero o más argumentos normales pueden estar presentes.::
 
    def fprintf(file, template, *args):
        file.write(template.format(args))
@@ -460,50 +467,54 @@ argumentos normales pueden estar presentes.::
 .. _tut-unpacking-arguments:
 
 Desempaquetando una Lista de Argumentos
------------------------------------------------------------
+---------------------------------------
 
-La situación inversa ocurre cuando los argumentos ya están en una lista o tupla
-pero necesitan ser desempaquetados para llamar a una función que requiere 
-argumentos posicionales separados. Por ejemplo, la función predefinida :func:`range` 
-espera los argumentos *inicio* y *fin*.  Si no están disponibles en forma separada,
-se puede escribir la llamada a la función con el operador para desempaquetar 
-argumentos de una lista o una tupla ``*``\::
+La situación inversa ocurre cuando los argumentos ya están en una lista o
+tupla pero necesitan ser desempaquetados para llamar a una función que
+requiere argumentos posicionales separados. Por ejemplo, la función predefinida
+:func:`range` espera los argumentos *inicio* y *fin*.  Si no están disponibles
+en forma separada, se puede escribir la llamada a la función con el operador
+para desempaquetar argumentos de una lista o una tupla ``*``\::
 
    >>> range(3, 6)             # llamada normal con argumentos separados
    [3, 4, 5]
    >>> args = [3, 6]
-   >>> range(*args)            # llamada con argumentos desempaquetados de una lista
+   >>> range(*args)            # llamada con argumentos desempaquetados de una
+                               # lista
    [3, 4, 5]
 
 .. index::
   statement: **
 
-Del mismo modo, los diccionarios pueden entregar argumentos de palabra clave con el 
-operador ``**``\::
+Del mismo modo, los diccionarios pueden entregar argumentos de palabra clave
+con el operador ``**``\::
 
    >>> def loro(tension, estado='rostizado', accion='explotar'):
    ...     print "-- Este loro no va a", accion,
    ...     print "si le aplicas", voltage, "voltios.",
    ...     print "Esta", estado, "!"
    ...
-   >>> d = {"tension": "cuatro millones", "estado": "demacrado", "accion": "VOLAR"}
+   >>> d = {"tension": "cuatro millones", "estado": "demacrado",
+            "accion": "VOLAR"}
    >>> loro(**d)
-   -- Este loro no va a VOLAR si le aplicas cuatro millones voltios. Esta demacrado !
+   -- Este loro no va a VOLAR si le aplicas cuatro millones
+      voltios. Esta demacrado !
 
 
 .. _tut-lambda:
 
 Formas con Lambda
---------------------------
+-----------------
 
-Por demanda popular, algunas características comúnmente encontradas en lenguajes
-de programación funcionales como Lisp fueron añadidas a Python. Con la palabra
-reservada :keyword:`lambda` se pueden crear pequeñas funciones anónimas. Esta es
-una función que retorna la suma de sus dos argumentos: ``lambda a, b: a+b``.  
-Las formas con lambda pueden ser usadas en cualquier lugar que se requieran 
-funciones. Semánticamente, son solo azúcar sintáctica para la definición de funciones.
-Cómo en la definición de funciones anidadas, las formas con lambda pueden referenciar
-variables del ámbito en el que son contenidas:::
+Por demanda popular, algunas características comúnmente encontradas en
+lenguajes de programación funcionales como Lisp fueron añadidas a Python. Con
+la palabra reservada :keyword:`lambda` se pueden crear pequeñas funciones
+anónimas. Esta es una función que retorna la suma de sus dos argumentos:
+``lambda a, b: a+b``. Las formas con lambda pueden ser usadas en cualquier
+lugar que se requieran funciones. Semánticamente, son solo azúcar sintáctica
+para la definición de funciones. Cómo en la definición de funciones anidadas,
+las formas con lambda pueden referenciar variables del ámbito en el que son
+contenidas:::
 
    >>> def hacer_incrementador(n):
    ...     return lambda x: x + n
@@ -518,39 +529,39 @@ variables del ámbito en el que son contenidas:::
 .. _tut-docstrings:
 
 Cadenas de texto de Documentación
-------------------------------------------------
+---------------------------------
 
 .. index::
    single: docstrings
    single: documentation strings
    single: strings, documentation
 
-Hay convenciones emergentes sobre el contenido y formato de las cadenas de texto
-de documentación.
+Hay convenciones emergentes sobre el contenido y formato de las cadenas de
+texto de documentación.
 
-La primer línea debe ser siempre un resumen corto y conciso del propósito del objeto.
-Para ser breve, no se debe mencionar explícitamente el nombre o tipo del objeto, ya
-que estos están disponibles de otros modos (excepto si el nombre es un verbo que
-describe el funcionamiento de la función). Esta línea debe empezar con una letra 
-mayúscula y terminar con un punto.
+La primer línea debe ser siempre un resumen corto y conciso del propósito del
+objeto. Para ser breve, no se debe mencionar explícitamente el nombre o tipo
+del objeto, ya que estos están disponibles de otros modos (excepto si el nombre
+es un verbo que describe el funcionamiento de la función). Esta línea debe
+empezar con una letra mayúscula y terminar con un punto.
 
-Si hay más líneas en la cadena de texto de documentación, la segunda línea debe estar
-en blanco, separando visualmente el resumen del resto de la descripción. Las líneas
-siguientes deben ser uno o más párrafos describiendo las convenciones para llamar al
-objeto, efectos secundarios, etc.
+Si hay más líneas en la cadena de texto de documentación, la segunda línea debe
+estar en blanco, separando visualmente el resumen del resto de la descripción.
+Las líneas siguientes deben ser uno o más párrafos describiendo las
+convenciones para llamar al objeto, efectos secundarios, etc.
 
-El analizador de Python no quita la identación de las cadenas de texto literales
-multi-líneas, entonces las herramientas que procesan documentación tienen que quitar
-la identación si así lo quieren. Esto se hace mediante la siguiente convención. La
-primer línea que no está en blanco *siguiente* a la primer línea de la cadena determina
-la cantidad de identación para toda la cadena de documentación. (No podemos usar la
-primer línea ya que generalmente es adyacente a las comillas de apertura de la cadena
-y la identación no se nota en la cadena de texto). Los espacios en blanco 
-"equivalentes" a esta identación son luego quitados del comienzo de cada línea en la 
-cadena. No deberían haber líneas con menor identación, pero si las hay todos los 
-espacios en blanco del comienzo deben ser quitados. La equivalencia de espacios
-en blanco debe ser verificada luego de la expansión de tabs (a 8 espacios, 
-normalmente).
+El analizador de Python no quita la identación de las cadenas de texto
+literales multi-líneas, entonces las herramientas que procesan documentación
+tienen que quitar la identación si así lo quieren. Esto se hace mediante la
+siguiente convención. La primer línea que no está en blanco *siguiente* a la
+primer línea de la cadena determina la cantidad de identación para toda la
+cadena de documentación. (No podemos usar la primer línea ya que generalmente
+es adyacente a las comillas de apertura de la cadena y la identación no se nota
+en la cadena de texto). Los espacios en blanco "equivalentes" a esta identación
+son luego quitados del comienzo de cada línea en la cadena. No deberían haber
+líneas con menor identación, pero si las hay todos los espacios en blanco del
+comienzo deben ser quitados. La equivalencia de espacios en blanco debe ser
+verificada luego de la expansión de tabs (a 8 espacios, normalmente).
 
 Este es un ejemplo de un docstring multi-línea::
 
@@ -570,57 +581,58 @@ Este es un ejemplo de un docstring multi-línea::
 .. _tut-codingstyle:
 
 Intermezzo: Estilo de Codificación
-====================
+==================================
 
 .. sectionauthor:: Georg Brandl <georg@python.org>
 .. index:: pair: coding; style
 
-Ahora que estás a punto de escribir piezas de Python más largas y complejas, es un 
-buen momento para hablar sobre *estilo de codificación*. La mayoría de los lenguajes
-pueden ser escritos (o mejor dicho, *formateados*) con diferentes estilos; algunos son
-mas fáciles de leer que otros. Hacer que tu código sea más fácil de leer por otros es 
-siempre una buena idea, y adoptar un buen estilo de codificación ayuda 
-tremendamente a lograrlo.
+Ahora que estás a punto de escribir piezas de Python más largas y complejas,
+es un buen momento para hablar sobre *estilo de codificación*. La mayoría de
+los lenguajes pueden ser escritos (o mejor dicho, *formateados*) con diferentes
+estilos; algunos son mas fáciles de leer que otros. Hacer que tu código sea más
+fácil de leer por otros es siempre una buena idea, y adoptar un buen estilo de
+codificación ayuda tremendamente a lograrlo.
 
 Para Python, :pep:`8` se erigió como la guía de estilo a la que más proyectos 
-adhirieron; promueve un estilo de codificación fácil de leer y amable con los ojos. Todos
-los desarrolladores Python deben leerlo en algún momento; aquí están extraídos 
-los puntos más importantes:
+adhirieron; promueve un estilo de codificación fácil de leer y amable con los
+ojos. Todos los desarrolladores Python deben leerlo en algún momento; aquí
+están extraídos los puntos más importantes:
 
 * Usar identación de 4 espacios, no tabs.
 
-  4 espacios son un buen compromiso entre identación pequeña (permite mayor nivel
-  de identación) e identación grande (más fácil de leer). Los tabs introducen confusión
-  y es mejor dejarlos de lado.
+  4 espacios son un buen compromiso entre identación pequeña (permite mayor
+  nivel de identación) e identación grande (más fácil de leer). Los tabs
+  introducen confusión y es mejor dejarlos de lado.
 
 * Recortar las líneas para que no superen los 79 caracteres.
 
-  Esto ayuda a los usuarios con pantallas pequeñas y hace posible tener varios archivos
-  de código abiertos, uno al lado del otro, en pantallas grandes.
+  Esto ayuda a los usuarios con pantallas pequeñas y hace posible tener varios
+  archivos de código abiertos, uno al lado del otro, en pantallas grandes.
 
-* Usar líneas en blanco para separar funciones y clases, y bloques grandes de código
-   dentro de funciones.
+* Usar líneas en blanco para separar funciones y clases, y bloques grandes
+  de código dentro de funciones.
 
 * Cuando sea posible, poner comentarios en una sola línea.
 
 * Usar docstrings.
 
-* Usar espacios alrededor de operadores y luego de las comas, pero no directamente
-   dentro de paréntesis: ``a = f(1, 2) + g(3, 4)``.
+* Usar espacios alrededor de operadores y luego de las comas, pero no
+  directamente dentro de paréntesis: ``a = f(1, 2) + g(3, 4)``.
 
 * Nombrar las clases y funciones consistentemente; la convención es usar 
-   ``NotacionCamello`` para clases y ``minusculas_con_guiones_bajos`` para funciones
-  y métodos. Siempre usar ``self`` como el nombre para el primer argumento en los 
-  métodos.
+  ``NotacionCamello`` para clases y ``minusculas_con_guiones_bajos`` para
+  funciones y métodos. Siempre usar ``self`` como el nombre para el primer
+  argumento en los métodos.
 
 * No usar codificaciones estrafalarias si se espera usar el código en entornos 
-   internacionales. ASCII plano funciona bien en la mayoría de los casos. 
+  internacionales. ASCII plano funciona bien en la mayoría de los casos. 
 
 
 .. rubric:: Footnotes
 
-.. [#] En realidad, *llamadas por referencia de objeto* sería una mejor descripción, 
-   ya que si un objeto mutable es pasado, quien realiza la llamaba verá cualquier cambio
-   que el llamado realice sobre el mismo (como items insertados en una lista).
+.. [#] En realidad, *llamadas por referencia de objeto* sería una
+   mejordescripción, ya que si un objeto mutable es pasado, quien realiza la
+   llamaba verá cualquier cambio que el llamado realice sobre el mismo (como
+   items insertados en una lista).
 
 

@@ -476,11 +476,10 @@ requiere argumentos posicionales separados. Por ejemplo, la función predefinida
 en forma separada, se puede escribir la llamada a la función con el operador
 para desempaquetar argumentos de una lista o una tupla ``*``\::
 
-   >>> range(3, 6)             # llamada normal con argumentos separados
+   >>> range(3, 6)       # llamada normal con argumentos separados
    [3, 4, 5]
    >>> args = [3, 6]
-   >>> range(*args)            # llamada con argumentos desempaquetados de una
-                               # lista
+   >>> range(*args)      # llamada con argumentos desempaquetados de una lista
    [3, 4, 5]
 
 .. index::

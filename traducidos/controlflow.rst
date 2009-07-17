@@ -53,8 +53,8 @@ definir tanto el paso de la iteración como la condición de fin (como en C), la
 o una cadena de texto), en el orden que aparecen en la secuencia. Por ejemplo
 (no pun intended):
 
-.. One suggestion was to give a real C example here, but that may only serve to
-   confuse non-C programmers.
+.. Se sugirió dar un ejemplo real de C aquí, pero eso confundiría a los programadores
+   que no saben C.
 
 ::
 
@@ -118,8 +118,10 @@ así::
 
 .. _tut-break:
 
-Las Sentencias :keyword:`break` y :keyword:`continue`, y la Cláusula :keyword:`else` en Loops
-=========================================================================================
+Las Sentencias :keyword:`break` y :keyword:`continue`, y la Cláusula 
+=========================================
+:keyword:`else` en Loops
+===============
 
 La sentencia :keyword:`break`, como en C, termina el loop :keyword:`for` o 
 :keyword:`while` más anidado.
@@ -155,7 +157,7 @@ números primos::
 .. _tut-pass:
 
 La Sentencia :keyword:`pass` 
-==================
+=================
 
 La sentencia :keyword:`pass` no hace nada. Se puede usar cuando una sentencia
 es requerida por la sintáxis pero el programa no requiere ninguna acción. 
@@ -169,7 +171,7 @@ Por ejemplo::
 .. _tut-functions:
 
 Definiendo funciones
-=============
+============
 
 Podemos crear una función que escriba la serie de Fibonacci hasta un límite
 determinado::
@@ -277,7 +279,7 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
 .. _tut-defining:
 
 Más sobre Definición de Funciones
-==========================
+====================
 
 También es posible definir funciones con un número variable de argumentos. Hay
 tres formas que pueden ser combinadas.
@@ -454,7 +456,7 @@ argumentos normales pueden estar presentes.::
 .. _tut-unpacking-arguments:
 
 Desempaquetando una Lista de Argumentos
-----------------------------------------------------------
+-----------------------------------------------------------
 
 La situación inversa ocurre cuando los argumentos ya están en una lista o tupla
 pero necesitan ser desempaquetados para llamar a una función que requiere 
@@ -480,9 +482,9 @@ operador ``**``\::
    ...     print "si le aplicas", voltage, "voltios.",
    ...     print "Esta", estado, "!"
    ...
-   >>> d = {"tension": "cuatro millones", "estado": "demacrado", "accion": "EXPLOTAR"}
+   >>> d = {"tension": "cuatro millones", "estado": "demacrado", "accion": "VOLAR"}
    >>> loro(**d)
-   -- Este loro no va a EXPLOTAR si le aplicas cuatro millones voltios. Esta demacrado !
+   -- Este loro no va a VOLAR si le aplicas cuatro millones voltios. Esta demacrado !
 
 
 .. _tut-lambda:
@@ -523,10 +525,10 @@ Hay convenciones emergentes sobre el contenido y formato de las cadenas de texto
 de documentación.
 
 La primer línea debe ser siempre un resumen corto y conciso del propósito del objeto.
-Para ser breve, no se debe mencionar explícitamente el nombre o tipo del objeto, ya que
-estos están disponibles de otros modos (excepto si el nombre es un verbo que describe
-el funcionamiento de la función). Esta línea debe empezar con una letra mayúscula y
-terminar con un punto.
+Para ser breve, no se debe mencionar explícitamente el nombre o tipo del objeto, ya
+que estos están disponibles de otros modos (excepto si el nombre es un verbo que
+describe el funcionamiento de la función). Esta línea debe empezar con una letra 
+mayúscula y terminar con un punto.
 
 Si hay más líneas en la cadena de texto de documentación, la segunda línea debe estar
 en blanco, separando visualmente el resumen del resto de la descripción. Las líneas
@@ -564,7 +566,7 @@ Este es un ejemplo de un docstring multi-línea::
 .. _tut-codingstyle:
 
 Intermezzo: Estilo de Codificación
-========================
+====================
 
 .. sectionauthor:: Georg Brandl <georg@python.org>
 .. index:: pair: coding; style

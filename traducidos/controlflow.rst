@@ -5,7 +5,7 @@ Más herramientas para Control de Flujo
 *************************************
 
 Además de la sentencia :keyword:`while` que acabamos de introducir,
-Python entiende las sentencias de control de flujo que podemos encontrar en otros
+Python soporta las sentencias de control de flujo que podemos encontrar en otros
 lenguajes, con algunos cambios.
 
 
@@ -14,7 +14,7 @@ lenguajes, con algunos cambios.
 La Sentencia :keyword:`if` 
 ===============
 
-Tal vez el tipo más conocido de sentencias sea la sentencia :keyword:`if`.  Por
+Tal vez el tipo más conocido de sentencia sea la sentencia :keyword:`if`.  Por
 ejemplo::
 
    >>> x = int(raw_input("Ingresá un entero, por favor: "))
@@ -48,7 +48,7 @@ La Sentencia :keyword:`for`
 La sentencia :keyword:`for` en Python difiere un poco de lo que uno puede estar
 acostumbrado en lenguajes como C o Pascal. En lugar de siempre iterar sobre una
 progresión aritmética de números (como en Pascal) o darle al usuario la posibilidad de
-definir tanto el paso de la iteración y condición de fin (como en C), la sentencia 
+definir tanto el paso de la iteración como la condición de fin (como en C), la sentencia 
 :keyword:`for` de Python itera sobre los items de cualquier secuencia (una lista
 o una cadena de texto), en el orden que aparecen en la secuencia. Por ejemplo
 (no pun intended):
@@ -59,13 +59,13 @@ o una cadena de texto), en el orden que aparecen en la secuencia. Por ejemplo
 ::
 
    >>> # Midiendo cadenas de texto
-   ... a = ['cat', 'window', 'defenestrate']
+   ... a = ['gato', 'ventana', 'defenestrado']
    >>> for x in a:
    ...     print x, len(x)
    ... 
-   cat 3
-   window 6
-   defenestrate 12
+   gato 4
+   ventana 7
+   defenestrado 12
 
 No es seguro modificar la secuencia sobre la que se está iterando en el loop (esto solo
 es posible para tipos de secuencias mutables, como las listas). Si se necesita modificar
@@ -76,7 +76,7 @@ se debe iterar sobre una copia. La notación de rebanada es conveniente para est
    ...    if len(x) > 6: a.insert(0, x)
    ... 
    >>> a
-   ['defenestrate', 'cat', 'window', 'defenestrate']
+   ['defenestrado', 'gato', 'ventana', 'defenestrado']
 
 
 .. _tut-range:
@@ -91,10 +91,10 @@ aritméticas::
    >>> range(10)
    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-El valor final dado nunca esparte de la lista; ``range(10)`` genera una lista de 10
+El valor final dado nunca es parte de la lista; ``range(10)`` genera una lista de 10
 valores, los índices correspondientes para los items de una secuencia de longitud 10.
 Es posible hacer que el rango empiece con otro número, o especificar un incremento
-diferente (incluso negativos; algunas veces se lo llama 'paso')::
+diferente (incluso negativo; algunas veces se lo llama 'paso')::
 
    >>> range(5, 10)
    [5, 6, 7, 8, 9]
@@ -106,15 +106,14 @@ diferente (incluso negativos; algunas veces se lo llama 'paso')::
 Para iterar sobre los índices de una secuencia, se combina :func:`range` y :func:`len`
 así::
 
-   >>> a = ['Mary', 'had', 'a', 'little', 'lamb']
+   >>> a = ['Mary', 'tenia', 'un', 'corderito']
    >>> for i in range(len(a)):
    ...     print i, a[i]
    ... 
    0 Mary
-   1 had
-   2 a
-   3 little
-   4 lamb
+   1 tenia
+   2 un
+   3 corderito
 
 
 .. _tut-break:
@@ -128,8 +127,8 @@ La sentencia :keyword:`break`, como en C, termina el loop :keyword:`for` o
 La sentencia :keyword:`continue`, también tomada prestada de C, continua
 con la próxima iteración del loop.
 
-Las sentencias de loop pueden tener una cláusula ``else``; es ejecutada cuando
-el loop termina luego de agotar la lista (con :keyword:`for`) o cuando la condición
+Las sentencias de loop pueden tener una cláusula ``else`` que es ejecutada cuando
+el loop termina, luego de agotar la lista (con :keyword:`for`) o cuando la condición
 se hace falsa (con :keyword:`while`), pero no cuando el loop es terminado
 con la sentencia :keyword:`break`. Se ejemplifica en el siguiente loop, que busca
 números primos::
@@ -172,7 +171,7 @@ Por ejemplo::
 Definiendo funciones
 =============
 
-Podemos crear una función que escriba la serie de Fibonacci hasta una límite
+Podemos crear una función que escriba la serie de Fibonacci hasta un límite
 determinado::
 
    >>> def fib(n):    # escribe la serie de Fibonacci hasta n
@@ -191,7 +190,7 @@ determinado::
    single: docstrings
    single: strings, documentation
 
-La palabra reservada :keyword:`def` de una para *definir* funciones.  Debe seguirle
+La palabra reservada :keyword:`def` se usa para *definir* funciones.  Debe seguirle
 el nombre de la función y la lista de parámetros formales entre paréntesis. Las 
 sentencias que forman el cuerpo de la función empiezan en la línea siguiente, y deben
 estar identadas. La primer sentencia del cuerpo de la función puede ser opcionalmente
@@ -201,7 +200,7 @@ función, o :dfn:`docstring`.
 Hay herramientas que usan las docstrings para producir automáticamente 
 documentación en línea o imprimible, o para permitirle al usuario que navegue el
 código en forma interactiva; es una buena práctica incluir docstrings en el código
-que uno escriba, así que se debe intentar hacer un hábito de esto.
+que uno escribe, por lo que se debe intentar hacer un hábito de esto.
 
 La *ejecución* de una función introduce una nueva tabla de símbolos usada para las
 variables locales de la función. Más precisamente, todas las asignaciones de variables
@@ -263,7 +262,7 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
   :keyword:`return` sin una expresión como argumento retorna ``None``. Si se
   alcanza el final de un procedimiento, también se retorna ``None``.
 
-* La sentencia ``result.append(b)`` llama al *método* del objeto lista ``result``.  
+* La sentencia ``result.append(b)`` llama a un *método* del objeto lista ``result``.  
   Un método es una función que 'pertenece' a un objeto y se nombra 
   ``obj.methodname``, dónde ``obj`` es algún objeto (puede ser una expresión),
   y ``methodname`` es el nombre del método que está definido por el tipo del objeto.
@@ -280,7 +279,7 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
 Más sobre Definición de Funciones
 ==========================
 
-También es posible definir funciones with un número variable de argumentos. Hay
+También es posible definir funciones con un número variable de argumentos. Hay
 tres formas que pueden ser combinadas.
 
 
@@ -293,17 +292,17 @@ La forma más útil es especificar un valor por defecto para  uno o más argumen
 Esto crea una función que puede ser llamada con menos argumentos que los que
 permite. Por ejemplo::
 
-   def ask_ok(prompt, retries=4, complaint='Yes or no, please!'):
+   def pedir_confirmacion(prompt, reintentos=4, queja='Si o no, por favor!'):
        while True:
            ok = raw_input(prompt)
-           if ok in ('y', 'ye', 'yes'): return True
-           if ok in ('n', 'no', 'nop', 'nope'): return False
-           retries = retries - 1
-           if retries < 0: raise IOError, 'refusenik user'
-           print complaint
+           if ok in ('s', 'S', 'si', 'Si', 'SI'): return True
+           if ok in ('n', 'no', 'No', 'NO'): return False
+           reintentos = reintentos - 1
+           if reintentos < 0: raise IOError, 'usuario duro'
+           print queja
 
-Esta función puede ser llamada tanto así: ``ask_ok('Do you really want to
-quit?')`` como así: ``ask_ok('OK to overwrite the file?', 2)``.
+Esta función puede ser llamada tanto así: ``pedir_confirmacion('¿Realmente queres
+salir?')`` como así: ``pedir_confirmacion('¿Sobreescribir archivo?', 2)``.
 
 Este ejemplo también introduce la palabra reservada :keyword:`in`. Prueba si una 
 secuencia contiene o no un determinado valor.
@@ -358,25 +357,25 @@ Palabras Claves como Argumentos
 Las funciones también puede ser llamadas usando palabras claves como argumentos
 de la forma ``keyword = value``.  Por ejemplo, la siguiente función::
 
-   def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
-       print "-- This parrot wouldn't", action,
-       print "if you put", voltage, "volts through it."
-       print "-- Lovely plumage, the", type
-       print "-- It's", state, "!"
+   def loro(tension, estado='muerto', accion='explotar', tipo='Azul Nordico'):
+       print "-- Este loro no va a", accion,
+       print "si le aplicas", voltage, "voltios."
+       print "-- Gran plumaje tiene el", tipo
+       print "-- Esta", estado, "!"
 
 puede ser llamada de cualquiera de las siguientes formas::
 
-   parrot(1000)
-   parrot(action = 'VOOOOOM', voltage = 1000000)
-   parrot('a thousand', state = 'pushing up the daisies')
-   parrot('a million', 'bereft of life', 'jump')
+   loro(1000)
+   loro(accion = 'EXPLOTARRRRR', tension = 1000000)
+   loro('mil', estado= 'boca arriba')
+   loro('un millon', 'rostizado', 'saltar')
 
 pero estas otras llamadas serían todas inválidas::
 
-   parrot()                     # falta argumento obligatorio
-   parrot(voltage=5.0, 'dead')  # argumento no-de palabra clave seguido de uno que si
-   parrot(110, voltage=220)     # valor duplicado para argumento
-   parrot(actor='John Cleese')  # palabra clave desconocida
+   loro()                     # falta argumento obligatorio
+   loro(tension=5.0, 'muerto')  # argumento no-de palabra clave seguido de uno que si
+   loro(110, tension=220)     # valor duplicado para argumento
+   loro(actor='Juan Garau')  # palabra clave desconocida
 
 En general, una lista de argumentos debe tener todos sus argumentos posicionales
 seguidos por los argumentos de palabra clave, dónde las palabras claves deben ser
@@ -384,7 +383,7 @@ elegidas entre los nombres de los parámetros formales. No es importante si un
 parámetro formal tiene un valor por defecto o no. Ningún argumento puede recibir
 un valor más de una vez (los nombres de parámetros formales correspondientes a 
 argumentos posiciónales no pueden ser usados como palabras clave en la misma
-llamada. Aquí hay un ejemplo que falla debido a esta restricción::
+llamada). Aquí hay un ejemplo que falla debido a esta restricción::
 
    >>> def function(a):
    ...     pass
@@ -402,37 +401,37 @@ subsección) que recibe una tupla conteniendo los argumentos posicionales ademá
 la lista de parámetros formales. (``*name`` debe ocurrir antes de ``**name``).
 Por ejemplo, si definimos una función así::
 
-   def cheeseshop(kind, *arguments, **keywords):
-       print "-- Do you have any", kind, '?'
-       print "-- I'm sorry, we're all out of", kind
-       for arg in arguments: print arg
+   def ventadequeso(tipo, *argumentos, **palabrasclaves):
+       print "-- ¿Tiene", tipo, '?'
+       print "-- Lo siento, nos quedamos sin", kind
+       for arg in argumentos: print arg
        print '-'*40
-       keys = keywords.keys()
-       keys.sort()
-       for kw in keys: print kw, ':', keywords[kw]
+       claves = palabrasclaves.keys()
+       claves.sort()
+       for c in claves: print c, ':', palabrasclaves[c]
 
 Puede ser llamada así::
 
-   cheeseshop('Limburger', "It's very runny, sir.",
-              "It's really very, VERY runny, sir.",
-              client='John Cleese',
-              shopkeeper='Michael Palin',
-              sketch='Cheese Shop Sketch')
+   ventadequeso('Limburger', "Es muy liquito, sr.",
+              "Realmente es muy muy liquido, sr.",
+              cliente='Juan Garau',
+              vendedor='Miguel Paez',
+              puesto='Venta de Queso Argentino')
 
 y por supuesto imprimirá::
 
-   -- Do you have any Limburger ?
-   -- I'm sorry, we're all out of Limburger
-   It's very runny, sir.
-   It's really very, VERY runny, sir.
+   -- ¿Tiene Limburger ?
+   -- Lo siento, nos quedamos sin Limburger
+   Es muy liquito, sr.
+   Realmente es muy muy liquido, sr.
    ----------------------------------------
-   client : John Cleese
-   shopkeeper : Michael Palin
-   sketch : Cheese Shop Sketch
+   cliente : Juan Garau
+   vendedor : Miguel Paez
+   puesto : Venta de Queso Argentino
 
 Se debe notar que el método :meth:`sort` de la lista de nombres de argumentos 
 de palabra clave es llamado antes de imprimir el contenido del diccionario 
-``keywords``; si esto no se hace, el orden en que los argumentos son impresos
+``palabrasclaves``; si esto no se hace, el orden en que los argumentos son impresos
 no está definido.
 
 .. _tut-arbitraryargs:
@@ -458,7 +457,7 @@ Desempaquetando una Lista de Argumentos
 ----------------------------------------------------------
 
 La situación inversa ocurre cuando los argumentos ya están en una lista o tupla
-pero necesitan sen desempaquetados para llamar a una función que requiere 
+pero necesitan ser desempaquetados para llamar a una función que requiere 
 argumentos posicionales separados. Por ejemplo, la función predefinida :func:`range` 
 espera los argumentos *inicio* y *fin*.  Si no están disponibles en forma separada,
 se puede escribir la llamada a la función con el operador para desempaquetar 
@@ -476,14 +475,14 @@ argumentos de una lista o una tupla ``*``\::
 Del mismo modo, los diccionarios pueden entregar argumentos de palabra clave con el 
 operador ``**``\::
 
-   >>> def parrot(voltage, state='a stiff', action='voom'):
-   ...     print "-- This parrot wouldn't", action,
-   ...     print "if you put", voltage, "volts through it.",
-   ...     print "E's", state, "!"
+   >>> def loro(tension, estado='rostizado', accion='explotar'):
+   ...     print "-- Este loro no va a", accion,
+   ...     print "si le aplicas", voltage, "voltios.",
+   ...     print "Esta", estado, "!"
    ...
-   >>> d = {"voltage": "four million", "state": "bleedin' demised", "action": "VOOM"}
-   >>> parrot(**d)
-   -- This parrot wouldn't VOOM if you put four million volts through it. E's bleedin' demised !
+   >>> d = {"tension": "cuatro millones", "estado": "demacrado", "accion": "EXPLOTAR"}
+   >>> loro(**d)
+   -- Este loro no va a EXPLOTAR si le aplicas cuatro millones voltios. Esta demacrado !
 
 
 .. _tut-lambda:
@@ -500,10 +499,10 @@ funciones. Semánticamente, son solo azúcar sintáctica para la definición de 
 Cómo en la definición de funciones anidadas, las formas con lambda pueden referenciar
 variables del ámbito en el que son contenidas:::
 
-   >>> def make_incrementor(n):
+   >>> def hacer_incrementador(n):
    ...     return lambda x: x + n
    ...
-   >>> f = make_incrementor(42)
+   >>> f = hacer_incrementador(42)
    >>> f(0)
    42
    >>> f(1)
@@ -524,14 +523,14 @@ Hay convenciones emergentes sobre el contenido y formato de las cadenas de texto
 de documentación.
 
 La primer línea debe ser siempre un resumen corto y conciso del propósito del objeto.
-Para ser breve, no debe mencionar explícitamente el nombre o tipo del objeto, ya que
+Para ser breve, no se debe mencionar explícitamente el nombre o tipo del objeto, ya que
 estos están disponibles de otros modos (excepto si el nombre es un verbo que describe
 el funcionamiento de la función). Esta línea debe empezar con una letra mayúscula y
 terminar con un punto.
 
 Si hay más líneas en la cadena de texto de documentación, la segunda línea debe estar
 en blanco, separando visualmente el resumen del resto de la descripción. Las líneas
-siguientes deben ser no o más párrafos describiendo las convenciones para llamar al
+siguientes deben ser uno o más párrafos describiendo las convenciones para llamar al
 objeto, efectos secundarios, etc.
 
 El analizador de Python no quita la identación de las cadenas de texto literales
@@ -549,14 +548,14 @@ normalmente).
 
 Este es un ejemplo de un docstring multi-línea::
 
-   >>> def my_function():
+   >>> def mi_funcion():
    ...     """No hace mas que documentar la funcion.
    ... 
    ...     No, de verdad. No hace nada.
    ...     """
    ...     pass
    ... 
-   >>> print my_function.__doc__
+   >>> print mi_funcion.__doc__
    No hace mas que documentar la funcion.
 
    No, de verdad. No hace nada.
@@ -590,7 +589,7 @@ los puntos más importantes:
 
 * Recortar las líneas para que no superen los 79 caracteres.
 
-  Esto ayuda a los usuarios con pequeñas pantallas y hace posible tener varios archivos
+  Esto ayuda a los usuarios con pantallas pequeñas y hace posible tener varios archivos
   de código abiertos, uno al lado del otro, en pantallas grandes.
 
 * Usar líneas en blanco para separar funciones y clases, y bloques grandes de código

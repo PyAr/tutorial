@@ -112,7 +112,7 @@ Esto importa todos los nombres excepto aquellos que comienzan con un subrayado
 .. note::
 
    Por razones de eficiencia, cada módulo se importa una vez por sesión del
-   intérprete.  Por lo tanto, si cambiás los módulos, tenés que reiniciar el
+   intérprete.  Por lo tanto, si modificás los módulos, tenés que reiniciar el
    intérprete -- o, si es sólo un módulo que querés probar interactivamente,
    usá  :func:`reload`, por ejemplo ``reload(nombremodulo)``.
 
@@ -134,7 +134,7 @@ agregando este código al final de tu módulo::
        import sys
        fib(int(sys.argv[1]))
 
-...podés hacer que el archivo sea utilizable tanto como script como un módulo
+...podés hacer que el archivo sea utilizable tanto como script, como módulo
 importable, porque el código que analiza la linea de órdenes sólo se ejecuta
 si el módulo es ejecutado como archivo principal::
 
@@ -164,13 +164,13 @@ directorios especificada por la variable de entorno :envvar:`PYTHONPATH`.  Esta
 tiene la misma sintáxis que la variable de shell :envvar:`PATH`, o sea, una
 lista de nombres de directorios.  Cuando :envvar:`PYTHONPATH` no está
 configurada, o cuando el archivo no se encuentra allí, la búsqueda continua en
-un camino por default que depende de la instalación; en Unix, este es
+un camino por omisión que depende de la instalación; en Unix, este es
 normalmente :file:`.:/usr/lib/python`.
 
 En realidad, los módulos se buscan en la lista de directorios dada por la
 variable ``sys.path``, la cual se inicializa con el directorio que contiene al
 script de entrada (o el directorio actual), :envvar:`PYTHONPATH`, y el
-directorio default dependiente de la instalación. Esto permite que los
+directorio default dependiente de la instalación.  Esto permite que los
 programas en Python que saben lo que están haciendo modifiquen o reemplacen el
 camino de búsqueda de los módulos.  Notar que como el directorio que contiene
 el script que se ejecuta está en el camino de búsqueda, es importante que el
@@ -192,10 +192,10 @@ que se denomina *bytecode*).  La fecha y hora de modificación del archivo
 el :file:`.pyc` se ignora si estos no coinciden.
 
 Normalmente, no necesitás hacer nada para crear el archivo :file:`spam.pyc`.
-Siempre que el se compile satisfactoriamente el :file:`spam.py`, se hace un
-intento de escribir la versión compilada al :file:`spam.pyc`. No es un error
+Siempre que se compile satisfactoriamente el :file:`spam.py`, se hace un
+intento de escribir la versión compilada al :file:`spam.pyc`.  No es un error
 si este intento falla, si por cualquier razón el archivo no se escribe
-completamente, el archivo :file:`spam.pyc` resultante se reconocerá como
+completamente el archivo :file:`spam.pyc` resultante se reconocerá como
 inválido luego.  El contenido del archivo :file:`spam.pyc` es independiente de
 la plataforma, por lo que un directorio de módulos puede ser compartido por
 máquinas de diferentes arquitecturas.
@@ -211,9 +211,9 @@ Algunos consejos para expertos:
 
 * Pasando dos opciones :option:`-O` al intérprete de Python (:option:`-OO`)
   causará que el compilador realice optimizaciones que en algunos raros casos
-  podría resultar en programas que funcionen incorrectamente. Actualmente,
+  podría resultar en programas que funcionen incorrectamente.  Actualmente,
   solamente se remueven del bytecode a las cadenas ``__doc__``, resultando en
-  archivos :file:`.pyo` más compactos.  Ya que algunos programan necesitan
+  archivos :file:`.pyo` más compactos.  Ya que algunos programas necesitan
   tener disponibles estas cadenas, sólo deberías usar esta opción si sabés lo
   que estás haciendo.
 
@@ -225,14 +225,14 @@ Algunos consejos para expertos:
 * Cuando se ejecuta un script desde la linea de órdenes, nunca se escribe el
   bytecode del script a los archivos :file:`.pyc` o :file:`.pyo`.  Por lo
   tanto, el tiempo de comienzo de un script puede reducirse moviendo la mayor
-  parte de su códugo a un módulo y usando un pequeño script de arranque que
+  parte de su código a un módulo y usando un pequeño script de arranque que
   importe el módulo.  También es posible nombrar a los archivos :file:`.pyc` o
   :file:`.pyo` directamente desde la linea de órdenes.
 
 * Es posible tener archivos llamados :file:`spam.pyc` (o :file:`spam.pyo`
   cuando se usa la opción :option:`-O`) sin un archivo :file:`spam.py` para
   el mismo módulo.  Esto puede usarse para distribuir el código de una
-  biblioteca de python en una forma que es moderadamente difícil de hacerle
+  biblioteca de Python en una forma que es moderadamente difícil de hacerle
   ingeniería inversa.
 
   .. index:: module: compileall
@@ -273,7 +273,8 @@ primarios y secundarios::
    C>
 
 
-Estas dos variables están solamente definidas si el intérprete está en modo interactivo.
+Estas dos variables están solamente definidas si el intérprete está en modo
+interactivo.
 
 La variable  ``sys.path`` es una lista de cadenas que determinan el camino de
 búsqueda del intérprete para los módulos.  Se inicializa por omisión a un
@@ -290,7 +291,7 @@ podés modificar usando las operaciones estándar de listas::
 La función :func:`dir`
 ======================
 
-La función integrada :func:`dir` se usa par encontrar que nombres define un
+La función integrada :func:`dir` se usa para encontrar qué nombres define un
 módulo.  Devuelve una lista ordenada de cadenas::
 
    >>> import fibo, sys
@@ -409,7 +410,7 @@ Los archivos :file:`__init__.py` se necesitan para hacer que Python trate
 los directorios como que contienen paquetes; esto se hace para prevenir
 directorios con un nombre común, como ``string``, de esconder sin intención
 a módulos válidos que se suceden luego en el camino de búsqueda de módulos.
-En el caso más simple, :file:`__init__.py`  puede ser solamente un archivo
+En el caso más simple, :file:`__init__.py` puede ser solamente un archivo
 vacío, pero también puede ejecutar código de inicialización para el paquete
 o configurar la variable ``__all__``, descrita luego.
 
@@ -464,7 +465,7 @@ Importando \* desde un paquete
 Ahora, ¿qué sucede cuando el usuario escribe ``from sound.effects import *``?
 Idealmente, uno esperaría que esto de alguna manera vaya al sistema de
 archivos, encuentre cuales submódulos están presentes en el paquete, y los
-importe a todos.  Desafortunadamente, esta operación no trabaja muy bien en
+importe a todos.  Desafortunadamente, esta operación no funciona muy bien en
 las plataformas Windows, donde el sistema de archivos no siempre tiene
 información precisa sobre mayúsculas y minúsculas.  En estas plataformas,
 no hay una manera garantizada de saber si el archivo `ECHO.PY` debería
@@ -488,7 +489,6 @@ importar \* en sus paquetes.  Por ejemplo, el archivo
 
 Esto significaría que ``from sound.effects import *`` importaría esos tres
 submódulos del paquete :mod:`sound`.
-
 
 Si no se define ``__all__``, la declaración ``from sound.effects import *``
 *no* importa todos los submódulos del paquete :mod:`sound.effects` al espacio
@@ -515,7 +515,7 @@ Sin embargo, está bien usarlo para ahorrar tecleo en sesiones interactivas,
 y algunos módulos están diseñados para exportar sólo nombres que siguen
 ciertos patrones.
 
-Recordá que no está mal usar ``from Package import specific_submodule``!  De
+Recordá que no está mal usar ``from paquete import submodulo_especifico``!  De
 hecho, esta notación se recomienda a menos que el módulo que estás importando
 necesite usar submódulos con el mismo nombre desde otros paquetes.
 

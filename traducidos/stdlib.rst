@@ -27,7 +27,7 @@ que trabaja bastante diferente.
 .. index:: builtin: help
 
 Las funciones integradas :func:`dir` y :func:`help` son útiles como ayudas
-interactivas para trabajr con módulos grandes como :mod:`os`::
+interactivas para trabajar con módulos grandes como :mod:`os`::
 
    >>> import os
    >>> dir(os)
@@ -170,53 +170,57 @@ para mandar correos::
 (Notá que el segundo ejemplo necesita un servidor de correo corriendo en la
 máquina local)
 
-
+------------------- revisado hasta acá!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 .. _tut-dates-and-times:
 
-Dates and Times
-===============
+Fechas y tiempos
+================
 
-The :mod:`datetime` module supplies classes for manipulating dates and times in
-both simple and complex ways. While date and time arithmetic is supported, the
-focus of the implementation is on efficient member extraction for output
-formatting and manipulation.  The module also supports objects that are timezone
-aware. ::
+El módulo :mod:`datetime` ofrece clases para manejar fechas y tiempos tanto de
+manera simple como compleja.  Aunque se soporta aritmética sobre fechas y
+tiempos, el foco de la implementación es en la eficiente extracción de partes
+para manejarlas o formatear la salida.  El módulo también soporta objetos que
+son conscientes de la zona horaria. ::
 
-   # dates are easily constructed and formatted
-   >>> from datetime import date
-   >>> now = date.today()
-   >>> now
-   datetime.date(2003, 12, 2)
-   >>> now.strftime("%m-%d-%y. %d %b %Y is a %A on the %d day of %B.")
-   '12-02-03. 02 Dec 2003 is a Tuesday on the 02 day of December.'
+    # las fechas son fácilmente construidas y formateadas
+    >>> from datetime import date
+    >>> hoy = date.today()
+    >>> hoy
+    datetime.date(2009, 7, 19)
 
-   # dates support calendar arithmetic
-   >>> birthday = date(1964, 7, 31)
-   >>> age = now - birthday
-   >>> age.days
-   14368
+    # nos aseguramos de tener la info de localización correcta
+    >>> locale.setlocale(locale.LC_ALL, locale.getdefaultlocale())
+    'es_ES.UTF8'
+    >>> hoy.strftime("%m-%d-%y. %d %b %Y es %A. hoy es %d de %B.")
+    '07-19-09. 19 jul 2009 es domingo. hoy es 19 de julio.'
+
+    # las fechas soportan aritmética de calendario
+    >>> nacimiento = date(1964, 7, 31)
+    >>> edad = hoy - nacimiento
+    >>> edad.days
+    14368
 
 
 .. _tut-data-compression:
 
-Data Compression
-================
+Compresión de datos
+===================
 
-Common data archiving and compression formats are directly supported by modules
-including: :mod:`zlib`, :mod:`gzip`, :mod:`bz2`, :mod:`zipfile` and
-:mod:`tarfile`. ::
+Los formatos para archivar y comprimir datos se soportan directamente con los
+módulos: :mod:`zlib`, :mod:`gzip`, :mod:`bz2`, :mod:`zipfile` y :mod:`tarfile`.
+::
 
-   >>> import zlib
-   >>> s = 'witch which has which witches wrist watch'
-   >>> len(s)
-   41
-   >>> t = zlib.compress(s)
-   >>> len(t)
-   37
-   >>> zlib.decompress(t)
-   'witch which has which witches wrist watch'
-   >>> zlib.crc32(s)
-   226805979
+    >>> import zlib
+    >>> s = 'witch which has which witches wrist watch'
+    >>> len(s)
+    41
+    >>> t = zlib.compress(s)
+    >>> len(t)
+    37
+    >>> zlib.decompress(t)
+    'witch which has which witches wrist watch'
+    >>> zlib.crc32(s)
+    226805979
 
 
 .. _tut-performance-measurement:

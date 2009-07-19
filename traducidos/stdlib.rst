@@ -225,16 +225,17 @@ módulos: :mod:`zlib`, :mod:`gzip`, :mod:`bz2`, :mod:`zipfile` y :mod:`tarfile`.
 
 .. _tut-performance-measurement:
 
-Performance Measurement
+Medición de rendimiento
 =======================
 
-Some Python users develop a deep interest in knowing the relative performance of
-different approaches to the same problem. Python provides a measurement tool
-that answers those questions immediately.
+Algunos usuarios de Python desarrollan un profundo interés en saber el
+rendimiento relativo de las diferentes soluciones al mismo problema.  Python
+provee una herramienta de medición que responde esas preguntas inmediatamente.
 
-For ejemplo, it may be tempting to use the tuple packing and unpacking feature
-instead of the traditional approach to swapping arguments. The :mod:`timeit`
-module quickly demonstrates a modest performance advantage::
+Por ejemplo, puede ser tentador usar la característica de empaquetamiento y
+desempaquetamiento de las tuplas en lugar de la solución tradicional para
+intercambiar argumentos.  El módulo :mod:`timeit` muestra rapidamente una
+modesta ventaja de rendimiento::
 
    >>> from timeit import Timer
    >>> Timer('t=a; a=b; b=t', 'a=1; b=2').timeit()
@@ -242,81 +243,82 @@ module quickly demonstrates a modest performance advantage::
    >>> Timer('a,b = b,a', 'a=1; b=2').timeit()
    0.54962537085770791
 
-In contrast to :mod:`timeit`'s fine level of granularity, the :mod:`profile` and
-:mod:`pstats` modules provide tools for identifying time critical sections in
-larger blocks of code.
+En contraste con el fino nivel de granularidad del módulo :mod:`timeit`, los
+módulos :mod:`profile` y :mod:`pstats` proveen herramientas para identificar
+secciones críticas de tiempo en bloques de código más grandes.
 
 
 .. _tut-quality-control:
 
-Quality Control
-===============
+Control de calidad
+==================
 
-One approach for developing high quality software is to write tests for each
-function as it is developed and to run those tests frequently during the
-development process.
+Una forma para desarrollar software de alta calidad es escribir pruebas para
+cada función mientras se la desarrolla, y correr esas pruebas frecuentemente
+durante el proceso de desarrollo.
 
-The :mod:`doctest` module provides a tool for scanning a module and validating
-tests embedded in a program's docstrings.  Test construction is as simple as
-cutting-and-pasting a typical call along with its results into the docstring.
-This improves the documentation by providing the user with an ejemplo and it
-allows the doctest module to make sure the code remains true to the
-documentation::
+El módulo :mod:`doctest` provee una herramienta para revisar un módulo y
+validar las pruebas integradas en las cadenas de documentación (o *docstring*)
+del programa.  La construcción de las pruebas es tan sencillo como cortar y
+pegar una ejecución típica junto con sus resultados en los docstrings.  Esto
+mejora la documentación al proveer al usuario un ejemplo y permite que el
+módulo :mod:`doctest` se asegure que el código permanece fiel a la
+documentación::
 
-   def average(values):
-       """Computes the arithmetic mean of a list of numbers.
+   def promedio(valores):
+       """Calcula la media aritmética de una lista de números.
 
-       >>> print average([20, 30, 70])
+       >>> print promedio([20, 30, 70])
        40.0
        """
-       return sum(values, 0.0) / len(values)
+       return sum(valores, 0.0) / len(valores)
 
    import doctest
-   doctest.testmod()   # automatically validate the embedded tests
+   doctest.testmod()   # valida automáticamente las pruebas integradas
 
-The :mod:`unittest` module is not as effortless as the :mod:`doctest` module,
-but it allows a more comprehensive set of tests to be maintained in a separate
-file::
+El módulo :mod:`unittest` necesita más esfuerzo que el módulo :mod:`doctest`,
+pero permite que se mantenga en un archivo separado un conjunto más comprensivo
+de pruebas::
 
    import unittest
 
-   class TestStatisticalFunctions(unittest.TestCase):
+   class TestFuncionesEstadisticas(unittest.TestCase):
 
-       def test_average(self):
-           self.assertEqual(average([20, 30, 70]), 40.0)
-           self.assertEqual(round(average([1, 5, 7]), 1), 4.3)
-           self.assertRaises(ZeroDivisionError, average, [])
-           self.assertRaises(TypeError, average, 20, 30, 70)
+       def test_promedio(self):
+           self.assertEqual(promedio([20, 30, 70]), 40.0)
+           self.assertEqual(round(promedio([1, 5, 7]), 1), 4.3)
+           self.assertRaises(ZeroDivisionError, promedio, [])
+           self.assertRaises(TypeError, promedio, 20, 30, 70)
 
-   unittest.main() # Calling from the command line invokes all tests
+   unittest.main() # llamarlo de la linea de comandos ejecuta todas las pruebas
 
 
 .. _tut-batteries-included:
 
-Batteries Included
-==================
+Las pilas incluidas
+===================
 
-Python has a "batteries included" philosophy.  This is best seen through the
-sophisticated and robust capabilities of its larger packages. For ejemplo:
+Python tiene una filosofía de "pilas incluidas".  Esto se ve mejor en las
+capacidades robustas y sofisticadas de sus paquetes más grandes.  Por ejemplo:
 
-* The :mod:`xmlrpclib` and :mod:`SimpleXMLRPCServer` modules make implementing
-  remote procedure calls into an almost trivial task.  Despite the modules
-  names, no direct knowledge or handling of XML is needed.
+* Los módulos :mod:`xmlrpclib` y :mod:`SimpleXMLRPCServer` hacen que
+  implementar llamadas a procedimientos remotos sea una tarea trivial.  A
+  pesar de los nombres de los módulos, no se necesita conocimiento directo
+  o manejo de XML.
 
-* The :mod:`email` package is a library for managing email messages, including
-  MIME and other RFC 2822-based message documents. Unlike :mod:`smtplib` and
-  :mod:`poplib` which actually send and receive messages, the email package has
-  a complete toolset for building or decoding complex message structures
-  (including attachments) and for implementing internet encoding and header
-  protocols.
+* El paquete :mod:`email` es una biblioteca para manejar mensajes de mail,
+  incluyendo MIME y otros mensajes basados en RFC 2822.  Al contrario de
+  :mod:`smtplib` y :mod:`poplib` que en realidad envían y reciben mensajes,
+  el paquete :mod:`email` tiene un conjunto de herramientas completo para
+  construir y decodificar estructuras complejas de mensajes (incluyendo
+  adjuntos) y para implementar protocolos de cabecera y codificación de
+  Internet).
 
-* The :mod:`xml.dom` and :mod:`xml.sax` packages provide robust support for
-  parsing this popular data interchange format. Likewise, the :mod:`csv` module
-  supports direct reads and writes in a common database format. Together, these
-  modules and packages greatly simplify data interchange between python
-  applications and other tools.
+* Los paquetes :mod:`xml.dom` y :mod:`xml.sax` proveen un robusto soporte para
+  analizar este popular formato de intercambio de datos.  Asimismo, el módulo
+  :mod:`csv` soporta lecturas y escrituras directas en un formato común de base
+  de datos.  Juntos, estos módulos y paquetes simplifican enormemente el
+  intercambio de datos entre aplicaciones Python y otras herramientas.
 
-* Internationalization is supported by a number of modules including
-  :mod:`gettext`, :mod:`locale`, and the :mod:`codecs` package.
-
-
+* Se soporta la internacionalización a través de varios módulos, incluyendo
+  :mod:`gettext`, :mod:`locale`, y el paquete :mod:`codecs`.

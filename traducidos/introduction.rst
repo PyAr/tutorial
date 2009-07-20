@@ -157,232 +157,244 @@ comportamiento mágico.
 Cadenas de caracteres
 ---------------------
 
-Besides numbers, Python can also manipulate strings, which can be expressed in
-several ways.  They can be enclosed in single quotes or double quotes::
+Además de números, Python puede manipular cadenas de texto, las cuales pueden
+ser expresadas de distintas formas. Pueden ser encerradas en comillas simples
+o dobles::
 
-   >>> 'spam eggs'
-   'spam eggs'
+   >>> 'huevos y pan'
+   'huevos y pan'
    >>> 'doesn\'t'
    "doesn't"
    >>> "doesn't"
    "doesn't"
-   >>> '"Yes," he said.'
-   '"Yes," he said.'
-   >>> "\"Yes,\" he said."
-   '"Yes," he said.'
+   >>> '"Si," le dijo.'
+   '"Si," le dijo.'
+   >>> "\"Si,\" le dijo."
+   '"Si," le dijo.'
    >>> '"Isn\'t," she said.'
    '"Isn\'t," she said.'
 
-String literals can span multiple lines in several ways.  Continuation lines can
-be used, with a backslash as the last character on the line indicating that the
-next line is a logical continuation of the line::
+Las cadenas de texto literales pueden contener múltiples líneas de distintas
+formas. String literals can span multiple lines in several ways.  Las
+líneas continuas se pueden usar, con una barra invertida como el último
+caracter de la línea para indicar que la siguiente línea es la continuación
+lógica de la línea::
 
-   hello = "This is a rather long string containing\n\
-   several lines of text just as you would do in C.\n\
-       Note that whitespace at the beginning of the line is\
-    significant."
+   hola = "Esta es una larga cadena que contiene\n\
+   varias líneas de texto, tal y como se hace en C.\n\
+       Notar que los espacios en blanco al principio de la linea\
+    son significantes."
+
+   print hola
+
+Notá que de todas formas se necesita embeber los salto de líneas con ``\n``;
+la nueva línea que sigue a la barra invertida final es descartada. Este ejemplo
+imprimiría::
+
+   Esta es una larga cadena que contiene
+   varias líneas de texto, tal y como se hace en C.
+        Notar que los espacios en blanco al principio de la linea son
+        significantes.
+
+Si se hace de la cadena de texto una cadena "cruda", la secuencia ``\n`` no
+es convertida a salto de línea, pero la barra invertida al final de la línea
+y el caracter de nueva línea en la fuente, ambos son incluidos en la cadena
+como datos. Asi, el ejemplo::
+
+   hola = r"Esta es una larga cadena que contiene\n\
+   varias líneas de texto, tal y como se hace en C."
 
    print hello
 
-Note that newlines still need to be embedded in the string using ``\n``; the
-newline following the trailing backslash is discarded.  This example would print
-the following::
+imprimirá::
 
-   This is a rather long string containing
-   several lines of text just as you would do in C.
-       Note that whitespace at the beginning of the line is significant.
+   Esta es una larga cadena que contiene\n\
+   varias líneas de texto, tal y como se hace en C.
 
-If we make the string literal a "raw" string, however, the ``\n`` sequences are
-not converted to newlines, but the backslash at the end of the line, and the
-newline character in the source, are both included in the string as data.  Thus,
-the example::
-
-   hello = r"This is a rather long string containing\n\
-   several lines of text much as you would do in C."
-
-   print hello
-
-would print::
-
-   This is a rather long string containing\n\
-   several lines of text much as you would do in C.
-
-Or, strings can be surrounded in a pair of matching triple-quotes: ``"""`` or
-``'''``.  End of lines do not need to be escaped when using triple-quotes, but
-they will be included in the string. ::
+O, las cadenas de texto pueden er rodeadas en un par de comillas triples:
+``"""`` o ``'''``.  No se necesita escapar los finales de línea cuando se 
+utilizan comillas triples, pero serán incluídos en la cadena. ::
 
    print """
-   Usage: thingy [OPTIONS]
-        -h                        Display this usage message
-        -H hostname               Hostname to connect to
+   Uso: algo [OPTIONS]
+        -h                        Muestra el mensaje de uso
+        -H nombrehost             Nombre del host al cual conectarse
    """
 
-produces the following output::
+produce la siguiente salida::
 
-   Usage: thingy [OPTIONS]
-        -h                        Display this usage message
-        -H hostname               Hostname to connect to
+   Uso: algo [OPTIONS]
+        -h                        Muestra el mensaje de uso
+        -H nombrehost             Nombre del host al cual conectarse
 
-The interpreter prints the result of string operations in the same way as they
-are typed for input: inside quotes, and with quotes and other funny characters
-escaped by backslashes, to show the precise value.  The string is enclosed in
-double quotes if the string contains a single quote and no double quotes, else
-it's enclosed in single quotes.  (The :keyword:`print` statement, described
-later, can be used to write strings without quotes or escapes.)
+El interprete imprime el resultado de operaciones entre cadenas de la misma
+forma en que son tipeadas como entrada: dentro de comillas, y con comillas y
+otros caracteres graciosos escapados con barras invertidas, para mostrar
+el valor preciso. La cadena de texto es encerrada en comillas dobles si
+contiene una comilla simple y no comillas dobles, sino es encerrada en comillas
+simples. (La declaración :keyword:`print`, descripta luego,
+puede ser usado para escribir cadenas sin comillas o escapes).
 
-Strings can be concatenated (glued together) with the ``+`` operator, and
-repeated with ``*``::
+Las cadenas de texto pueden ser concatenadas (pegadas juntas) con el operador
+``+`` y repetidas con ``*``::
 
-   >>> word = 'Help' + 'A'
-   >>> word
-   'HelpA'
-   >>> '<' + word*5 + '>'
-   '<HelpAHelpAHelpAHelpAHelpA>'
+   >>> palabra = 'Ayuda' + 'A'
+   >>> palabra
+   'AyudaA'
+   >>> '<' + palabra*5 + '>'
+   '<AyudaAAyudaAAyudaAAyudaAAyudaA>'
 
-Two string literals next to each other are automatically concatenated; the first
-line above could also have been written ``word = 'Help' 'A'``; this only works
-with two literals, not with arbitrary string expressions::
+Dos cadenas de texto juntas son automáticamente concatenadas; la primer línea
+del ejemplo anterior podría haber sido escrita ``word = 'Help' 'A'``; esto
+solo funciona con dos literales, no con expresiones arbitrarias::
 
-   >>> 'str' 'ing'                   #  <-  This is ok
-   'string'
-   >>> 'str'.strip() + 'ing'   #  <-  This is ok
-   'string'
-   >>> 'str'.strip() 'ing'     #  <-  This is invalid
+   >>> 'cad' 'ena'                   #  <-  Esto es correcto
+   'cadena'
+   >>> 'cad'.strip() + 'ena'   #  <-  Esto es correcto
+   'cadena'
+   >>> 'cad'.strip() 'ena'     #  <-  Esto no es correcto
      File "<stdin>", line 1, in ?
-       'str'.strip() 'ing'
+       'cad'.strip() 'ena'
                          ^
    SyntaxError: invalid syntax
 
-Strings can be subscripted (indexed); like in C, the first character of a string
-has subscript (index) 0.  There is no separate character type; a character is
-simply a string of size one.  Like in Icon, substrings can be specified with the
-*slice notation*: two indices separated by a colon. ::
+Las cadenas de texto se pueden indexar; comoen C, el primer caracter de la
+cadena tiene el índice 0. No hay un tipo de dato para los caracteres; un
+caracter is simplemente una cadena de longitud uno. Como en Icon, se pueden
+especificar sub cadenas con la *notación de rebanadas*: dos índices separados
+por dos puntos. ::
 
-   >>> word[4]
-   'A'
-   >>> word[0:2]
-   'He'
-   >>> word[2:4]
-   'lp'
+   >>> palabra[4]
+   'a'
+   >>> palabra[0:2]
+   'Ay'
+   >>> palabra[2:4]
+   'ud'
 
-Slice indices have useful defaults; an omitted first index defaults to zero, an
-omitted second index defaults to the size of the string being sliced. ::
+Los índices de las rebanadas tienen valores por defecto útiles; el valor por
+defecto para el primer índice es cero, el valor por defecto para el segundo
+índice es la longitud de la cadena a rebanar. ::
 
-   >>> word[:2]    # The first two characters
-   'He'
-   >>> word[2:]    # Everything except the first two characters
-   'lpA'
+   >>> palabra[:2]    # Los primeros dos caracteres
+   'Ay'
+   >>> palabra[2:]    # Todo menos los primeros dos caracteres
+   'udaA'
 
-Unlike a C string, Python strings cannot be changed.  Assigning to an  indexed
-position in the string results in an error::
+A diferencia de las cadenas de texto en C, en Python no pueden ser cambiadas.
+Intentar asignar a una posición indexada da un error::
 
-   >>> word[0] = 'x'
+   >>> palabra[0] = 'x'
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    TypeError: object doesn't support item assignment
-   >>> word[:1] = 'Splat'
+   >>> palabra[:1] = 'Mas'
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    TypeError: object doesn't support slice assignment
 
-However, creating a new string with the combined content is easy and efficient::
+Sin embarjo, crear una nueva cadena con contenido combinado es fácil y
+eficiente::
 
-   >>> 'x' + word[1:]
-   'xelpA'
-   >>> 'Splat' + word[4]
-   'SplatA'
+   >>> 'x' + palabra[1:]
+   'xyudaA'
+   >>> 'Mas' + palabra[5]
+   'MasA'
 
-Here's a useful invariant of slice operations: ``s[:i] + s[i:]`` equals ``s``.
+Aquí algo útil de las operaciones de rebanada: ``s[:i] + s[i:]`` es ``s``.
 ::
 
-   >>> word[:2] + word[2:]
-   'HelpA'
-   >>> word[:3] + word[3:]
-   'HelpA'
+   >>> palabra[:2] + palabra[2:]
+   'AyudaA'
+   >>> palabra[:3] + palabra[3:]
+   'AyudaA'
 
-Degenerate slice indices are handled gracefully: an index that is too large is
-replaced by the string size, an upper bound smaller than the lower bound returns
-an empty string. ::
+Índices degenerados en las rebanadas son manejados con mucha gracia: un índice
+muy largo es reemplazado por la longitud de la cadena, un límite superior más
+chico que el límite menor retorna una cadena vacía. ::
 
-   >>> word[1:100]
-   'elpA'
-   >>> word[10:]
+   >>> palabra[1:100]
+   'yudaA'
+   >>> palabra[10:]
    ''
-   >>> word[2:1]
+   >>> palabra[2:1]
    ''
 
-Indices may be negative numbers, to start counting from the right. For example::
+Los índices pueden ser números negativos, para empezar a contar desde la
+derecha. Por ejemplo::
 
-   >>> word[-1]     # The last character
+   >>> palabra[-1]     # El ultimo caracter
    'A'
-   >>> word[-2]     # The last-but-one character
-   'p'
-   >>> word[-2:]    # The last two characters
-   'pA'
-   >>> word[:-2]    # Everything except the last two characters
-   'Hel'
+   >>> palabra[-2]     # El penultimo caracter
+   'a'
+   >>> palabra[-2:]    # Los últimos dos caracteres
+   'aA'
+   >>> word[:-2]    # Todo menos los últimos dos caracteres
+   'Ayud'
 
-But note that -0 is really the same as 0, so it does not count from the right!
+Pero notá que -0 es en realidad lo mismo que 0, ¡por lo que no cuenta desde
+la derecha!
 ::
 
-   >>> word[-0]     # (since -0 equals 0)
-   'H'
+   >>> palabra[-0]     # (ya que -0 es igual a 0)
+   'A'
 
-Out-of-range negative slice indices are truncated, but don't try this for
-single-element (non-slice) indices::
+Los índices negativos fuera de rango son truncados, pero esto no anda para
+índices de un solo elemento (no rebanada)::
 
-   >>> word[-100:]
-   'HelpA'
-   >>> word[-10]    # error
+   >>> palabra[-100:]
+   'AyudaA'
+   >>> palabra[-10]    # error
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    IndexError: string index out of range
 
-One way to remember how slices work is to think of the indices as pointing
-*between* characters, with the left edge of the first character numbered 0.
-Then the right edge of the last character of a string of *n* characters has
-index *n*, for example::
+Una forma de recordar cómo funcionan las rebanadas es pensar en los índices
+como puntos *entre* caracteres, con el punto a la izquierda del primer caracter
+numerado en 0. Luego, el punto a la derecha del último caracter de una cadena
+de *n* caracteres tienen índice *n*, por ejemplo::
 
-    +---+---+---+---+---+
-    | H | e | l | p | A |
-    +---+---+---+---+---+
-    0   1   2   3   4   5
-   -5  -4  -3  -2  -1
+    +---+---+---+---+---+---+
+    | A | y | u | d | a | A |
+    +---+---+---+---+---+---+
+    0   1   2   3   4   5   6
+   -6  -5  -4  -3  -2  -1
 
-The first row of numbers gives the position of the indices 0...5 in the string;
-the second row gives the corresponding negative indices. The slice from *i* to
-*j* consists of all characters between the edges labeled *i* and *j*,
-respectively.
+La primer fila de números da la posición de los índices 0...6 en la cadena;
+la segunda fila da los correspondientes índices negativos. La rebanada de *i*
+a *j* consiste en todos los caracters entre los puntos etiquetados *i* y *j*,
+respectivamente.
 
-For non-negative indices, the length of a slice is the difference of the
-indices, if both are within bounds.  For example, the length of ``word[1:3]`` is
-2.
+Para índices no negativos, la longitud de la rebanada es la diferencia de los
+índices, si ambos entran en los límites. Por ejemplo, la longitud de
+``palabra[1:3]`` es 2.
 
-The built-in function :func:`len` returns the length of a string::
+La función incorporada :func:`len` devuelve la longitud de una cadena
+de texto::
 
-   >>> s = 'supercalifragilisticexpialidocious'
+   >>> s = 'supercalifrastilisticoespialidoso'
    >>> len(s)
-   34
+   33
 
 
 .. seealso::
 
    :ref:`typesseq`
-      Strings, and the Unicode strings described in the next section, are
-      examples of *sequence types*, and support the common operations supported
-      by such types.
+      Las cadenas de texto y la cadenas de texto Unicode descriptas en la
+      siguiente sección, son ejemplos de *tipos secuencias*, y soportan
+      las operaciones comunes para esos tipos.
 
    :ref:`string-methods`
-      Both strings and Unicode strings support a large number of methods for
-      basic transformations and searching.
+      Tanto las cadenas de texto como las cadenas de texto Unicode soportan
+      una gran cantidad de métodos para tranformaciones básicas y búsqueda.
 
    :ref:`new-string-formatting`
-      Information about string formatting with :meth:`str.format` is described
-      here.
+      Aquí se da información sobre fromateo de cadenas de texto con
+      :meth:`str.format`.
 
    :ref:`string-formatting`
-      The old formatting operations invoked when strings and Unicode strings are
-      the left operand of the ``%`` operator are described in more detail here.
+      Aquí se describe con más detalle las operaciones viejas para formateo
+      usadas cuando una cadena de texto o una cadena Unicode están a la
+      izquierda del operador ``%``.
 
 
 .. _tut-unicodestrings:

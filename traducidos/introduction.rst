@@ -14,10 +14,10 @@ una línea en blanco; esto es usado para terminar un comando multilínea.
 
 Muchos de los ejemplos de este manual, incluso aquellos ingresados en el prompt
 interactivo, incluyen comentarios. Los comentarios en Python comienzan con
-el caracter numeral, ``#``, y se extienden hasta el final físico de la
+el carácter numeral, ``#``, y se extienden hasta el final físico de la
 línea. Un comentario quizás aparezca al comiendo de la línea o seguidos
 de espacios blancos o código, pero sin una cadena de caracteres.
-Un caracter numeral dentro de una cadena de caracteres es sólo un caracter
+Un carácter numeral dentro de una cadena de caracteres es sólo un carácter
 numeral.
 
 Algunos ejemplos::
@@ -64,14 +64,14 @@ Pascal o C); los paréntesis pueden ser usados para agrupar. Por ejemplo::
 El signo igual (``=``) es usado para asignar un valor a una variable. Luego,
 ningún resultado es mostrado antes del próximo prompt::
 
-   >>> width = 20
-   >>> height = 5*9
-   >>> width * height
+   >>> ancho = 20
+   >>> largo = 5*9
+   >>> ancho * largo
    900
 
 Un valor puede ser asignado a varias variables simultáneamente::
 
-   >>> x = y = z = 0  # Zero x, y and z
+   >>> x = y = z = 0  # Cero x, y y z
    >>> x
    0
    >>> y
@@ -133,15 +133,15 @@ obtener la parte real. ::
    5.0
    >>>
 
-En el modo interactivo, la última expresion impresa es asignada a la variable
+En el modo interactivo, la última expresión impresa es asignada a la variable
 ``_``. Esto significa que cuando estés usando Python como una calculadora de
 escritorio, es más fácil seguir calculando, por ejemplo::
 
-   >>> tax = 12.5 / 100
-   >>> price = 100.50
-   >>> price * tax
+   >>> impuesto = 12.5 / 100
+   >>> precio = 100.50
+   >>> precio * impuesto
    12.5625
-   >>> price + _
+   >>> precio + _
    113.0625
    >>> round(_, 2)
    113.06
@@ -175,10 +175,9 @@ o dobles::
    '"Isn\'t," she said.'
 
 Las cadenas de texto literales pueden contener múltiples líneas de distintas
-formas. String literals can span multiple lines in several ways.  Las
-líneas continuas se pueden usar, con una barra invertida como el último
-caracter de la línea para indicar que la siguiente línea es la continuación
-lógica de la línea::
+formas. Las líneas continuas se pueden usar, con una barra invertida como el
+último carácter de la línea para indicar que la siguiente línea es la
+continuación lógica de la línea::
 
    hola = "Esta es una larga cadena que contiene\n\
    varias líneas de texto, tal y como se hace en C.\n\
@@ -198,20 +197,20 @@ imprimiría::
 
 Si se hace de la cadena de texto una cadena "cruda", la secuencia ``\n`` no
 es convertida a salto de línea, pero la barra invertida al final de la línea
-y el caracter de nueva línea en la fuente, ambos son incluidos en la cadena
-como datos. Asi, el ejemplo::
+y el carácter de nueva línea en la fuente, ambos son incluidos en la cadena
+como datos. Así, el ejemplo::
 
    hola = r"Esta es una larga cadena que contiene\n\
    varias líneas de texto, tal y como se hace en C."
 
-   print hello
+   print hola
 
 imprimirá::
 
    Esta es una larga cadena que contiene\n\
    varias líneas de texto, tal y como se hace en C.
 
-O, las cadenas de texto pueden er rodeadas en un par de comillas triples:
+O, las cadenas de texto pueden ser rodeadas en un par de comillas triples:
 ``"""`` o ``'''``.  No se necesita escapar los finales de línea cuando se 
 utilizan comillas triples, pero serán incluídos en la cadena. ::
 
@@ -245,7 +244,7 @@ Las cadenas de texto pueden ser concatenadas (pegadas juntas) con el operador
    '<AyudaAAyudaAAyudaAAyudaAAyudaA>'
 
 Dos cadenas de texto juntas son automáticamente concatenadas; la primer línea
-del ejemplo anterior podría haber sido escrita ``word = 'Help' 'A'``; esto
+del ejemplo anterior podría haber sido escrita ``palabra = 'Ayuda' 'A'``; esto
 solo funciona con dos literales, no con expresiones arbitrarias::
 
    >>> 'cad' 'ena'                   #  <-  Esto es correcto
@@ -258,10 +257,10 @@ solo funciona con dos literales, no con expresiones arbitrarias::
                          ^
    SyntaxError: invalid syntax
 
-Las cadenas de texto se pueden indexar; comoen C, el primer caracter de la
+Las cadenas de texto se pueden indexar; como en C, el primer carácter de la
 cadena tiene el índice 0. No hay un tipo de dato para los caracteres; un
-caracter is simplemente una cadena de longitud uno. Como en Icon, se pueden
-especificar sub cadenas con la *notación de rebanadas*: dos índices separados
+carácter es simplemente una cadena de longitud uno. Como en Icon, se pueden
+especificar subcadenas con la *notación de rebanadas*: dos índices separados
 por dos puntos. ::
 
    >>> palabra[4]
@@ -292,7 +291,7 @@ Intentar asignar a una posición indexada da un error::
      File "<stdin>", line 1, in ?
    TypeError: object doesn't support slice assignment
 
-Sin embarjo, crear una nueva cadena con contenido combinado es fácil y
+Sin embargo, crear una nueva cadena con contenido combinado es fácil y
 eficiente::
 
    >>> 'x' + palabra[1:]
@@ -328,7 +327,7 @@ derecha. Por ejemplo::
    'a'
    >>> palabra[-2:]    # Los últimos dos caracteres
    'aA'
-   >>> word[:-2]    # Todo menos los últimos dos caracteres
+   >>> palabra[:-2]    # Todo menos los últimos dos caracteres
    'Ayud'
 
 Pero notá que -0 es en realidad lo mismo que 0, ¡por lo que no cuenta desde
@@ -349,8 +348,8 @@ Los índices negativos fuera de rango son truncados, pero esto no anda para
    IndexError: string index out of range
 
 Una forma de recordar cómo funcionan las rebanadas es pensar en los índices
-como puntos *entre* caracteres, con el punto a la izquierda del primer caracter
-numerado en 0. Luego, el punto a la derecha del último caracter de una cadena
+como puntos *entre* caracteres, con el punto a la izquierda del primer carácter
+numerado en 0. Luego, el punto a la derecha del último carácter de una cadena
 de *n* caracteres tienen índice *n*, por ejemplo::
 
     +---+---+---+---+---+---+
@@ -361,7 +360,7 @@ de *n* caracteres tienen índice *n*, por ejemplo::
 
 La primer fila de números da la posición de los índices 0...6 en la cadena;
 la segunda fila da los correspondientes índices negativos. La rebanada de *i*
-a *j* consiste en todos los caracters entre los puntos etiquetados *i* y *j*,
+a *j* consiste en todos los caracteres entre los puntos etiquetados *i* y *j*,
 respectivamente.
 
 Para índices no negativos, la longitud de la rebanada es la diferencia de los
@@ -385,10 +384,10 @@ de texto::
 
    :ref:`string-methods`
       Tanto las cadenas de texto como las cadenas de texto Unicode soportan
-      una gran cantidad de métodos para tranformaciones básicas y búsqueda.
+      una gran cantidad de métodos para transformaciones básicas y búsqueda.
 
    :ref:`new-string-formatting`
-      Aquí se da información sobre fromateo de cadenas de texto con
+      Aquí se da información sobre formateo de cadenas de texto con
       :meth:`str.format`.
 
    :ref:`string-formatting`
@@ -399,75 +398,77 @@ de texto::
 
 .. _tut-unicodestrings:
 
-Unicode Strings
----------------
+Cadenas de Texto Unicode
+------------------------
 
 .. sectionauthor:: Marc-Andre Lemburg <mal@lemburg.com>
 
 
-Starting with Python 2.0 a new data type for storing text data is available to
-the programmer: the Unicode object. It can be used to store and manipulate
-Unicode data (see http://www.unicode.org/) and integrates well with the existing
-string objects, providing auto-conversions where necessary.
+Desde la versión 2.0 de Python, se encuentra disponible un nuevo tipo de datos
+para que los programadores almacenen texto: el objeto Unicode. Puede ser usado
+para almacenar y manipular datos Unicode (ver http://www.unicode.org/) y se
+integran bien con los objetos existentes para cadenas de texto, mediante
+auto-conversión cuando es necesario.
 
-Unicode has the advantage of providing one ordinal for every character in every
-script used in modern and ancient texts. Previously, there were only 256
-possible ordinals for script characters. Texts were typically bound to a code
-page which mapped the ordinals to script characters. This lead to very much
-confusion especially with respect to internationalization (usually written as
-``i18n`` --- ``'i'`` + 18 characters + ``'n'``) of software.  Unicode solves
-these problems by defining one code page for all scripts.
+Unicode tiene la ventaja de tener un número ordinal para cada carácter usando
+en cada script usando tanto en textos modernos como antiguos. Previamente,
+había solo 256 ordinales posibles para los caracteres en scripts. Los textos
+eran típicamente asociados a un código que mapea los ordinales a caracteres
+en scripts. Esto lleva a mucha confunión especialmente al internacionalizar
+(usualmente escrito como ``i18n`` --- ``'i'`` + 18 caracteres + ``'n'``)
+software. Unicode resuelve estos problemas definiendo una sola codificación
+para todos los scripts.
 
-Creating Unicode strings in Python is just as simple as creating normal
-strings::
+Crear cadenas Unicode en Python es tan simple como crear cadenas de texto
+normales::
 
-   >>> u'Hello World !'
-   u'Hello World !'
+   >>> u'¡Hola Mundo!'
+   u'¡Hola Mundo!'
 
-The small ``'u'`` in front of the quote indicates that a Unicode string is
-supposed to be created. If you want to include special characters in the string,
-you can do so by using the Python *Unicode-Escape* encoding. The following
-example shows how::
+La ``'u'`` al frente de la comilla indica que se espera una cadena Unicode. Si
+querés incluir caracteres especiales en la cadena, podés hacerlo usando una
+forma de escapar caracteres Unicode provista por Python. El siguiente ejemplo
+muestra cómo::
 
-   >>> u'Hello\u0020World !'
-   u'Hello World !'
+   >>> u'¡Hola\u0020Mundo!'
+   u'¡Hola Mundo!'
 
-The escape sequence ``\u0020`` indicates to insert the Unicode character with
-the ordinal value 0x0020 (the space character) at the given position.
+La secuencia de escape ``\u0020`` indica que se debe insertar el carácter
+Unicode con valor ordinal 0x0020 (el espacio en blanco) en la posición dada.
 
-Other characters are interpreted by using their respective ordinal values
-directly as Unicode ordinals.  If you have literal strings in the standard
-Latin-1 encoding that is used in many Western countries, you will find it
-convenient that the lower 256 characters of Unicode are the same as the 256
-characters of Latin-1.
+Otros caracteres son interpretados usando su respectivo valor ordinal como
+ordinales Unicode. Si tenés cadenas de texto literales en la codificación
+estándar Latin-1 que es muy usada en países occidentales, encontrarás
+conveniente que los primeros 256 caracteres de Unicode son los mismos primeros
+256 caracteres de Latin-1.
 
-For experts, there is also a raw mode just like the one for normal strings. You
-have to prefix the opening quote with 'ur' to have Python use the
-*Raw-Unicode-Escape* encoding. It will only apply the above ``\uXXXX``
-conversion if there is an uneven number of backslashes in front of the small
-'u'. ::
+También existe un modo crudo para expertos, del mismo modo que con las cadenas
+de texto normales. Debés anteponer 'ur' a la comilla inicial para que Python
+use el modo de escape crudo de Unicode. Solo se aplicará la conversión
+``\uXXXX`` si hay un número impar de barras invertidas frente a la 'u'. ::
 
-   >>> ur'Hello\u0020World !'
-   u'Hello World !'
-   >>> ur'Hello\\u0020World !'
-   u'Hello\\\\u0020World !'
+   >>> ur'!Hola\u0020Mundo!'
+   u'¡Hola Mundo!'
+   >>> ur'Hola\\u0020Mundo!'
+   u'¡Hola\\\\u0020Mundo!'
 
-The raw mode is most useful when you have to enter lots of backslashes, as can
-be necessary in regular expressions.
+El modo crudo es útil principalmente útil cuando tenés que insertar muchas
+barras invertidas, como puede suceder al trabajar con expresiones regulares.
 
-Apart from these standard encodings, Python provides a whole set of other ways
-of creating Unicode strings on the basis of a known encoding.
+Además de estas codificaciones estándar, Python provee muchas más formas de
+crear cadenas de texto Unicode en las bases de codificaciones conocidas.
 
 .. index:: builtin: unicode
 
-The built-in function :func:`unicode` provides access to all registered Unicode
-codecs (COders and DECoders). Some of the more well known encodings which these
-codecs can convert are *Latin-1*, *ASCII*, *UTF-8*, and *UTF-16*. The latter two
-are variable-length encodings that store each Unicode character in one or more
-bytes. The default encoding is normally set to ASCII, which passes through
-characters in the range 0 to 127 and rejects any other characters with an error.
-When a Unicode string is printed, written to a file, or converted with
-:func:`str`, conversion takes place using this default encoding. ::
+La función predefinida :func:`unicode` da acceso a todos los codecs
+(CODificadores y DECodificadoes). Algunos de las codificaciones más conocidas
+que estos codecs pueden convertir son *Latin-1*, *ASCII*, *UTF-8*, y *UTF-16*.
+Las dos últimas son codificaciones de longitud variable que almacenan cada
+carácter Unicode en uno o más bytes. La codificación por defecto es normalmente
+seteada a ASCII, que contiene los caracteres del rango 0-127 y rechaza
+cualquier otro con un error. Cuando una cadena Unicode se imprime, escribe en
+un archivo, o se convierte con la función :func:`str`, se realiza la conversión
+utilizando la codificación por defecto. ::
 
    >>> u"abc"
    u'abc'
@@ -480,16 +481,17 @@ When a Unicode string is printed, written to a file, or converted with
      File "<stdin>", line 1, in ?
    UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-2: ordinal not in range(128)
 
-To convert a Unicode string into an 8-bit string using a specific encoding,
-Unicode objects provide an :func:`encode` method that takes one argument, the
-name of the encoding.  Lowercase names for encodings are preferred. ::
+Para convertir una cadena Unicode en una cadena de 8-bit utilizando una
+codificación en particular, los objetos Unicode tienen un método :func:`encode`
+que toma un argumento, el nombre de la codificación. Se prefieren los nombres
+en minúsculas para los nombres de las codificaciones. ::
 
    >>> u"äöü".encode('utf-8')
    '\xc3\xa4\xc3\xb6\xc3\xbc'
 
-If you have data in a specific encoding and want to produce a corresponding
-Unicode string from it, you can use the :func:`unicode` function with the
-encoding name as the second argument. ::
+Si tenés datos en una codificación en particular y querés producir la cadena
+Unicode correspondiente, podés usar la función :func:`unicode` con el nombre
+de la codificación como segundo argumento. ::
 
    >>> unicode('\xc3\xa4\xc3\xb6\xc3\xbc', 'utf-8')
    u'\xe4\xf6\xfc'
@@ -497,75 +499,75 @@ encoding name as the second argument. ::
 
 .. _tut-lists:
 
-Lists
------
+Listas
+------
 
-Python knows a number of *compound* data types, used to group together other
-values.  The most versatile is the *list*, which can be written as a list of
-comma-separated values (items) between square brackets.  List items need not all
-have the same type. ::
+Python tiene varios tipos de datos *compuestos*, usados para agrupar otros
+valores. El más versátil es la *lista*, la cual puede ser escrita como una
+lista de valores separados por coma (ítems) entre corchetes. No es necesario
+que los ítems de una lista tengan todos el mismo tipo. ::
 
-   >>> a = ['spam', 'eggs', 100, 1234]
+   >>> a = ['pan', 'huevos', 100, 1234]
    >>> a
-   ['spam', 'eggs', 100, 1234]
+   ['pan', 'huevos', 100, 1234]
 
-Like string indices, list indices start at 0, and lists can be sliced,
-concatenated and so on::
+Cómo los índices de las cadenas de texto, los índices de las listas comienzan
+en 0, y las listas pueden ser rebanadas, concatenadas y todo lo demás::
 
    >>> a[0]
-   'spam'
+   'pan'
    >>> a[3]
    1234
    >>> a[-2]
    100
    >>> a[1:-1]
-   ['eggs', 100]
-   >>> a[:2] + ['bacon', 2*2]
-   ['spam', 'eggs', 'bacon', 4]
-   >>> 3*a[:3] + ['Boo!']
-   ['spam', 'eggs', 100, 'spam', 'eggs', 100, 'spam', 'eggs', 100, 'Boo!']
+   ['huevos', 100]
+   >>> a[:2] + ['carne', 2*2]
+   ['pan', 'huevos', 'carne', 4]
+   >>> 3*a[:3] + ['¡Boo!']
+   ['pan', 'huevos', 100, 'pan', 'huevos', 100, 'pan', 'huevos', 100, '¡Boo!']
 
-Unlike strings, which are *immutable*, it is possible to change individual
-elements of a list::
+A diferencia de las cadenas de texto, que son *inmutables*, es posible cambiar
+un elemento individual de una lista::
 
    >>> a
-   ['spam', 'eggs', 100, 1234]
+   ['pan', 'huevos', 100, 1234]
    >>> a[2] = a[2] + 23
    >>> a
-   ['spam', 'eggs', 123, 1234]
+   ['pan', 'huevos', 123, 1234]
 
-Assignment to slices is also possible, and this can even change the size of the
-list or clear it entirely::
+También es posible asignar a una rebanada, y esto incluso puede cambiar la
+longitud de la lista o vaciarla totalmente::
 
-   >>> # Replace some items:
+   >>> # Reemplazar algunos elementos:
    ... a[0:2] = [1, 12]
    >>> a
    [1, 12, 123, 1234]
-   >>> # Remove some:
+   >>> # Borrar algunos:
    ... a[0:2] = []
    >>> a
    [123, 1234]
-   >>> # Insert some:
-   ... a[1:1] = ['bletch', 'xyzzy']
+   >>> # Insertar algunos:
+   ... a[1:1] = ['bruja', 'xyzzy']
    >>> a
-   [123, 'bletch', 'xyzzy', 1234]
-   >>> # Insert (a copy of) itself at the beginning
+   [123, 'bruja', 'xyzzy', 1234]
+   >>> # Insertar (una copia de) la misma lista al principio
    >>> a[:0] = a
    >>> a
-   [123, 'bletch', 'xyzzy', 1234, 123, 'bletch', 'xyzzy', 1234]
-   >>> # Clear the list: replace all items with an empty list
+   [123, 'bruja', 'xyzzy', 1234, 123, 'bruja', 'xyzzy', 1234]
+   >>> # Vaciar la lista: reemplazar todos los items con una lista vacía
    >>> a[:] = []
    >>> a
    []
 
-The built-in function :func:`len` also applies to lists::
+La función predefinida :func:`len` también sirve para las listas:
 
    >>> a = ['a', 'b', 'c', 'd']
    >>> len(a)
    4
 
-It is possible to nest lists (create lists containing other lists), for
-example::
+Es posible anidar listas (crear listas que contengan otras listas), por
+ejemplo::
 
    >>> q = [2, 3]
    >>> p = [1, q, 4]
@@ -575,27 +577,27 @@ example::
    [2, 3]
    >>> p[1][0]
    2
-   >>> p[1].append('xtra')     # See section 5.1
+   >>> p[1].append('extra')     # Ver seccion 5.1
    >>> p
-   [1, [2, 3, 'xtra'], 4]
+   [1, [2, 3, 'extra'], 4]
    >>> q
-   [2, 3, 'xtra']
+   [2, 3, 'extra']
 
-Note that in the last example, ``p[1]`` and ``q`` really refer to the same
-object!  We'll come back to *object semantics* later.
+Notá que en el último ejemplo, ``p[1]`` y ``q`` ¡realmente hacen referencia
+al mismo objeto! Volveremos a la *semántica de los objetos* más adelante.
 
 
 .. _tut-firststeps:
 
-First Steps Towards Programming
-===============================
+Primeros Pasos Hacia la Programación
+====================================
 
-Of course, we can use Python for more complicated tasks than adding two and two
-together.  For instance, we can write an initial sub-sequence of the *Fibonacci*
-series as follows::
+Por supuesto, podemos usar Python para tareas más complicadas que sumar dos
+y dos. Por ejemplo, podemos escribir una subsecuencia inicial de la serie de
+*Fibonacci* así::
 
-   >>> # Fibonacci series:
-   ... # the sum of two elements defines the next
+   >>> # Series de Fibonacci:
+   ... # la suma de dos elementos define el siguiente
    ... a, b = 0, 1
    >>> while b < 10:
    ...     print b
@@ -608,43 +610,47 @@ series as follows::
    5
    8
 
-This example introduces several new features.
+Este ejemplo introduce varias características nuevas.
 
-* The first line contains a *multiple assignment*: the variables ``a`` and ``b``
-  simultaneously get the new values 0 and 1.  On the last line this is used again,
-  demonstrating that the expressions on the right-hand side are all evaluated
-  first before any of the assignments take place.  The right-hand side expressions
-  are evaluated  from the left to the right.
+* La primer línea contiene una *asignación múltiple*: las variables``a`` y
+  ``b`` toman en forma simultanea los nuevos valores 0 y 1. En la última lìnea
+  esto es vuelto a usar, demostrando que la expresión a la derecha son todas
+  evaluadas antes de que suceda cualquier asignación. Las expresiones a la
+  derecha son evaluadas de izquierda a derecha.
 
-* The :keyword:`while` loop executes as long as the condition (here: ``b < 10``)
-  remains true.  In Python, like in C, any non-zero integer value is true; zero is
-  false.  The condition may also be a string or list value, in fact any sequence;
-  anything with a non-zero length is true, empty sequences are false.  The test
-  used in the example is a simple comparison.  The standard comparison operators
-  are written the same as in C: ``<`` (less than), ``>`` (greater than), ``==``
-  (equal to), ``<=`` (less than or equal to), ``>=`` (greater than or equal to)
-  and ``!=`` (not equal to).
+* El bucle :keyword:`while` se ejecuta mientras la condición (aquí: ``b < 10``)
+  sea verdadera.  En Python, como en C, cualquier entero distinto de cero es
+  verdadero; cero es falso. La condición también puede ser una cadena de texto
+  o una lista, de hecho cualquier secuencia; cualquier cosa con longitud
+  distinta de cero es verdadero, las secuencias vacías son falso. La prueba
+  usada en el ejemplo es una comparación simple. Los operadores estándar de
+  comparación se escriben igual que en C: ``<`` (menor qué), ``>`` (mayor qué),
+  ``==`` (igual a), ``<=`` (menor o igual qué), ``>=`` (mayor o igual qué) y
+  ``!=`` (distinto a).
 
-* The *body* of the loop is *indented*: indentation is Python's way of grouping
-  statements.  Python does not (yet!) provide an intelligent input line editing
-  facility, so you have to type a tab or space(s) for each indented line.  In
-  practice you will prepare more complicated input for Python with a text editor;
-  most text editors have an auto-indent facility.  When a compound statement is
-  entered interactively, it must be followed by a blank line to indicate
-  completion (since the parser cannot guess when you have typed the last line).
-  Note that each line within a basic block must be indented by the same amount.
+* El *cuerpo* del bucle está *identado*: la identación es la forma que usa
+  Python para agrupar declaraciones. Python (¡aún!) no provee una facilidad
+  inteligente para editar líneas, así que debés tipear un tab o espacio(s) para
+  cada línea identada. En la práctica vas a preparar entradas más complicadas
+  para Python con un editor de texto; la mayoría de los editores de texto
+  tienen la facilidad de auto identar. Al entrar una declaración compuesta en
+  forma interactiva, debés finalizar con una línea en blanco para indicar qué
+  está completa (ya que el analizador no puede adivinar cuando tipeaste la
+  última línea). Notá que cada línea de un bloque básico debe estar identada
+  de la misma forma.
 
-* The :keyword:`print` statement writes the value of the expression(s) it is
-  given.  It differs from just writing the expression you want to write (as we did
-  earlier in the calculator examples) in the way it handles multiple expressions
-  and strings.  Strings are printed without quotes, and a space is inserted
-  between items, so you can format things nicely, like this::
+* La declaración :keyword:`print` escribe el valor de la o las expresiones que
+  se le pasan. Difiere se simplemente escribir la expresión que se quiere
+  mostrar (como hicimos antes en los ejemplos de la calculadora) en la forma
+  en que maneja múltiples expresiones y cadenas. Las cadenas de texto son
+  impresas sin comillas, y un espacio en blanco es insertado entre los
+  elementos, así podés formatear cosas de una forma agradable, así::
 
      >>> i = 256*256
-     >>> print 'The value of i is', i
-     The value of i is 65536
+     >>> print 'El valor de i es', i
+     El valor de i es 65536
 
-  A trailing comma avoids the newline after the output::
+  Una coma final evita el salto de línea al final de la salida::
 
      >>> a, b = 0, 1
      >>> while b < 1000:
@@ -653,5 +659,5 @@ This example introduces several new features.
      ...
      1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
 
-  Note that the interpreter inserts a newline before it prints the next prompt if
-  the last line was not completed.
+  Notá que el intérprete inserta un salto de línea antes de imprimir el
+  próximo prompt si la última línea no estaba completa.

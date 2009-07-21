@@ -785,32 +785,33 @@ than writing a regular function.
 
 .. _tut-genexps:
 
-Generator Expressions
-=====================
+Expresiones Generadoras
+=======================
 
-Some simple generators can be coded succinctly as expressions using a syntax
-similar to list comprehensions but with parentheses instead of brackets.  These
-expressions are designed for situations where the generator is used right away
-by an enclosing function.  Generator expressions are more compact but less
-versatile than full generator definitions and tend to be more memory friendly
-than equivalent list comprehensions.
+Algunos generadores simples pueden ser codificados concisamente como
+expresiones usando una sintaxis similar a las listas por comprensión pero con
+paréntesis en vez de corchetes.  Estas expresiones son designadas para
+situaciones donde el generador es usado inmediatamente por una función que
+lo contiene.  Las expresiones generadoras son más compactas pero menos
+versátiles que definiciones completas de generadores, y tienden a utilizar
+menos memoria que las listas por comprensión equivalentes.
 
-Examples::
+Ejemplos::
 
-   >>> sum(i*i for i in range(10))                 # sum of squares
+   >>> sum(i*i for i in range(10))                 # suma de cuadrados
    285
 
    >>> xvec = [10, 20, 30]
    >>> yvec = [7, 5, 3]
-   >>> sum(x*y for x,y in zip(xvec, yvec))         # dot product
+   >>> sum(x*y for x,y in zip(xvec, yvec))         # producto escalar
    260
 
    >>> from math import pi, sin
-   >>> sine_table = dict((x, sin(x*pi/180)) for x in range(0, 91))
+   >>> tabla_de_senos = dict((x, sin(x*pi/180)) for x in range(0, 91))
 
-   >>> unique_words = set(word  for line in page  for word in line.split())
+   >>> palabras_unicas = set(word  for line in page  for word in line.split())
 
-   >>> valedictorian = max((student.gpa, student.name) for student in graduates)
+   >>> mejor_promedio = max((estudiante.promedio, estudiante.nombre) for estudiante in graduados)
 
    >>> data = 'golf'
    >>> list(data[i] for i in range(len(data)-1,-1,-1))
@@ -818,11 +819,11 @@ Examples::
 
 
 
-.. rubric:: Footnotes
+.. rubric:: Notas al Pie
 
-.. [#] Except for one thing.  Module objects have a secret read-only attribute called
-   :attr:`__dict__` which returns the dictionary used to implement the module's
-   namespace; the name :attr:`__dict__` is an attribute but not a global name.
-   Obviously, using this violates the abstraction of namespace implementation, and
-   should be restricted to things like post-mortem debuggers.
-
+.. [#] Excepto una cosita. Los objetos módulo tienen un atributo secreto de solo
+   lectura llamado :attr:`__dict__` que devuelve el diccionario usado para
+   implementar el espacio de nombres del módulo; el nombre :attr:`__dict__` es un
+   atributo, pero no es un nombre global. Obviamente, esto viola la abstracción de
+   la implementación de espacios de nombres, y debe ser restringido a cosas tales
+   como depuradores post-mortem.

@@ -165,149 +165,154 @@ que ciertas variables viven en el alcance global.)
 
 .. _tut-firstclasses:
 
-A First Look at Classes
-=======================
+Un Primer Vistazo a las Clases
+==============================
 
-Classes introduce a little bit of new syntax, three new object types, and some
-new semantics.
+Las clases agregan un poco de sintaxis nueva, tres nuevos tipos de objetos y
+algo de semántica nueva.
 
 
 .. _tut-classdefinition:
 
-Class Definition Syntax
------------------------
+Syntaxis de Definición de Clases
+--------------------------------
 
-The simplest form of class definition looks like this::
+La forma más sencilla de definición de clase se ve así::
 
-   class ClassName:
-       <statement-1>
+   class NombreDeClase:
+       <sentencia-1>
        .
        .
        .
-       <statement-N>
+       <sentencia-N>
 
-Class definitions, like function definitions (:keyword:`def` statements) must be
-executed before they have any effect.  (You could conceivably place a class
-definition in a branch of an :keyword:`if` statement, or inside a function.)
+Las definiciones de clases, tal como las definiciones de funciones (sentencias
+:keyword:`def`) deben ser ejecutadas antes de que tengan algún efecto.  (Si
+quisieras podrías colocar una definición de clase en un bloque de una sentencia
+:keyword:`if`, o dentro de una función.)
 
-In practice, the statements inside a class definition will usually be function
-definitions, but other statements are allowed, and sometimes useful --- we'll
-come back to this later.  The function definitions inside a class normally have
-a peculiar form of argument list, dictated by the calling conventions for
-methods --- again, this is explained later.
+En la práctica, las sentencias dentro de una definición de clase generalmente
+serán definiciones de funciones, pero se permiten otras sentencias y a veces
+son útiles --- veremos esto más adelante.  Las definiciones de funciones dentro
+de una clase normalmente tienen una forma peculiar de lista de argumentos, que
+está dada por las convenciones de llamadas para los métodos --- esto también
+será explicado luego. 
 
-When a class definition is entered, a new namespace is created, and used as the
-local scope --- thus, all assignments to local variables go into this new
-namespace.  In particular, function definitions bind the name of the new
-function here.
+Cuando se ingresa a una definición de clase, se crea un nuevo espacio de nombres,
+y es usado como el ámbito local --- por lo tanto, todas las asignaciones a variables
+locales quedan dentro de este nuevo espacio de nombres.  En particular, las
+definiciones de funciones enlazan el nombre de la nueva función aquí.
 
-When a class definition is left normally (via the end), a *class object* is
-created.  This is basically a wrapper around the contents of the namespace
-created by the class definition; we'll learn more about class objects in the
-next section.  The original local scope (the one in effect just before the class
-definition was entered) is reinstated, and the class object is bound here to the
-class name given in the class definition header (:class:`ClassName` in the
-example).
+Cuando se sale normalmente de la definición de una clase (por el final), se crea un
+*objeto clase*.  Esto es básicamente un envoltorio de los contenidos del espacio de
+nombres creado por la definición de clase; veremos más sobre los objetos clase en
+la próxima sección.  El ámbito local original (el que estaba en efecto justo antes
+de ingresar a la definición de clase) se restaura, y el objeto clase se enlaza aquí
+al nombre de la clase dado en el encabezado de la definición de clase
+(:class:`NombreDeClase` en el ejemplo).
 
 
 .. _tut-classobjects:
 
-Class Objects
+Objetos Clase
 -------------
 
-Class objects support two kinds of operations: attribute references and
-instantiation.
+Los objetos clase soportan dos tipos de operaciones: referenciar atributos e
+instanciación.
 
-*Attribute references* use the standard syntax used for all attribute references
-in Python: ``obj.name``.  Valid attribute names are all the names that were in
-the class's namespace when the class object was created.  So, if the class
-definition looked like this::
+Para *referenciar atributos* se usa la sintaxis estandard que es usada para todas las
+referencias a atributos en Python: ``objeto.nombre``.  Nombres válidos de atributos
+son todos los nombres que estaban en el espacio de nombre de la clase en el momento
+que el objeto clase fue creado.  Por lo tanto, si la definición de clase fuera así::
 
-   class MyClass:
-       "A simple example class"
+   class MiClase:
+       "Una clase de ejemplo simple"
        i = 12345
        def f(self):
-           return 'hello world'
+           return 'hola mundo'
 
-then ``MyClass.i`` and ``MyClass.f`` are valid attribute references, returning
-an integer and a function object, respectively. Class attributes can also be
-assigned to, so you can change the value of ``MyClass.i`` by assignment.
-:attr:`__doc__` is also a valid attribute, returning the docstring belonging to
-the class: ``"A simple example class"``.
+entonces ``MiClase.i`` y ``MiClase.f`` son referencias de atributos válidas, que
+devuelven un entero y un objeto función, respectivamente. También se le puede
+asignar a los atributos de clase, asi que podés cambiar el valor de ``MiClase.i``
+mediante la asignación.  :attr:`__doc__` es también un atributo válido, que
+devuelve el docstring que pertenece a la clase: ``"Una clase de ejemplo simple"``.
 
-Class *instantiation* uses function notation.  Just pretend that the class
-object is a parameterless function that returns a new instance of the class.
-For example (assuming the above class)::
+La *instanciación* de clase usa notación de función.  Tan solo hacé de cuenta
+que el objeto clase es una función que no recibe parámetros, y que devuelve una 
+nueva instancia de la clase.
+Por ejemplo (asumiendo la clase anterior)::
 
-   x = MyClass()
+   x = MiClase()
 
-creates a new *instance* of the class and assigns this object to the local
-variable ``x``.
+crea un nueva *instancia* de la clase y asigna este objeto a la variable
+local ``x``.
 
-The instantiation operation ("calling" a class object) creates an empty object.
-Many classes like to create objects with instances customized to a specific
-initial state. Therefore a class may define a special method named
-:meth:`__init__`, like this::
+La operación de instanciación ("llamar" a un objeto clase) crea un objeto vacío.
+Muchas clases desean crear objetos con instancias personalizadas con un estado
+inicial específico.  Por lo tanto la clase puede definir un método especial
+llamado :meth:`__init__`, de esta forma::
 
    def __init__(self):
-       self.data = []
+       self.datos = []
 
-When a class defines an :meth:`__init__` method, class instantiation
-automatically invokes :meth:`__init__` for the newly-created class instance.  So
-in this example, a new, initialized instance can be obtained by::
+Cuando una clase define un método :meth:`__init__`, la instanciación de clase
+automáticamente invoca a :meth:`__init__` para la instancia de clase recién creada.
+Entonces en este ejemplo, una instancia nueva e inicializada puede ser obtenida así::
 
-   x = MyClass()
+   x = MiClase()
 
-Of course, the :meth:`__init__` method may have arguments for greater
-flexibility.  In that case, arguments given to the class instantiation operator
-are passed on to :meth:`__init__`.  For example, ::
+Por supuesto, el método :meth:`__init__` puede tener argumentos para mayor
+flexibilidad. En tal caso, los argumentos dados al operador de instanciación de clase
+son pasados a su vez a :meth:`__init__`.  Por ejemplo, ::
 
-   >>> class Complex:
-   ...     def __init__(self, realpart, imagpart):
-   ...         self.r = realpart
-   ...         self.i = imagpart
+   >>> class Complejo:
+   ...     def __init__(self, partereal, parteimag):
+   ...         self.r = partereal
+   ...         self.i = parteimag
    ...
-   >>> x = Complex(3.0, -4.5)
+   >>> x = Complejo(3.0, -4.5)
    >>> x.r, x.i
    (3.0, -4.5)
 
 
 .. _tut-instanceobjects:
 
-Instance Objects
-----------------
+Objetos Instancia
+-----------------
 
-Now what can we do with instance objects?  The only operations understood by
-instance objects are attribute references.  There are two kinds of valid
-attribute names, data attributes and methods.
+Ahora, ¿Qué podemos hacer con los objetos instancia?  La única operación que
+es entendida por los objetos instancia es la referencia de atributos.  Hay dos
+tipos de nombres de atributos válidos, atributos de datos y métodos.
 
-*data attributes* correspond to "instance variables" in Smalltalk, and to "data
-members" in C++.  Data attributes need not be declared; like local variables,
-they spring into existence when they are first assigned to.  For example, if
-``x`` is the instance of :class:`MyClass` created above, the following piece of
-code will print the value ``16``, without leaving a trace::
+Los *atributos de datos* se corresponden con las "variables de instancia" en
+Smalltalk, y con las "variables miembro" en C++.  Los atributos de datos no
+necesitan ser declarados; tal como las variables locales son creados la primera
+vez que se les asigna algo.  Por ejemplo, si ``x`` es la instancia de
+:class:`MiClase` creada más arriba, el siguiente pedazo de código va a
+imprimir el valor ``16``, sin dejar ningún rastro::
 
-   x.counter = 1
-   while x.counter < 10:
-       x.counter = x.counter * 2
-   print x.counter
-   del x.counter
+   x.contador = 1
+   while x.contador < 10:
+       x.contador = x.contador * 2
+   print x.contador
+   del x.contador
 
-The other kind of instance attribute reference is a *method*. A method is a
-function that "belongs to" an object.  (In Python, the term method is not unique
-to class instances: other object types can have methods as well.  For example,
-list objects have methods called append, insert, remove, sort, and so on.
-However, in the following discussion, we'll use the term method exclusively to
-mean methods of class instance objects, unless explicitly stated otherwise.)
+El otro tipo de referenciar atributos de instancia es el *método*.  Un método es
+una función que "pertenece a" un objeto.  (En Python, el término método no está
+limitado a instancias de clase: otros tipos de objetos pueden tener métodos también.
+Por ejemplo, los objetos lista tienen métodos llamados append, insert, remove, sort,
+y así sucesivamente.  Pero, en la siguiente explicación, usaremos el término método
+para referirnos exclusivamente a métodos de objetos instancia de clase, a menos
+que se especifique explícitamente lo contrario).
 
 .. index:: object: method
 
-Valid method names of an instance object depend on its class.  By definition,
-all attributes of a class that are function  objects define corresponding
-methods of its instances.  So in our example, ``x.f`` is a valid method
-reference, since ``MyClass.f`` is a function, but ``x.i`` is not, since
-``MyClass.i`` is not.  But ``x.f`` is not the same thing as ``MyClass.f`` --- it
-is a *method object*, not a function object.
+Los nombres válidos de métodos de un objeto instancia dependen de su clase.
+Por definición, todos los atributos de clase que son objetos funciones definen
+metodos correspondientes de sus instancias.  Entonces, en nuestro ejemplo, ``x.f``
+es una referencia a un método válido, dado que ``MiClase.f`` es una función, pero
+``x.i`` no lo es, dado que ``MiClase.i`` no lo es. Pero ``x.f`` no es la misma
+cosa que ``MiClase.f`` --- es un *objeto método*, no un objeto función.
 
 
 .. _tut-methodobjects:

@@ -1,21 +1,21 @@
 .. _tut-informal:
 
 **********************************
-Una Introducción Informal a Python
+Una introducción informal a Python
 **********************************
 
 En los siguientes ejemplos, las entradas y salidas son distinguidas por la
 presencia o ausencia de los prompts (```>>>``` and ```...```): para
-reproducir los ejemplos, debes escribir todo lo que esté después del prompt,
+reproducir los ejemplos, debés escribir todo lo que esté después del prompt,
 cuando este aparezca; las líneas que no comiencen con el prompt son las
-salidas del intérprete. Tenga en cuenta que el prompt secundario que
-aparece por sí sólo en una línea de un ejemplo significa que debe escribir
+salidas del intérprete.  Tené en cuenta que el prompt secundario que
+aparece por si sólo en una línea de un ejemplo significa que debés escribir
 una línea en blanco; esto es usado para terminar un comando multilínea.
 
 Muchos de los ejemplos de este manual, incluso aquellos ingresados en el prompt
-interactivo, incluyen comentarios. Los comentarios en Python comienzan con
+interactivo, incluyen comentarios.  Los comentarios en Python comienzan con
 el carácter numeral, ``#``, y se extienden hasta el final físico de la
-línea. Un comentario quizás aparezca al comiendo de la línea o seguidos
+línea.  Un comentario quizás aparezca al comienzo de la línea o seguidos
 de espacios blancos o código, pero sin una cadena de caracteres.
 Un carácter numeral dentro de una cadena de caracteres es sólo un carácter
 numeral.
@@ -30,21 +30,22 @@ Algunos ejemplos::
 
 .. _tut-calculator:
 
-Usar Python como una Calculadora
+Usar Python como una calculadora
 ================================
 
-Vamos a probar algunos comandos simples en Python. Inicia un intérprete y
-espera por el prompt primario, ``>>>``. (No debería demorar tanto).
+Vamos a probar algunos comandos simples en Python.  Iniciá un intérprete y
+esperá por el prompt primario, ``>>>``. (No debería demorar tanto).
 
 .. _tut-numbers:
 
 Números
 -------
 
-El intérprete actúa como una simple calculadora; puedes tipear una expresión
-y este escribirá los valores. La sintaxis es sencilla: los operadores ``+``, ``-``,
-``*`` y ``/`` funcionan como en la mayoría de los lenguajes (por ejemplo,
-Pascal o C); los paréntesis pueden ser usados para agrupar. Por ejemplo::
+El intérprete actúa como una simple calculadora; podés ingrsar una expresión
+y este escribirá los valores.  La sintaxis es sencilla: los operadores ``+``,
+``-``, ``*`` y ``/`` funcionan como en la mayoría de los lenguajes (por
+ejemplo, Pascal o C); los paréntesis pueden ser usados para agrupar. Por
+ejemplo::
 
    >>> 2+2
    4
@@ -55,13 +56,13 @@ Pascal o C); los paréntesis pueden ser usados para agrupar. Por ejemplo::
    4
    >>> (50-5*6)/4
    5
-   >>> # La división entera retorna el piso:
+   >>> # La división entera retorna redondeado al piso:
    ... 7/3
    2
    >>> 7/-3
    -3
 
-El signo igual (``=``) es usado para asignar un valor a una variable. Luego,
+El signo igual (``=``) es usado para asignar un valor a una variable.  Luego,
 ningún resultado es mostrado antes del próximo prompt::
 
    >>> ancho = 20
@@ -71,7 +72,7 @@ ningún resultado es mostrado antes del próximo prompt::
 
 Un valor puede ser asignado a varias variables simultáneamente::
 
-   >>> x = y = z = 0  # Cero x, y y z
+   >>> x = y = z = 0  # Cero a x, y, y z
    >>> x
    0
    >>> y
@@ -79,8 +80,8 @@ Un valor puede ser asignado a varias variables simultáneamente::
    >>> z
    0
 
-Los números de punto flotante tiene soporte completo; las operaciones con
-mezclas en los tipos de los operandos convierte los enteros a punto flotante::
+Se soporta completamente los números de punto flotante; las operaciones con
+mezclas en los tipos de los operandos convierten los enteros a punto flotante::
 
    >>> 3 * 3.75 / 1.5
    7.5
@@ -88,10 +89,9 @@ mezclas en los tipos de los operandos convierte los enteros a punto flotante::
    3.5
 
 Los números complejos también están soportados; los números imaginarios son
-escritos con el sufijo de ``j`` o ``J``. Los números complejos con un
+escritos con el sufijo de ``j`` o ``J``.  Los números complejos con un
 componente real que no sea cero son escritos como ``(real+imagj)``, o pueden
-ser escrito con la función ``complex(real, imag)``.
-::
+ser escrito con la función ``complex(real, imag)``. ::
 
    >>> 1j * 1J
    (-1+0j)
@@ -105,8 +105,8 @@ ser escrito con la función ``complex(real, imag)``.
    (1.5+0.5j)
 
 Los números complejos son siempre representados como dos números de punto
-flotante, la parte real y la imaginaria. Para extraer estas partes desde un
-número complejo *z*, usa ``z.real`` y ``z.imag``. ::
+flotante, la parte real y la imaginaria.  Para extraer estas partes desde un
+número complejo *z*, usá ``z.real`` y ``z.imag``. ::
 
    >>> a=1.5+0.5j
    >>> a.real
@@ -115,8 +115,8 @@ número complejo *z*, usa ``z.real`` y ``z.imag``. ::
    0.5
 
 La función de conversión de los punto flotante y enteros (:func:`float`,
-:func:`int` y :func:`long`) no funciona para números complejos --- aquí no hay
-una forma correcta de convertir un número complejo a un número real. Usa
+:func:`int` y :func:`long`) no funciona para números complejos; aquí no hay
+una forma correcta de convertir un número complejo a un número real.  Usá
 ``abs(z)`` para obtener esta magnitud (como un flotante) o ``z.real`` para
 obtener la parte real. ::
 
@@ -134,7 +134,7 @@ obtener la parte real. ::
    >>>
 
 En el modo interactivo, la última expresión impresa es asignada a la variable
-``_``. Esto significa que cuando estés usando Python como una calculadora de
+``_``.  Esto significa que cuando estés usando Python como una calculadora de
 escritorio, es más fácil seguir calculando, por ejemplo::
 
    >>> impuesto = 12.5 / 100
@@ -147,10 +147,9 @@ escritorio, es más fácil seguir calculando, por ejemplo::
    113.06
    >>>
 
-Esta variable debería ser tratada como de sólo lectura por el usuario. No
-asignes explícitamente un valor a esta --- crearás una variable local
-independiente con el mismo nombre enmascarando la variable incorporada con el
-comportamiento mágico.
+Esta variable debería ser tratada como de sólo lectura por el usuario.  No le
+asignes explícitamente un valor; crearás una variable local independiente con
+el mismo nombre enmascarando la variable con el comportamiento mágico.
 
 .. _tut-strings:
 
@@ -158,8 +157,8 @@ Cadenas de caracteres
 ---------------------
 
 Además de números, Python puede manipular cadenas de texto, las cuales pueden
-ser expresadas de distintas formas. Pueden ser encerradas en comillas simples
-o dobles::
+ser expresadas de distintas formas.  Pueden estar encerradas en comillas
+simples o dobles::
 
    >>> 'huevos y pan'
    'huevos y pan'
@@ -175,7 +174,7 @@ o dobles::
    '"Isn\'t," she said.'
 
 Las cadenas de texto literales pueden contener múltiples líneas de distintas
-formas. Las líneas continuas se pueden usar, con una barra invertida como el
+formas.  Las líneas continuas se pueden usar, con una barra invertida como el
 último carácter de la línea para indicar que la siguiente línea es la
 continuación lógica de la línea::
 
@@ -187,8 +186,8 @@ continuación lógica de la línea::
    print hola
 
 Notá que de todas formas se necesita embeber los salto de líneas con ``\n``;
-la nueva línea que sigue a la barra invertida final es descartada. Este ejemplo
-imprimiría::
+la nueva línea que sigue a la barra invertida final es descartada.  Este
+ejemplo imprimiría::
 
    Esta es una larga cadena que contiene
    varias líneas de texto, tal y como se hace en C.
@@ -205,14 +204,14 @@ como datos. Así, el ejemplo::
 
    print hola
 
-imprimirá::
+...imprimirá::
 
    Esta es una larga cadena que contiene\n\
    varias líneas de texto, tal y como se hace en C.
 
 O, las cadenas de texto pueden ser rodeadas en un par de comillas triples:
-``"""`` o ``'''``.  No se necesita escapar los finales de línea cuando se 
-utilizan comillas triples, pero serán incluídos en la cadena. ::
+``"""`` o ``'''``.  No se necesita escapar los finales de línea cuando se
+utilizan comillas triples, pero serán incluidos en la cadena. ::
 
    print """
    Uso: algo [OPTIONS]
@@ -220,18 +219,18 @@ utilizan comillas triples, pero serán incluídos en la cadena. ::
         -H nombrehost             Nombre del host al cual conectarse
    """
 
-produce la siguiente salida::
+...produce la siguiente salida::
 
    Uso: algo [OPTIONS]
         -h                        Muestra el mensaje de uso
         -H nombrehost             Nombre del host al cual conectarse
 
 El interprete imprime el resultado de operaciones entre cadenas de la misma
-forma en que son tipeadas como entrada: dentro de comillas, y con comillas y
-otros caracteres graciosos escapados con barras invertidas, para mostrar
-el valor preciso. La cadena de texto es encerrada en comillas dobles si
-contiene una comilla simple y no comillas dobles, sino es encerrada en comillas
-simples. (La declaración :keyword:`print`, descripta luego,
+forma en que son tecleadas como entrada: dentro de comillas, y con comillas y
+otros caracteres raros escapados con barras invertidas, para mostrar
+el valor preciso.  La cadena de texto es encerrada con comillas dobles si
+contiene una comilla simple y no comillas dobles, sino es encerrada con
+comillas simples.  (La declaración :keyword:`print`, descrita luego,
 puede ser usado para escribir cadenas sin comillas o escapes).
 
 Las cadenas de texto pueden ser concatenadas (pegadas juntas) con el operador
@@ -258,8 +257,8 @@ solo funciona con dos literales, no con expresiones arbitrarias::
    SyntaxError: invalid syntax
 
 Las cadenas de texto se pueden indexar; como en C, el primer carácter de la
-cadena tiene el índice 0. No hay un tipo de dato para los caracteres; un
-carácter es simplemente una cadena de longitud uno. Como en Icon, se pueden
+cadena tiene el índice 0.  No hay un tipo de dato para los caracteres; un
+carácter es simplemente una cadena de longitud uno.  Como en Icon, se pueden
 especificar subcadenas con la *notación de rebanadas*: dos índices separados
 por dos puntos. ::
 
@@ -279,8 +278,8 @@ defecto para el primer índice es cero, el valor por defecto para el segundo
    >>> palabra[2:]    # Todo menos los primeros dos caracteres
    'udaA'
 
-A diferencia de las cadenas de texto en C, en Python no pueden ser cambiadas.
-Intentar asignar a una posición indexada da un error::
+A diferencia de las cadenas de texto en C, en Python no pueden ser
+modificadas.  Intentar asignar a una posición de la cadena es un error::
 
    >>> palabra[0] = 'x'
    Traceback (most recent call last):
@@ -299,7 +298,7 @@ eficiente::
    >>> 'Mas' + palabra[5]
    'MasA'
 
-Aquí algo útil de las operaciones de rebanada: ``s[:i] + s[i:]`` es ``s``.
+Algo útil de las operaciones de rebanada: ``s[:i] + s[i:]`` es ``s``.
 ::
 
    >>> palabra[:2] + palabra[2:]
@@ -307,7 +306,7 @@ Aquí algo útil de las operaciones de rebanada: ``s[:i] + s[i:]`` es ``s``.
    >>> palabra[:3] + palabra[3:]
    'AyudaA'
 
-Índices degenerados en las rebanadas son manejados con mucha gracia: un índice
+Los índices degenerados en las rebanadas son manejados bien: un índice
 muy largo es reemplazado por la longitud de la cadena, un límite superior más
 chico que el límite menor retorna una cadena vacía. ::
 
@@ -321,9 +320,9 @@ chico que el límite menor retorna una cadena vacía. ::
 Los índices pueden ser números negativos, para empezar a contar desde la
 derecha. Por ejemplo::
 
-   >>> palabra[-1]     # El ultimo caracter
+   >>> palabra[-1]     # El último caracter
    'A'
-   >>> palabra[-2]     # El penultimo caracter
+   >>> palabra[-2]     # El penúltimo caracter
    'a'
    >>> palabra[-2:]    # Los últimos dos caracteres
    'aA'
@@ -331,13 +330,12 @@ derecha. Por ejemplo::
    'Ayud'
 
 Pero notá que -0 es en realidad lo mismo que 0, ¡por lo que no cuenta desde
-la derecha!
-::
+la derecha! ::
 
    >>> palabra[-0]     # (ya que -0 es igual a 0)
    'A'
 
-Los índices negativos fuera de rango son truncados, pero esto no anda para
+Los índices negativos fuera de rango son truncados, pero esto no funciona para
 índices de un solo elemento (no rebanada)::
 
    >>> palabra[-100:]
@@ -349,7 +347,7 @@ Los índices negativos fuera de rango son truncados, pero esto no anda para
 
 Una forma de recordar cómo funcionan las rebanadas es pensar en los índices
 como puntos *entre* caracteres, con el punto a la izquierda del primer carácter
-numerado en 0. Luego, el punto a la derecha del último carácter de una cadena
+numerado en 0.  Luego, el punto a la derecha del último carácter de una cadena
 de *n* caracteres tienen índice *n*, por ejemplo::
 
     +---+---+---+---+---+---+
@@ -378,13 +376,14 @@ de texto::
 .. seealso::
 
    :ref:`typesseq`
-      Las cadenas de texto y la cadenas de texto Unicode descriptas en la
-      siguiente sección, son ejemplos de *tipos secuencias*, y soportan
+      Las cadenas de texto y la cadenas de texto Unicode descritas en la
+      siguiente sección son ejemplos de *tipos secuencias*, y soportan
       las operaciones comunes para esos tipos.
 
    :ref:`string-methods`
-      Tanto las cadenas de texto como las cadenas de texto Unicode soportan
-      una gran cantidad de métodos para transformaciones básicas y búsqueda.
+      Tanto las cadenas de texto normales como las cadenas de texto Unicode
+      soportan una gran cantidad de métodos para transformaciones básicas y
+      búsqueda.
 
    :ref:`new-string-formatting`
       Aquí se da información sobre formateo de cadenas de texto con

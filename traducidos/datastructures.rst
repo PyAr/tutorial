@@ -326,7 +326,7 @@ Ver :ref:`tut-unpacking-arguments` para detalles en el asterisco de esta línea.
 .. _tut-del:
 
 La instrucción :keyword:`del`
-============================
+=============================
 
 Hay una manera de quitar un ítem de una lista dado su índice en lugar de su
 valor: la instrucción :keyword:`del`.  Esta es diferente del método

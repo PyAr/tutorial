@@ -416,3 +416,5 @@ una forma que asegure que siempre se los libera rápido y en forma correcta. ::
 
 Luego de que la declaración sea ejecutada, el archivo *f* siempre es cerrado,
 incluso si se encuentra un problema al procesar las líneas. Otros objetos que
+provean acciones de limpieza pre-definidas lo indicarán en su documentación.
+

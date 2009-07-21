@@ -120,10 +120,8 @@ Para iterar sobre los índices de una secuencia, se combina :func:`range` y
 
 .. _tut-break:
 
-Las Sentencias :keyword:`break` y :keyword:`continue`, y la Cláusula 
-====================================================================
-:keyword:`else` en Loops
-========================
+Las Sentencias :keyword:`break` y :keyword:`continue`, y la Cláusula :keyword:`else` en Loops
+=============================================================================================
 
 La sentencia :keyword:`break`, como en C, termina el loop :keyword:`for` o 
 :keyword:`while` más anidado.

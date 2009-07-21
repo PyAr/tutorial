@@ -14,6 +14,31 @@
         "showFooter" : true,
         "defaultFooter" : "###Page###"
     }
-  }
+  },
+  "styles": [
+    ["code", {
+        "backColor": "#F5FFDF",
+        "borderWidth": 0.3,
+        "borderColor": "#AACC99",
+        "allowOrphans": false,
+        "allowWidows": false
+    }],
+    ["admonition" , {
+      "borderColor": "#AACC99",
+      "backColor": "#F5FFDF",
+      "borderPadding": 8,
+      "borderWidth": 0.5,
+      "spaceBefore": 12,
+      "spaceAfter": 6
+    }],
+    ["sidebar", {
+      "borderColor": "#AACC99",
+      "backColor": "#F5FFDF",
+      "borderPadding": 8,
+      "borderWidth": 0.5,
+      "spaceBefore": 12,
+      "spaceAfter": 6
+    }]
+  ]
 }
 

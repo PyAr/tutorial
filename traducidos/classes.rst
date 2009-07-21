@@ -317,45 +317,46 @@ cosa que ``MiClase.f`` --- es un *objeto método*, no un objeto función.
 
 .. _tut-methodobjects:
 
-Method Objects
+Objetos Método
 --------------
 
-Usually, a method is called right after it is bound::
+Generalmente, un método es llamado luego de ser enlazado::
 
    x.f()
 
-In the :class:`MyClass` example, this will return the string ``'hello world'``.
-However, it is not necessary to call a method right away: ``x.f`` is a method
-object, and can be stored away and called at a later time.  For example::
+En el ejemplo :class:`MiClase`, esto devuelve la cadena ``'hola mundo'``.
+Pero no es necesario llamar al método justo en ese momento: ``x.f`` es
+un objeto método, y puede ser guardado y llamado más tarde.  Por ejemplo::
 
    xf = x.f
    while True:
        print xf()
 
-will continue to print ``hello world`` until the end of time.
+continuará imprimiendo ``hola mundo`` hasta el fín de los días.
 
-What exactly happens when a method is called?  You may have noticed that
-``x.f()`` was called without an argument above, even though the function
-definition for :meth:`f` specified an argument.  What happened to the argument?
-Surely Python raises an exception when a function that requires an argument is
-called without any --- even if the argument isn't actually used...
+¿Que sucede exactamente cuando un método es llamado?  Debes haber notado que
+``x.f()`` fue llamado más arriba sin ningún argumento, a pesar de que la definición
+de función de :meth:`f` especificaba un argumento. ¿Que pasó con ese argumento?
+Por supuesto que Python levanta una excepción cuando una función que requiere
+un argumento es llamada sin ninguno --- aún si el argumento no es utilizado...
 
-Actually, you may have guessed the answer: the special thing about methods is
-that the object is passed as the first argument of the function.  In our
-example, the call ``x.f()`` is exactly equivalent to ``MyClass.f(x)``.  In
-general, calling a method with a list of *n* arguments is equivalent to calling
-the corresponding function with an argument list that is created by inserting
-the method's object before the first argument.
+De hecho, tal vez hayas adivinado la respuesta: lo que tienen de especial los
+métodos es que el objeto es pasado como el primer argumento de la función.
+En nuestro ejemplo, la llamada ``x.f()`` es exáctamente equivalente a
+``MiClase.f(x)``.  En general, llamar a un método con una lista de *n* argumentos
+es equivalente a llamar a la función correspondiente con una lista de argumentos
+que es creada insertando el objeto del método antes del primer argumento.
 
-If you still don't understand how methods work, a look at the implementation can
-perhaps clarify matters.  When an instance attribute is referenced that isn't a
-data attribute, its class is searched.  If the name denotes a valid class
-attribute that is a function object, a method object is created by packing
-(pointers to) the instance object and the function object just found together in
-an abstract object: this is the method object.  When the method object is called
-with an argument list, it is unpacked again, a new argument list is constructed
-from the instance object and the original argument list, and the function object
-is called with this new argument list.
+Si aún no comprendes como funcionan los métodos, un vistazo a la implementación
+puede ayudar a clarificar este tema. Cuando un atributo de instancia es
+referenciado y no es un atributo de datos, se busca dentro de su clase. Si
+el nombre denota un atributo de clase válido que es un objeto función, un método 
+objeto es creado juntando (punteros a) el objeto instancia y el objeto función
+que ha sido encontrado. Este objeto abstracto creado de la junta es el objeto
+método. Cuando el objeto método es llamado con una lista de argumentos, es
+nuevamente desempacado, una lista de argumentos nueva es construida a partir del
+objeto instancia y la lista de argumentos original, y el objeto función es llamado
+con esta nueva lista de argumentos.
 
 
 .. _tut-remarks:

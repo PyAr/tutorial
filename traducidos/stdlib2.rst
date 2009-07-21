@@ -1,11 +1,11 @@
-.. _tut-brieftourtwo:
+﻿.. _tut-brieftourtwo:
 
-*************************************************
-Pequeño pase por la Bibliotec Estándar - Parte II
-*************************************************
+**************************************************************
+Pequeño paseo por la Biblioteca Estándar - Parte II
+**************************************************************
 
-This second tour covers more advanced modules that support professional
-programming needs.  These modules rarely occur in small scripts.
+Este segundo paseo cubre módulos más avanzados que facilitan necesidades
+de programación avanzadas. Estos módulos raramente se usan en scripts cortos.
 
 
 .. _tut-output-formatting:
@@ -13,85 +13,88 @@ programming needs.  These modules rarely occur in small scripts.
 Formato de salida
 =================
 
-El módulo :mod:`repr` provee una versión de :func:`repr` personalizada
-para mostrar abreviados
-The :mod:`repr` module provides a version of :func:`repr` customized for
-abbreviated displays of large or deeply nested containers::
+El módulo :mod:`repr` provee una versión de :func:`repr` ajustada para
+mostrar contenedores grandes o profundamente anidados, en forma abreviada:
 
    >>> import repr
-   >>> repr.repr(set('supercalifragilisticexpialidocious'))
+   >>> repr.repr(set('supercalifragilisticoespialidoso'))
    "set(['a', 'c', 'd', 'e', 'f', 'g', ...])"
 
-The :mod:`pprint` module offers more sophisticated control over printing both
-built-in and user defined objects in a way that is readable by the interpreter.
-When the result is longer than one line, the "pretty printer" adds line breaks
-and indentation to more clearly reveal data structure::
+El módulo :mod:`pprint` ofrece un control más sofisticado de la forma
+en que se imprimen tanto los objetos predefinidos como los objetos
+definidos por el usuario, de manera que sean legibles por el intérprete.
+Cuando el resultado ocupa más de una línea, el generador de
+"impresiones lindas" agrega saltos de línea e indentación para mostrar
+la estructura de los datos más claramente::
 
    >>> import pprint
-   >>> t = [[[['black', 'cyan'], 'white', ['green', 'red']], [['magenta',
-   ...     'yellow'], 'blue']]]
+   >>> t = [[[['negro', 'turquesa'], 'blanco', ['verde', 'rojo']], [['magenta',
+   ...     'amarillo'], 'azul']]]
    ...
    >>> pprint.pprint(t, width=30)
-   [[[['black', 'cyan'],
-      'white',
-      ['green', 'red']],
-     [['magenta', 'yellow'],
-      'blue']]]
+   [[[['negro', 'turquesa'],
+      'blanco',
+      ['verde', 'rojo']],
+     [['magenta', 'amarillo'],
+      'azul']]]
 
-The :mod:`textwrap` module formats paragraphs of text to fit a given screen
-width::
+El módulo :mod:`textwrap` formatea párrafos de texto para que quepan
+dentro de cierto ancho de pantalla::
 
    >>> import textwrap
-   >>> doc = """The wrap() method is just like fill() except that it returns
-   ... a list of strings instead of one big string with newlines to separate
-   ... the wrapped lines."""
-   ...
+   >>> doc = """El método wrap() es como fill(), excepto que devuelve
+   ... una lista de strings en lugar de una gran string con saltos de
+   ... línea como separadores."""
    >>> print textwrap.fill(doc, width=40)
-   The wrap() method is just like fill()
-   except that it returns a list of strings
-   instead of one big string with newlines
-   to separate the wrapped lines.
+   El método wrap() es como fill(), excepto
+   que devuelve una lista de strings en
+   lugar de una gran string con saltos de
+   línea como separadores.
 
-The :mod:`locale` module accesses a database of culture specific data formats.
-The grouping attribute of locale's format function provides a direct way of
-formatting numbers with group separators::
+
+El módulo :mod:`locale` accede a una base de datos de formatos específicos
+de una cultura.
+El atributo :var:`grouping` de la función :function:`format` permite una
+forma directa de formatear números con separadores de grupo::
 
    >>> import locale
-   >>> locale.setlocale(locale.LC_ALL, 'English_United States.1252')
-   'English_United States.1252'
-   >>> conv = locale.localeconv()          # get a mapping of conventions
+   >>> locale.setlocale(locale.LC_ALL, '')
+   'Spanish_Argentina.1252'
+   >>> conv = locale.localeconv()      # obtener un mapeo de convenciones
    >>> x = 1234567.8
    >>> locale.format("%d", x, grouping=True)
-   '1,234,567'
+   '1.234.567'
    >>> locale.format("%s%.*f", (conv['currency_symbol'],
    ...	      conv['frac_digits'], x), grouping=True)
-   '$1,234,567.80'
+   '$1.234.567,80'
 
 
 .. _tut-templating:
 
-Templating
+Plantillas
 ==========
 
-The :mod:`string` module includes a versatile :class:`Template` class with a
-simplified syntax suitable for editing by end-users.  This allows users to
-customize their applications without having to alter the application.
+El módulo :mod:`string` incluye una clase versátil :class:`Template`
+(plantilla) on una sintaxis simplificada apta para ser editada por usuarios
+finales. Esto permite que los usuarios personalicen sus aplicaciones sin
+necesidad de modificar la aplicación en sí.
 
-The format uses placeholder names formed by ``$`` with valid Python identifiers
-(alphanumeric characters and underscores).  Surrounding the placeholder with
-braces allows it to be followed by more alphanumeric letters with no intervening
-spaces.  Writing ``$$`` creates a single escaped ``$``::
+El formato usa marcadores cuyos nombres se forman con ``$`` seguido de
+identificadores Python válidos (caracteres alfanuméricos y guión de subrayado).
+Si se los encierra entre llaves, pueden seguir más caracteres alfanuméricos
+sin necesidad de dejar espacios en blanco. ``$$`` genera un ``$``::
 
    >>> from string import Template
    >>> t = Template('${village}folk send $$10 to $cause.')
    >>> t.substitute(village='Nottingham', cause='the ditch fund')
    'Nottinghamfolk send $10 to the ditch fund.'
 
-The :meth:`substitute` method raises a :exc:`KeyError` when a placeholder is not
-supplied in a dictionary or a keyword argument. For mail-merge style
-applications, user supplied data may be incomplete and the
-:meth:`safe_substitute` method may be more appropriate --- it will leave
-placeholders unchanged if data is missing::
+El método :meth:`substitute` lanza :exc:`KeyError` cuando no se suministra
+ningún valor para un marcador mediante un diccionario o argumento por nombre.
+Para aplicaciones estilo "combinación de correo", los datos suministrados
+por el usuario puede ser incompletos y el método :meth:`safe_substitute`
+puede ser más apropiado --- deja los marcadores inalterados cuando hay datos
+faltantes::
 
    >>> t = Template('Return the $item to $owner.')
    >>> d = dict(item='unladen swallow')
@@ -102,157 +105,175 @@ placeholders unchanged if data is missing::
    >>> t.safe_substitute(d)
    'Return the unladen swallow to $owner.'
 
-Template subclasses can specify a custom delimiter.  For example, a batch
-renaming utility for a photo browser may elect to use percent signs for
-placeholders such as the current date, image sequence number, or file format::
+Las subclases de Template pueden especificar un delimitador propio.
+Por ejemplo, una utilidad de renombrado por lotes para un visualizador
+de fotos puede escoger usar signos de porcentaje para los marcadores
+tales como la fecha actual, el número de secuencia de la imagen,
+o el formato de archivo::
 
    >>> import time, os.path
    >>> photofiles = ['img_1074.jpg', 'img_1076.jpg', 'img_1077.jpg']
    >>> class BatchRename(Template):
    ...     delimiter = '%'
+   ... 
    >>> fmt = raw_input('Enter rename style (%d-date %n-seqnum %f-format):  ')
    Enter rename style (%d-date %n-seqnum %f-format):  Ashley_%n%f
-
    >>> t = BatchRename(fmt)
    >>> date = time.strftime('%d%b%y')
    >>> for i, filename in enumerate(photofiles):
    ...     base, ext = os.path.splitext(filename)
    ...     newname = t.substitute(d=date, n=i, f=ext)
    ...     print '{0} --> {1}'.format(filename, newname)
-
+   ... 
    img_1074.jpg --> Ashley_0.jpg
    img_1076.jpg --> Ashley_1.jpg
    img_1077.jpg --> Ashley_2.jpg
 
-Another application for templating is separating program logic from the details
-of multiple output formats.  This makes it possible to substitute custom
-templates for XML files, plain text reports, and HTML web reports.
+Las plantillas también pueden ser usadas para separar la lógica del programa
+de los detalles de múltiples formatos de salida. Esto permite sustituir
+plantillas específicas para archivos XML, reportes en texto plano,
+y reportes web en HTML.
 
 
 .. _tut-binary-formats:
 
-Working with Binary Data Record Layouts
-=======================================
+Trabajar con registros estructurados conteniendo datos binarios
+===============================================================
 
-The :mod:`struct` module provides :func:`pack` and :func:`unpack` functions for
-working with variable length binary record formats.  The following example shows
-how to loop through header information in a ZIP file without using the
-:mod:`zipfile` module.  Pack codes ``"H"`` and ``"I"`` represent two and four
-byte unsigned numbers respectively.  The ``"<"`` indicates that they are
-standard size and in little-endian byte order::
+El módulo :mod:`struct` provee las funciones :func:`pack` y :func:`unpack`
+para trabajar con formatos de registros binarios de longitud variable.
+El siguiente ejemplo muestra cómo recorrer la información de encabezado
+en un archivo ZIP sin usar el módulo :mod:`zipfile`.
+Los códigos ``"H"`` e ``"I"`` representan números sin signo de dos y
+cuatro bytes respectivamente. El ``"<"`` indica que son de
+tamaño estándar y los bytes tienen ordenamiento `little-endian`::
 
    import struct
 
-   data = open('myfile.zip', 'rb').read()
-   start = 0
-   for i in range(3):                      # show the first 3 file headers
-       start += 14
-       fields = struct.unpack('<IIIHH', data[start:start+16])
-       crc32, comp_size, uncomp_size, filenamesize, extra_size = fields
+   datos = open('miarchivo.zip', 'rb').read()
+   inicio = 0
+   for i in range(3):                     # mostrar los 3 primeros encabezados
+       inicio += 14
+       campos = struct.unpack('<IIIHH', datos[inicio:inicio+16])
+       crc32, tam_comp, tam_descomp, tam_nomarch, tam_extra = fields
 
-       start += 16
-       filename = data[start:start+filenamesize]
-       start += filenamesize
-       extra = data[start:start+extra_size]
-       print filename, hex(crc32), comp_size, uncomp_size
+       inicio += 16
+       nomarch = datos[inicio:inicio+tam_nomarch]
+       inicio += tam_nomarch
+       extra = datos[inicio:inicio+tam_extra]
+       print nomarch, hex(crc32), tam_comp, tam_descomp
 
-       start += extra_size + comp_size     # skip to the next header
+       inicio += tam_extra + tam_comp     # saltear hasta el próximo encabezado
 
 
 .. _tut-multi-threading:
 
-Multi-threading
-===============
+Multihilo
+=========
 
-Threading is a technique for decoupling tasks which are not sequentially
-dependent.  Threads can be used to improve the responsiveness of applications
-that accept user input while other tasks run in the background.  A related use
-case is running I/O in parallel with computations in another thread.
+La técnica de multihilos permite desacoplar tareas que no tienen dependencia
+secuencial. Los hilos se pueden usar para mejorar el grado de reacción de las
+aplicaciones que aceptan entradas del usuario mientras otras tareas se
+ejecutan en segundo plano. Un caso de uso relacionado es ejecutar E/S en
+paralelo con cálculos en otro hilo.
 
-The following code shows how the high level :mod:`threading` module can run
-tasks in background while the main program continues to run::
+El código siguiente muestra cómo el módulo de alto nivel :mod:`threading`
+puede ejecutar tareas en segundo plano mientras el programa principal continúa
+su ejecución::
 
    import threading, zipfile
 
    class AsyncZip(threading.Thread):
-       def __init__(self, infile, outfile):
+       def __init__(self, arch_ent, arch_sal):
            threading.Thread.__init__(self)
-           self.infile = infile
-           self.outfile = outfile
+           self.arch_ent = arch_ent
+           self.arch_sal = arch_sal
        def run(self):
-           f = zipfile.ZipFile(self.outfile, 'w', zipfile.ZIP_DEFLATED)
-           f.write(self.infile)
+           f = zipfile.ZipFile(self.arch_sal, 'w', zipfile.ZIP_DEFLATED)
+           f.write(self.arch_ent)
            f.close()
-           print 'Finished background zip of: ', self.infile
+           print 'Terminó zip en segundo plano de: ', self.arch_ent
 
-   background = AsyncZip('mydata.txt', 'myarchive.zip')
-   background.start()
-   print 'The main program continues to run in foreground.'
+   seg_plano = AsyncZip('misdatos.txt', 'miarchivo.zip')
+   seg_plano.start()
+   print 'El programa principal continúa la ejecución en primer plano.'
 
-   background.join()    # Wait for the background task to finish
-   print 'Main program waited until background was done.'
+   seg_plano.join()    # esperar que termine la tarea en segundo plano
+   print 'El programa principal esperó hasta que el segundo plano estuviera \
+          listo.'
 
-The principal challenge of multi-threaded applications is coordinating threads
-that share data or other resources.  To that end, the threading module provides
-a number of synchronization primitives including locks, events, condition
-variables, and semaphores.
 
-While those tools are powerful, minor design errors can result in problems that
-are difficult to reproduce.  So, the preferred approach to task coordination is
-to concentrate all access to a resource in a single thread and then use the
-:mod:`Queue` module to feed that thread with requests from other threads.
-Applications using :class:`Queue.Queue` objects for inter-thread communication
-and coordination are easier to design, more readable, and more reliable.
+El desafío principal de las aplicaciones multihilo es la coordinación entre
+los hilos que comparten datos u otros recursos. A ese fin, el módulo threading
+provee una serie de primitivas de sincronización que incluyen locks, eventos,
+variables de condición, y semáforos.
+
+Aún cuando esas herramientas son poderosas, pequeños errores de diseño pueden
+resultar en problemas difíciles de reproducir. La forma preferida de coordinar
+tareas es concentrar todos los accesos a un recurso en un único hilo y después
+usar el módulo :mod:`Queue` para alimentar dicho hilo con pedidos desde otros
+hilos. Las aplicaciones que usan objetos :class:`Queue.Queue`
+para comunicación y coordinación entre hilos son más fáciles de diseñar,
+más legibles, y más confiables.
 
 
 .. _tut-logging:
 
-Logging
-=======
+Registro
+========
 
-The :mod:`logging` module offers a full featured and flexible logging system.
-At its simplest, log messages are sent to a file or to ``sys.stderr``::
+El módulo :mod:`logging` ofrece un sistema de registro (traza) completo y
+flexible. En su forma más simple, los mensajes de registro se envían a un
+archivo o a ``sys.stderr``::
 
    import logging
-   logging.debug('Debugging information')
-   logging.info('Informational message')
-   logging.warning('Warning:config file %s not found', 'server.conf')
-   logging.error('Error occurred')
-   logging.critical('Critical error -- shutting down')
+   logging.debug('Información de depuración')
+   logging.info('Mensaje informativo')
+   logging.warning('Atención: archivo de configuración %s no se encuentra', 
+                   'server.conf')
+   logging.error('Ocurrió un error')
+   logging.critical('Error crítico -- cerrando')
 
-This produces the following output::
+Ésta es la salida obtenida::
 
-   WARNING:root:Warning:config file server.conf not found
-   ERROR:root:Error occurred
-   CRITICAL:root:Critical error -- shutting down
+   WARNING:root:Atención: archivo de configuración server.conf no se encuentra
+   ERROR:root:Ocurrió un error
+   CRITICAL:root:Error crítico -- cerrando
 
-By default, informational and debugging messages are suppressed and the output
-is sent to standard error.  Other output options include routing messages
-through email, datagrams, sockets, or to an HTTP Server.  New filters can select
-different routing based on message priority: :const:`DEBUG`, :const:`INFO`,
-:const:`WARNING`, :const:`ERROR`, and :const:`CRITICAL`.
+De forma predeterminada, los mensajes de depuración e informativos se suprimen,
+y la salida se envía al error estándar. Otras opciones de salida incluyen
+mensajes de ruteo a través de correo electrónico, datagramas, sockets, o un
+servidor HTTP. Nuevos filtros pueden seleccionar diferentes rutas basadas en
+la prioridad del mensaje: :const:`DEBUG`, :const:`INFO`,
+:const:`WARNING`, :const:`ERROR`, and :const:`CRITICAL`
+(Depuración, Informativo, Atención, Error y Crítico respectivamente)
 
-The logging system can be configured directly from Python or can be loaded from
-a user editable configuration file for customized logging without altering the
-application.
+El sistema de registro puede configurarse directamente desde Python
+o puede cargarse la configuración desde un archivo editable por el usuario
+para personalizar el registro sin alterar la aplicación.
 
 
 .. _tut-weak-references:
 
-Weak References
-===============
+Referencias débiles
+===================
 
-Python does automatic memory management (reference counting for most objects and
-:term:`garbage collection` to eliminate cycles).  The memory is freed shortly
-after the last reference to it has been eliminated.
+Python realiza administración de memoria automática (cuenta de referencias
+para la mayoría de los objetos, y :term:`garbage collection` (recolección
+de basura) para eliminar ciclos). La memoria se libera poco después de que
+la última referencia a la misma haya sido eliminada.
 
-This approach works fine for most applications but occasionally there is a need
-to track objects only as long as they are being used by something else.
-Unfortunately, just tracking them creates a reference that makes them permanent.
-The :mod:`weakref` module provides tools for tracking objects without creating a
-reference.  When the object is no longer needed, it is automatically removed
-from a weakref table and a callback is triggered for weakref objects.  Typical
-applications include caching objects that are expensive to create::
+Esta estrategia funciona bien para la mayoría de las aplicaciones, pero
+ocasionalmente aparece la necesidad de hacer un seguimiento de objetos sólo
+mientras están siendo usados por alguien más. Desafortunadamente, el sólo
+hecho de seguirlos crea una referencia que los hace permanentes.
+
+El módulo :mod:`weakref` provee herramientas para seguimiento de objetos que
+no crean una referencia. Cuando el objeto no se necesita más, es eliminado
+automáticamente de una tabla de referencias débiles y se dispara una
+retrollamada (`callback`). Comúnmente se usa para mantener una `cache` de
+objetos que son caros de crear:
+
 
    >>> import weakref, gc
    >>> class A:
@@ -261,21 +282,18 @@ applications include caching objects that are expensive to create::
    ...     def __repr__(self):
    ...             return str(self.value)
    ...
-   >>> a = A(10)                   # create a reference
+   >>> a = A(10)                    # crear una referencia
    >>> d = weakref.WeakValueDictionary()
-   >>> d['primary'] = a            # does not create a reference
-   >>> d['primary']                # fetch the object if it is still alive
+   >>> d['primaria'] = a            # no crea una referencia
+   >>> d['primaria']                # traer el objeto si aún está vivo
    10
-   >>> del a                       # remove the one reference
-   >>> gc.collect()                # run garbage collection right away
+   >>> del a                        # eliminar la única referencia
+   >>> gc.collect()                 # recolección de basura justo ahora
    0
-   >>> d['primary']                # entry was automatically removed
+   >>> d['primaria']                # la entrada fue automáticamente eliminada
    Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>
-       d['primary']                # entry was automatically removed
-     File "C:/python26/lib/weakref.py", line 46, in __getitem__
-       o = self.data[key]()
-   KeyError: 'primary'
+     . . .
+   KeyError: 'primaria'
 
 
 .. _tut-list-tools:
@@ -291,7 +309,7 @@ El módulo :mod:`array` provee un objeto :class:`array()` (vector) que es como
 una lista que almacena sólo datos homogéneos y de una manera más compacta.  Los
 ejemplos a continuación muestran un vector de números guardados como dos
 números binarios sin signo de dos bytes (código de tipo ``"H"``) en lugar de
-los 16 bytes por elemento habituales en listas de objetos int de python::
+los 16 bytes por elemento habituales en listas de objetos int de Python::
 
    >>> from array import array
    >>> a = array('H', [4000, 10, 700, 22222])
@@ -331,14 +349,14 @@ listas ordenadas::
 
 El módulo :mod:`heapq` provee funciones para implementar heaps basados en
 listas comunes. El menor valor ingresado se mantiene en la posición cero.  Esto
-es útil para aplicaciones que acceden seguido al elemento más chico pero no
-quieren hacer una orden completo de la lista::
+es útil para aplicaciones que acceden a menudo al elemento más chico pero no
+quieren hacer un orden completo de la lista::
 
    >>> from heapq import heapify, heappop, heappush
    >>> datos = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
-   >>> heapify(datos)                      # acomodamos la lista a orden de heap
-   >>> heappush(datos, -5)                 # agregamos un elemento
-   >>> [heappop(datos) for i in range(3)]  # traemos los tres elementos más chicos
+   >>> heapify(datos)                     # acomodamos la lista a orden de heap
+   >>> heappush(datos, -5)                # agregamos un elemento
+   >>> [heappop(datos) for i in range(3)] # traemos los tres elementos menores
    [-5, 0, 1]
 
 
@@ -358,12 +376,12 @@ resultados coincidan con cálculos hechos a mano.
 
 Por ejemplo, calcular un impuesto del 5% de una tarifa telefónica de 70
 centavos da resultados distintos con punto flotante decimal y punto flotante
-binario. La diferencia se vuelve importante si los resultados se redondean al
-centavo más próximo::
+binario. La diferencia se vuelve significativa si los resultados se redondean
+al centavo más próximo::
 
    >>> from decimal import *
    >>> Decimal('0.70') * Decimal('1.05')
-   Decimal("0.7350")
+   Decimal('0.7350')
    >>> .70 * 1.05
    0.73499999999999999
 
@@ -377,7 +395,7 @@ La representación exacta permite a la clase :class:`Decimal` hacer cálculos de
 modulo y pruebas de igualdad que son inadecuadas para punto flotante binario::
 
    >>> Decimal('1.00') % Decimal('.10')
-   Decimal("0.00")
+   Decimal('0.00')
    >>> 1.00 % 0.10
    0.09999999999999995
 
@@ -386,10 +404,11 @@ modulo y pruebas de igualdad que son inadecuadas para punto flotante binario::
    >>> sum([0.1]*10) == 1.0
    False
 
-El módulo :mod:`decimal` provee aritmética con tanta precisión como haga falta::
+El módulo :mod:`decimal` provee aritmética con tanta precisión como
+haga falta::
 
    >>> getcontext().prec = 36
    >>> Decimal(1) / Decimal(7)
-   Decimal("0.142857142857142857142857142857142857")
+   Decimal('0.142857142857142857142857142857142857')
 
 

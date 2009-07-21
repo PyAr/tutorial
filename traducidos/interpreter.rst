@@ -136,11 +136,10 @@ entrada viene de un archivo, el programa termina con código de salida distinto
 a cero luego de imprimir la traza del error. (Las excepciones manejadas por una
 clausula :keyword:`except` en una sentecina a :keyword:`try` no son errores en
 este contexto). Algunos errores son incondicionalmente fatales y causan una
-terminación con código de salida distinto de cero; esto se debe
- ainconcistencias internas o a que
-el intérprete se queda sin memoria. Todos los mensajes de error se escriben en
-el flujo de errores estándar; las salidas normales de comandos ejecutados se
-escribe en la salida estándar.
+terminación con código de salida distinto de cero; esto se debe a 
+inconcistencias internas o a que el intérprete se queda sin memoria. 
+Todos los mensajes de error se escriben en el flujo de errores estándar; 
+las salidas normales de comandos ejecutados se escriben en la salida estándar.
 
 Al tipear el caracter de interrupción (por lo general Control-C o DEL) en el
 prompt primario o secundario, se cancela la entrada y retorna al promt

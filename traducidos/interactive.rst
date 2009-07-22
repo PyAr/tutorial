@@ -165,7 +165,7 @@ El mecanismo de completado podría usar la tabla de símbolos del intérprete.
 Un comando para verificar (o incluso sugerir) coincidencia de paréntesis,
 comillas, etc. también sería útil.
 
-.. rubric:: Notas
+.. rubric:: Footnotes
 
 .. [#] Python ejecutará el contenido de un archivo indicado por la variable de
    entorno :envvar:`PYTHONSTARTUP` cuando inicies un intérprete interactivo.

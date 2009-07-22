@@ -819,7 +819,7 @@ Ejemplos::
 
 
 
-.. rubric:: Notas al Pie
+.. rubric:: Footnotes
 
 .. [#] Excepto una cosita. Los objetos módulo tienen un atributo secreto de solo
    lectura llamado :attr:`__dict__` que devuelve el diccionario usado para

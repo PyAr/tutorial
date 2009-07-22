@@ -397,11 +397,10 @@ de texto::
 
 .. _tut-unicodestrings:
 
-Cadenas de Texto Unicode
+Cadenas de texto Unicode
 ------------------------
 
 .. sectionauthor:: Marc-Andre Lemburg <mal@lemburg.com>
-
 
 Desde la versión 2.0 de Python, se encuentra disponible un nuevo tipo de datos
 para que los programadores almacenen texto: el objeto Unicode. Puede ser usado
@@ -409,13 +408,12 @@ para almacenar y manipular datos Unicode (ver http://www.unicode.org/) y se
 integran bien con los objetos existentes para cadenas de texto, mediante
 auto-conversión cuando es necesario.
 
-Unicode tiene la ventaja de tener un número ordinal para cada carácter usando
-en cada script usando tanto en textos modernos como antiguos. Previamente,
-había solo 256 ordinales posibles para los caracteres en scripts. Los textos
-eran típicamente asociados a un código que mapea los ordinales a caracteres
-en scripts. Esto lleva a mucha confunión especialmente al internacionalizar
-(usualmente escrito como ``i18n`` --- ``'i'`` + 18 caracteres + ``'n'``)
-software. Unicode resuelve estos problemas definiendo una sola codificación
+Unicode tiene la ventaja de tener un número ordinal para cada carácter
+usado tanto en textos modernos como antiguos.  Previamente, había sólo
+256 ordinales posibles para los caracteres en scripts.  Los textos
+eran típicamente asociados a un código que relaciona los ordinales a caracteres
+en scripts.  Esto lleva a mucha confusión, especialmente al internacionalizar
+software.  Unicode resuelve estos problemas definiendo una sola codificación
 para todos los scripts.
 
 Crear cadenas Unicode en Python es tan simple como crear cadenas de texto
@@ -426,7 +424,7 @@ normales::
 
 La ``'u'`` al frente de la comilla indica que se espera una cadena Unicode. Si
 querés incluir caracteres especiales en la cadena, podés hacerlo usando una
-forma de escapar caracteres Unicode provista por Python. El siguiente ejemplo
+forma de escapar caracteres Unicode provista por Python.  El siguiente ejemplo
 muestra cómo::
 
    >>> u'¡Hola\u0020Mundo!'
@@ -451,7 +449,7 @@ use el modo de escape crudo de Unicode. Solo se aplicará la conversión
    >>> ur'Hola\\u0020Mundo!'
    u'¡Hola\\\\u0020Mundo!'
 
-El modo crudo es útil principalmente útil cuando tenés que insertar muchas
+El modo crudo es útil principalmente cuando tenés que insertar muchas
 barras invertidas, como puede suceder al trabajar con expresiones regulares.
 
 Además de estas codificaciones estándar, Python provee muchas más formas de
@@ -460,14 +458,14 @@ crear cadenas de texto Unicode en las bases de codificaciones conocidas.
 .. index:: builtin: unicode
 
 La función predefinida :func:`unicode` da acceso a todos los codecs
-(CODificadores y DECodificadoes). Algunos de las codificaciones más conocidas
+(CODificadores y DECodificadores).  Algunos de los códigos más conocidos
 que estos codecs pueden convertir son *Latin-1*, *ASCII*, *UTF-8*, y *UTF-16*.
-Las dos últimas son codificaciones de longitud variable que almacenan cada
-carácter Unicode en uno o más bytes. La codificación por defecto es normalmente
-seteada a ASCII, que contiene los caracteres del rango 0-127 y rechaza
-cualquier otro con un error. Cuando una cadena Unicode se imprime, escribe en
+Los dos últimas son códigos de longitud variable que almacenan cada
+carácter Unicode en uno o más bytes.  El código por defecto es normalmente
+configurado a ASCII, que contiene los caracteres del rango 0-127 y rechaza
+cualquier otro con un error.  Cuando una cadena Unicode se imprime, escribe en
 un archivo, o se convierte con la función :func:`str`, se realiza la conversión
-utilizando la codificación por defecto. ::
+utilizando el código por defecto. ::
 
    >>> u"abc"
    u'abc'
@@ -480,17 +478,17 @@ utilizando la codificación por defecto. ::
      File "<stdin>", line 1, in ?
    UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-2: ordinal not in range(128)
 
-Para convertir una cadena Unicode en una cadena de 8-bit utilizando una
-codificación en particular, los objetos Unicode tienen un método :func:`encode`
-que toma un argumento, el nombre de la codificación. Se prefieren los nombres
-en minúsculas para los nombres de las codificaciones. ::
+Para convertir una cadena Unicode en una cadena de 8-bit utilizando un
+código en particular, los objetos Unicode tienen un método :func:`encode`
+que toma un argumento, el nombre del código. Se prefieren los nombres
+en minúsculas para los nombres de los códigos. ::
 
    >>> u"äöü".encode('utf-8')
    '\xc3\xa4\xc3\xb6\xc3\xbc'
 
-Si tenés datos en una codificación en particular y querés producir la cadena
+Si tenés datos en un código en particular y querés producir la cadena
 Unicode correspondiente, podés usar la función :func:`unicode` con el nombre
-de la codificación como segundo argumento. ::
+del código como segundo argumento. ::
 
    >>> unicode('\xc3\xa4\xc3\xb6\xc3\xbc', 'utf-8')
    u'\xe4\xf6\xfc'
@@ -502,15 +500,15 @@ Listas
 ------
 
 Python tiene varios tipos de datos *compuestos*, usados para agrupar otros
-valores. El más versátil es la *lista*, la cual puede ser escrita como una
-lista de valores separados por coma (ítems) entre corchetes. No es necesario
+valores.  El más versátil es la *lista*, la cual puede ser escrita como una
+lista de valores separados por coma (ítems) entre corchetes.  No es necesario
 que los ítems de una lista tengan todos el mismo tipo. ::
 
    >>> a = ['pan', 'huevos', 100, 1234]
    >>> a
    ['pan', 'huevos', 100, 1234]
 
-Cómo los índices de las cadenas de texto, los índices de las listas comienzan
+Como los índices de las cadenas de texto, los índices de las listas comienzan
 en 0, y las listas pueden ser rebanadas, concatenadas y todo lo demás::
 
    >>> a[0]
@@ -523,8 +521,8 @@ en 0, y las listas pueden ser rebanadas, concatenadas y todo lo demás::
    ['huevos', 100]
    >>> a[:2] + ['carne', 2*2]
    ['pan', 'huevos', 'carne', 4]
-   >>> 3*a[:3] + ['¡Boo!']
-   ['pan', 'huevos', 100, 'pan', 'huevos', 100, 'pan', 'huevos', 100, '¡Boo!']
+   >>> 3*a[:3] + ['Boo!']
+   ['pan', 'huevos', 100, 'pan', 'huevos', 100, 'pan', 'huevos', 100, 'Boo!']
 
 A diferencia de las cadenas de texto, que son *inmutables*, es posible cambiar
 un elemento individual de una lista::
@@ -583,16 +581,16 @@ ejemplo::
    [2, 3, 'extra']
 
 Notá que en el último ejemplo, ``p[1]`` y ``q`` ¡realmente hacen referencia
-al mismo objeto! Volveremos a la *semántica de los objetos* más adelante.
+al mismo objeto!  Volveremos a la *semántica de los objetos* más adelante.
 
 
 .. _tut-firststeps:
 
-Primeros Pasos Hacia la Programación
+Primeros pasos hacia la programación
 ====================================
 
 Por supuesto, podemos usar Python para tareas más complicadas que sumar dos
-y dos. Por ejemplo, podemos escribir una subsecuencia inicial de la serie de
+y dos.  Por ejemplo, podemos escribir una subsecuencia inicial de la serie de
 *Fibonacci* así::
 
    >>> # Series de Fibonacci:
@@ -612,38 +610,39 @@ y dos. Por ejemplo, podemos escribir una subsecuencia inicial de la serie de
 Este ejemplo introduce varias características nuevas.
 
 * La primer línea contiene una *asignación múltiple*: las variables``a`` y
-  ``b`` toman en forma simultanea los nuevos valores 0 y 1. En la última lìnea
-  esto es vuelto a usar, demostrando que la expresión a la derecha son todas
-  evaluadas antes de que suceda cualquier asignación. Las expresiones a la
+  ``b`` toman en forma simultanea los nuevos valores 0 y 1.  En la última linea
+  esto es vuelto a usar, demostrando que las expresiones a la derecha son
+  evaluadas antes de que suceda cualquier asignación.  Las expresiones a la
   derecha son evaluadas de izquierda a derecha.
 
 * El bucle :keyword:`while` se ejecuta mientras la condición (aquí: ``b < 10``)
   sea verdadera.  En Python, como en C, cualquier entero distinto de cero es
-  verdadero; cero es falso. La condición también puede ser una cadena de texto
+  verdadero; cero es falso.  La condición también puede ser una cadena de texto
   o una lista, de hecho cualquier secuencia; cualquier cosa con longitud
-  distinta de cero es verdadero, las secuencias vacías son falso. La prueba
-  usada en el ejemplo es una comparación simple. Los operadores estándar de
+  distinta de cero es verdadero, las secuencias vacías son falsas.  La prueba
+  usada en el ejemplo es una comparación simple.  Los operadores estándar de
   comparación se escriben igual que en C: ``<`` (menor qué), ``>`` (mayor qué),
   ``==`` (igual a), ``<=`` (menor o igual qué), ``>=`` (mayor o igual qué) y
   ``!=`` (distinto a).
 
-* El *cuerpo* del bucle está *identado*: la identación es la forma que usa
-  Python para agrupar declaraciones. Python (¡aún!) no provee una facilidad
-  inteligente para editar líneas, así que debés tipear un tab o espacio(s) para
-  cada línea identada. En la práctica vas a preparar entradas más complicadas
-  para Python con un editor de texto; la mayoría de los editores de texto
-  tienen la facilidad de auto identar. Al entrar una declaración compuesta en
-  forma interactiva, debés finalizar con una línea en blanco para indicar qué
-  está completa (ya que el analizador no puede adivinar cuando tipeaste la
-  última línea). Notá que cada línea de un bloque básico debe estar identada
+* El *cuerpo* del bucle está *sangrado*: la sangría es la forma que usa
+  Python para agrupar declaraciones.  El intérprete interactivo de Python
+  (¡aún!) no provee una facilidad inteligente para editar líneas, así que
+  debés teclear un tab o espacio(s) para cada línea sangrada.  En la práctica
+  vas a preparar entradas más complicadas para Python con un editor de
+  texto; la mayoría de los editores de texto tienen la facilidad de
+  agregar la sangría automáticamente.  Al ingresar una declaración compuesta en
+  forma interactiva, debés finalizar con una línea en blanco para indicar que
+  está completa (ya que el analizador no puede adivinar cuando tecleaste la
+  última línea).  Notá que cada línea de un bloque básico debe estar sangrada
   de la misma forma.
 
 * La declaración :keyword:`print` escribe el valor de la o las expresiones que
-  se le pasan. Difiere se simplemente escribir la expresión que se quiere
+  se le pasan.  Difiere de simplemente escribir la expresión que se quiere
   mostrar (como hicimos antes en los ejemplos de la calculadora) en la forma
-  en que maneja múltiples expresiones y cadenas. Las cadenas de texto son
+  en que maneja múltiples expresiones y cadenas.  Las cadenas de texto son
   impresas sin comillas, y un espacio en blanco es insertado entre los
-  elementos, así podés formatear cosas de una forma agradable, así::
+  elementos, así podés formatear cosas de una forma agradable::
 
      >>> i = 256*256
      >>> print 'El valor de i es', i

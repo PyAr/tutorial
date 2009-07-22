@@ -362,87 +362,94 @@ con esta nueva lista de argumentos.
 
 .. _tut-remarks:
 
-Random Remarks
-==============
+Algunas observaciones
+=====================
 
-.. These should perhaps be placed more carefully...
+.. Tal vez se podrían colocar más cuidadosamente...
 
-Data attributes override method attributes with the same name; to avoid
-accidental name conflicts, which may cause hard-to-find bugs in large programs,
-it is wise to use some kind of convention that minimizes the chance of
-conflicts.  Possible conventions include capitalizing method names, prefixing
-data attribute names with a small unique string (perhaps just an underscore), or
-using verbs for methods and nouns for data attributes.
+Los atributos de datos tienen preferencia sobre los métodos con el mismo
+nombre; para evitar conflictos de nombre accidentales, que pueden causar
+errores difíciles de encontrar en programas grandes, es prudente usar algún
+tipo de convención que minimice las posibilidades de dichos conflictos.
+Algunas convenciones pueden ser poner los nombres de métodos con mayúsculas,
+prefijar los nombres de atributos de datos con una pequeña cadena única (a lo
+mejor sólo un guión bajo), o usar verbos para los métodos y sustantivos para
+los atributos.
 
-Data attributes may be referenced by methods as well as by ordinary users
-("clients") of an object.  In other words, classes are not usable to implement
-pure abstract data types.  In fact, nothing in Python makes it possible to
-enforce data hiding --- it is all based upon convention.  (On the other hand,
-the Python implementation, written in C, can completely hide implementation
-details and control access to an object if necessary; this can be used by
-extensions to Python written in C.)
+A los atributos de datos los pueden referenciar tanto los métodos como los
+usuarios ("clientes") ordinarios de un objeto.  En otras palabras, las clases
+no se usan para implementar tipos de datos abstractos puros.  De hecho, en
+Python no hay nada que haga que se cumpla el ocultamiento de datos --- todo se
+basa en convención.  (Por otro lado, la implementación de Python, escrita en C,
+puede ocultar por completo detalles de implementación y el control de acceso a
+un objeto si es necesario; esto se puede usar en extensiones a Python escritas
+en C.)
 
-Clients should use data attributes with care --- clients may mess up invariants
-maintained by the methods by stamping on their data attributes.  Note that
-clients may add data attributes of their own to an instance object without
-affecting the validity of the methods, as long as name conflicts are avoided ---
-again, a naming convention can save a lot of headaches here.
+Los clientes deben usar los atributos de datos con cuidado --- éstos pueden
+romper invariantes que mantenienen los métodos si pisan los atributos de datos.
+Observá que los clientes pueden añadir sus propios atributos de datos a una
+instancia sin afectar la validez de sus métodos, siempre y cuando se eviten
+conflictos de nombres --- de nuevo, una convención de nombres puede ahorrar
+un montón de dolores de cabeza.
 
-There is no shorthand for referencing data attributes (or other methods!) from
-within methods.  I find that this actually increases the readability of methods:
-there is no chance of confusing local variables and instance variables when
-glancing through a method.
+No hay un atajo para referenciar atributos de datos (¡u otros métodos!) desde
+dentro de un método.  A mi parecer, esto en realidad aumenta la legibilidad de
+los métodos: no existe posibilidad alguna de confundir variables locales con
+variables de instancia cuando repasamos un método.
 
-Often, the first argument of a method is called ``self``.  This is nothing more
-than a convention: the name ``self`` has absolutely no special meaning to
-Python.  (Note, however, that by not following the convention your code may be
-less readable to other Python programmers, and it is also conceivable that a
-*class browser* program might be written that relies upon such a convention.)
+A menudo, el primer argumento de un método se llama ``self`` (uno mismo).  Esto
+no es nada más que una convención: el nombre ``self`` no significa nada en
+especial para Python.  (Observá que, sin embargo, si no seguís la convención tu
+código puede resultar menos legible a otros programadores de Python, y puede
+llegar a pasar que un programa *navegador de clases* pueda escribirse de una
+manera que dependa de dicha convención.)
 
-Any function object that is a class attribute defines a method for instances of
-that class.  It is not necessary that the function definition is textually
-enclosed in the class definition: assigning a function object to a local
-variable in the class is also ok.  For example::
+Cualquier objeto función que es un atributo de clase define un método para
+instancias de esa clase.  No es necesario que el la definición de la función
+esté textualmente dentro de la definición de la clase: asignando un objeto
+función a una variable local en la clase también está bien.  Por ejemplo::
 
-   # Function defined outside the class
+   # Función definida fuera de la clase
    def f1(self, x, y):
        return min(x, x+y)
 
    class C:
        f = f1
        def g(self):
-           return 'hello world'
+           return 'hola mundo'
        h = g
 
-Now ``f``, ``g`` and ``h`` are all attributes of class :class:`C` that refer to
-function objects, and consequently they are all methods of instances of
-:class:`C` --- ``h`` being exactly equivalent to ``g``.  Note that this practice
-usually only serves to confuse the reader of a program.
+Ahora ``f``, ``g`` y ``h`` son todos atributos de la clase :class:`C` que hacen
+referencia a objetos función, y consecuentemente son todos métodos de las
+instancias de :class:`C` --- ``h`` siendo exactamente equivalente a ``g``.
+Fijate que esta práctica normalmente sólo sirve para confundir al que lea un
+programa.
 
-Methods may call other methods by using method attributes of the ``self``
-argument::
+Los métodos pueden llamar a otros métodos de la instancia usando el argumento
+``self``::
 
-   class Bag:
+   class Bolsa:
        def __init__(self):
-           self.data = []
-       def add(self, x):
-           self.data.append(x)
-       def addtwice(self, x):
-           self.add(x)
-           self.add(x)
+           self.datos = []
+       def agregar(self, x):
+           self.datos.append(x)
+       def dobleagregar(self, x):
+           self.agregar(x)
+           self.agregar(x)
 
-Methods may reference global names in the same way as ordinary functions.  The
-global scope associated with a method is the module containing the class
-definition.  (The class itself is never used as a global scope!)  While one
-rarely encounters a good reason for using global data in a method, there are
-many legitimate uses of the global scope: for one thing, functions and modules
-imported into the global scope can be used by methods, as well as functions and
-classes defined in it.  Usually, the class containing the method is itself
-defined in this global scope, and in the next section we'll find some good
-reasons why a method would want to reference its own class!
+Los métodos pueden referenciar nombres globales de la misma manera que lo hacen
+las funciones comunes.  El alcance global asociado a un método es el módulo que
+contiene la definición de la clase.  (¡La clase misma nunca se usa como un
+alcance global!) Si bien es raro encontrar una buena razón para usar datos
+globales en un método, hay muchos usos legítimos del alcance global: por lo
+menos, las funciones y módulos importados en el alcance global pueden usarse
+por los métodos, al igual que las funciones y clases definidas en él.
+Habitualmente, la clase que contiene el método está definida en este alcance
+global, y en la siguiente sección ¡veremos algunas buenas razones por las que
+un método querría referenciar a su propia clase!
 
-Each value is an object, and therefore has a *class* (also called its *type*).
-It is stored as ``object.__class__``.
+Todo valor es un objeto, y por lo tanto tiene una *clase* (también llamado su
+*tipo*). Ésta se almacena como ``objeto.__class__``.
 
 
 .. _tut-inheritance:

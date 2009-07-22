@@ -590,37 +590,39 @@ as when referencing ``__dict__`` directly.
 
 .. _tut-odds:
 
-Odds and Ends
-=============
+Cambalache
+==========
 
-Sometimes it is useful to have a data type similar to the Pascal "record" or C
-"struct", bundling together a few named data items.  An empty class definition
-will do nicely::
+A veces es útil tener un tipo de datos similar al "registro" de Pascal o la
+"estructura" de C, que sirva para juntar algunos pocos items con nombre.  Una
+definición de clase vacía funcionará perfecto::
 
-   class Employee:
+   class Empleado:
        pass
 
-   john = Employee() # Create an empty employee record
+   juan = Empleado() # Crear un registro de empleado vacío
 
-   # Fill the fields of the record
-   john.name = 'John Doe'
-   john.dept = 'computer lab'
-   john.salary = 1000
+   # Llenar los campos del registro
+   juan.nombre = 'Juan Pistola'
+   juan.depto = 'laboratorio de computación'
+   juan.salario = 1000
 
-A piece of Python code that expects a particular abstract data type can often be
-passed a class that emulates the methods of that data type instead.  For
-instance, if you have a function that formats some data from a file object, you
-can define a class with methods :meth:`read` and :meth:`readline` that get the
-data from a string buffer instead, and pass it as an argument.
+Algún código Python que espera un tipo abstracto de datos en particular
+puede frecuentemente recibir en cambio una clase que emula los métodos de aquel
+tipo de datos.  Por ejemplo, si tenés una función que formatea algunos
+datos a partir de un objeto archivo, podés definir una clase con métodos
+:meth:`read` y :meth:`readline` que obtengan los datos de alguna cadena en
+memoria intermedia, y pasarlo como argumento.
 
-.. (Unfortunately, this technique has its limitations: a class can't define
-   operations that are accessed by special syntax such as sequence subscripting
-   or arithmetic operators, and assigning such a "pseudo-file" to sys.stdin will
-   not cause the interpreter to read further input from it.)
-
-Instance method objects have attributes, too: ``m.im_self`` is the instance
-object with the method :meth:`m`, and ``m.im_func`` is the function object
-corresponding to the method.
+.. (Desafortunadamente esta técnica tiene sus limitaciones: una clase no
+   puede definir operaciones que sean accedidas por sintaxis especiales tales
+   como indexado de secuencias u operaciones aritméticas, y asignar un
+   pseudo-archivo a sys.stdin no causará que el intérprete continúe leyendo
+   desde ahí.)
+   
+Los objetos método de instancia tienen atributos también: ``m.im_self`` es
+el objeto instancia con el método :meth:`m`, y ``m.im_func`` es el objeto
+función correspondiente al método.
 
 
 .. _tut-exceptionclasses:

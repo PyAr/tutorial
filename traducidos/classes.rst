@@ -165,110 +165,111 @@ que ciertas variables viven en el alcance global.)
 
 .. _tut-firstclasses:
 
-Un Primer Vistazo a las Clases
+Un primer vistazo a las clases
 ==============================
 
-Las clases agregan un poco de sintaxis nueva, tres nuevos tipos de objetos y
-algo de semántica nueva.
+Las clases introducen un poquito de sintaxis nueva, tres nuevos tipos de
+objetos y algo de semántica nueva.
 
 
 .. _tut-classdefinition:
 
-Syntaxis de Definición de Clases
+Sintaxis de definición de clases
 --------------------------------
 
 La forma más sencilla de definición de clase se ve así::
 
-   class NombreDeClase:
-       <sentencia-1>
+   class Clase:
+       <declaración-1>
        .
        .
        .
-       <sentencia-N>
+       <declaración-N>
 
-Las definiciones de clases, tal como las definiciones de funciones (sentencias
-:keyword:`def`) deben ser ejecutadas antes de que tengan algún efecto.  (Si
-quisieras podrías colocar una definición de clase en un bloque de una sentencia
+Las definiciones de clases, al igual que las definiciones de funciones
+(instrucciones :keyword:`def`) deben ejecutarse antes de que tengan efecto
+alguno.  (Es concebible poner una definición de clase dentro de una rama de un
 :keyword:`if`, o dentro de una función.)
 
-En la práctica, las sentencias dentro de una definición de clase generalmente
-serán definiciones de funciones, pero se permiten otras sentencias y a veces
-son útiles --- veremos esto más adelante.  Las definiciones de funciones dentro
-de una clase normalmente tienen una forma peculiar de lista de argumentos, que
-está dada por las convenciones de llamadas para los métodos --- esto también
-será explicado luego. 
+En la práctica, las declaraciones dentro de una clase son definiciones de
+funciones, pero otras declaraciones son permitidas, y a veces resultan útiles
+--- veremos esto más adelante.  Las definiciones de funciones dentro de una
+clase normalmente tienen una lista de argumentos peculiar, dictada por las
+convenciones de invocación de métodos --- a esto también lo vemos más adelante.
 
-Cuando se ingresa a una definición de clase, se crea un nuevo espacio de nombres,
-y es usado como el ámbito local --- por lo tanto, todas las asignaciones a variables
-locales quedan dentro de este nuevo espacio de nombres.  En particular, las
-definiciones de funciones enlazan el nombre de la nueva función aquí.
+Cuando se ingresa una definición de clase, se crea un nuevo espacio de nombres,
+el cual se usa como alcance local --- por lo tanto, todas las asignaciones a
+variables locales van a este nuevo espacio de nombres.  En particular, las
+definiciones de funciones asocian el nombre de las funciones nuevas allí.
 
-Cuando se sale normalmente de la definición de una clase (por el final), se crea un
-*objeto clase*.  Esto es básicamente un envoltorio de los contenidos del espacio de
-nombres creado por la definición de clase; veremos más sobre los objetos clase en
-la próxima sección.  El ámbito local original (el que estaba en efecto justo antes
-de ingresar a la definición de clase) se restaura, y el objeto clase se enlaza aquí
-al nombre de la clase dado en el encabezado de la definición de clase
-(:class:`NombreDeClase` en el ejemplo).
-
+Cuando una definición de clase se finaliza normalmente se crea un
+*objeto clase*. Básicamente, este objeto envuelve los contenidos del espacio
+de nombres creado por la definición de la clase; aprenderemos más acerca de los
+objetos clase en la sección siguiente.  El alcance local original (el que tenía
+efecto justo antes de que ingrese la definición de la clase) es reinstaurado, y
+el objeto clase se asocia allí al nombre que se le puso a la clase en el
+encabezado de su definición (:class:`Clase` en el ejemplo).
 
 .. _tut-classobjects:
 
-Objetos Clase
+Objetos clase
 -------------
 
 Los objetos clase soportan dos tipos de operaciones: referenciar atributos e
 instanciación.
 
-Para *referenciar atributos* se usa la sintaxis estandard que es usada para todas las
-referencias a atributos en Python: ``objeto.nombre``.  Nombres válidos de atributos
-son todos los nombres que estaban en el espacio de nombre de la clase en el momento
-que el objeto clase fue creado.  Por lo tanto, si la definición de clase fuera así::
+Para *referenciar atributos* se usa la sintaxis estándar de todas las
+referencias a atributos en Python: ``objeto.nombre``.  Los nombres de atributo
+válidos son todos los nombres que estaban en el espacio de nombres de la clase
+cuando ésta se creó.  Por lo tanto, si la definición de la clase es así::
 
    class MiClase:
-       "Una clase de ejemplo simple"
+       "Simple clase de ejemplo"
        i = 12345
        def f(self):
            return 'hola mundo'
 
-entonces ``MiClase.i`` y ``MiClase.f`` son referencias de atributos válidas, que
-devuelven un entero y un objeto función, respectivamente. También se le puede
-asignar a los atributos de clase, asi que podés cambiar el valor de ``MiClase.i``
-mediante la asignación.  :attr:`__doc__` es también un atributo válido, que
-devuelve el docstring que pertenece a la clase: ``"Una clase de ejemplo simple"``.
+entonces ``MiClase.i`` y ``MiClase.f`` son referencias de atributos válidas,
+que devuelven un entero y un objeto función respectivamente. Los atributos de
+clase también pueden ser asignados, o sea que podés cambiar el valor de
+``MiClase.i`` mediante asignación.
+:attr:`__doc__` también es un atributo válido, que devuelve la documentación
+que asociada a la clase: ``"Simple clase de ejemplo"``.
 
-La *instanciación* de clase usa notación de función.  Tan solo hacé de cuenta
-que el objeto clase es una función que no recibe parámetros, y que devuelve una 
-nueva instancia de la clase.
-Por ejemplo (asumiendo la clase anterior)::
+La *instanciación* de clases usa la notación de funciones.  Hacé de cuenta que
+el objeto de clase es una función sin parámetros que devuelve una nueva
+instancia de la clase.
+Por ejemplo (para la clase de más arriba)::
 
    x = MiClase()
 
-crea un nueva *instancia* de la clase y asigna este objeto a la variable
-local ``x``.
+crea una nueva *instancia* de la clase y asigna este objeto a la variable local
+``x``.
 
-La operación de instanciación ("llamar" a un objeto clase) crea un objeto vacío.
-Muchas clases desean crear objetos con instancias personalizadas con un estado
-inicial específico.  Por lo tanto la clase puede definir un método especial
+La operación de instanciación ("llamar" a un objeto clase) crea un objeto
+vacío. Muchas clases necesitan crear objetos con instancias en un estado
+inicial particular. Por lo tanto una clase puede definir un método especial
 llamado :meth:`__init__`, de esta forma::
 
    def __init__(self):
        self.datos = []
 
-Cuando una clase define un método :meth:`__init__`, la instanciación de clase
-automáticamente invoca a :meth:`__init__` para la instancia de clase recién creada.
-Entonces en este ejemplo, una instancia nueva e inicializada puede ser obtenida así::
+Cuando una clase define un método :meth:`__init__`, la instanciación de la
+clase automáticamente invoca a :meth:`__init__` para la instancia recién
+creada.  Entonces, en este ejemplo, una instancia nueva e inicializada se puede
+obtener haciendo::
 
    x = MiClase()
 
 Por supuesto, el método :meth:`__init__` puede tener argumentos para mayor
-flexibilidad. En tal caso, los argumentos dados al operador de instanciación de clase
-son pasados a su vez a :meth:`__init__`.  Por ejemplo, ::
+flexibilidad.  En ese caso, los argumentos que se pasen al operador de
+instanciación de la clase van a parar al método :meth:`__init__`.  Por
+ejemplo, ::
 
    >>> class Complejo:
-   ...     def __init__(self, partereal, parteimag):
+   ...     def __init__(self, partereal, parteimaginaria):
    ...         self.r = partereal
-   ...         self.i = parteimag
+   ...         self.i = parteimaginaria
    ...
    >>> x = Complejo(3.0, -4.5)
    >>> x.r, x.i

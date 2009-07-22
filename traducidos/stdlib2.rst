@@ -1,5 +1,5 @@
-﻿.. _tut-brieftourtwo:
-
+.. _tut-brieftourtwo:
+    
 **************************************************************
 Pequeño paseo por la Biblioteca Estándar - Parte II
 **************************************************************

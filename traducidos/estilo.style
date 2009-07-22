@@ -38,6 +38,14 @@
       "borderWidth": 0.5,
       "spaceBefore": 12,
       "spaceAfter": 6
+    }],
+     [ "endnote", {
+         "parent": "bodytext",
+         "commands": [
+            [ "VALIGN", [ 0, 0 ], [ -1, -1 ], "TOP" ],
+            [ "ALIGNMENT", [ 0, 0 ], [ 1, -1 ], "RIGHT" ]
+        ],
+        "colWidths": ["1cm",null]
     }]
   ]
 }

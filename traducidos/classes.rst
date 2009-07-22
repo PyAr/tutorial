@@ -347,12 +347,12 @@ En nuestro ejemplo, la llamada ``x.f()`` es exáctamente equivalente a
 es equivalente a llamar a la función correspondiente con una lista de argumentos
 que es creada insertando el objeto del método antes del primer argumento.
 
-Si aún no comprendes como funcionan los métodos, un vistazo a la implementación
+Si aún no comprendés como funcionan los métodos, un vistazo a la implementación
 puede ayudar a clarificar este tema. Cuando un atributo de instancia es
 referenciado y no es un atributo de datos, se busca dentro de su clase. Si
 el nombre denota un atributo de clase válido que es un objeto función, un método 
-objeto es creado juntando (punteros a) el objeto instancia y el objeto función
-que ha sido encontrado. Este objeto abstracto creado de la junta es el objeto
+objeto es creado, juntando (punteros a) el objeto instancia y el objeto función
+que ha sido encontrado. Este objeto abstracto creado de esta unión es el objeto
 método. Cuando el objeto método es llamado con una lista de argumentos, es
 nuevamente desempacado, una lista de argumentos nueva es construida a partir del
 objeto instancia y la lista de argumentos original, y el objeto función es llamado
@@ -674,30 +674,30 @@ converted to a string using the built-in function :func:`str`.
 
 .. _tut-iterators:
 
-Iterators
-=========
+Iteradores
+==========
 
-By now you have probably noticed that most container objects can be looped over
-using a :keyword:`for` statement::
+Es probable que hayas notado que la mayoría de los objetos contenedores pueden
+ser recorridos usando una sentencia :keyword:`for`::
 
-   for element in [1, 2, 3]:
-       print element
-   for element in (1, 2, 3):
-       print element
-   for key in {'one':1, 'two':2}:
-       print key
-   for char in "123":
-       print char
-   for line in open("myfile.txt"):
-       print line
+   for elemento in [1, 2, 3]:
+       print elemento
+   for elemento in (1, 2, 3):
+       print elemento
+   for clave in {'uno':1, 'dos':2}:
+       print clave
+   for caracter in "123":
+       print caracter
+   for linea in open("miarchivo.txt"):
+       print linea
 
-This style of access is clear, concise, and convenient.  The use of iterators
-pervades and unifies Python.  Behind the scenes, the :keyword:`for` statement
-calls :func:`iter` on the container object.  The function returns an iterator
-object that defines the method :meth:`next` which accesses elements in the
-container one at a time.  When there are no more elements, :meth:`next` raises a
-:exc:`StopIteration` exception which tells the :keyword:`for` loop to terminate.
-This example shows how it all works::
+Este estilo de acceso es limpio, conciso y conveniente.  El uso de iteradores
+está impregnado y unifica a Python.  Detrás de bambalinas, la sentencia :keyword:`for`
+llama a :func:`iter` en el objeto contenedor.  La función devuelve un objeto
+iterador que define el método :meth:`next` que accede elementos en el contenedor
+de a uno por vez.  Cuando no hay más elementos, :meth:`next` levanta una
+excepción :exc:`StopIteration` que le avisa al bucle del :keyword:`for` que
+hay que terminar. Este ejemplo muestra como funciona todo esto::
 
    >>> s = 'abc'
    >>> it = iter(s)
@@ -716,26 +716,26 @@ This example shows how it all works::
        it.next()
    StopIteration
 
-Having seen the mechanics behind the iterator protocol, it is easy to add
-iterator behavior to your classes.  Define a :meth:`__iter__` method which
-returns an object with a :meth:`next` method.  If the class defines
-:meth:`next`, then :meth:`__iter__` can just return ``self``::
+Habiendo visto la mecánica del protocolo de iteración, es fácil agregar
+comportamiento de iterador a tus clases.  Definí un método :meth:`__iter__`
+que devuelva un objeto con un método :meth:`next`.  Si la clase define
+:meth:`next`, entonces alcanza con que :meth:`__iter__` devuelva ``self``::
 
-   class Reverse:
-       "Iterator for looping over a sequence backwards"
-       def __init__(self, data):
-           self.data = data
-           self.index = len(data)
+   class Reversa:
+       "Iterador para recorrer una secuencia marcha atrás"
+       def __init__(self, datos):
+           self.datos = datos
+           self.indice = len(datos)
        def __iter__(self):
            return self
        def next(self):
-           if self.index == 0:
+           if self.indice == 0:
                raise StopIteration
-           self.index = self.index - 1
-           return self.data[self.index]
+           self.indice = self.indice - 1
+           return self.datos[self.indice]
 
-   >>> for char in Reverse('spam'):
-   ...     print char
+   >>> for letra in Reversa('spam'):
+   ...     print letra
    ...
    m
    a
@@ -791,7 +791,7 @@ Expresiones Generadoras
 
 Algunos generadores simples pueden ser codificados concisamente como
 expresiones usando una sintaxis similar a las listas por comprensión pero con
-paréntesis en vez de corchetes.  Estas expresiones son designadas para
+paréntesis en vez de corchetes.  Estas expresiones se utilizan en
 situaciones donde el generador es usado inmediatamente por una función que
 lo contiene.  Las expresiones generadoras son más compactas pero menos
 versátiles que definiciones completas de generadores, y tienden a utilizar

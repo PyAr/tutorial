@@ -511,7 +511,7 @@ anónimas. Esta es una función que retorna la suma de sus dos argumentos:
 lugar que se requieran funciones. Semánticamente, son solo azúcar sintáctica
 para la definición de funciones. Cómo en la definición de funciones anidadas,
 las formas con lambda pueden referenciar variables del ámbito en el que son
-contenidas:::
+contenidas::
 
    >>> def hacer_incrementador(n):
    ...     return lambda x: x + n

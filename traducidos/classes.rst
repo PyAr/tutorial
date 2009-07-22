@@ -625,27 +625,27 @@ corresponding to the method.
 
 .. _tut-exceptionclasses:
 
-Exceptions Are Classes Too
-==========================
+Las excepciones son clases también
+==================================
 
-User-defined exceptions are identified by classes as well.  Using this mechanism
-it is possible to create extensible hierarchies of exceptions.
+Las excepciones definidas por el usuario son identificadas por clases también.
+Usando este mecanismo es posible crear jerarquías extensibles de excepciones::
 
-There are two new valid (semantic) forms for the raise statement::
+Hay dos nuevas formas (semánticas) válidas para la sentencia raise::
 
-   raise Class, instance
+   raise Clase, instancia
 
-   raise instance
+   raise instancia
 
-In the first form, ``instance`` must be an instance of :class:`Class` or of a
-class derived from it.  The second form is a shorthand for::
+En la primera forma, ``instancia`` debe ser una instancia de :class:`Clase` o
+de una clase derivada de ella.  La segunda forma es una abreviatura de::
 
-   raise instance.__class__, instance
+   raise instancia.__class__, instance
 
-A class in an except clause is compatible with an exception if it is the same
-class or a base class thereof (but not the other way around --- an except clause
-listing a derived class is not compatible with a base class).  For example, the
-following code will print B, C, D in that order::
+Una clase en una cláusula except es compatible con una excepción si es de la misma
+clase o una clase base de la misma (pero no al revés --- una cláusula except
+listando una clase derivada no es compatible con una clase base).  Por ejemplo,
+el siguiente código imprimirá B, C, D en ese orden::
 
    class B:
        pass
@@ -664,12 +664,13 @@ following code will print B, C, D in that order::
        except B:
            print "B"
 
-Note that if the except clauses were reversed (with ``except B`` first), it
-would have printed B, B, B --- the first matching except clause is triggered.
+Notar que si la cláusulas except fueran invertidas (dejando ``except B`` al
+principio), habría impreso B, B, B --- la primera cláusula except que coincide
+es disparada.
 
-When an error message is printed for an unhandled exception, the exception's
-class name is printed, then a colon and a space, and finally the instance
-converted to a string using the built-in function :func:`str`.
+Cuando un mensaje de error se imprime para una excepción sin atrapar, se imprime
+el nombre de la clase de la excepción, luego dos puntos y un espacio y
+finalmente la instancia convertida a un string usando la función built-in :func:`str`.
 
 
 .. _tut-iterators:

@@ -454,112 +454,117 @@ Todo valor es un objeto, y por lo tanto tiene una *clase* (también llamado su
 
 .. _tut-inheritance:
 
-Inheritance
-===========
+Herencia
+========
 
-Of course, a language feature would not be worthy of the name "class" without
-supporting inheritance.  The syntax for a derived class definition looks like
-this::
+Por supuesto, una característica del lenguaje no sería digna del nombre "clase"
+si no soporta herencia.  La sintaxis para una definición de clase derivada se
+ve así::
 
-   class DerivedClassName(BaseClassName):
-       <statement-1>
+   class ClaseDerivada(ClaseBase):
+       <declaración-1>
        .
        .
        .
-       <statement-N>
+       <declaración-N>
 
-The name :class:`BaseClassName` must be defined in a scope containing the
-derived class definition.  In place of a base class name, other arbitrary
-expressions are also allowed.  This can be useful, for example, when the base
-class is defined in another module::
+El nombre :class:`ClaseBase` debe estar definido en un alcance que contenga a
+la definición de la clase derivada.  En el lugar del nombre de la clase base se
+permiten otras expresiones arbitrarias.  Esto puede ser útil, por ejemplo,
+cuando la clase base está definida en otro módulo::
 
-   class DerivedClassName(modname.BaseClassName):
+   class ClaseDerivada(modulo.ClaseBase):
 
-Execution of a derived class definition proceeds the same as for a base class.
-When the class object is constructed, the base class is remembered.  This is
-used for resolving attribute references: if a requested attribute is not found
-in the class, the search proceeds to look in the base class.  This rule is
-applied recursively if the base class itself is derived from some other class.
+La ejecución de una definición de clase derivada procede de la misma forma que
+una clase base.  Cuando el objeto clase se construye, se tiene en cuenta a la
+clase base.  Esto se usa para resolver referencias a atributos: si un atributo
+solicitado no se encuentra en la clase, la búsqueda continúa por la clase base.
+Esta regla se aplica recursivamente si la clase base misma deriva de alguna
+otra clase.
 
-There's nothing special about instantiation of derived classes:
-``DerivedClassName()`` creates a new instance of the class.  Method references
-are resolved as follows: the corresponding class attribute is searched,
-descending down the chain of base classes if necessary, and the method reference
-is valid if this yields a function object.
+No hay nada en especial en la instanciación de clases derivadas:
+``ClaseDerivada()`` crea una nueva instancia de la clase.  Las referencias a
+métodos se resuelven de la siguiente manera: se busca el atributo de clase
+correspondiente, descendiendo por la cadena de clases base si es necesario, y
+la referencia al método es válida si se entrega un objeto función.
 
-Derived classes may override methods of their base classes.  Because methods
-have no special privileges when calling other methods of the same object, a
-method of a base class that calls another method defined in the same base class
-may end up calling a method of a derived class that overrides it.  (For C++
-programmers: all methods in Python are effectively ``virtual``.)
+Las clases derivadas pueden redefinir métodos de su clase base.  Como los
+métodos no tienen privilegios especiales cuando llaman a otros métodos del
+mismo objeto, un método de la clase base que llame a otro método definido en la
+misma clase base puede terminar llamando a un método de la clase derivada que
+lo haya redefinido.  (Para los programadores de C++: en Python todos los
+métodos son en efecto ``virtuales``.)
 
-An overriding method in a derived class may in fact want to extend rather than
-simply replace the base class method of the same name. There is a simple way to
-call the base class method directly: just call ``BaseClassName.methodname(self,
-arguments)``.  This is occasionally useful to clients as well.  (Note that this
-only works if the base class is defined or imported directly in the global
-scope.)
+Un método redefinido en una clase derivada puede de hecho querer extender en
+vez de simplemente reemplazar al método de la clase base con el mismo nombre.
+Hay una manera simple de llamar al método de la clase base directamente:
+simplemente llamás a ``ClaseBase.metodo(self, argumentos)``.  En ocasiones esto
+es útil para los clientes también.  (Observá que esto sólo funciona si la clase
+base está definida o importada directamente en el alcance global.)
 
-Python has two builtin functions that work with inheritance:
+Python tiene dos funciones integradas que funcionan con herencia:
 
-* Use :func:`isinstance` to check an object's type: ``isinstance(obj, int)``
-  will be ``True`` only if ``obj.__class__`` is :class:`int` or some class
-  derived from :class:`int`.
+* Usa :func:`isinstance` para verificar el tipo de un objeto:
+  ``isinstance(obj, int)`` devuelve ``True`` solo si ``obj.__class__`` es
+  :class:`int` o alguna clase derivada de :class:`int`.
 
-* Use :func:`issubclass` to check class inheritance: ``issubclass(bool, int)``
-  is ``True`` since :class:`bool` is a subclass of :class:`int`.  However,
-  ``issubclass(unicode, str)`` is ``False`` since :class:`unicode` is not a
-  subclass of :class:`str` (they only share a common ancestor,
-  :class:`basestring`).
+* Usa :func:`issubclass` para comprobar herencia de clase:
+  ``issubclass(bool, int)`` da ``True`` ya que :class:`bool` es una subclase de
+  :class:`int`.  Sin embargo, ``issubclass(unicode, str)`` devuelve ``False``
+  porque :class:`unicode` no es una subclase de :class:`str` (solamente tienen
+  un ancestro en común, :class:`basestring`).
 
 
 
 .. _tut-multiple:
 
-Multiple Inheritance
---------------------
+Herencia múltiple
+-----------------
 
-Python supports a limited form of multiple inheritance as well.  A class
-definition with multiple base classes looks like this::
+Python soporta una forma limitada de herencia múltiple también.  Una definición
+de clase con múltiples clases base se ve así::
 
-   class DerivedClassName(Base1, Base2, Base3):
-       <statement-1>
+   class ClaseDerivada(Base1, Base2, Base3):
+       <declaración-1>
        .
        .
        .
-       <statement-N>
+       <declaración-N>
 
-For old-style classes, the only rule is depth-first, left-to-right.  Thus, if an
-attribute is not found in :class:`DerivedClassName`, it is searched in
-:class:`Base1`, then (recursively) in the base classes of :class:`Base1`, and
-only if it is not found there, it is searched in :class:`Base2`, and so on.
+Para clases de estilo viejo la única regla es buscar en profundidad, de
+izquierda a derecha.  Por lo tanto, si un atributo no se encuentra en
+:class:`ClaseDerivada`, se busca en :class:`Base1`, luego (recursivamente) en
+las clases base de :class:`Base1`, y sólo si no se encuentra allí se lo busca
+en :class:`Base2`, y así sucesivamente.
 
-(To some people breadth first --- searching :class:`Base2` and :class:`Base3`
-before the base classes of :class:`Base1` --- looks more natural.  However, this
-would require you to know whether a particular attribute of :class:`Base1` is
-actually defined in :class:`Base1` or in one of its base classes before you can
-figure out the consequences of a name conflict with an attribute of
-:class:`Base2`.  The depth-first rule makes no differences between direct and
-inherited attributes of :class:`Base1`.)
+(A algunos la búsqueda en anchura, o sea, buscar en :class:`Base2` y
+:class:`Base3` antes que en las clases base de :class:`Base1`, les parece más
+natural.  Sin embargo, para esto haría falta que sepás si un atributo en
+particular de :class:`Base1` está de hecho definido en :class:`Base1` o en
+alguna de sus clases base antes de que podás entender las consecuencias de un
+conflicto de nombres con un atributo de :class:`Base2`.  La regla de buscar
+primero en profundidad no hace diferencias entre atributos directos o heredados
+de :class:`Base1`.)
 
-For :term:`new-style class`\es, the method resolution order changes dynamically
-to support cooperative calls to :func:`super`.  This approach is known in some
-other multiple-inheritance languages as call-next-method and is more powerful
-than the super call found in single-inheritance languages.
+Para las clases de :term:`estilo nuevo`, el método de resolución de orden
+cambia dinámicamente para soportar llamadas cooperativas a :func:`super`.  Este
+enfoque es conocido en otros lenguajes con herencia múltiple como "llámese al
+siguiente método" y es más poderoso que la llamada al superior que se encuentra
+en lenguajes con sólo herencia simple.
 
-With new-style classes, dynamic ordering is necessary because all  cases of
-multiple inheritance exhibit one or more diamond relationships (where one at
-least one of the parent classes can be accessed through multiple paths from the
-bottommost class).  For example, all new-style classes inherit from
-:class:`object`, so any case of multiple inheritance provides more than one path
-to reach :class:`object`.  To keep the base classes from being accessed more
-than once, the dynamic algorithm linearizes the search order in a way that
-preserves the left-to-right ordering specified in each class, that calls each
-parent only once, and that is monotonic (meaning that a class can be subclassed
-without affecting the precedence order of its parents).  Taken together, these
-properties make it possible to design reliable and extensible classes with
-multiple inheritance.  For more detail, see
-http://www.python.org/download/releases/2.3/mro/.
+Con las clases de estilo nuevo, se necesita el orden dinámico porque todos los
+casos de herencia múltiple exhiben una o más relaciones en diamante (cuando se
+puede llegar a al menos una de las superclases por distintos caminos desde la
+clase de más abajo).  Por ejemplo, todas las clases de nuevo estilo heredan de
+:class:`object`, por lo tanto cualquier caso de herencia múltiple provee más de
+un camino para llegar a :class:`object`.  Para que las clases base no sean
+accedidas más de una vez, el algoritmo dinámico linealiza el orden de búsqueda
+de manera que se preserve el orden de izquierda a derecha especificado en cada
+clase, se llame a cada superclase sólo una vez, y que sea monótona (lo cual
+significa que una clase puede tener subclases sin afectar el orden de
+precedencia de sus superclases).  En conjunto, estas propiedades hacen posible
+diseñar clases confiables y extensibles con herencia múltiple. Para más
+detalles mirá  http://www.python.org/download/releases/2.3/mro/.
 
 
 .. _tut-private:

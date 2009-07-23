@@ -251,9 +251,8 @@ solo funciona con dos literales, no con expresiones arbitrarias::
    >>> 'cad'.strip() + 'ena'   #  <-  Esto es correcto
    'cadena'
    >>> 'cad'.strip() 'ena'     #  <-  Esto no es correcto
-     File "<stdin>", line 1, in ?
-       'cad'.strip() 'ena'
-                         ^
+   Traceback (most recent call last):
+   ...
    SyntaxError: invalid syntax
 
 Las cadenas de texto se pueden indexar; como en C, el primer carácter de la
@@ -283,12 +282,12 @@ modificadas.  Intentar asignar a una posición de la cadena es un error::
 
    >>> palabra[0] = 'x'
    Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
-   TypeError: object doesn't support item assignment
+   ...
+   TypeError: 'str' object does not support item assignment
    >>> palabra[:1] = 'Mas'
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
-   TypeError: object doesn't support slice assignment
+   TypeError: 'str' object does not support item assignment
 
 Sin embargo, crear una nueva cadena con contenido combinado es fácil y
 eficiente::
@@ -419,16 +418,16 @@ para todos los scripts.
 Crear cadenas Unicode en Python es tan simple como crear cadenas de texto
 normales::
 
-   >>> u'¡Hola Mundo!'
-   u'¡Hola Mundo!'
+   >>> u'Hola Mundo!'
+   u'Hola Mundo!'
 
 La ``'u'`` al frente de la comilla indica que se espera una cadena Unicode. Si
 querés incluir caracteres especiales en la cadena, podés hacerlo usando una
 forma de escapar caracteres Unicode provista por Python.  El siguiente ejemplo
 muestra cómo::
 
-   >>> u'¡Hola\u0020Mundo!'
-   u'¡Hola Mundo!'
+   >>> u'Hola\u0020Mundo!'
+   u'Hola Mundo!'
 
 La secuencia de escape ``\u0020`` indica que se debe insertar el carácter
 Unicode con valor ordinal 0x0020 (el espacio en blanco) en la posición dada.
@@ -444,10 +443,10 @@ de texto normales. Debés anteponer 'ur' a la comilla inicial para que Python
 use el modo de escape crudo de Unicode. Solo se aplicará la conversión
 ``\uXXXX`` si hay un número impar de barras invertidas frente a la 'u'. ::
 
-   >>> ur'!Hola\u0020Mundo!'
-   u'¡Hola Mundo!'
+   >>> ur'Hola\u0020Mundo!'
+   u'Hola Mundo!'
    >>> ur'Hola\\u0020Mundo!'
-   u'¡Hola\\\\u0020Mundo!'
+   u'Hola\\\\u0020Mundo!'
 
 El modo crudo es útil principalmente cuando tenés que insertar muchas
 barras invertidas, como puede suceder al trabajar con expresiones regulares.

@@ -195,11 +195,9 @@ latex_documents = [
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
-# XXX: unused at the moment
-#pdf_documents = [
-#  ('index', 'TutorialPython.pdf', u'Tutorial Python Documentation',
-#   u'Guido van Rossum', 'manual'), 
-#]
+pdf_documents = [
+  ('index','TutorialPython', u'Tutorial Python', u'Guido van Rossum'), 
+]
 
 # A comma-separated list of custom stylesheets. Example:
 # stylesheets=["fruity.json", "a4paper.json", "verasans.json"]
@@ -207,7 +205,7 @@ latex_documents = [
 pdf_stylesheets = ['eightpoint','a5','sphinx','estilo']
 # What to do when a literal block is too wide
 pdf_fit_mode = 'shrink'
-pdf_break_level = 2
+pdf_break_level = 1
 pdf_inline_footnotes = True
 
 # Create a compressed PDF
@@ -221,3 +219,6 @@ pdf_inline_footnotes = True
 
 # Language to be used for hyphenation support
 pdf_language="es_ES"
+
+# If false, no index is generated.
+pdf_use_index = False

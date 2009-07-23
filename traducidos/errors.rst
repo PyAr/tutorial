@@ -107,7 +107,7 @@ La declaración :keyword:`try` funciona de la siguiente manera:
 
 * Si ocurre una excepción durante la ejecución del *bloque try*, el resto del
   bloque se saltea.  Luego, si su tipo coincide con la excepción nombrada luego
-  de la palabra reservada :keyword:`except`, se ejecuta el *bloque except*, 
+  de la palabra reservada :keyword:`except`, se ejecuta el *bloque except*,
   y la ejecución continúa luego de la declaración :keyword:`try`.
 
 * Si ocurre una excepción que no coincide con la excepción nombrada en el
@@ -176,7 +176,7 @@ acceder o mostrar los argumentos directamente, sin necesidad de hacer
 referencia a ``.args``.
 
 Pero se recomienda no usar ``.args``.  En cambio, el uso preferido es pasar un
-único argumento a la excepción (que puede ser una tupla se se necesitan varios
+único argumento a la excepción (que puede ser una tupla se necesitan varios
 argumentos) y vincularlo al atributo ``message``.  Uno también puede instanciar
 una excepción antes de generarla, y agregarle cualquier atributo que uno
 desee::
@@ -222,24 +222,22 @@ Lanzando Excepciones
 ====================
 
 La declaración :keyword:`raise` permite al programador forzar a que ocurra
-una excepción especifica. Por ejemplo::
+una excepción específica. Por ejemplo::
 
-   >>> raise NameError, 'Hola'
+   >>> raise NameError('Hola')
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    NameError: Hola
 
 El primer argumento de :keyword:`raise` nombra la excepción que se lanzará. El
-segundo (opcional) especifíca el argumento de la excepción. También se podría
-haber escrito como ``raise NameError('Hola')``. Amabas formas funcionan
-bien, pero parece haber una creciente preferencia de estilo por la anterior.
+segundo (opcional) especifíca el argumento de la excepción.
 
 Si necesitas determinar cuando una excepción fue lanzada pero no intentas
 manejarla, una forma simplificada de la instrucción :keyword:`raise` te permite
 relanzarla::
 
    >>> try:
-   ...     raise NameError, 'Hola'
+   ...     raise NameError('Hola')
    ... except NameError:
    ...     print 'Volo una excepcion!'
    ...     raise
@@ -284,7 +282,7 @@ Esto reemplaza el comportamiento por defecto de crear el atributo *args*.
 Las clases de Excepciones pueden ser definidas de la misma forma que cualquier
 otra clase, pero usualmente se mantienen simples, a menudo solo ofreciendo un
 número de atributos con información sobre el error que leerán los manejadores
-de la excepción. Al crear un módulo que pueden lanzar varios errores distintos,
+de la excepción. Al crear un módulo que puede lanzar varios errores distintos,
 una práctica común es crear una clase base para excepciones definidas en ese
 módulo y extenderla para crear clases excepciones específicas para distintas
 condiciones de error::
@@ -353,7 +351,7 @@ excepción en la cláusula :keyword:`try` y no fue manejada por una cláusula
 :keyword:`except` (o ocurrió en una cláusula :keyword:`except` o
 :keyword:`else`), es relanzada luego de que se ejecuta la cláusula
 :keyword:`finally`. :keyword:`finally` es también ejecutada "a la salida"
-cuando cualquier otra cláusula de la declaración the :keyword:`try` es dejada
+cuando cualquier otra cláusula de la declaración :keyword:`try` es dejada
 via :keyword:`break`, :keyword:`continue` or :keyword:`return`. Un ejemplo
 más complicado (cláusulas :keyword:`except` y :keyword:`finally` en la misma
 declaración :keyword:`try` como funciona en Python 2.5)::
@@ -383,7 +381,7 @@ declaración :keyword:`try` como funciona en Python 2.5)::
 
 Como podés ver, la cláusula :keyword:`finally` es ejecutada siempre. La
 excepción :exc:`TypeError` lanzada al dividir dos cadenas de texto no es
-manejado por la cláusula :keyword:`except` y por lo tanto re lanzado luego
+manejado por la cláusula :keyword:`except` y por lo tanto es relanzada luego
 de que se ejecuta la cláusula :keyword:`finally`.
 
 En aplicaciones reales, la cláusula :keyword:`finally` es útil para liberar

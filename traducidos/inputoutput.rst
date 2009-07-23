@@ -118,7 +118,7 @@ se recorte, siempre podés agregarle una operación de rebanado, como en
 ``x.ljust(n)[:n]``.)
 
 Hay otro método, :meth:`zfill`, el cual rellena una cadena numérica a la
-izquierda con ceros. Entiendo acerca de signos positivos y negativos::
+izquierda con ceros. Entiende signos positivos y negativos::
 
    >>> '12'.zfill(5)
    '00012'
@@ -152,7 +152,7 @@ Se pueden combinar arbitrariamente argumentos posicionales y nombrados::
    >>> print 'La historia de {0}, {1}, y {otro}.'.format('Bill', 'Manfred', otro='Georg')
    La hostoria de Bill, Manfred, y Georg.
 
-Un ``':``` y especificador de formato opcionales pueden ir luego del nombre del
+Un ``':`` y especificador de formato opcionales pueden ir luego del nombre del
 campo.  Esto aumenta el control sobre cómo el valor es formateado.  El
 siguiente ejemplo trunca Pi a tres lugares luego del punto decimal.
 
@@ -291,7 +291,7 @@ por ``'\n'``, una cadena conteniendo sólo un único fin de linea. ::
    ''
 
 ``f.readlines()`` devuelve una lista conteniendo todos las lineas de datos en
-el archivo.  Si se da un parámetro opcional *pista_tamaño*, lee esa cantidad de
+el archivo.  Si se da un parámetro opcional *size*, lee esa cantidad de
 bytes del archivo y lo suficientemente más como para completar una linea, y
 devuelve las lineas de eso.  Esto se usa frecuentemente para permitir una
 lectura por lineas de forma eficiente en archivos grandes, sin tener que cargar
@@ -309,7 +309,7 @@ eficiente en memoria, rápido, y conduce a un código más simple::
    Esta es la primer linea del archivo
    Segunda linea del archivo
 
-El enfoque alternativo es mucho más simple peor no permite un control fino.  Ya
+El enfoque alternativo es mucho más simple pero no permite un control fino.  Ya
 que los dos enfoques manejan diferente el buffer de lineas, no deberían
 mezclarse.
 
@@ -355,14 +355,14 @@ automáticamente. ::
    ValueError: I/O operation on closed file
 
 Los objetos archivo tienen algunos métodos más, como :meth:`isatty` y
-:meth:`truncate`` que son usados menos frecuentemente; consultá la
+:meth:`truncate` que son usados menos frecuentemente; consultá la
 Referencia de la Biblioteca para una guía completa sobre los objetos
 archivo.
 
 
 .. _tut-pickle:
 
-El módulo The :mod:`pickle`
+El módulo :mod:`pickle`
 ---------------------------
 
 .. index:: module: pickle
@@ -380,7 +380,7 @@ llamado :mod:`pickle`.  Este es un asombroso módulo que puede tomar casi
 cualquier objeto Python (¡incluso algunas formas de código Python!), y
 convertirlo a una representación de cadena; este proceso se llama
 :dfn:`picklear`.  Reconstruir los objetos desde la representación en cadena
-se llama :dfn:`despicklear`.  Entre que se picklea y se despicklear, la
+se llama :dfn:`despicklear`.  Entre que se picklea y se despicklea, la
 cadena que representa al objeto puede almacenarse en un archivo, o enviarse
 a una máquina distante por una conexión de red.
 

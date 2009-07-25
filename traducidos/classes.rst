@@ -569,36 +569,40 @@ detalles mirá  http://www.python.org/download/releases/2.3/mro/.
 
 .. _tut-private:
 
-Private Variables
-=================
+Variables Privadas
+==================
 
-There is limited support for class-private identifiers.  Any identifier of the
-form ``__spam`` (at least two leading underscores, at most one trailing
-underscore) is textually replaced with ``_classname__spam``, where ``classname``
-is the current class name with leading underscore(s) stripped.  This mangling is
-done without regard to the syntactic position of the identifier, so it can be
-used to define class-private instance and class variables, methods, variables
-stored in globals, and even variables stored in instances. private to this class
-on instances of *other* classes.  Truncation may occur when the mangled name
-would be longer than 255 characters. Outside classes, or when the class name
-consists of only underscores, no mangling occurs.
+Hay soporte limitado para identificadores privados de clase.  Cualquier
+identificador con la forma ``__spam`` (al menos dos guiones bajos al principio,
+como mucho un guión bajo al final) es textualmente reemplazado por
+``_nombredeclase__spam``, donde ``nombredeclase`` es el nombre de clase actual
+al que se le sacan guiones bajos del comienzo (si los tuviera).  Se modifica el
+nombre del indentificador sin importar su posición sintáctica, asi que puede ser
+usado para definir instancias y variables de clase privadas, métodos, variables
+guardadas en globales, y aún variables guardadas en instancias privadas de esta
+clase en instancias de *otras* clases.  Puede ocurrir que se trunque si el
+nombre modificado queda con más de 255 caractéres.  Fuera de las clases,
+o cuando el nombre de clase consiste solo en guiones bajos, no se modifican los
+nombres de identificadores.
 
-Name mangling is intended to give classes an easy way to define "private"
-instance variables and methods, without having to worry about instance variables
-defined by derived classes, or mucking with instance variables by code outside
-the class.  Note that the mangling rules are designed mostly to avoid accidents;
-it still is possible for a determined soul to access or modify a variable that
-is considered private.  This can even be useful in special circumstances, such
-as in the debugger, and that's one reason why this loophole is not closed.
-(Buglet: derivation of a class with the same name as the base class makes use of
-private variables of the base class possible.)
+La modificación de nombres se usa para darle a las clases una forma fácil de
+definir variables de instancia y métodos "privados", sin tener que preocuparse
+por variables de instancia definidas por clases derivadas, o que el código
+fuera de la clase toquetee las variables de instancia.  Hay que aclarar que
+las reglas de modificación de nombres están diseñadas principalmente para
+evitar accidentes; es posible que un alma determinada acceda o modifique una
+variable que es considerada como privada.  Esto hasta puede resultar útil en
+circunstancias especiales, tales como en el depurador, y esa es una de las
+razones por la que esta inconsistencia no se corrige. (Otra más: la derivación
+de una clase usando el mismo nombre que la clase base hace que sea posible el
+uso de variables privadas de la clase base.)
 
-Notice that code passed to ``exec``, ``eval()`` or ``execfile()`` does not
-consider the classname of the invoking  class to be the current class; this is
-similar to the effect of the  ``global`` statement, the effect of which is
-likewise restricted to  code that is byte-compiled together.  The same
-restriction applies to ``getattr()``, ``setattr()`` and ``delattr()``, as well
-as when referencing ``__dict__`` directly.
+Notar que el código pasado a ``exec``, a ``eval()`` o a ``execfile()`` no
+considera que el nombre de clase de la clase invocante sea la clase actual;
+esto es similar al efecto de la sentencia ``global``, efecto que es de
+similar manera restringido a código que es compilado a byte en conjunto. La
+misma restricción aplica a ``getattr()``, ``setattr()`` y ``delattr()``, así
+como cuando se referencia a ``__dict__`` directamente.
 
 
 .. _tut-odds:

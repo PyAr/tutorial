@@ -15,26 +15,26 @@ Formateo elegante de la salida
 ==============================
 
 Hasta ahora encontramos dos maneras de escribir valores: *declaraciones de
-expresión* y la declaración :keyword:`print`. (Una tercer manera es usando el
+expresión* y la declaración :keyword:`print`.  (Una tercer manera es usando el
 método :meth:`write` de los objetos tipo archivo; el archivo de salida estándar
-puede referenciarse como ``sys.stdout``. Mirá la Referencia de la Biblioteca
+puede referenciarse como ``sys.stdout``.  Mirá la Referencia de la Biblioteca
 para más información sobre esto.)
 
 .. index:: module: string
 
 Frecuentemente querrás más control sobre el formateo de tu salida que
-simplemente imprimir valores separados por espacios.   Hay dos maneras de
+simplemente imprimir valores separados por espacios.  Hay dos maneras de
 formatear tu salida; la primera es hacer todo el manejo de las cadenas vos
-mismo, usando rebanado de cadenas y operaciones de concatenado podés crear
+mismo: usando rebanado de cadenas y operaciones de concatenado podés crear
 cualquier forma que puedas imaginar.  El módulo :mod:`string` contiene algunas
 operaciones útiles para emparejar cadenas a un determinado ancho; estas las
 discutiremos en breve.  La otra forma es usar el método :meth:`str.format`.
 
 Nos queda una pregunta, por supuesto: ¿cómo convertís valores a cadenas?
 Afortunadamente, Python tiene maneras de convertir cualquier valor a una
-cadena: pasalos a las funciones :func:`repr` o :func:`str`. Comillas invertidas
-(``````) son equivalentes a la :func:`repr`, pero no se usan más en código
-actual de Python y se eliminaron de versiones futuras del lenguaje.
+cadena: pasalos a las funciones :func:`repr` o :func:`str`. Las comillas
+invertidas (``````) son equivalentes a la :func:`repr`, pero no se usan más
+en código actual de Python y se eliminaron de versiones futuras del lenguaje.
 
 La función :func:`str` devuelve representaciones de los valores que son
 bastante legibles por humanos, mientras que :func:`repr` genera
@@ -225,9 +225,7 @@ Leyendo y escribiendo archivos
    object: file
 
 La función :func:`open` devuelve un objeto archivo, y es normalmente usado con
-dos argumentos: ``open(nombre_de_archivo, modo)``.
-
-::
+dos argumentos: ``open(nombre_de_archivo, modo)``. ::
 
    >>> f = open('/tmp/workfile', 'w')
    >>> print f
@@ -235,7 +233,7 @@ dos argumentos: ``open(nombre_de_archivo, modo)``.
 
 El primer argumento es una cadena conteniendo el nombre de archivo.  El segundo
 argumento es otra cadena conteniendo unos pocos caracteres que describen la
-forma en que el archivo será usado. El *modo* puede ser ``'r'`` cuando el
+forma en que el archivo será usado.  El *modo* puede ser ``'r'`` cuando el
 archivo será solamente leído, ``'w'`` para sólo escribirlo (un archivo
 existente con el mismo nombre será borrado), y ``'a'`` abre el archivo para
 agregarle información; cualquier dato escrito al archivo será automáticamente
@@ -245,12 +243,12 @@ escribirlo.  El argumento *modo* es opcional; si se omite se asume ``'r'``.
 En Windows y la Macintosh, agregando ``'b'`` al modo abre al archivo en modo
 binario, por lo que también hay modos como ``'rb'``, ``'wb'``, y ``'r+b'``.
 Windows hace una distinción entre archivos binarios y de texto; los caracteres
-de fin de linea en los archivos de texto son automáticamente apenas alterados
-cuando los datos son leídos o escritos.  Esta modificación en bambalinas para
-guardar datos está bien con archivos de texto ASCII, pero corromperá datos
-binarios como en archivos :file:`JPEG` o :file:`EXE`.  Se muy cuidadoso en
-usar el modo binario al leer y escribir tales archivos.  En Unix, no hay
-problema en agregarle una ``'b'`` al modo, por lo que podés usarlo
+de fin de linea en los archivos de texto son automáticamente alterados
+levemente cuando los datos son leídos o escritos.  Esta modificación en
+bambalinas para guardar datos está bien con archivos de texto ASCII, pero
+corromperá datos binarios como en archivos :file:`JPEG` o :file:`EXE`.  Sé muy
+cuidadoso en usar el modo binario al leer y escribir tales archivos.  En Unix,
+no hay problema en agregarle una ``'b'`` al modo, por lo que podés usarlo
 independientemente de la plataforma para todos los archivos binarios.
 
 
@@ -279,7 +277,7 @@ fin del archivo, ``f.read()`` devolverá una cadena vacía (``""``). ::
 ``f.readline()`` lee una sola linea del archivo; el caracter de fin de linea
 (``\n``) se deja al final de la cadena, y sólo se omite en la última linea del
 archivo si el mismo no termina en un fin de linea.  Esto hace que el valor de
-retorno no se ambiguo; si ``f.readline()`` devuelve una cadena vacía, es que
+retorno no sea ambiguo; si ``f.readline()`` devuelve una cadena vacía, es que
 se alcanzó el fin del archivo, mientras que una linea en blanco es representada
 por ``'\n'``, una cadena conteniendo sólo un único fin de linea. ::
 
@@ -300,7 +298,7 @@ el archivo entero en memoria.  Sólo lineas completas serán devueltas. ::
    >>> f.readlines()
    ['Esta es la primer linea del archivo.\n', 'Segunda linea del archivo\n']
 
-Una forma alternativa a leer lineas es ciclar sobre el objeto archivo.  Esto es
+Una forma alternativa a leer lineas es iterar sobre el objeto archivo.  Esto es
 eficiente en memoria, rápido, y conduce a un código más simple::
 
    >>> for linea in f:
@@ -309,8 +307,8 @@ eficiente en memoria, rápido, y conduce a un código más simple::
    Esta es la primer linea del archivo
    Segunda linea del archivo
 
-El enfoque alternativo es mucho más simple pero no permite un control fino.  Ya
-que los dos enfoques manejan diferente el buffer de lineas, no deberían
+El enfoque alternativo es mucho más simple pero no permite un control fino.
+Como los dos enfoques manejan diferente el buffer de lineas, no deberían
 mezclarse.
 
 ``f.write(cadena)`` escribe el contenido de la *cadena* al archivo, devolviendo
@@ -326,7 +324,7 @@ cadena::
    >>> f.write(s)
 
 ``f.tell()`` devuelve un entero que indica la posición actual en el archivo,
-medida en bytes desde el comienzo del archivo.  Para cambiar la posición use
+medida en bytes desde el comienzo del archivo.  Para cambiar la posición usá
 ``f.seek(desplazamiento, desde_donde)``.  La posición es calculada agregando
 el *desplazamiento* a un punto de referencia; el punto de referencia se
 selecciona del argumento *desde_donde*.  Un valor *desde_donde* de 0 mide desde
@@ -401,7 +399,7 @@ completa para :mod:`pickle` en la Referencia de la Biblioteca de Python.)
 
 :mod:`pickle` es la manera estándar de hacer que los objetos Python puedan
 almacenarse y reusarse por otros programas o por una futura invocación al mismo
-programa; el término técnido de esto es un objeto :dfn:`persistente`. Ya que
+programa; el término técnico de esto es un objeto :dfn:`persistente`.  Ya que
 :mod:`pickle` es tan ampliamente usado, muchos autores que escriben extensiones
-de Python toman el cuidado de asegurarse que los nuevos tipos de datos como
-matrices puedan ser adecuadamente pickleados y despickleados.
+de Python toman el cuidado de asegurarse que los nuevos tipos de datos, como
+matrices, puedan ser adecuadamente pickleados y despickleados.

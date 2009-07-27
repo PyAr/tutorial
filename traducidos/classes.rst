@@ -5,7 +5,7 @@ Clases
 ******
 
 El mecanismo de clases de Python agrega clases al lenguaje con un mínimo de
-nuevas sintáxis y semánticas.  Es una mezcla de los mecanismos de clase
+nuevas sintaxis y semánticas.  Es una mezcla de los mecanismos de clase
 encontrados en C++ y Modula-3.  Como es cierto para los módulos, las clases en
 Python no ponen una barrera absoluta entre la definición y el usuario, sino que
 más bien se apoya en la cortesía del usuario de no "forzar la definición".  Sin
@@ -26,7 +26,7 @@ de la palabra: en Python, todos los tipos de datos son objetos.  Esto provee
 una semántica para importar y renombrar.  A diferencia de C++ y Modula-3, los
 tipos de datos integrados pueden usarse como clases base para que el usuario
 los extienda.  También, como en C++ pero a diferencia de Modula-3, la mayoría
-de los operadores integrados con sintáxis especial (operadores aritméticos, de
+de los operadores integrados con sintaxis especial (operadores aritméticos, de
 subíndice, etc.) pueden ser redefinidos por instancias de la clase.
 
 
@@ -37,7 +37,7 @@ Unas palabras sobre terminología
 
 Sin haber una terminología universalmente aceptada sobre clases, haré uso
 ocasional de términos de Smalltalk y C++.  (Usaría términos de Modula-3, ya que
-su semántica orientada a objetos es más cercanas a Python que C++, pero no
+su semántica orientada a objetos es más cercana a Python que C++, pero no
 espero que muchos lectores hayan escuchado hablar de él).
 
 Los objetos tienen individualidad, y múltiples nombres (en muchos ámbitos)
@@ -45,7 +45,7 @@ pueden vincularse al mismo objeto.  Esto se conoce como *aliasing* en otros
 lenguajes.  Normalmente no se aprecia esto a primera vista en Python, y puede
 ignorarse sin problemas cuando se maneja tipos básicos inmutables (números,
 cadenas, tuplas).  Sin embargo, el *aliasing*, o renombrado,  tiene un efecto
-(intencional!) sobre la semántica de código Python que involucra objetos
+(¡intencional!) sobre la semántica de código Python que involucra objetos
 mutables como listas, diccionarios, y la mayoría de tipos que representan
 entidades afuera del programa (archivos, ventanas, etc.).  Esto se usa
 normalmente para beneficio del programa, ya que los renombres funcionan como
@@ -64,37 +64,37 @@ Alcances y espacios de nombres en Python
 Antes de ver clases, primero debo decirte algo acerca de las reglas de alcance
 de Python.  Las definiciones de clases hacen unos lindos trucos con los
 espacios de nombres, y necesitás saber cómo funcionan los alcances y espacios
-de nombres para entender por completo cómo es la cosa.
-De paso, los conocimientos en este tema son útiles para cualquier programador
-Python avanzado.
+de nombres para entender por completo cómo es la cosa.  De paso, los
+conocimientos en este tema son útiles para cualquier programador Python
+avanzado.
 
-Comenzemos con unas definiciones.
+Comencemos con unas definiciones.
 
-Un *espacio de nombres* es un mapeo de nombres a objetos.  Muchos espacios de
-nombres están implementados en este momento como diccionarios de Python, pero
-eso no se nota para nada (excepto por el desempeño), y puede cambiar en el
+Un *espacio de nombres* es una relación de nombres a objetos.  Muchos espacios
+de nombres están implementados en este momento como diccionarios de Python,
+pero eso no se nota para nada (excepto por el desempeño), y puede cambiar en el
 futuro.  Como ejemplos de espacios de nombres tenés: el conjunto de nombres
-incluídos (funciones como :func:`abs`, y los nombres de excepciones
+incluidos (funciones como :func:`abs`, y los nombres de excepciones
 integradas); los nombres globales en un módulo; y los nombres locales en la
 invocación a una función.  Lo que es importante saber de los espacios de
 nombres es que no hay relación en absoluto entre los nombres de espacios de
 nombres distintos; por ejemplo, dos módulos diferentes pueden tener definidos
-los dos una función "maximizar" sin confusión -- los usuarios de los módulos
+los dos una función "maximizar" sin confusión; los usuarios de los módulos
 deben usar el nombre del módulo como prefijo.
 
 Por cierto, yo uso la palabra *atributo* para cualquier cosa después de un
-punto --- por ejemplo, en la expresión ``z.real``, ``real`` es un atributo del
-objeto ``z``. Estrictamente hablando, las referencias a nombres en módulos son
+punto; por ejemplo, en la expresión ``z.real``, ``real`` es un atributo del
+objeto ``z``.  Estrictamente hablando, las referencias a nombres en módulos son
 referencias a atributos: en la expresión ``modulo.funcion``, ``modulo`` es un
-objeto módulo y ``funcion`` es un atributo de éste. En este caso hay un mapeo
-directo entre los atributos del módulo y los nombres globales definidos en el
-módulo: ¡están compartiendo el mismo espacio de nombres! [#]_
+objeto módulo y ``funcion`` es un atributo de éste.  En este caso hay una
+relación directa entre los atributos del módulo y los nombres globales
+definidos en el módulo: ¡están compartiendo el mismo espacio de nombres! [#]_
 
 Los atributos pueden ser de sólo lectura, o de escritura.  En el último caso es
 posible la asignación a atributos.  Los atributos de módulo pueden escribirse:
-podés escribir ``modulo.la_respuesta = 42``.  Los atributos de escritura se
-pueden borrar también con la instrucción :keyword:`del`.  Por ejemplo,
-``del modulo.la_respuesta`` va a eliminar el atributo :attr:`the_answer` del
+``modulo.la_respuesta = 42``.  Los atributos de escritura se pueden borrar
+también con la instrucción :keyword:`del`.  Por ejemplo,
+``del modulo.la_respuesta`` va a eliminar el atributo :attr:`la_respuesta` del
 objeto con nombre ``modulo``.
 
 Los espacios de nombres se crean en diferentes momentos y con diferentes
@@ -105,7 +105,7 @@ normalmente, los espacios de nombres de módulos también duran hasta que el
 intérprete finaliza.  Las instrucciones ejecutadas en el nivel de llamadas
 superior del intérprete, ya sea desde un script o interactivamente, se
 consideran parte del módulo llamado :mod:`__main__`, por lo tanto tienen su
-propio espacio de nombres global.  (Los nombres incluídos en realidad también
+propio espacio de nombres global.  (Los nombres incluidos en realidad también
 viven en un módulo; este se llama :mod:`__builtin__`.)
 
 El espacio de nombres local a una función se crea cuando la función es llamada,
@@ -131,36 +131,36 @@ final) es el espacio de nombres que contiene los nombres incluidos.
 Si un nombre se declara como global, entonces todas las referencias y
 asignaciones al mismo van directo al alcance intermedio que contiene los
 nombres globales del módulo.  De otra manera, todas las variables que se
-encuentren fuera del alcance interno son de sólo escritura (un intento de
+encuentren fuera del alcance interno son de sólo lectura (un intento de
 escribir a esas variables simplemente crea una *nueva* variable en el alcance
 interno, dejando intacta la variable externa del mismo nombre).
 
 .. XXX mencionar nonlocal
 
 Habitualmente, el alcance local referencia los nombres locales de la función
-actual.  Fuera de una función, el alcance local referncia al mismo espacio de
+actual.  Fuera de una función, el alcance local referencia al mismo espacio de
 nombres que el alcance global: el espacio de nombres del módulo. Las
 definiciones de clases crean un espacio de nombres más en el alcance local.
 
 Es importante notar que los alcances se determinan textualmente: el alcance
 global de una función definida en un módulo es el espacio de nombres de ese
 módulo, no importa desde dónde o con qué alias se llame a la función.  Por otro
-lado, la búsqueda de nombres se hace dinámicamente, en tiempo de ejecución ---
+lado, la búsqueda de nombres se hace dinámicamente, en tiempo de ejecución;
 sin embargo, la definición del lenguaje está evolucionando a hacer resolución
 de nombres estáticamente, en tiempo de "compilación", ¡así que no te confíes de
 la resolución de nombres dinámica! (De hecho, las variables locales ya se
 determinan estáticamente.)
 
-Una peculiaridad especial de Python es que -- si no hay una declaración
-:keyword:`global` o :keyword:`nonlocal` en efecto -- las asignaciones a nombres
-siempre van al alcance interno.  Las asignaciones no copian datos --- solamente
+Una peculiaridad especial de Python es que, si no hay una declaración
+:keyword:`global` o :keyword:`nonlocal` en efecto, las asignaciones a nombres
+siempre van al alcance interno.  Las asignaciones no copian datos, solamente
 asocian nombres a objetos.  Lo mismo cuando se borra: la instrucción ``del x``
 quita la asociación de ``x`` del espacio de nombres referenciado por el alcance
 local.  De hecho, todas las operaciones que introducen nuevos nombres usan el
-alcance local: en particular, las instrucciones import y las definiciones de
-funciones asocian el módulo o nombre de la función al espacio de nombres en el
-alcance local.  (La instrucción :keyword:`global` puede usarse para indicar
-que ciertas variables viven en el alcance global.) 
+alcance local: en particular, las instrucciones :keyword:`import` y las
+definiciones de funciones asocian el módulo o nombre de la función al espacio
+de nombres en el alcance local.  (La instrucción :keyword:`global` puede usarse
+para indicar que ciertas variables viven en el alcance global.)
 
 
 .. _tut-firstclasses:
@@ -351,7 +351,7 @@ que es creada insertando el objeto del método antes del primer argumento.
 Si aún no comprendés como funcionan los métodos, un vistazo a la implementación
 puede ayudar a clarificar este tema. Cuando un atributo de instancia es
 referenciado y no es un atributo de datos, se busca dentro de su clase. Si
-el nombre denota un atributo de clase válido que es un objeto función, un método 
+el nombre denota un atributo de clase válido que es un objeto función, un método
 objeto es creado, juntando (punteros a) el objeto instancia y el objeto función
 que ha sido encontrado. Este objeto abstracto creado de esta unión es el objeto
 método. Cuando el objeto método es llamado con una lista de argumentos, es
@@ -636,7 +636,7 @@ memoria intermedia, y pasarlo como argumento.
    como indexado de secuencias u operaciones aritméticas, y asignar un
    pseudo-archivo a sys.stdin no causará que el intérprete continúe leyendo
    desde ahí.)
-   
+
 Los objetos método de instancia tienen atributos también: ``m.im_self`` es
 el objeto instancia con el método :meth:`m`, y ``m.im_func`` es el objeto
 función correspondiente al método.
@@ -770,7 +770,7 @@ Generadores
 
 Los :term:`Generador`\es son una simple y poderosa herramienta para crear
 iteradores.  Se escriben como funciones regulares pero usan la sentencia
-:keyword:`yield` cuando quieren devolver datos.  Cada vez que :meth:`next` 
+:keyword:`yield` cuando quieren devolver datos.  Cada vez que :meth:`next`
 es llamado, el generador continúa desde donde dejó (y recuerda todos los
 valores de datos y cual sentencia fue ejecutada última).  Un ejemplo muestra
 que los generadores pueden ser muy fáciles de crear::
@@ -798,7 +798,7 @@ función sea más fácil de escribir y quede mucho más claro que hacerlo
 usando variables de instancia tales como ``self.indice`` y ``self.datos``.
 
 Además de la creación automática de métodos y el guardar el estado del
-programa, cuando los generadores terminan levantan automáticamente 
+programa, cuando los generadores terminan levantan automáticamente
 :exc:`StopIteration`.  Combinadas, estas características facilitan
 la creación de iteradores, y hacen que no sea más esfuerzo que escribir
 una función regular.

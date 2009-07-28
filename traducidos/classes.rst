@@ -177,7 +177,7 @@ objetos y algo de semántica nueva.
 Sintaxis de definición de clases
 --------------------------------
 
-La forma más sencilla de definición de clase se ve así::
+La forma más sencilla de definición de una clase se ve así::
 
    class Clase:
        <declaración-1>
@@ -192,21 +192,21 @@ alguno.  (Es concebible poner una definición de clase dentro de una rama de un
 :keyword:`if`, o dentro de una función.)
 
 En la práctica, las declaraciones dentro de una clase son definiciones de
-funciones, pero otras declaraciones son permitidas, y a veces resultan útiles
---- veremos esto más adelante.  Las definiciones de funciones dentro de una
+funciones, pero otras declaraciones son permitidas, y a veces resultan útiles;
+veremos esto más adelante.  Las definiciones de funciones dentro de una
 clase normalmente tienen una lista de argumentos peculiar, dictada por las
-convenciones de invocación de métodos --- a esto también lo vemos más adelante.
+convenciones de invocación de métodos; a esto también lo veremos más adelante.
 
 Cuando se ingresa una definición de clase, se crea un nuevo espacio de nombres,
-el cual se usa como alcance local --- por lo tanto, todas las asignaciones a
+el cual se usa como alcance local; por lo tanto, todas las asignaciones a
 variables locales van a este nuevo espacio de nombres.  En particular, las
 definiciones de funciones asocian el nombre de las funciones nuevas allí.
 
 Cuando una definición de clase se finaliza normalmente se crea un
-*objeto clase*. Básicamente, este objeto envuelve los contenidos del espacio
+*objeto clase*.  Básicamente, este objeto envuelve los contenidos del espacio
 de nombres creado por la definición de la clase; aprenderemos más acerca de los
 objetos clase en la sección siguiente.  El alcance local original (el que tenía
-efecto justo antes de que ingrese la definición de la clase) es reinstaurado, y
+efecto justo antes de que ingrese la definición de la clase) es restablecido, y
 el objeto clase se asocia allí al nombre que se le puso a la clase en el
 encabezado de su definición (:class:`Clase` en el ejemplo).
 
@@ -215,10 +215,10 @@ encabezado de su definición (:class:`Clase` en el ejemplo).
 Objetos clase
 -------------
 
-Los objetos clase soportan dos tipos de operaciones: referenciar atributos e
-instanciación.
+Los objetos clase soportan dos tipos de operaciones: hacer referencia a
+atributos e instanciación.
 
-Para *referenciar atributos* se usa la sintaxis estándar de todas las
+Para *hacer referencia a atributos* se usa la sintaxis estándar de todas las
 referencias a atributos en Python: ``objeto.nombre``.  Los nombres de atributo
 válidos son todos los nombres que estaban en el espacio de nombres de la clase
 cuando ésta se creó.  Por lo tanto, si la definición de la clase es así::
@@ -229,26 +229,25 @@ cuando ésta se creó.  Por lo tanto, si la definición de la clase es así::
        def f(self):
            return 'hola mundo'
 
-entonces ``MiClase.i`` y ``MiClase.f`` son referencias de atributos válidas,
-que devuelven un entero y un objeto función respectivamente. Los atributos de
+...entonces ``MiClase.i`` y ``MiClase.f`` son referencias de atributos válidas,
+que devuelven un entero y un objeto función respectivamente.  Los atributos de
 clase también pueden ser asignados, o sea que podés cambiar el valor de
-``MiClase.i`` mediante asignación.
-:attr:`__doc__` también es un atributo válido, que devuelve la documentación
-que asociada a la clase: ``"Simple clase de ejemplo"``.
+``MiClase.i`` mediante asignación.  :attr:`__doc__` también es un atributo
+válido, que devuelve la documentación asociada a la clase:
+``"Simple clase de ejemplo"``.
 
 La *instanciación* de clases usa la notación de funciones.  Hacé de cuenta que
 el objeto de clase es una función sin parámetros que devuelve una nueva
-instancia de la clase.
-Por ejemplo (para la clase de más arriba)::
+instancia de la clase.  Por ejemplo (para la clase de más arriba)::
 
    x = MiClase()
 
-crea una nueva *instancia* de la clase y asigna este objeto a la variable local
-``x``.
+...crea una nueva *instancia* de la clase y asigna este objeto a la variable
+local ``x``.
 
 La operación de instanciación ("llamar" a un objeto clase) crea un objeto
-vacío. Muchas clases necesitan crear objetos con instancias en un estado
-inicial particular. Por lo tanto una clase puede definir un método especial
+vacío.  Muchas clases necesitan crear objetos con instancias en un estado
+inicial particular.  Por lo tanto una clase puede definir un método especial
 llamado :meth:`__init__`, de esta forma::
 
    def __init__(self):
@@ -278,7 +277,7 @@ ejemplo, ::
 
 .. _tut-instanceobjects:
 
-Objetos Instancia
+Objetos instancia
 -----------------
 
 Ahora, ¿Qué podemos hacer con los objetos instancia?  La única operación que
@@ -298,30 +297,31 @@ imprimir el valor ``16``, sin dejar ningún rastro::
    print x.contador
    del x.contador
 
-El otro tipo de referenciar atributos de instancia es el *método*.  Un método es
-una función que "pertenece a" un objeto.  (En Python, el término método no está
-limitado a instancias de clase: otros tipos de objetos pueden tener métodos también.
-Por ejemplo, los objetos lista tienen métodos llamados append, insert, remove, sort,
-y así sucesivamente.  Pero, en la siguiente explicación, usaremos el término método
-para referirnos exclusivamente a métodos de objetos instancia de clase, a menos
-que se especifique explícitamente lo contrario).
+El otro tipo de atributo de instancia es el *método*.  Un método es una función
+que "pertenece a" un objeto.  En Python, el término método no está limitado a
+instancias de clase: otros tipos de objetos pueden tener métodos también.  Por
+ejemplo, los objetos lista tienen métodos llamados append, insert, remove,
+sort, y así sucesivamente.  Pero, en la siguiente explicación, usaremos el
+término método para referirnos exclusivamente a métodos de objetos instancia de
+clase, a menos que se especifique explícitamente lo contrario.
 
 .. index:: object: method
 
 Los nombres válidos de métodos de un objeto instancia dependen de su clase.
 Por definición, todos los atributos de clase que son objetos funciones definen
-metodos correspondientes de sus instancias.  Entonces, en nuestro ejemplo, ``x.f``
-es una referencia a un método válido, dado que ``MiClase.f`` es una función, pero
-``x.i`` no lo es, dado que ``MiClase.i`` no lo es. Pero ``x.f`` no es la misma
-cosa que ``MiClase.f`` --- es un *objeto método*, no un objeto función.
+métodos correspondientes de sus instancias.  Entonces, en nuestro ejemplo,
+``x.f`` es una referencia a un método válido, dado que ``MiClase.f`` es una
+función, pero ``x.i`` no lo es, dado que ``MiClase.i`` no lo es.  Pero ``x.f``
+no es la misma cosa que ``MiClase.f``; es un *objeto método*, no un objeto
+función.
 
 
 .. _tut-methodobjects:
 
-Objetos Método
+Objetos método
 --------------
 
-Generalmente, un método es llamado luego de ser enlazado::
+Generalmente, un método es llamado luego de ser vinculado::
 
    x.f()
 
@@ -333,31 +333,33 @@ un objeto método, y puede ser guardado y llamado más tarde.  Por ejemplo::
    while True:
        print xf()
 
-continuará imprimiendo ``hola mundo`` hasta el fín de los días.
+...continuará imprimiendo ``hola mundo`` hasta el fin de los días.
 
-¿Que sucede exactamente cuando un método es llamado?  Debes haber notado que
-``x.f()`` fue llamado más arriba sin ningún argumento, a pesar de que la definición
-de función de :meth:`f` especificaba un argumento. ¿Que pasó con ese argumento?
-Por supuesto que Python levanta una excepción cuando una función que requiere
-un argumento es llamada sin ninguno --- aún si el argumento no es utilizado...
+¿Qué sucede exactamente cuando un método es llamado?  Debés haber notado que
+``x.f()`` fue llamado más arriba sin ningún argumento, a pesar de que la
+definición de función de :meth:`f` especificaba un argumento.  ¿Qué pasó con
+ese argumento?  Seguramente Python levanta una excepción cuando una función que
+requiere un argumento es llamada sin ninguno, aún si el argumento no es
+utilizado...
 
 De hecho, tal vez hayas adivinado la respuesta: lo que tienen de especial los
 métodos es que el objeto es pasado como el primer argumento de la función.
-En nuestro ejemplo, la llamada ``x.f()`` es exáctamente equivalente a
-``MiClase.f(x)``.  En general, llamar a un método con una lista de *n* argumentos
-es equivalente a llamar a la función correspondiente con una lista de argumentos
-que es creada insertando el objeto del método antes del primer argumento.
+En nuestro ejemplo, la llamada ``x.f()`` es exactamente equivalente a
+``MiClase.f(x)``.  En general, llamar a un método con una lista de *n*
+argumentos es equivalente a llamar a la función correspondiente con una lista
+de argumentos que es creada insertando el objeto del método antes del primer
+argumento.
 
 Si aún no comprendés como funcionan los métodos, un vistazo a la implementación
-puede ayudar a clarificar este tema. Cuando un atributo de instancia es
-referenciado y no es un atributo de datos, se busca dentro de su clase. Si
-el nombre denota un atributo de clase válido que es un objeto función, un método
+puede ayudar a clarificar este tema.  Cuando se hace referencia un atributo de
+instancia y no es un atributo de datos, se busca dentro de su clase.  Si el
+nombre denota un atributo de clase válido que es un objeto función, un método
 objeto es creado, juntando (punteros a) el objeto instancia y el objeto función
-que ha sido encontrado. Este objeto abstracto creado de esta unión es el objeto
-método. Cuando el objeto método es llamado con una lista de argumentos, es
-nuevamente desempacado, una lista de argumentos nueva es construida a partir del
-objeto instancia y la lista de argumentos original, y el objeto función es llamado
-con esta nueva lista de argumentos.
+que ha sido encontrado.  Este objeto abstracto creado de esta unión es el
+objeto método.  Cuando el objeto método es llamado con una lista de argumentos,
+es nuevamente desempaquetado, una lista de argumentos nueva es construida a
+partir del objeto instancia y la lista de argumentos original, y el objeto
+función es llamado con esta nueva lista de argumentos.
 
 
 .. _tut-remarks:
@@ -376,26 +378,26 @@ prefijar los nombres de atributos de datos con una pequeña cadena única (a lo
 mejor sólo un guión bajo), o usar verbos para los métodos y sustantivos para
 los atributos.
 
-A los atributos de datos los pueden referenciar tanto los métodos como los
+A los atributos de datos los pueden hacer referencia tanto los métodos como los
 usuarios ("clientes") ordinarios de un objeto.  En otras palabras, las clases
 no se usan para implementar tipos de datos abstractos puros.  De hecho, en
-Python no hay nada que haga que se cumpla el ocultamiento de datos --- todo se
-basa en convención.  (Por otro lado, la implementación de Python, escrita en C,
+Python no hay nada que haga cumplir el ocultar datos; todo se basa en
+convención.  (Por otro lado, la implementación de Python, escrita en C,
 puede ocultar por completo detalles de implementación y el control de acceso a
 un objeto si es necesario; esto se puede usar en extensiones a Python escritas
 en C.)
 
-Los clientes deben usar los atributos de datos con cuidado --- éstos pueden
-romper invariantes que mantenienen los métodos si pisan los atributos de datos.
+Los clientes deben usar los atributos de datos con cuidado; éstos pueden
+romper invariantes que mantienen los métodos si pisan los atributos de datos.
 Observá que los clientes pueden añadir sus propios atributos de datos a una
 instancia sin afectar la validez de sus métodos, siempre y cuando se eviten
-conflictos de nombres --- de nuevo, una convención de nombres puede ahorrar
+conflictos de nombres; de nuevo, una convención de nombres puede ahorrar
 un montón de dolores de cabeza.
 
-No hay un atajo para referenciar atributos de datos (¡u otros métodos!) desde
-dentro de un método.  A mi parecer, esto en realidad aumenta la legibilidad de
-los métodos: no existe posibilidad alguna de confundir variables locales con
-variables de instancia cuando repasamos un método.
+No hay un atajo para hacer referencia a atributos de datos (¡u otros métodos!)
+desde dentro de un método.  A mi parecer, esto en realidad aumenta la
+legibilidad de los métodos: no existe posibilidad alguna de confundir variables
+locales con variables de instancia cuando repasamos un método.
 
 A menudo, el primer argumento de un método se llama ``self`` (uno mismo).  Esto
 no es nada más que una convención: el nombre ``self`` no significa nada en
@@ -421,7 +423,7 @@ función a una variable local en la clase también está bien.  Por ejemplo::
 
 Ahora ``f``, ``g`` y ``h`` son todos atributos de la clase :class:`C` que hacen
 referencia a objetos función, y consecuentemente son todos métodos de las
-instancias de :class:`C` --- ``h`` siendo exactamente equivalente a ``g``.
+instancias de :class:`C`; ``h`` siendo exactamente equivalente a ``g``.
 Fijate que esta práctica normalmente sólo sirve para confundir al que lea un
 programa.
 
@@ -437,16 +439,16 @@ Los métodos pueden llamar a otros métodos de la instancia usando el argumento
            self.agregar(x)
            self.agregar(x)
 
-Los métodos pueden referenciar nombres globales de la misma manera que lo hacen
-las funciones comunes.  El alcance global asociado a un método es el módulo que
-contiene la definición de la clase.  (¡La clase misma nunca se usa como un
-alcance global!) Si bien es raro encontrar una buena razón para usar datos
-globales en un método, hay muchos usos legítimos del alcance global: por lo
-menos, las funciones y módulos importados en el alcance global pueden usarse
+Los métodos pueden hacer referencia a nombres globales de la misma manera que
+lo hacen las funciones comunes.  El alcance global asociado a un método es el
+módulo que contiene la definición de la clase.  (¡La clase misma nunca se usa
+como un alcance global!)  Si bien es raro encontrar una buena razón para usar
+datos globales en un método, hay muchos usos legítimos del alcance global: por
+lo menos, las funciones y módulos importados en el alcance global pueden usarse
 por los métodos, al igual que las funciones y clases definidas en él.
 Habitualmente, la clase que contiene el método está definida en este alcance
 global, y en la siguiente sección ¡veremos algunas buenas razones por las que
-un método querría referenciar a su propia clase!
+un método querría hacer referencia a su propia clase!
 
 Todo valor es un objeto, y por lo tanto tiene una *clase* (también llamado su
 *tipo*). Ésta se almacena como ``objeto.__class__``.

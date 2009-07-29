@@ -460,7 +460,7 @@ Herencia
 ========
 
 Por supuesto, una característica del lenguaje no sería digna del nombre "clase"
-si no soporta herencia.  La sintaxis para una definición de clase derivada se
+si no soportara herencia.  La sintaxis para una definición de clase derivada se
 ve así::
 
    class ClaseDerivada(ClaseBase):
@@ -506,11 +506,11 @@ base está definida o importada directamente en el alcance global.)
 
 Python tiene dos funciones integradas que funcionan con herencia:
 
-* Usa :func:`isinstance` para verificar el tipo de un objeto:
+* Usá :func:`isinstance` para verificar el tipo de un objeto:
   ``isinstance(obj, int)`` devuelve ``True`` solo si ``obj.__class__`` es
   :class:`int` o alguna clase derivada de :class:`int`.
 
-* Usa :func:`issubclass` para comprobar herencia de clase:
+* Usá :func:`issubclass` para comprobar herencia de clase:
   ``issubclass(bool, int)`` da ``True`` ya que :class:`bool` es una subclase de
   :class:`int`.  Sin embargo, ``issubclass(unicode, str)`` devuelve ``False``
   porque :class:`unicode` no es una subclase de :class:`str` (solamente tienen
@@ -523,7 +523,7 @@ Python tiene dos funciones integradas que funcionan con herencia:
 Herencia múltiple
 -----------------
 
-Python soporta una forma limitada de herencia múltiple también.  Una definición
+Python también soporta una forma limitada de herencia múltiple.  Una definición
 de clase con múltiples clases base se ve así::
 
    class ClaseDerivada(Base1, Base2, Base3):
@@ -541,9 +541,9 @@ en :class:`Base2`, y así sucesivamente.
 
 (A algunos la búsqueda en anchura, o sea, buscar en :class:`Base2` y
 :class:`Base3` antes que en las clases base de :class:`Base1`, les parece más
-natural.  Sin embargo, para esto haría falta que sepás si un atributo en
+natural.  Sin embargo, para esto haría falta que sepas si un atributo en
 particular de :class:`Base1` está de hecho definido en :class:`Base1` o en
-alguna de sus clases base antes de que podás entender las consecuencias de un
+alguna de sus clases base antes de que puedas entender las consecuencias de un
 conflicto de nombres con un atributo de :class:`Base2`.  La regla de buscar
 primero en profundidad no hace diferencias entre atributos directos o heredados
 de :class:`Base1`.)
@@ -556,22 +556,22 @@ en lenguajes con sólo herencia simple.
 
 Con las clases de estilo nuevo, se necesita el orden dinámico porque todos los
 casos de herencia múltiple exhiben una o más relaciones en diamante (cuando se
-puede llegar a al menos una de las superclases por distintos caminos desde la
+puede llegar al menos a una de las clases base por distintos caminos desde la
 clase de más abajo).  Por ejemplo, todas las clases de nuevo estilo heredan de
 :class:`object`, por lo tanto cualquier caso de herencia múltiple provee más de
 un camino para llegar a :class:`object`.  Para que las clases base no sean
-accedidas más de una vez, el algoritmo dinámico linealiza el orden de búsqueda
-de manera que se preserve el orden de izquierda a derecha especificado en cada
-clase, se llame a cada superclase sólo una vez, y que sea monótona (lo cual
-significa que una clase puede tener subclases sin afectar el orden de
-precedencia de sus superclases).  En conjunto, estas propiedades hacen posible
-diseñar clases confiables y extensibles con herencia múltiple. Para más
-detalles mirá  http://www.python.org/download/releases/2.3/mro/.
+accedidas más de una vez, el algoritmo dinámico hace lineal el orden de
+búsqueda de manera que se preserve el orden de izquierda a derecha especificado
+en cada clase, que se llame a cada clase base sólo una vez, y que sea monótona
+(lo cual significa que una clase puede tener clases derivadas sin afectar el
+orden de precedencia de sus clases bases).  En conjunto, estas propiedades
+hacen posible diseñar clases confiables y extensibles con herencia múltiple.
+Para más detalles mirá  http://www.python.org/download/releases/2.3/mro/.
 
 
 .. _tut-private:
 
-Variables Privadas
+Variables privadas
 ==================
 
 Hay soporte limitado para identificadores privados de clase.  Cualquier
@@ -579,11 +579,11 @@ identificador con la forma ``__spam`` (al menos dos guiones bajos al principio,
 como mucho un guión bajo al final) es textualmente reemplazado por
 ``_nombredeclase__spam``, donde ``nombredeclase`` es el nombre de clase actual
 al que se le sacan guiones bajos del comienzo (si los tuviera).  Se modifica el
-nombre del indentificador sin importar su posición sintáctica, asi que puede ser
+nombre del identificador sin importar su posición sintáctica, así que puede ser
 usado para definir instancias y variables de clase privadas, métodos, variables
 guardadas en globales, y aún variables guardadas en instancias privadas de esta
 clase en instancias de *otras* clases.  Puede ocurrir que se trunque si el
-nombre modificado queda con más de 255 caractéres.  Fuera de las clases,
+nombre modificado queda con más de 255 caracteres.  Fuera de las clases,
 o cuando el nombre de clase consiste solo en guiones bajos, no se modifican los
 nombres de identificadores.
 
@@ -600,9 +600,9 @@ de una clase usando el mismo nombre que la clase base hace que sea posible el
 uso de variables privadas de la clase base.)
 
 Notar que el código pasado a ``exec``, a ``eval()`` o a ``execfile()`` no
-considera que el nombre de clase de la clase invocante sea la clase actual;
+considera que el nombre de clase de la clase que invoca sea la clase actual;
 esto es similar al efecto de la sentencia ``global``, efecto que es de
-similar manera restringido a código que es compilado a byte en conjunto. La
+similar manera restringido a código que es compilado en conjunto.  La
 misma restricción aplica a ``getattr()``, ``setattr()`` y ``delattr()``, así
 como cuando se referencia a ``__dict__`` directamente.
 
@@ -613,7 +613,7 @@ Cambalache
 ==========
 
 A veces es útil tener un tipo de datos similar al "registro" de Pascal o la
-"estructura" de C, que sirva para juntar algunos pocos items con nombre.  Una
+"estructura" de C, que sirva para juntar algunos pocos ítems con nombre.  Una
 definición de clase vacía funcionará perfecto::
 
    class Empleado:
@@ -623,7 +623,7 @@ definición de clase vacía funcionará perfecto::
 
    # Llenar los campos del registro
    juan.nombre = 'Juan Pistola'
-   juan.depto = 'laboratorio de computación'
+   juan.depto = u'laboratorio de computación'
    juan.salario = 1000
 
 Algún código Python que espera un tipo abstracto de datos en particular
@@ -635,7 +635,7 @@ memoria intermedia, y pasarlo como argumento.
 
 .. (Desafortunadamente esta técnica tiene sus limitaciones: una clase no
    puede definir operaciones que sean accedidas por sintaxis especiales tales
-   como indexado de secuencias u operaciones aritméticas, y asignar un
+   como indexado de secuencias u operaciones aritméticas, y asignar ese
    pseudo-archivo a sys.stdin no causará que el intérprete continúe leyendo
    desde ahí.)
 
@@ -646,13 +646,13 @@ función correspondiente al método.
 
 .. _tut-exceptionclasses:
 
-Las excepciones son clases también
+Las excepciones también son clases
 ==================================
 
-Las excepciones definidas por el usuario son identificadas por clases también.
+Las excepciones definidas por el usuario también son identificadas por clases.
 Usando este mecanismo es posible crear jerarquías extensibles de excepciones::
 
-Hay dos nuevas formas (semánticas) válidas para la sentencia raise::
+Hay dos nuevas formas (semánticas) válidas para la sentencia ``raise``::
 
    raise Clase, instancia
 
@@ -663,8 +663,8 @@ de una clase derivada de ella.  La segunda forma es una abreviatura de::
 
    raise instancia.__class__, instance
 
-Una clase en una cláusula except es compatible con una excepción si es de la misma
-clase o una clase base de la misma (pero no al revés --- una cláusula except
+Una clase en una cláusula ``except`` es compatible con una excepción si es de
+la misma clase o una clase base suya (pero no al revés, una cláusula except
 listando una clase derivada no es compatible con una clase base).  Por ejemplo,
 el siguiente código imprimirá B, C, D en ese orden::
 
@@ -685,13 +685,14 @@ el siguiente código imprimirá B, C, D en ese orden::
        except B:
            print "B"
 
-Notar que si la cláusulas except fueran invertidas (dejando ``except B`` al
-principio), habría impreso B, B, B --- la primera cláusula except que coincide
-es disparada.
+Notar que si la cláusulas ``except`` fueran invertidas (dejando ``except B`` al
+principio), habría impreso B, B, B; se dispara la primera cláusula ``except``
+que coincide.
 
-Cuando un mensaje de error se imprime para una excepción sin atrapar, se imprime
-el nombre de la clase de la excepción, luego dos puntos y un espacio y
-finalmente la instancia convertida a un string usando la función built-in :func:`str`.
+Cuando se imprime un mensaje de error para una excepción sin atrapar, se
+imprime el nombre de la clase de la excepción, luego dos puntos y un espacio y
+finalmente la instancia convertida a un string usando la función
+integrada :func:`str`.
 
 
 .. _tut-iterators:
@@ -714,12 +715,12 @@ ser recorridos usando una sentencia :keyword:`for`::
        print linea
 
 Este estilo de acceso es limpio, conciso y conveniente.  El uso de iteradores
-está impregnado y unifica a Python.  Detrás de bambalinas, la sentencia :keyword:`for`
+está impregnado y unifica a Python.  En bambalinas, la sentencia :keyword:`for`
 llama a :func:`iter` en el objeto contenedor.  La función devuelve un objeto
-iterador que define el método :meth:`next` que accede elementos en el contenedor
-de a uno por vez.  Cuando no hay más elementos, :meth:`next` levanta una
-excepción :exc:`StopIteration` que le avisa al bucle del :keyword:`for` que
-hay que terminar. Este ejemplo muestra como funciona todo esto::
+iterador que define el método :meth:`next` que accede elementos en el
+contenedor de a uno por vez.  Cuando no hay más elementos, :meth:`next` levanta
+una excepción :exc:`StopIteration` que le avisa al bucle del :keyword:`for` que
+hay que terminar.  Este ejemplo muestra como funciona todo esto::
 
    >>> s = 'abc'
    >>> it = iter(s)
@@ -732,7 +733,6 @@ hay que terminar. Este ejemplo muestra como funciona todo esto::
    >>> it.next()
    'c'
    >>> it.next()
-
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
        it.next()
@@ -770,7 +770,7 @@ que devuelva un objeto con un método :meth:`next`.  Si la clase define
 Generadores
 ===========
 
-Los :term:`Generador`\es son una simple y poderosa herramienta para crear
+Los :term:`generador`\es son una simple y poderosa herramienta para crear
 iteradores.  Se escriben como funciones regulares pero usan la sentencia
 :keyword:`yield` cuando quieren devolver datos.  Cada vez que :meth:`next`
 es llamado, el generador continúa desde donde dejó (y recuerda todos los
@@ -800,7 +800,7 @@ función sea más fácil de escribir y quede mucho más claro que hacerlo
 usando variables de instancia tales como ``self.indice`` y ``self.datos``.
 
 Además de la creación automática de métodos y el guardar el estado del
-programa, cuando los generadores terminan levantan automáticamente
+programa, cuando los generadores terminan automáticamente levantan
 :exc:`StopIteration`.  Combinadas, estas características facilitan
 la creación de iteradores, y hacen que no sea más esfuerzo que escribir
 una función regular.
@@ -808,7 +808,7 @@ una función regular.
 
 .. _tut-genexps:
 
-Expresiones Generadoras
+Expresiones generadoras
 =======================
 
 Algunos generadores simples pueden ser codificados concisamente como
@@ -834,7 +834,7 @@ Ejemplos::
 
    >>> palabras_unicas = set(word  for line in page  for word in line.split())
 
-   >>> mejor_promedio = max((estudiante.promedio, estudiante.nombre) for estudiante in graduados)
+   >>> mejor_promedio = max((alumno.promedio, alumno.nombre) for alumno in graduados)
 
    >>> data = 'golf'
    >>> list(data[i] for i in range(len(data)-1,-1,-1))
@@ -844,9 +844,9 @@ Ejemplos::
 
 .. rubric:: Footnotes
 
-.. [#] Excepto una cosita. Los objetos módulo tienen un atributo secreto de solo
-   lectura llamado :attr:`__dict__` que devuelve el diccionario usado para
-   implementar el espacio de nombres del módulo; el nombre :attr:`__dict__` es un
-   atributo, pero no es un nombre global. Obviamente, esto viola la abstracción de
-   la implementación de espacios de nombres, y debe ser restringido a cosas tales
-   como depuradores post-mortem.
+.. [#] Excepto por un detalle. Los objetos módulo tienen un atributo secreto de
+   solo lectura llamado :attr:`__dict__` que devuelve el diccionario usado para
+   implementar el espacio de nombres del módulo; el nombre :attr:`__dict__` es
+   un atributo, pero no es un nombre global.  Obviamente, esto viola la
+   abstracción de la implementación de espacios de nombres, y debe ser
+   restringido a cosas tales como depuradores post-mortem.

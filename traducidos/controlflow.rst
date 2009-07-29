@@ -1,7 +1,7 @@
 .. _tut-morecontrol:
 
 **************************************
-Más herramientas para Control de Flujo
+Más herramientas para control de flujo
 **************************************
 
 Además de la sentencia :keyword:`while` que acabamos de introducir,
@@ -11,13 +11,13 @@ otros lenguajes, con algunos cambios.
 
 .. _tut-if:
 
-La Sentencia :keyword:`if` 
+La sentencia :keyword:`if`
 ==========================
 
-Tal vez el tipo más conocido de sentencia sea la sentencia :keyword:`if`. Por
+Tal vez el tipo más conocido de sentencia sea el :keyword:`if`. Por
 ejemplo::
 
-   >>> x = int(raw_input("Ingresá un entero, por favor: "))
+   >>> x = int(raw_input("Ingresa un entero, por favor: "))
    >>> if x < 0:
    ...      x = 0
    ...      print 'Negativo cambiado a cero'
@@ -27,31 +27,30 @@ ejemplo::
    ...      print 'Simple'
    ... else:
    ...      print 'Mas'
-   ... 
+   ...
 
-Puede haber cero o más bloques :keyword:`elif`, y el bloque :keyword:`else` es 
+Puede haber cero o más bloques :keyword:`elif`, y el bloque :keyword:`else` es
 opcional. La palabra reservada ':keyword:`elif`' es una abreviación de 'else
-if', y es útil para evitar identación excesiva. Una secuencia :keyword:`if` ...
-:keyword:`elif` ... :keyword:`elif` ... sustituye las sentencias ``switch``
-o ``case`` encontradas en otros lenguajes.
+if', y es útil para evitar un sangrado excesivo. Una secuencia :keyword:`if`
+...  :keyword:`elif` ... :keyword:`elif` ... sustituye las sentencias
+``switch`` o ``case`` encontradas en otros lenguajes.
 
 
 .. _tut-for:
 
-La Sentencia :keyword:`for`
+La sentencia :keyword:`for`
 ===========================
 
 .. index::
    statement: for
-   statement: for
 
 La sentencia :keyword:`for` en Python difiere un poco de lo que uno puede estar
-acostumbrado en lenguajes como C o Pascal. En lugar de siempre iterar sobre una
-progresión aritmética de números (como en Pascal) o darle al usuario la
+acostumbrado en lenguajes como C o Pascal.  En lugar de siempre iterar sobre
+una progresión aritmética de números (como en Pascal) o darle al usuario la
 posibilidad de definir tanto el paso de la iteración como la condición de fin
-(como en C), la sentencia :keyword:`for` de Python itera sobre los items de
+(como en C), la sentencia :keyword:`for` de Python itera sobre los ítems de
 cualquier secuencia (una lista o una cadena de texto), en el orden que aparecen
-en la secuencia. Por ejemplo (no pun intended):
+en la secuencia. Por ejemplo:
 
 .. Aquí se sugirió dar un ejemplo real de C, pero eso solo confundiría a los
    programadores que no saben C.
@@ -62,38 +61,38 @@ en la secuencia. Por ejemplo (no pun intended):
    ... a = ['gato', 'ventana', 'defenestrado']
    >>> for x in a:
    ...     print x, len(x)
-   ... 
+   ...
    gato 4
    ventana 7
    defenestrado 12
 
-No es seguro modificar la secuencia sobre la que se está iterando en el loop
-(esto solo es posible para tipos de secuencias mutables, como las listas). Si
+No es seguro modificar la secuencia sobre la que se está iterando en el lazo
+(esto solo es posible para tipos de secuencias mutables, como las listas).  Si
 se necesita modificar la lista sobre la que se está iterando (por ejemplo, para
-duplicar items seleccionados) se debe iterar sobre una copia. La notación de
+duplicar ítems seleccionados) se debe iterar sobre una copia.  La notación de
 rebanada es conveniente para esto::
 
    >>> for x in a[:]: # hacer una copia por rebanada de toda la lista
    ...    if len(x) > 6: a.insert(0, x)
-   ... 
+   ...
    >>> a
    ['defenestrado', 'gato', 'ventana', 'defenestrado']
 
 
 .. _tut-range:
 
-La Función :func:`range`
+La función :func:`range`
 ========================
 
 Si se necesita iterar sobre una secuencia de números, es apropiado utilizar
-la función incorporada :func:`range`.  Genera una lista conteniendo
+la función integrada :func:`range`.  Genera una lista conteniendo
 progresiones aritméticas::
 
    >>> range(10)
    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 El valor final dado nunca es parte de la lista; ``range(10)`` genera una lista
-de 10 valores, los índices correspondientes para los items de una secuencia de
+de 10 valores, los índices correspondientes para los ítems de una secuencia de
 longitud 10. Es posible hacer que el rango empiece con otro número, o
 especificar un incremento diferente (incluso negativo; algunas veces se lo
 llama 'paso')::
@@ -111,7 +110,7 @@ Para iterar sobre los índices de una secuencia, se combina :func:`range` y
    >>> a = ['Mary', 'tenia', 'un', 'corderito']
    >>> for i in range(len(a)):
    ...     print i, a[i]
-   ... 
+   ...
    0 Mary
    1 tenia
    2 un
@@ -120,10 +119,10 @@ Para iterar sobre los índices de una secuencia, se combina :func:`range` y
 
 .. _tut-break:
 
-Las Sentencias :keyword:`break` y :keyword:`continue`, y la Cláusula :keyword:`else` en Loops
+Las sentencias :keyword:`break` y :keyword:`continue`, y la Cláusula :keyword:`else` en Loops
 =============================================================================================
 
-La sentencia :keyword:`break`, como en C, termina el loop :keyword:`for` o 
+La sentencia :keyword:`break`, como en C, termina el loop :keyword:`for` o
 :keyword:`while` más anidado.
 
 La sentencia :keyword:`continue`, también tomada prestada de C, continua
@@ -143,7 +142,7 @@ loop, que busca números primos::
    ...     else:
    ...         # sigue el bucle sin encontrar un factor
    ...         print n, 'es un numero primo'
-   ... 
+   ...
    2 es un numero primo
    3 es un numero primo
    4 es igual a 2 * 2
@@ -156,16 +155,16 @@ loop, que busca números primos::
 
 .. _tut-pass:
 
-La Sentencia :keyword:`pass` 
+La Sentencia :keyword:`pass`
 ============================
 
 La sentencia :keyword:`pass` no hace nada. Se puede usar cuando una sentencia
-es requerida por la sintáxis pero el programa no requiere ninguna acción. 
+es requerida por la sintáxis pero el programa no requiere ninguna acción.
 Por ejemplo::
 
    >>> while True:
    ...       pass # Espera ocupada hasta iterrupción de teclado
-   ... 
+   ...
 
 
 .. _tut-functions:
@@ -182,7 +181,7 @@ determinado::
    ...     while b < n:
    ...         print b,
    ...         a, b = b, a+b
-   ... 
+   ...
    >>> # Ahora llamamos a la funcion que acabamos de definir:
    ... fib(2000)
    1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
@@ -199,7 +198,7 @@ línea siguiente, y deben estar identadas. La primer sentencia del cuerpo de la
 función puede ser opcionalmente una cadena de texto literal; esta es la cadena
 de texto de documentación de la función, o :dfn:`docstring`.
 
-Hay herramientas que usan las docstrings para producir automáticamente 
+Hay herramientas que usan las docstrings para producir automáticamente
 documentación en línea o imprimible, o para permitirle al usuario que navegue
 el código en forma interactiva; es una buena práctica incluir docstrings en el
 código que uno escribe, por lo que se debe intentar hacer un hábito de esto.
@@ -216,7 +215,7 @@ pueden ser referenciadas.
 
 Los parámetros reales (argumentos) de una función se introducen
 en la tabla de símbolos local de la función llamada cuando esta es llamada;
-así, los argumentos son pasados *por valor* (dónde el *valor* es siempre una 
+así, los argumentos son pasados *por valor* (dónde el *valor* es siempre una
 *referencia* a un objeto, no el valor del objeto). [#]_ Cuando una función
 llama a otra función, una nueva tabla de símbolos local es creada para esa
 llamada.
@@ -256,7 +255,7 @@ serie de Fibonacci en lugar de imprimirlos::
    ...         result.append(b)    # ver abajo
    ...         a, b = b, a+b
    ...     return result
-   ... 
+   ...
    >>> f100 = fib2(100)    # llamarla
    >>> f100                # escribir el resultado
    [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
@@ -268,8 +267,8 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
   alcanza el final de un procedimiento, también se retorna ``None``.
 
 * La sentencia ``result.append(b)`` llama a un *método* del objeto lista
-  ``result``.  
-  Un método es una función que 'pertenece' a un objeto y se nombra 
+  ``result``.
+  Un método es una función que 'pertenece' a un objeto y se nombra
   ``obj.methodname``, dónde ``obj`` es algún objeto (puede ser una expresión),
   y ``methodname`` es el nombre del método que está definido por el tipo del
   objeto. Distintos tipos definen distintos métodos. Métodos de diferentes
@@ -398,7 +397,7 @@ esta restricción::
 
    >>> def function(a):
    ...     pass
-   ... 
+   ...
    >>> function(0, a=0)
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
@@ -440,8 +439,8 @@ y por supuesto imprimirá::
    vendedor : Miguel Paez
    puesto : Venta de Queso Argentino
 
-Se debe notar que el método :meth:`sort` de la lista de nombres de argumentos 
-de palabra clave es llamado antes de imprimir el contenido del diccionario 
+Se debe notar que el método :meth:`sort` de la lista de nombres de argumentos
+de palabra clave es llamado antes de imprimir el contenido del diccionario
 ``palabrasclaves``; si esto no se hace, el orden en que los argumentos son
 impresos no está definido.
 
@@ -451,7 +450,7 @@ Listas de Argumentos Arbitrarios
 --------------------------------
 
 .. index::
-  statement: *  
+  statement: *
 
 Finalmente, la opción menos frecuentemente usada es especificar que una
 función puede ser llamada con un número arbitrario de argumentos.  Estos
@@ -564,11 +563,11 @@ Este es un ejemplo de un docstring multi-línea::
 
    >>> def mi_funcion():
    ...     """No hace mas que documentar la funcion.
-   ... 
+   ...
    ...     No, de verdad. No hace nada.
    ...     """
    ...     pass
-   ... 
+   ...
    >>> print mi_funcion.__doc__
    No hace mas que documentar la funcion.
 
@@ -590,7 +589,7 @@ estilos; algunos son mas fáciles de leer que otros. Hacer que tu código sea m�
 fácil de leer por otros es siempre una buena idea, y adoptar un buen estilo de
 codificación ayuda tremendamente a lograrlo.
 
-Para Python, :pep:`8` se erigió como la guía de estilo a la que más proyectos 
+Para Python, :pep:`8` se erigió como la guía de estilo a la que más proyectos
 adhirieron; promueve un estilo de codificación fácil de leer y amable con los
 ojos. Todos los desarrolladores Python deben leerlo en algún momento; aquí
 están extraídos los puntos más importantes:
@@ -616,13 +615,13 @@ están extraídos los puntos más importantes:
 * Usar espacios alrededor de operadores y luego de las comas, pero no
   directamente dentro de paréntesis: ``a = f(1, 2) + g(3, 4)``.
 
-* Nombrar las clases y funciones consistentemente; la convención es usar 
+* Nombrar las clases y funciones consistentemente; la convención es usar
   ``NotacionCamello`` para clases y ``minusculas_con_guiones_bajos`` para
   funciones y métodos. Siempre usar ``self`` como el nombre para el primer
   argumento en los métodos.
 
-* No usar codificaciones estrafalarias si se espera usar el código en entornos 
-  internacionales. ASCII plano funciona bien en la mayoría de los casos. 
+* No usar codificaciones estrafalarias si se espera usar el código en entornos
+  internacionales. ASCII plano funciona bien en la mayoría de los casos.
 
 
 .. rubric:: Footnotes
@@ -630,6 +629,6 @@ están extraídos los puntos más importantes:
 .. [#] En realidad, *llamadas por referencia de objeto* sería una
    mejordescripción, ya que si un objeto mutable es pasado, quien realiza la
    llamaba verá cualquier cambio que el llamado realice sobre el mismo (como
-   items insertados en una lista).
+   ítems insertados en una lista).
 
 

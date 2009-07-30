@@ -119,20 +119,20 @@ Para iterar sobre los índices de una secuencia, se combina :func:`range` y
 
 .. _tut-break:
 
-Las sentencias :keyword:`break` y :keyword:`continue`, y la Cláusula :keyword:`else` en Loops
-=============================================================================================
+Las sentencias :keyword:`break`, :keyword:`continue`, y :keyword:`else` en lazos
+================================================================================
 
-La sentencia :keyword:`break`, como en C, termina el loop :keyword:`for` o
+La sentencia :keyword:`break`, como en C, termina el lazo :keyword:`for` o
 :keyword:`while` más anidado.
 
 La sentencia :keyword:`continue`, también tomada prestada de C, continua
-con la próxima iteración del loop.
+con la próxima iteración del lazo.
 
-Las sentencias de loop pueden tener una cláusula ``else`` que es ejecutada
-cuando el loop termina, luego de agotar la lista (con :keyword:`for`) o cuando
-la condición se hace falsa (con :keyword:`while`), pero no cuando el loop es
-terminado con la sentencia :keyword:`break`. Se ejemplifica en el siguiente
-loop, que busca números primos::
+Las sentencias de lazo pueden tener una cláusula ``else`` que es ejecutada
+cuando el lazo termina, luego de agotar la lista (con :keyword:`for`) o cuando
+la condición se hace falsa (con :keyword:`while`), pero no cuando el lazo es
+terminado con la sentencia :keyword:`break`.  Se ejemplifica en el siguiente
+lazo, que busca números primos::
 
    >>> for n in range(2, 10):
    ...     for x in range(2, n):
@@ -155,15 +155,15 @@ loop, que busca números primos::
 
 .. _tut-pass:
 
-La Sentencia :keyword:`pass`
+La sentencia :keyword:`pass`
 ============================
 
-La sentencia :keyword:`pass` no hace nada. Se puede usar cuando una sentencia
+La sentencia :keyword:`pass` no hace nada.  Se puede usar cuando una sentencia
 es requerida por la sintáxis pero el programa no requiere ninguna acción.
 Por ejemplo::
 
    >>> while True:
-   ...       pass # Espera ocupada hasta iterrupción de teclado
+   ...       pass # Espera ocupada hasta una interrupción de teclado
    ...
 
 
@@ -191,12 +191,12 @@ determinado::
    single: docstrings
    single: strings, documentation
 
-La palabra reservada :keyword:`def` se usa para *definir* funciones. Debe
+La palabra reservada :keyword:`def` se usa para *definir* funciones.  Debe
 seguirle el nombre de la función y la lista de parámetros formales entre
-paréntesis. Las sentencias que forman el cuerpo de la función empiezan en la
-línea siguiente, y deben estar identadas. La primer sentencia del cuerpo de la
-función puede ser opcionalmente una cadena de texto literal; esta es la cadena
-de texto de documentación de la función, o :dfn:`docstring`.
+paréntesis.  Las sentencias que forman el cuerpo de la función empiezan en la
+línea siguiente, y deben estar con sangría.  La primer sentencia del cuerpo de
+la función puede ser opcionalmente una cadena de texto literal; esta es la
+cadena de texto de documentación de la función, o :dfn:`docstring`.
 
 Hay herramientas que usan las docstrings para producir automáticamente
 documentación en línea o imprimible, o para permitirle al usuario que navegue
@@ -204,27 +204,27 @@ el código en forma interactiva; es una buena práctica incluir docstrings en el
 código que uno escribe, por lo que se debe intentar hacer un hábito de esto.
 
 La *ejecución* de una función introduce una nueva tabla de símbolos usada para
-las variables locales de la función. Más precisamente, todas las asignaciones
+las variables locales de la función.  Más precisamente, todas las asignaciones
 de variables en la función almacenan el valor en la tabla de símbolos local;
 así mismo la referencia a variables primero mira la tabla de símbolos local,
 luego en la tabla de símbolos local de las funciones externas, luego la tabla
-de símbolos global, y finalmente la tabla de nombres predefinidos. Así, no se
+de símbolos global, y finalmente la tabla de nombres predefinidos.  Así, no se
 les puede asignar directamente un valor a las variables globales dentro de una
 función (a menos se las nombre en la sentencia :keyword:`global`), aunque si
 pueden ser referenciadas.
 
 Los parámetros reales (argumentos) de una función se introducen
-en la tabla de símbolos local de la función llamada cuando esta es llamada;
+en la tabla de símbolos local de la función llamada cuando esta es ejecutada;
 así, los argumentos son pasados *por valor* (dónde el *valor* es siempre una
 *referencia* a un objeto, no el valor del objeto). [#]_ Cuando una función
 llama a otra función, una nueva tabla de símbolos local es creada para esa
 llamada.
 
 La definición de una función introduce el nombre de la función en la tabla de
-símbolos actual. El valor del nombre de la función tiene un tipo que es
-reconocido por el interprete como una función definida por el usuario. Este
+símbolos actual.  El valor del nombre de la función tiene un tipo que es
+reconocido por el interprete como una función definida por el usuario.  Este
 valor puede ser asignado a otro nombre que luego puede ser usado como una
-función. Esto sirve como un mecanismo general para renombrar::
+función.  Esto sirve como un mecanismo general para renombrar::
 
    >>> fib
    <function fib at 10042ed0>
@@ -232,13 +232,13 @@ función. Esto sirve como un mecanismo general para renombrar::
    >>> f(100)
    1 1 2 3 5 8 13 21 34 55 89
 
-Se puede objetar que ``fib`` no es una función, sino un procedimiento. En
+Se puede objetar que ``fib`` no es una función, sino un procedimiento.  En
 Python, como en C, los procedimientos son solo funciones que no retornan un
-valor. De hecho, técnicamente hablando, los procedimientos si retornan un
-valor, aunque uno aburrido. Este valor es llamada ``None`` (es un nombre
-predefinido).
-El intérprete por lo general no escribe el valor ``None`` si va a ser el único
-valor escrito. Si realmente se quiere, se puede verlo usando :keyword:`print`::
+valor.  De hecho, técnicamente hablando, los procedimientos sí retornan un
+valor, aunque uno aburrido.  Este valor se llama ``None`` (es un nombre
+predefinido).  El intérprete por lo general no escribe el valor ``None`` si va
+a ser el único valor escrito.  Si realmente se quiere, se puede verlo usando
+:keyword:`print`::
 
    >>> fib(0)
    >>> print fib(0)
@@ -247,8 +247,8 @@ valor escrito. Si realmente se quiere, se puede verlo usando :keyword:`print`::
 Es simple escribir una función que retorne una lista con los números de la
 serie de Fibonacci en lugar de imprimirlos::
 
-   >>> def fib2(n): # retorna la seri de Fibonacci hasta n
-   ...     """Retorna una lista conteniendo la serie de Fibonacci hasta n."""
+   >>> def fib2(n): # devuelve la serie de Fibonacci hasta n
+   ...     """Devuelve una lista conteniendo la serie de Fibonacci hasta n."""
    ...     result = []
    ...     a, b = 0, 1
    ...     while b < n:
@@ -263,26 +263,25 @@ serie de Fibonacci en lugar de imprimirlos::
 Este ejemplo, como es usual, demuestra algunas características más de Python:
 
 * La sentencia :keyword:`return` devuelve un valor en una función.
-  :keyword:`return` sin una expresión como argumento retorna ``None``. Si se
+  :keyword:`return` sin una expresión como argumento retorna ``None``.  Si se
   alcanza el final de un procedimiento, también se retorna ``None``.
 
 * La sentencia ``result.append(b)`` llama a un *método* del objeto lista
-  ``result``.
-  Un método es una función que 'pertenece' a un objeto y se nombra
+  ``result``.  Un método es una función que 'pertenece' a un objeto y se nombra
   ``obj.methodname``, dónde ``obj`` es algún objeto (puede ser una expresión),
   y ``methodname`` es el nombre del método que está definido por el tipo del
-  objeto. Distintos tipos definen distintos métodos. Métodos de diferentes
-  tipos pueden tener el mismo nombre sin causar ambigüedad. (Es posible definir
-  tipos de objetos propios, y métodos, usando *clases*, como se discutirá más
-  adelante en el tutorial).
+  objeto.  Distintos tipos definen distintos métodos.  Métodos de diferentes
+  tipos pueden tener el mismo nombre sin causar ambigüedad.  (Es posible
+  definir tipos de objetos propios, y métodos, usando *clases*, como se
+  discutirá más adelante en el tutorial).
   El método :meth:`append` mostrado en el ejemplo está definido para objetos
-  lista; añade un nuevo elemento al final de la lista. En este ejemplo es
+  lista; añade un nuevo elemento al final de la lista.  En este ejemplo es
   equivalente a ``result = result + [b]``, pero más eficiente.
 
 
 .. _tut-defining:
 
-Más sobre Definición de Funciones
+Más sobre definición de funciones
 =================================
 
 También es posible definir funciones con un número variable de argumentos. Hay

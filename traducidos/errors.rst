@@ -1,7 +1,7 @@
 .. _tut-errors:
 
 *********************
-Errores y Excepciones
+Errores y excepciones
 *********************
 
 Hasta ahora los mensajes de error no habían sido más que mencionados, pero si
@@ -11,7 +11,7 @@ tipos diferentes de errores: *errores de sintaxis* y *excepciones*.
 
 .. _tut-syntaxerrors:
 
-Errores de Sintaxis
+Errores de sintaxis
 ===================
 
 Los errores de sintaxis, también conocidos como errores de interpretación, son
@@ -79,7 +79,7 @@ embargo, no mostrará líneas leídas desde la entrada estándar.
 
 .. _tut-handling:
 
-Manejando Excepciones
+Manejando excepciones
 =====================
 
 Es posible escribir programas que manejen determinadas excepciones.  Mirá el
@@ -113,11 +113,11 @@ La declaración :keyword:`try` funciona de la siguiente manera:
 * Si ocurre una excepción que no coincide con la excepción nombrada en el
   :keyword:`except`, esta se pasa a declaraciones :keyword:`try` de más afuera;
   si no se encuentra nada que la maneje, es una *excepción no manejada*, y la
-  ejecución se frena con un mensaje como los mostrado arriba.
+  ejecución se frena con un mensaje como los mostrados arriba.
 
 Una declaración :keyword:`try` puede tener más de un :keyword:`except`, para
-especificar manejadores para distintas excepciones. A lo sumo un manejador será
-ejecutado.  Sólo se manejan excepciones que ocurren en el correspondiente
+especificar manejadores para distintas excepciones.  A lo sumo un manejador
+será ejecutado.  Sólo se manejan excepciones que ocurren en el correspondiente
 :keyword:`try`, no en otros manejadores del mismo :keyword:`try`.  Un
 :keyword:`except` puede nombrar múltiples excepciones usando paréntesis, por
 ejemplo::
@@ -178,7 +178,7 @@ referencia a ``.args``.
 Pero se recomienda no usar ``.args``.  En cambio, el uso preferido es pasar un
 único argumento a la excepción (que puede ser una tupla se necesitan varios
 argumentos) y vincularlo al atributo ``message``.  Uno también puede instanciar
-una excepción antes de generarla, y agregarle cualquier atributo que uno
+una excepción antes de generarla, y agregarle cualquier atributo que se
 desee::
 
    >>> try:
@@ -200,10 +200,10 @@ desee::
 Si una excepción tiene un argumento, este se imprime como la última parte (el
 'detalle') del mensaje para las excepciones que no están manejadas.
 
-Los manejadores de excpeciones no manejan solamente las excepciones que
+Los manejadores de excepciones no manejan solamente las excepciones que
 ocurren en el *bloque try*, también manejan las excepciones que ocurren
 dentro de las funciones que se llaman (inclusive indirectamente) dentro del
-*bloque try*. Por ejemplo::
+*bloque try*.  Por ejemplo::
 
    >>> def esto_falla():
    ...     x = 1/0
@@ -218,31 +218,31 @@ dentro de las funciones que se llaman (inclusive indirectamente) dentro del
 
 .. _tut-raising:
 
-Lanzando Excepciones
-====================
+Levantando excepciones
+======================
 
 La declaración :keyword:`raise` permite al programador forzar a que ocurra
-una excepción específica. Por ejemplo::
+una excepción específica.  Por ejemplo::
 
    >>> raise NameError('Hola')
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    NameError: Hola
 
-El primer argumento de :keyword:`raise` nombra la excepción que se lanzará. El
-segundo (opcional) especifíca el argumento de la excepción.
+El primer argumento de :keyword:`raise` nombra la excepción que se lanzará.  El
+segundo (opcional) especifica el argumento de la excepción.
 
-Si necesitas determinar cuando una excepción fue lanzada pero no intentas
+Si necesitás determinar cuando una excepción fue lanzada pero no querés
 manejarla, una forma simplificada de la instrucción :keyword:`raise` te permite
 relanzarla::
 
    >>> try:
    ...     raise NameError('Hola')
    ... except NameError:
-   ...     print 'Volo una excepcion!'
+   ...     print u'Voló una excepción!'
    ...     raise
    ...
-   Volo una excpecion!
+   Voló una excpeción!
    Traceback (most recent call last):
      File "<stdin>", line 2, in ?
    NameError: Hola
@@ -250,13 +250,12 @@ relanzarla::
 
 .. _tut-userexceptions:
 
-Excepciones Definidas por el Usuario
+Excepciones definidas por el usuario
 ====================================
 
-Los programas pueden nombrar sus propias excepciones creando una nueva calse
-excecpción.
-Las excepciones, típicamente, deberán derivar de la clase :exc:`Exception`,
-directa o indirectamente. Por ejemplo::
+Los programas pueden nombrar sus propias excepciones creando una nueva clase
+excepción.  Las excepciones, típicamente, deberán derivar de la clase
+:exc:`Exception`, directa o indirectamente.  Por ejemplo::
 
    >>> class MiError(Exception):
    ...     def __init__(self, valor):
@@ -267,16 +266,16 @@ directa o indirectamente. Por ejemplo::
    >>> try:
    ...     raise MiError(2*2)
    ... except MyError as e:
-   ...     print 'Ocurrio mi excepcion, valor:', e.valor
+   ...     print u'Ocurrió mi excepción, valor:', e.valor
    ...
-   Ocurrio mi excepcion, valor: 4
+   Ocurrió mi excepción, valor: 4
    >>> raise MiError, 'oops!'
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    __main__.MiError: 'oops!'
 
 En este ejemplo, el método :meth:`__init__` de :class:`Exception` fue
-sobrescrito. El nuevo comportamiento simplememente crea el atributo *valor*.
+sobrescrito.  El nuevo comportamiento simplemente crea el atributo *valor*.
 Esto reemplaza el comportamiento por defecto de crear el atributo *args*.
 
 Las clases de Excepciones pueden ser definidas de la misma forma que cualquier

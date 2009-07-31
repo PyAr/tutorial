@@ -540,9 +540,9 @@ Hay convenciones emergentes sobre el contenido y formato de las cadenas de
 texto de documentación.
 
 La primer línea debe ser siempre un resumen corto y conciso del propósito del
-objeto. Para ser breve, no se debe mencionar explícitamente el nombre o tipo
+objeto.  Para ser breve, no se debe mencionar explícitamente el nombre o tipo
 del objeto, ya que estos están disponibles de otros modos (excepto si el nombre
-es un verbo que describe el funcionamiento de la función). Esta línea debe
+es un verbo que describe el funcionamiento de la función).  Esta línea debe
 empezar con una letra mayúscula y terminar con un punto.
 
 Si hay más líneas en la cadena de texto de documentación, la segunda línea debe
@@ -550,17 +550,17 @@ estar en blanco, separando visualmente el resumen del resto de la descripción.
 Las líneas siguientes deben ser uno o más párrafos describiendo las
 convenciones para llamar al objeto, efectos secundarios, etc.
 
-El analizador de Python no quita la identación de las cadenas de texto
+El analizador de Python no quita el sangrado de las cadenas de texto
 literales multi-líneas, entonces las herramientas que procesan documentación
-tienen que quitar la identación si así lo quieren. Esto se hace mediante la
-siguiente convención. La primer línea que no está en blanco *siguiente* a la
-primer línea de la cadena determina la cantidad de identación para toda la
-cadena de documentación. (No podemos usar la primer línea ya que generalmente
-es adyacente a las comillas de apertura de la cadena y la identación no se nota
-en la cadena de texto). Los espacios en blanco "equivalentes" a esta identación
-son luego quitados del comienzo de cada línea en la cadena. No deberían haber
-líneas con menor identación, pero si las hay todos los espacios en blanco del
-comienzo deben ser quitados. La equivalencia de espacios en blanco debe ser
+tienen que quitarlo si así lo desean.  Esto se hace mediante la
+siguiente convención.  La primer línea que no está en blanco *siguiente* a la
+primer línea de la cadena determina la cantidad de sangría para toda la
+cadena de documentación.  (No podemos usar la primer línea ya que generalmente
+es adyacente a las comillas de apertura de la cadena y el sangrado no se nota
+en la cadena de texto).  Los espacios en blanco "equivalentes" a este sangrado
+son luego quitados del comienzo de cada línea en la cadena.  No deberían haber
+líneas con una sangría menor, pero si las hay todos los espacios en blanco del
+comienzo deben ser quitados.  La equivalencia de espacios en blanco debe ser
 verificada luego de la expansión de tabs (a 8 espacios, normalmente).
 
 Este es un ejemplo de un docstring multi-línea::
@@ -580,7 +580,7 @@ Este es un ejemplo de un docstring multi-línea::
 
 .. _tut-codingstyle:
 
-Intermezzo: Estilo de Codificación
+Intermezzo: Estilo de codificación
 ==================================
 
 .. sectionauthor:: Georg Brandl <georg@python.org>
@@ -589,19 +589,19 @@ Intermezzo: Estilo de Codificación
 Ahora que estás a punto de escribir piezas de Python más largas y complejas,
 es un buen momento para hablar sobre *estilo de codificación*. La mayoría de
 los lenguajes pueden ser escritos (o mejor dicho, *formateados*) con diferentes
-estilos; algunos son mas fáciles de leer que otros. Hacer que tu código sea más
-fácil de leer por otros es siempre una buena idea, y adoptar un buen estilo de
-codificación ayuda tremendamente a lograrlo.
+estilos; algunos son mas fáciles de leer que otros.  Hacer que tu código sea
+más fácil de leer por otros es siempre una buena idea, y adoptar un buen estilo
+de codificación ayuda tremendamente a lograrlo.
 
 Para Python, :pep:`8` se erigió como la guía de estilo a la que más proyectos
-adhirieron; promueve un estilo de codificación fácil de leer y amable con los
-ojos. Todos los desarrolladores Python deben leerlo en algún momento; aquí
-están extraídos los puntos más importantes:
+adhirieron; promueve un estilo de codificación fácil de leer y visualmente
+agradable.  Todos los desarrolladores Python deben leerlo en algún momento;
+aquí están extraídos los puntos más importantes:
 
-* Usar identación de 4 espacios, no tabs.
+* Usar sangrías de 4 espacios, no tabs.
 
-  4 espacios son un buen compromiso entre identación pequeña (permite mayor
-  nivel de identación) e identación grande (más fácil de leer). Los tabs
+  4 espacios son un buen compromiso entre una sangría pequeña (permite mayor
+  nivel de sangrado)y una sangría grande (más fácil de leer). Los tabs
   introducen confusión y es mejor dejarlos de lado.
 
 * Recortar las líneas para que no superen los 79 caracteres.
@@ -621,18 +621,16 @@ están extraídos los puntos más importantes:
 
 * Nombrar las clases y funciones consistentemente; la convención es usar
   ``NotacionCamello`` para clases y ``minusculas_con_guiones_bajos`` para
-  funciones y métodos. Siempre usar ``self`` como el nombre para el primer
+  funciones y métodos.  Siempre usar ``self`` como el nombre para el primer
   argumento en los métodos.
 
 * No usar codificaciones estrafalarias si se espera usar el código en entornos
-  internacionales. ASCII plano funciona bien en la mayoría de los casos.
+  internacionales.  ASCII plano funciona bien en la mayoría de los casos.
 
 
 .. rubric:: Footnotes
 
 .. [#] En realidad, *llamadas por referencia de objeto* sería una
-   mejordescripción, ya que si un objeto mutable es pasado, quien realiza la
-   llamaba verá cualquier cambio que el llamado realice sobre el mismo (como
+   mejor descripción, ya que si se pasa un objeto mutable, quien realiza la
+   llamada verá cualquier cambio que se realice sobre el mismo (por ejemplo
    ítems insertados en una lista).
-
-

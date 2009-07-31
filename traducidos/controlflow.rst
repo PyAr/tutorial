@@ -290,31 +290,34 @@ tres formas que pueden ser combinadas.
 
 .. _tut-defaultargs:
 
-Argumentos con Valores por Defecto
+Argumentos con valores por omisión
 ----------------------------------
 
-La forma más útil es especificar un valor por defecto para  uno o más
-argumentos. Esto crea una función que puede ser llamada con menos argumentos
-que los que permite. Por ejemplo::
+La forma más útil es especificar un valor por omisión para  uno o más
+argumentos.  Esto crea una función que puede ser llamada con menos argumentos
+que los que permite.  Por ejemplo::
 
    def pedir_confirmacion(prompt, reintentos=4, queja='Si o no, por favor!'):
        while True:
            ok = raw_input(prompt)
-           if ok in ('s', 'S', 'si', 'Si', 'SI'): return True
-           if ok in ('n', 'no', 'No', 'NO'): return False
+           if ok in ('s', 'S', 'si', 'Si', 'SI'):
+               return True
+           if ok in ('n', 'no', 'No', 'NO'):
+               return False
            reintentos = reintentos - 1
-           if reintentos < 0: raise IOError, 'usuario duro'
+           if reintentos < 0:
+               raise IOError('usuario duro')
            print queja
 
 Esta función puede ser llamada tanto así: ``pedir_confirmacion('¿Realmente
 queres salir?')`` como así: ``pedir_confirmacion('¿Sobreescribir archivo?',
 2)``.
 
-Este ejemplo también introduce la palabra reservada :keyword:`in`. Prueba si
-una secuencia contiene o no un determinado valor.
+Este ejemplo también introduce la palabra reservada :keyword:`in`, la cual
+prueba si una secuencia contiene o no un determinado valor.
 
-Los valores por defecto son evaluados en el momento de la definición de la
-función, en el ámbito de *definición*, entonces::
+Los valores por omisión son evaluados en el momento de la definición de la
+función, en el ámbito de la *definición*, entonces::
 
    i = 5
 
@@ -324,11 +327,11 @@ función, en el ámbito de *definición*, entonces::
    i = 6
    f()
 
-imprimirá ``5``.
+...imprimirá ``5``.
 
-**Advertencia importante:**  El valor por defecto es evaluado solo una vez.
-Existe una diferencia cuando el valor por defecto es un objeto mutable como una
-lista, diccionario, o instancia de la mayoría de las clases. Por ejemplo, la
+**Advertencia importante:**  El valor por omisión es evaluado solo una vez.
+Existe una diferencia cuando el valor por omisión es un objeto mutable como una
+lista, diccionario, o instancia de la mayoría de las clases.  Por ejemplo, la
 siguiente función acumula los argumentos que se le pasan en subsiguientes
 llamadas::
 
@@ -346,7 +349,7 @@ Imprimirá::
    [1, 2]
    [1, 2, 3]
 
-Si no se quiere que el valor por defecto sea compartido entre subsiguientes
+Si no se quiere que el valor por omisión sea compartido entre subsiguientes
 llamadas, se pueden escribir la función así::
 
    def f(a, L=None):
@@ -358,10 +361,10 @@ llamadas, se pueden escribir la función así::
 
 .. _tut-keywordargs:
 
-Palabras Claves como Argumentos
+Palabras claves como argumentos
 -------------------------------
 
-Las funciones también puede ser llamadas usando palabras claves como argumentos
+Las funciones también puede ser llamadas nombrando a los argumentos
 de la forma ``keyword = value``.  Por ejemplo, la siguiente función::
 
    def loro(tension, estado='muerto', accion='explotar', tipo='Azul Nordico'):
@@ -370,68 +373,70 @@ de la forma ``keyword = value``.  Por ejemplo, la siguiente función::
        print "-- Gran plumaje tiene el", tipo
        print "-- Esta", estado, "!"
 
-puede ser llamada de cualquiera de las siguientes formas::
+...puede ser llamada de cualquiera de las siguientes formas::
 
    loro(1000)
-   loro(accion = 'EXPLOTARRRRR', tension = 1000000)
-   loro('mil', estado= 'boca arriba')
+   loro(accion='EXPLOTARRRRR', tension=1000000)
+   loro('mil', estado='boca arriba')
    loro('un millon', 'rostizado', 'saltar')
 
-pero estas otras llamadas serían todas inválidas::
+...pero estas otras llamadas serían todas inválidas::
 
    loro()                      # falta argumento obligatorio
-   loro(tension=5.0, 'muerto') # argumento no-de palabra clave seguido de
-                               # uno que si
+   loro(tension=5.0, 'muerto') # argumento nombrado seguido de uno posicional
    loro(110, tension=220)      # valor duplicado para argumento
    loro(actor='Juan Garau')    # palabra clave desconocida
 
 En general, una lista de argumentos debe tener todos sus argumentos
-posicionales seguidos por los argumentos de palabra clave, dónde las palabras
-claves deben ser elegidas entre los nombres de los parámetros formales. No es
-importante si un parámetro formal tiene un valor por defecto o no. Ningún
+posicionales seguidos por los argumentos nombrados, dónde las palabras
+claves deben ser elegidas entre los nombres de los parámetros formales.  No es
+importante si un parámetro formal tiene un valor por omisión o no.  Ningún
 argumento puede recibir un valor más de una vez (los nombres de parámetros
-formales correspondientes a argumentos posiciónales no pueden ser usados como
-palabras clave en la misma llamada). Aquí hay un ejemplo que falla debido a
+formales correspondientes a argumentos posicionales no pueden ser usados como
+palabras clave en la misma llamada).  Aquí hay un ejemplo que falla debido a
 esta restricción::
 
-   >>> def function(a):
+   >>> def funcion(a):
    ...     pass
    ...
-   >>> function(0, a=0)
+   >>> funcion(0, a=0)
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    TypeError: function() got multiple values for keyword argument 'a'
 
-Cuando un parámetro formal de la forma ``**name`` está presente al final,
-recive un diccionario (ver :ref:`typesmapping`) conteniendo todos los
-argumentos de palabras clave excepto aquellos correspondientes a un parámetro
-formal. Esto puede ser combinado con un parámetro formal de la forma ``*name``
-(descripto en la siguiente subsección) que recibe una tupla conteniendo los
-argumentos posicionales además de la lista de parámetros formales. (``*name``
-debe ocurrir antes de ``**name``). Por ejemplo, si definimos una función así::
+Cuando un parámetro formal de la forma ``**nombre`` está presente al final,
+recibe un diccionario (ver :ref:`typesmapping`) conteniendo todos los
+argumentos nombrados excepto aquellos correspondientes a un parámetro formal.
+Esto puede ser combinado con un parámetro formal de la forma ``*nombre``
+(descripto en la siguiente sección) que recibe una tupla conteniendo los
+argumentos posicionales además de la lista de parámetros formales. (``*nombre``
+debe ocurrir antes de ``**nombre``).  Por ejemplo, si definimos una función
+así::
 
    def ventadequeso(tipo, *argumentos, **palabrasclaves):
        print "-- ¿Tiene", tipo, '?'
        print "-- Lo siento, nos quedamos sin", kind
-       for arg in argumentos: print arg
+       for arg in argumentos:
+           print arg
        print '-'*40
        claves = palabrasclaves.keys()
        claves.sort()
-       for c in claves: print c, ':', palabrasclaves[c]
+       for c in claves:
+           print c, ':', palabrasclaves[c]
 
 Puede ser llamada así::
 
-   ventadequeso('Limburger', "Es muy liquito, sr.",
+   ventadequeso('Limburger', "Es muy liquido, sr.",
               "Realmente es muy muy liquido, sr.",
               cliente='Juan Garau',
               vendedor='Miguel Paez',
               puesto='Venta de Queso Argentino')
 
-y por supuesto imprimirá::
+...y por supuesto imprimirá::
 
    -- ¿Tiene Limburger ?
    -- Lo siento, nos quedamos sin Limburger
-   Es muy liquito, sr.
+   Es muy liquido, sr.
    Realmente es muy muy liquido, sr.
    ----------------------------------------
    cliente : Juan Garau
@@ -439,13 +444,13 @@ y por supuesto imprimirá::
    puesto : Venta de Queso Argentino
 
 Se debe notar que el método :meth:`sort` de la lista de nombres de argumentos
-de palabra clave es llamado antes de imprimir el contenido del diccionario
+nombrados es llamado antes de imprimir el contenido del diccionario
 ``palabrasclaves``; si esto no se hace, el orden en que los argumentos son
 impresos no está definido.
 
 .. _tut-arbitraryargs:
 
-Listas de Argumentos Arbitrarios
+Listas de argumentos arbitrarios
 --------------------------------
 
 .. index::
@@ -453,7 +458,7 @@ Listas de Argumentos Arbitrarios
 
 Finalmente, la opción menos frecuentemente usada es especificar que una
 función puede ser llamada con un número arbitrario de argumentos.  Estos
-argumentos serán organizados en una tupla. Antes del número variable de
+argumentos serán organizados en una tupla.  Antes del número variable de
 argumentos, cero o más argumentos normales pueden estar presentes.::
 
    def fprintf(file, template, *args):
@@ -462,15 +467,15 @@ argumentos, cero o más argumentos normales pueden estar presentes.::
 
 .. _tut-unpacking-arguments:
 
-Desempaquetando una Lista de Argumentos
+Desempaquetando una lista de argumentos
 ---------------------------------------
 
 La situación inversa ocurre cuando los argumentos ya están en una lista o
 tupla pero necesitan ser desempaquetados para llamar a una función que
-requiere argumentos posicionales separados. Por ejemplo, la función predefinida
-:func:`range` espera los argumentos *inicio* y *fin*.  Si no están disponibles
-en forma separada, se puede escribir la llamada a la función con el operador
-para desempaquetar argumentos de una lista o una tupla ``*``\::
+requiere argumentos posicionales separados.  Por ejemplo, la función
+predefinida :func:`range` espera los argumentos *inicio* y *fin*.  Si no están
+disponibles en forma separada, se puede escribir la llamada a la función con
+el operador para desempaquetar argumentos de una lista o una tupla ``*``\::
 
    >>> range(3, 6)       # llamada normal con argumentos separados
    [3, 4, 5]
@@ -481,7 +486,7 @@ para desempaquetar argumentos de una lista o una tupla ``*``\::
 .. index::
   statement: **
 
-Del mismo modo, los diccionarios pueden entregar argumentos de palabra clave
+Del mismo modo, los diccionarios pueden entregar argumentos nombrados
 con el operador ``**``\::
 
    >>> def loro(tension, estado='rostizado', accion='explotar'):
@@ -498,18 +503,18 @@ con el operador ``**``\::
 
 .. _tut-lambda:
 
-Formas con Lambda
+Formas con lambda
 -----------------
 
 Por demanda popular, algunas características comúnmente encontradas en
-lenguajes de programación funcionales como Lisp fueron añadidas a Python. Con
+lenguajes de programación funcionales como Lisp fueron añadidas a Python.  Con
 la palabra reservada :keyword:`lambda` se pueden crear pequeñas funciones
-anónimas. Esta es una función que retorna la suma de sus dos argumentos:
-``lambda a, b: a+b``. Las formas con lambda pueden ser usadas en cualquier
-lugar que se requieran funciones. Semánticamente, son solo azúcar sintáctica
-para la definición de funciones. Cómo en la definición de funciones anidadas,
-las formas con lambda pueden referenciar variables del ámbito en el que son
-contenidas::
+anónimas.  Esta es una función que devuelve la suma de sus dos argumentos:
+``lambda a, b: a+b``.  Las formas con lambda pueden ser usadas en cualquier
+lugar que se requieran funciones.  Semánticamente, son solo azúcar sintáctica
+para la definición de funciones.  Cómo en la definición de funciones anidadas,
+las formas con lambda pueden hacer referencia a variables del ámbito en el que
+son contenidas::
 
    >>> def hacer_incrementador(n):
    ...     return lambda x: x + n
@@ -523,7 +528,7 @@ contenidas::
 
 .. _tut-docstrings:
 
-Cadenas de texto de Documentación
+Cadenas de texto de documentación
 ---------------------------------
 
 .. index::

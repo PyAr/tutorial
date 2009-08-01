@@ -281,13 +281,13 @@ Esto reemplaza el comportamiento por defecto de crear el atributo *args*.
 Las clases de Excepciones pueden ser definidas de la misma forma que cualquier
 otra clase, pero usualmente se mantienen simples, a menudo solo ofreciendo un
 número de atributos con información sobre el error que leerán los manejadores
-de la excepción. Al crear un módulo que puede lanzar varios errores distintos,
+de la excepción.  Al crear un módulo que puede lanzar varios errores distintos,
 una práctica común es crear una clase base para excepciones definidas en ese
 módulo y extenderla para crear clases excepciones específicas para distintas
 condiciones de error::
 
    class Error(Exception):
-       """Clas base para excepciones en el modulo."""
+       """Clase base para excepciones en el modulo."""
        pass
 
    class EntradaError(Error):
@@ -327,7 +327,7 @@ sobre clases en el capítulo :ref:`tut-classes`.
 
 .. _tut-cleanup:
 
-Definiendo Acciones de Limpieza
+Definiendo acciones de limpieza
 ===============================
 
 La declaración :keyword:`try` tiene otra cláusula opcional que intenta
@@ -345,15 +345,15 @@ circunstancias. Por ejemplo::
    KeyboardInterrupt
 
 Una *cláusula finally* siempre es ejecutada antes de salir de la declaración
-:keyword:`try`, ya sea que una excepción haya ocurrido o no. Cuando ocurre una
+:keyword:`try`, ya sea que una excepción haya ocurrido o no.  Cuando ocurre una
 excepción en la cláusula :keyword:`try` y no fue manejada por una cláusula
 :keyword:`except` (o ocurrió en una cláusula :keyword:`except` o
 :keyword:`else`), es relanzada luego de que se ejecuta la cláusula
 :keyword:`finally`. :keyword:`finally` es también ejecutada "a la salida"
 cuando cualquier otra cláusula de la declaración :keyword:`try` es dejada
-via :keyword:`break`, :keyword:`continue` or :keyword:`return`. Un ejemplo
+via :keyword:`break`, :keyword:`continue` or :keyword:`return`.  Un ejemplo
 más complicado (cláusulas :keyword:`except` y :keyword:`finally` en la misma
-declaración :keyword:`try` como funciona en Python 2.5)::
+declaración :keyword:`try`)::
 
    >>> def dividir(x, y):
    ...     try:
@@ -378,7 +378,7 @@ declaración :keyword:`try` como funciona en Python 2.5)::
      File "<stdin>", line 3, in divide
    TypeError: unsupported operand type(s) for /: 'str' and 'str'
 
-Como podés ver, la cláusula :keyword:`finally` es ejecutada siempre. La
+Como podés ver, la cláusula :keyword:`finally` es ejecutada siempre.  La
 excepción :exc:`TypeError` lanzada al dividir dos cadenas de texto no es
 manejado por la cláusula :keyword:`except` y por lo tanto es relanzada luego
 de que se ejecuta la cláusula :keyword:`finally`.
@@ -390,28 +390,28 @@ uso del recurso fue exitoso.
 
 .. _tut-cleanup-with:
 
-Acciones Pre-definidas de Limpieza
-==================================
+Acciones predefinidas de limpieza
+=================================
 
 Algunos objetos definen acciones de limpieza estándar que llevar a cabo cuando
 el objeto no es más necesitado, independientemente de que las operaciones
-sobre el objeto hayan sido exitosas o no. Mirá el siguiente ejemplo, que
+sobre el objeto hayan sido exitosas o no.  Mirá el siguiente ejemplo, que
 intenta abrir un archivo e imprimir su contenido en la pantalla.::
 
    for linea in open("miarchivo.txt"):
        print linea
 
 El problema con este código es que deja el archivo abierto por un periodo de
-tiempo indeterminado luego de que termine de ejecutarse. Esto no es un problema
-en scripts simples, pero puede ser un problema en aplicaciones más grandes. La
-declaración :keyword:`with` permite que objetos como archivos sean usados de
-una forma que asegure que siempre se los libera rápido y en forma correcta. ::
+tiempo indeterminado luego de que termine de ejecutarse.  Esto no es un
+problema en scripts simples, pero puede ser un problema en aplicaciones más
+grandes.  La declaración :keyword:`with` permite que objetos como archivos sean
+usados de una forma que asegure que siempre se los libera rápido y en forma
+correcta. ::
 
    with open("miarchivo.txt") as f:
        for linea in f:
            print linea
 
 Luego de que la declaración sea ejecutada, el archivo *f* siempre es cerrado,
-incluso si se encuentra un problema al procesar las líneas. Otros objetos que
-provean acciones de limpieza pre-definidas lo indicarán en su documentación.
-
+incluso si se encuentra un problema al procesar las líneas.  Otros objetos que
+provean acciones de limpieza predefinidas lo indicarán en su documentación.

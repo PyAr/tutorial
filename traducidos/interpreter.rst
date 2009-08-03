@@ -122,9 +122,9 @@ constructor multilínea.  Como en el ejemplo, mirá la sentencia :keyword:`if`::
 
 .. _tut-interp:
 
+
 El intérprete y su entorno
 ==========================
-
 
 .. _tut-error:
 
@@ -151,16 +151,16 @@ sentencia :keyword:`try`.
 
 .. _tut-scripts:
 
-Scripts Python Ejecutables
---------------------------
+Programas ejecutables de Python
+-------------------------------
 
-En los sistemas Unix tipo BSD, los scripts Python pueden convertirse
-directamente en ejecutables, como scripts del intérprete de comandos, poniendo
-la linea::
+En los sistemas Unix y tipo BSD, los programas Python pueden convertirse
+directamente en ejecutables, como programas del intérprete de comandos,
+poniendo la linea::
 
    #! /usr/bin/env python
 
-al principio del script y dándole al archivo permisos de ejecución
+...al principio del script y dándole al archivo permisos de ejecución
 (asumiendo que el intérprete están en la variable de entorno :envvar:`PATH` del
 usuario).  ``#!`` deben ser los primeros dos caracteres del archivo. En algunas
 plataformas, la primer línea debe terminar al estilo Unix (``'\n'``), no como
@@ -172,17 +172,18 @@ Se le puede dar permisos de ejecución al script usando el comando
 
    $ chmod +x myscript.py
 
-En sistemas Windows, no existe la noción de "modo ejecutable". El instalador de
-Python asocia automáticamente la extensión ``.py`` con ``python.exe`` para que
-al hacerle doble click a un archivo Python se corra el script. La extensión
-también puede ser ``.pyw``, en este caso, la ventana con la consola que
-normalmente aparece es omitida.
+En sistemas Windows, no existe la noción de "modo ejecutable".  El instalador
+de Python asocia automáticamente la extensión ``.py`` con ``python.exe`` para
+que al hacerle doble click a un archivo Python se corra el script.  La
+extensión también puede ser ``.pyw``, en este caso se omite la ventana con la
+consola que normalmente aparece.
 
-Codificación del Código Fuente
+
+Codificación del código fuente
 ------------------------------
 
-Es posible utilizar una codifición distinta a ASCII en el código fuente de
-Pyhton. La mejor forma de hacerlo es poner otro comentario especial enseguida
+Es posible utilizar una codificación distinta a ASCII en el código fuente de
+Python.  La mejor forma de hacerlo es poner otro comentario especial enseguida
 después de la línea con ``#!`` para definir la codificación::
 
    # -*- coding: encoding -*-
@@ -190,14 +191,14 @@ después de la línea con ``#!`` para definir la codificación::
 
 Con esa declaración, todos los caracteres en el archivo fuente serán traducidos
 utilizando la codificación *encoding*, y será posible escribir directamente
-cadenas de texto literales Unicode en la codificación seleccionada. La lista de
-posibles codificaciones se puede encontrar en la Referencia de la Biblioteca de
-Python, en la sección sobre :mod:`codecs`.
+cadenas de texto literales Unicode en la codificación seleccionada.  La lista
+de posibles codificaciones se puede encontrar en la Referencia de la Biblioteca
+de Python, en la sección sobre :mod:`codecs`.
 
-Por ejemplo, para esrcibir literales Unicode, incluyendo el símbolo de la
+Por ejemplo, para escribir literales Unicode, incluyendo el símbolo de la
 moneda Euro, se puede usar la codificación ISO-8859-15, en la que el símbolo
-Euro tiene el valor 164. Este script imprimirá el valor 8364 (el código Unicode
-correspondiente al símbolo Euro) y luego saldrá::
+Euro tiene el valor 164.  Este script imprimirá el valor 8364 (el código
+Unicode correspondiente al símbolo Euro) y luego saldrá::
 
    # -*- coding: iso-8859-15 -*-
 
@@ -206,45 +207,45 @@ correspondiente al símbolo Euro) y luego saldrá::
 
 Si tu editor tiene soporte para guardar archivos como ``UTF-8`` con
 *marca de orden de byte* UTF-8 (también conocida como BOM), podés usar eso en
-lugar de la declaración de codificación. IDLE lo soporta si se activa
-``Options/General/Default Source Encoding/UTF-8``. Notá que esto no funciona en
-versiones antiguas de Python (2.2 y anteriores), ni por el sistema operativo en
-scripts con la línea con ``#!`` (solo usado en sistemas Unix).
+lugar de la declaración de codificación.  IDLE lo soporta si se activa
+``Options/General/Default Source Encoding/UTF-8``.  Notá que esto no funciona
+en versiones antiguas de Python (2.2 y anteriores), ni por el sistema operativo
+en scripts con la línea con ``#!`` (solo usado en sistemas Unix).
 
 Usando UTF-8 (ya sea mediante BOM o la declaración de codificación), los
 caracteres de la mayoría de los idiomas del mundo pueden ser usados
-simultaneamente en cadenas de texto o comentarios. No se soporta usar carcteres
-no-ASCII en identificadores. Para mostrar todos estos caracteres en forma
-apropiada, tu editor debe reconocer que el archivo es UTF-8, y debe usar una
-fuente que soporte todos los caracteres del archivo.
+simultáneamente en cadenas de texto o comentarios.  No se soporta usar
+caracteres no-ASCII en identificadores.  Para mostrar todos estos caracteres de
+forma apropiada, tu editor debe reconocer que el archivo es UTF-8, y debe usar
+una tipografía que soporte todos los caracteres del archivo.
 
 
 .. _tut-startup:
 
-El Archivo de Inicio Interactivo
+El archivo de inicio interactivo
 --------------------------------
 
 Cuando usás Python en forma interactiva, suele ser útil que algunos comandos
-estándar se ejecuten cada vez que el intérprete se inicia. Podés hacer esto
+estándar se ejecuten cada vez que el intérprete se inicia.  Podés hacer esto
 configurando la variable de entorno :envvar:`PYTHONSTARTUP` con el nombre de un
-archivo que contenga tus comandos de inicio. Esto es similar al archivo
+archivo que contenga tus comandos de inicio.  Esto es similar al archivo
 :file:`.profile` en los intérpretes de comandos de Unix.
 
-.. XXX Esto probablemente debe ser puesto en un apéndicem ya que la mayoría
+.. XXX Esto probablemente debe ser puesto en un apéndice ya que la mayoría
    de las personas no usan Python interactivamente de formas no triviales.
 
 Este archivo es solo leído en las sesiones interactivas del intérprete, no
-cuando Python leer comandos de un script ni cuando file:`/dev/tty` se explicita
+cuando Python lee comandos de un script ni cuando file:`/dev/tty` se explicita
 como una fuente de comandos (que de otro modo se comporta como una sesión
-interactiva). Se ejecuta en el mismo espacio de nombres en el que los comandos
+interactiva).  Se ejecuta en el mismo espacio de nombres en el que los comandos
 interactivos se ejecutan, entonces los objetos que define o importa pueden ser
-usandos sin cualificaciones en la sesión interactiva. En este archivo también
+usados sin cualificaciones en la sesión interactiva.  En este archivo también
 podés cambiar los prompts ``sys.ps1`` y ``sys.ps2``.
 
-Sin querés leer un archivo de inicio adicional desde el directorio actual,
+Si querés leer un archivo de inicio adicional desde el directorio actual,
 podés programarlo en el archivo de inicio global usando algo como ``if
 os.path.isfile('.pythonrc.py'): execfile('.pythonrc.py')``.  Si querés usar el
-archivo de inicio en un script, tenés que hacer lo siguiente en forma explífica
+archivo de inicio en un script, tenés que hacer lo siguiente en forma explícita
 en el script::
 
    import os

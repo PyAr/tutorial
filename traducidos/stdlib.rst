@@ -92,7 +92,6 @@ La forma más directa de terminar un programa es usar ``sys.exit()``.
 
 .. _tut-string-pattern-matching:
 
-
 Coincidencia en patrones de cadenas
 ===================================
 
@@ -170,7 +169,6 @@ para mandar correos::
 (Notá que el segundo ejemplo necesita un servidor de correo corriendo en la
 máquina local)
 
-------------------- revisado hasta acá!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 .. _tut-dates-and-times:
 
 Fechas y tiempos
@@ -178,7 +176,7 @@ Fechas y tiempos
 
 El módulo :mod:`datetime` ofrece clases para manejar fechas y tiempos tanto de
 manera simple como compleja.  Aunque se soporta aritmética sobre fechas y
-tiempos, el foco de la implementación es en la eficiente extracción de partes
+tiempos, el foco de la implementación es en la extracción eficiente de partes
 para manejarlas o formatear la salida.  El módulo también soporta objetos que
 son conscientes de la zona horaria. ::
 
@@ -312,7 +310,7 @@ capacidades robustas y sofisticadas de sus paquetes más grandes.  Por ejemplo:
   el paquete :mod:`email` tiene un conjunto de herramientas completo para
   construir y decodificar estructuras complejas de mensajes (incluyendo
   adjuntos) y para implementar protocolos de cabecera y codificación de
-  Internet).
+  Internet.
 
 * Los paquetes :mod:`xml.dom` y :mod:`xml.sax` proveen un robusto soporte para
   analizar este popular formato de intercambio de datos.  Asimismo, el módulo

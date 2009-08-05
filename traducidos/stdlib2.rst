@@ -1,11 +1,11 @@
 .. _tut-brieftourtwo:
-    
-**************************************************************
+
+***************************************************
 Pequeño paseo por la Biblioteca Estándar - Parte II
-**************************************************************
+***************************************************
 
 Este segundo paseo cubre módulos más avanzados que facilitan necesidades
-de programación avanzadas. Estos módulos raramente se usan en scripts cortos.
+de programación complejas.  Estos módulos raramente se usan en scripts cortos.
 
 
 .. _tut-output-formatting:
@@ -24,7 +24,7 @@ El módulo :mod:`pprint` ofrece un control más sofisticado de la forma
 en que se imprimen tanto los objetos predefinidos como los objetos
 definidos por el usuario, de manera que sean legibles por el intérprete.
 Cuando el resultado ocupa más de una línea, el generador de
-"impresiones lindas" agrega saltos de línea e indentación para mostrar
+"impresiones lindas" agrega saltos de línea y sangrías para mostrar
 la estructura de los datos más claramente::
 
    >>> import pprint
@@ -42,7 +42,7 @@ El módulo :mod:`textwrap` formatea párrafos de texto para que quepan
 dentro de cierto ancho de pantalla::
 
    >>> import textwrap
-   >>> doc = """El método wrap() es como fill(), excepto que devuelve
+   >>> doc = u"""El método wrap() es como fill(), excepto que devuelve
    ... una lista de strings en lugar de una gran string con saltos de
    ... línea como separadores."""
    >>> print textwrap.fill(doc, width=40)
@@ -51,11 +51,9 @@ dentro de cierto ancho de pantalla::
    lugar de una gran string con saltos de
    línea como separadores.
 
-
 El módulo :mod:`locale` accede a una base de datos de formatos específicos
-de una cultura.
-El atributo :var:`grouping` de la función :function:`format` permite una
-forma directa de formatear números con separadores de grupo::
+a una cultura.  El atributo :var:`grouping` de la función :function:`format`
+permite una forma directa de formatear números con separadores de grupo::
 
    >>> import locale
    >>> locale.setlocale(locale.LC_ALL, '')
@@ -75,8 +73,8 @@ Plantillas
 ==========
 
 El módulo :mod:`string` incluye una clase versátil :class:`Template`
-(plantilla) on una sintaxis simplificada apta para ser editada por usuarios
-finales. Esto permite que los usuarios personalicen sus aplicaciones sin
+(plantilla) con una sintaxis simplificada apta para ser editada por usuarios
+finales.  Esto permite que los usuarios personalicen sus aplicaciones sin
 necesidad de modificar la aplicación en sí.
 
 El formato usa marcadores cuyos nombres se forman con ``$`` seguido de
@@ -91,10 +89,9 @@ sin necesidad de dejar espacios en blanco. ``$$`` genera un ``$``::
 
 El método :meth:`substitute` lanza :exc:`KeyError` cuando no se suministra
 ningún valor para un marcador mediante un diccionario o argumento por nombre.
-Para aplicaciones estilo "combinación de correo", los datos suministrados
-por el usuario puede ser incompletos y el método :meth:`safe_substitute`
-puede ser más apropiado --- deja los marcadores inalterados cuando hay datos
-faltantes::
+Para algunas aplicaciones los datos suministrados por el usuario puede ser
+incompletos, y el método :meth:`safe_substitute` puede ser más apropiado: deja
+los marcadores inalterados cuando hay datos faltantes::
 
    >>> t = Template('Return the $item to $owner.')
    >>> d = dict(item='unladen swallow')
@@ -115,7 +112,7 @@ o el formato de archivo::
    >>> photofiles = ['img_1074.jpg', 'img_1076.jpg', 'img_1077.jpg']
    >>> class BatchRename(Template):
    ...     delimiter = '%'
-   ... 
+   ...
    >>> fmt = raw_input('Enter rename style (%d-date %n-seqnum %f-format):  ')
    Enter rename style (%d-date %n-seqnum %f-format):  Ashley_%n%f
    >>> t = BatchRename(fmt)
@@ -124,13 +121,13 @@ o el formato de archivo::
    ...     base, ext = os.path.splitext(filename)
    ...     newname = t.substitute(d=date, n=i, f=ext)
    ...     print '{0} --> {1}'.format(filename, newname)
-   ... 
+   ...
    img_1074.jpg --> Ashley_0.jpg
    img_1076.jpg --> Ashley_1.jpg
    img_1077.jpg --> Ashley_2.jpg
 
 Las plantillas también pueden ser usadas para separar la lógica del programa
-de los detalles de múltiples formatos de salida. Esto permite sustituir
+de los detalles de múltiples formatos de salida.  Esto permite sustituir
 plantillas específicas para archivos XML, reportes en texto plano,
 y reportes web en HTML.
 
@@ -143,10 +140,10 @@ Trabajar con registros estructurados conteniendo datos binarios
 El módulo :mod:`struct` provee las funciones :func:`pack` y :func:`unpack`
 para trabajar con formatos de registros binarios de longitud variable.
 El siguiente ejemplo muestra cómo recorrer la información de encabezado
-en un archivo ZIP sin usar el módulo :mod:`zipfile`.
-Los códigos ``"H"`` e ``"I"`` representan números sin signo de dos y
-cuatro bytes respectivamente. El ``"<"`` indica que son de
-tamaño estándar y los bytes tienen ordenamiento `little-endian`::
+en un archivo ZIP sin usar el módulo :mod:`zipfile`.  Los códigos ``"H"``
+e ``"I"`` representan números sin signo de dos y cuatro bytes
+respectivamente.  El ``"<"`` indica que son de tamaño estándar y los
+bytes tienen ordenamiento `little-endian`::
 
    import struct
 
@@ -168,14 +165,14 @@ tamaño estándar y los bytes tienen ordenamiento `little-endian`::
 
 .. _tut-multi-threading:
 
-Multihilo
-=========
+Multi-hilos
+===========
 
-La técnica de multihilos permite desacoplar tareas que no tienen dependencia
-secuencial. Los hilos se pueden usar para mejorar el grado de reacción de las
-aplicaciones que aceptan entradas del usuario mientras otras tareas se
-ejecutan en segundo plano. Un caso de uso relacionado es ejecutar E/S en
-paralelo con cálculos en otro hilo.
+La técnica de multi-hilos (o multi-threading) permite desacoplar tareas que no
+tienen dependencia secuencial.  Los hilos se pueden usar para mejorar el
+grado de reacción de las aplicaciones que aceptan entradas del usuario
+mientras otras tareas se ejecutan en segundo plano.  Un caso de uso
+relacionado es ejecutar E/S en paralelo con cálculos en otro hilo.
 
 El código siguiente muestra cómo el módulo de alto nivel :mod:`threading`
 puede ejecutar tareas en segundo plano mientras el programa principal continúa
@@ -192,47 +189,46 @@ su ejecución::
            f = zipfile.ZipFile(self.arch_sal, 'w', zipfile.ZIP_DEFLATED)
            f.write(self.arch_ent)
            f.close()
-           print 'Terminó zip en segundo plano de: ', self.arch_ent
+           print u'Terminó zip en segundo plano de: ', self.arch_ent
 
    seg_plano = AsyncZip('misdatos.txt', 'miarchivo.zip')
    seg_plano.start()
-   print 'El programa principal continúa la ejecución en primer plano.'
+   print u'El programa principal continúa la ejecución en primer plano.'
 
    seg_plano.join()    # esperar que termine la tarea en segundo plano
-   print 'El programa principal esperó hasta que el segundo plano estuviera \
-          listo.'
+   print u'El programa principal esperó hasta que el segundo plano terminara.'
 
 
-El desafío principal de las aplicaciones multihilo es la coordinación entre
-los hilos que comparten datos u otros recursos. A ese fin, el módulo threading
+El desafío principal de las aplicaciones multi-hilo es la coordinación entre
+los hilos que comparten datos u otros recursos.  A ese fin, el módulo threading
 provee una serie de primitivas de sincronización que incluyen locks, eventos,
 variables de condición, y semáforos.
 
 Aún cuando esas herramientas son poderosas, pequeños errores de diseño pueden
-resultar en problemas difíciles de reproducir. La forma preferida de coordinar
+resultar en problemas difíciles de reproducir.  La forma preferida de coordinar
 tareas es concentrar todos los accesos a un recurso en un único hilo y después
 usar el módulo :mod:`Queue` para alimentar dicho hilo con pedidos desde otros
-hilos. Las aplicaciones que usan objetos :class:`Queue.Queue`
-para comunicación y coordinación entre hilos son más fáciles de diseñar,
+hilos.  Las aplicaciones que usan objetos :class:`Queue.Queue` para
+comunicación y coordinación entre hilos son más fáciles de diseñar,
 más legibles, y más confiables.
 
 
 .. _tut-logging:
 
-Registro
-========
+Registrando
+===========
 
-El módulo :mod:`logging` ofrece un sistema de registro (traza) completo y
-flexible. En su forma más simple, los mensajes de registro se envían a un
+El módulo :mod:`logging` ofrece un sistema de registros (logs) completo y
+flexible.  En su forma más simple, los mensajes de registro se envían a un
 archivo o a ``sys.stderr``::
 
    import logging
-   logging.debug('Información de depuración')
-   logging.info('Mensaje informativo')
-   logging.warning('Atención: archivo de configuración %s no se encuentra', 
+   logging.debug(u'Información de depuración')
+   logging.info(u'Mensaje informativo')
+   logging.warning(u'Atención: archivo de configuración %s no se encuentra',
                    'server.conf')
-   logging.error('Ocurrió un error')
-   logging.critical('Error crítico -- cerrando')
+   logging.error(u'Ocurrió un error')
+   logging.critical(u'Error crítico -- cerrando')
 
 Ésta es la salida obtenida::
 
@@ -241,9 +237,9 @@ archivo o a ``sys.stderr``::
    CRITICAL:root:Error crítico -- cerrando
 
 De forma predeterminada, los mensajes de depuración e informativos se suprimen,
-y la salida se envía al error estándar. Otras opciones de salida incluyen
+y la salida se envía al error estándar.  Otras opciones de salida incluyen
 mensajes de ruteo a través de correo electrónico, datagramas, sockets, o un
-servidor HTTP. Nuevos filtros pueden seleccionar diferentes rutas basadas en
+servidor HTTP.  Nuevos filtros pueden seleccionar diferentes rutas basadas en
 la prioridad del mensaje: :const:`DEBUG`, :const:`INFO`,
 :const:`WARNING`, :const:`ERROR`, and :const:`CRITICAL`
 (Depuración, Informativo, Atención, Error y Crítico respectivamente)
@@ -260,18 +256,18 @@ Referencias débiles
 
 Python realiza administración de memoria automática (cuenta de referencias
 para la mayoría de los objetos, y :term:`garbage collection` (recolección
-de basura) para eliminar ciclos). La memoria se libera poco después de que
+de basura) para eliminar ciclos).  La memoria se libera poco después de que
 la última referencia a la misma haya sido eliminada.
 
 Esta estrategia funciona bien para la mayoría de las aplicaciones, pero
 ocasionalmente aparece la necesidad de hacer un seguimiento de objetos sólo
-mientras están siendo usados por alguien más. Desafortunadamente, el sólo
+mientras están siendo usados por alguien más.  Desafortunadamente, el sólo
 hecho de seguirlos crea una referencia que los hace permanentes.
 
 El módulo :mod:`weakref` provee herramientas para seguimiento de objetos que
-no crean una referencia. Cuando el objeto no se necesita más, es eliminado
+no crean una referencia.  Cuando el objeto no se necesita más, es eliminado
 automáticamente de una tabla de referencias débiles y se dispara una
-retrollamada (`callback`). Comúnmente se usa para mantener una `cache` de
+retrollamada (`callback`).  Comúnmente se usa para mantener una `cache` de
 objetos que son caros de crear:
 
 
@@ -302,7 +298,7 @@ Herramientas para trabajar con listas
 =====================================
 
 Muchas necesidades de estructuras de datos pueden ser satisfechas con el tipo
-lista integrado. Sin embargo, a veces se hacen necesarias implementaciones
+integrado lista.  Sin embargo, a veces se hacen necesarias implementaciones
 alternativas con rendimientos distintos.
 
 El módulo :mod:`array` provee un objeto :class:`array()` (vector) que es como
@@ -320,7 +316,7 @@ los 16 bytes por elemento habituales en listas de objetos int de Python::
 
 El módulo :mod:`collections` provee un objeto :class:`deque()` que es como una
 lista más rápida para agregar y quitar elementos por el lado izquierdo pero
-búsquedas más lentas por el medio. Estos objetos son adecuados para implementar
+búsquedas más lentas por el medio.  Estos objetos son adecuados para implementar
 colas y árboles de búsqueda a lo ancho::
 
    >>> from collections import deque
@@ -348,9 +344,9 @@ listas ordenadas::
    [(100, 'perl'), (200, 'tcl'), (300, 'ruby'), (400, 'lua'), (500, 'python')]
 
 El módulo :mod:`heapq` provee funciones para implementar heaps basados en
-listas comunes. El menor valor ingresado se mantiene en la posición cero.  Esto
-es útil para aplicaciones que acceden a menudo al elemento más chico pero no
-quieren hacer un orden completo de la lista::
+listas comunes.  El menor valor ingresado se mantiene en la posición cero.
+Esto es útil para aplicaciones que acceden a menudo al elemento más chico pero
+no quieren hacer un orden completo de la lista::
 
    >>> from heapq import heapify, heappop, heappush
    >>> datos = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
@@ -366,7 +362,7 @@ Aritmética de punto flotante decimal
 ====================================
 
 El módulo :mod:`decimal` provee un tipo de dato :class:`Decimal` para soportar
-aritmética de punto flotante decimal. Comparado con :class:`float`, la
+aritmética de punto flotante decimal.  Comparado con :class:`float`, la
 implementación de punto flotante binario incluida, la nueva clase es muy útil
 especialmente para aplicaciones financieras y para cualquier uso que requiera
 una representación decimal exacta, control de la precisión, control del
@@ -410,5 +406,4 @@ haga falta::
    >>> getcontext().prec = 36
    >>> Decimal(1) / Decimal(7)
    Decimal('0.142857142857142857142857142857142857')
-
 

@@ -123,8 +123,8 @@ obtener la parte real. ::
    >>> a=3.0+4.0j
    >>> float(a)
    Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
-   TypeError: can't convert complex to float; use abs(z)
+   ...
+   TypeError: can't convert complex to float
    >>> a.real
    3.0
    >>> a.imag
@@ -474,8 +474,8 @@ utilizando el código por defecto. ::
    u'\xe4\xf6\xfc'
    >>> str(u"äöü")
    Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
-   UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-2: ordinal not in range(128)
+   ...
+   UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-5: ordinal not in range(128)
 
 Para convertir una cadena Unicode en una cadena de 8-bit utilizando un
 código en particular, los objetos Unicode tienen un método :func:`encode`

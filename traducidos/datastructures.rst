@@ -257,7 +257,8 @@ evalua a una tupla, debe encerrarse entre paréntesis. ::
    >>> [[x,x**2] for x in vec]
    [[2, 4], [4, 16], [6, 36]]
    >>> [x, x**2 for x in vec]	# error - se requieren paréntesis para tuplas
-   File "<stdin>", line 1, in ?
+   Traceback (most recent call last):
+   ...
      [x, x**2 for x in vec]
                 ^
    SyntaxError: invalid syntax

@@ -66,7 +66,7 @@ Algunos ejemplos::
    ... hola = 'hola mundo\n'
    >>> holas = repr(hola)
    >>> print holas
-   'hello, world\n'
+   'hola mundo\n'
    >>> # El argumento de repr() puede ser cualquier objeto Python:
    ... repr((x, y, ('carne', 'huevos')))
    "(32.5, 40000, ('carne', 'huevos'))"
@@ -150,7 +150,7 @@ referidos usando el nombre del argumento. ::
 Se pueden combinar arbitrariamente argumentos posicionales y nombrados::
 
    >>> print 'La historia de {0}, {1}, y {otro}.'.format('Bill', 'Manfred', otro='Georg')
-   La hostoria de Bill, Manfred, y Georg.
+   La historia de Bill, Manfred, y Georg.
 
 Un ``':`` y especificador de formato opcionales pueden ir luego del nombre del
 campo.  Esto aumenta el control sobre cómo el valor es formateado.  El
@@ -167,8 +167,8 @@ número de caracteres de ancho.  Esto es útil para hacer tablas lindas. ::
    >>> for nombre, telefono in tabla.items():
    ...     print '{0:10} ==> {1:10d}'.format(nombre, telefono)
    ...
-   Jack       ==>       4098
    Dcab       ==>       7678
+   Jack       ==>       4098
    Sjoerd     ==>       4127
 
 Si tenés una cadena de formateo realmente larga que no querés separar, podría
@@ -302,7 +302,7 @@ Una forma alternativa a leer lineas es iterar sobre el objeto archivo.  Esto es
 eficiente en memoria, rápido, y conduce a un código más simple::
 
    >>> for linea in f:
-           print linea,
+   ...     print linea,
 
    Esta es la primer linea del archivo
    Segunda linea del archivo

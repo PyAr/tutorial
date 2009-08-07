@@ -76,7 +76,7 @@ rebanada es conveniente para esto::
    ...    if len(x) > 6: a.insert(0, x)
    ...
    >>> a
-   ['defenestrado', 'gato', 'ventana', 'defenestrado']
+   ['defenestrado', 'ventana', 'gato', 'ventana', 'defenestrado']
 
 
 .. _tut-range:
@@ -137,7 +137,7 @@ lazo, que busca números primos::
    >>> for n in range(2, 10):
    ...     for x in range(2, n):
    ...         if n % x == 0:
-   ...             print n, 'es igual a ', x, '*', n/x
+   ...             print n, 'es igual a', x, '*', n/x
    ...             break
    ...     else:
    ...         # sigue el bucle sin encontrar un factor
@@ -369,7 +369,7 @@ de la forma ``keyword = value``.  Por ejemplo, la siguiente función::
 
    def loro(tension, estado='muerto', accion='explotar', tipo='Azul Nordico'):
        print "-- Este loro no va a", accion,
-       print "si le aplicas", voltage, "voltios."
+       print "si le aplicas", tension, "voltios."
        print "-- Gran plumaje tiene el", tipo
        print "-- Esta", estado, "!"
 
@@ -401,8 +401,8 @@ esta restricción::
    ...
    >>> funcion(0, a=0)
    Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
-   TypeError: function() got multiple values for keyword argument 'a'
+   ...
+   TypeError: funcion() got multiple values for keyword argument 'a'
 
 Cuando un parámetro formal de la forma ``**nombre`` está presente al final,
 recibe un diccionario (ver :ref:`typesmapping`) conteniendo todos los
@@ -491,14 +491,13 @@ con el operador ``**``\::
 
    >>> def loro(tension, estado='rostizado', accion='explotar'):
    ...     print "-- Este loro no va a", accion,
-   ...     print "si le aplicas", voltage, "voltios.",
+   ...     print "si le aplicas", tension, "voltios.",
    ...     print "Esta", estado, "!"
    ...
    >>> d = {"tension": "cuatro millones", "estado": "demacrado",
-            "accion": "VOLAR"}
+   ...      "accion": "VOLAR"}
    >>> loro(**d)
-   -- Este loro no va a VOLAR si le aplicas cuatro millones
-      voltios. Esta demacrado !
+   -- Este loro no va a VOLAR si le aplicas cuatro millones voltios. Esta demacrado !
 
 
 .. _tut-lambda:

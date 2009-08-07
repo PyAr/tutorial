@@ -743,19 +743,19 @@ comportamiento de iterador a tus clases.  Definí un método :meth:`__iter__`
 que devuelva un objeto con un método :meth:`next`.  Si la clase define
 :meth:`next`, entonces alcanza con que :meth:`__iter__` devuelva ``self``::
 
-   class Reversa:
-       "Iterador para recorrer una secuencia marcha atrás"
-       def __init__(self, datos):
-           self.datos = datos
-           self.indice = len(datos)
-       def __iter__(self):
-           return self
-       def next(self):
-           if self.indice == 0:
-               raise StopIteration
-           self.indice = self.indice - 1
-           return self.datos[self.indice]
-
+   >>> class Reversa:
+   ...     "Iterador para recorrer una secuencia marcha atrás"
+   ...     def __init__(self, datos):
+   ...         self.datos = datos
+   ...         self.indice = len(datos)
+   ...     def __iter__(self):
+   ...         return self
+   ...     def next(self):
+   ...         if self.indice == 0:
+   ...             raise StopIteration
+   ...         self.indice = self.indice - 1
+   ...         return self.datos[self.indice]
+   ...
    >>> for letra in Reversa('spam'):
    ...     print letra
    ...
@@ -777,17 +777,17 @@ es llamado, el generador continúa desde donde dejó (y recuerda todos los
 valores de datos y cual sentencia fue ejecutada última).  Un ejemplo muestra
 que los generadores pueden ser muy fáciles de crear::
 
-   def reversa(datos):
-       for indice in range(len(datos)-1, -1, -1):
-           yield datos[indice]
-
+   >>> def reversa(datos):
+   ...     for indice in range(len(datos)-1, -1, -1):
+   ...         yield datos[indice]
+   ...
    >>> for letra in reversa('golf'):
    ...     print letra
    ...
    f
    l
    o
-   g	
+   g
 
 Todo lo que puede ser hecho con generadores también puede ser hecho con
 iteradores basados en clases, como se describe en la sección anterior.  Lo

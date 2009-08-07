@@ -187,6 +187,7 @@ son conscientes de la zona horaria. ::
     datetime.date(2009, 7, 19)
 
     # nos aseguramos de tener la info de localización correcta
+    >>> import locale
     >>> locale.setlocale(locale.LC_ALL, locale.getdefaultlocale())
     'es_ES.UTF8'
     >>> hoy.strftime("%m-%d-%y. %d %b %Y es %A. hoy es %d de %B.")

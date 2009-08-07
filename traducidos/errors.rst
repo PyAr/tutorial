@@ -19,7 +19,8 @@ quizás el tipo de queja más común que tenés cuando todavía estás aprendien
 Python::
 
    >>> while True print 'Hola mundo'
-     File "<stdin>", line 1, in ?
+   Traceback (most recent call last):
+   ...
        while True print 'Hola mundo'
                       ^
    SyntaxError: invalid syntax

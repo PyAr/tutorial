@@ -27,7 +27,7 @@ lucen para mover archivos de un lado a otro y para modificar datos de texto,
 no para aplicaciones con interfaz de usuario o juegos.  Podrías escribir un
 programa en C/C++/Java, pero puede tomar mucho tiempo de desarrollo obtener
 al menos un primer borrador del programa.  Python es más fácil de usar, está
-disponible para sistemas operativos Windows, MacOS X y Unix, y te ayudará a
+disponible para sistemas operativos Windows, Mac OS X y Unix, y te ayudará a
 realizar tu tarea más velozmente.
 
 Python es fácil de usar, pero es un lenguaje de programación de verdad,

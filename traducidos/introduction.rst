@@ -16,9 +16,10 @@ Muchos de los ejemplos de este manual, incluso aquellos ingresados en el prompt
 interactivo, incluyen comentarios.  Los comentarios en Python comienzan con
 el carácter numeral, ``#``, y se extienden hasta el final físico de la
 línea.  Un comentario quizás aparezca al comienzo de la línea o seguidos
-de espacios blancos o código, pero sin una cadena de caracteres.
-Un carácter numeral dentro de una cadena de caracteres es sólo un carácter
-numeral.
+de espacios blancos o código, pero sin una cadena de caracteres.  Un carácter
+numeral dentro de una cadena de caracteres es sólo un carácter numeral.  Ya que
+los comentarios son para aclarar código y no son interpretados por Python,
+pueden omitirse cuando se escriben ejemplos.
 
 Algunos ejemplos::
 
@@ -79,6 +80,15 @@ Un valor puede ser asignado a varias variables simultáneamente::
    0
    >>> z
    0
+
+Las variables deben estar "definidas" (con un valor asignado) antes de que
+puedan usarse, o un error ocurrirá::
+
+   >>> # tratamos de acceder a una variable no definida
+   ... n
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   NameError: name 'n' is not defined
 
 Se soporta completamente los números de punto flotante; las operaciones con
 mezclas en los tipos de los operandos convierten los enteros a punto flotante::
@@ -194,21 +204,6 @@ ejemplo imprimiría::
         Notar que los espacios en blanco al principio de la linea son
         significantes.
 
-Si se hace de la cadena de texto una cadena "cruda", la secuencia ``\n`` no
-es convertida a salto de línea, pero la barra invertida al final de la línea
-y el carácter de nueva línea en la fuente, ambos son incluidos en la cadena
-como datos. Así, el ejemplo::
-
-   hola = r"Esta es una larga cadena que contiene\n\
-   varias líneas de texto, tal y como se hace en C."
-
-   print hola
-
-...imprimirá::
-
-   Esta es una larga cadena que contiene\n\
-   varias líneas de texto, tal y como se hace en C.
-
 O, las cadenas de texto pueden ser rodeadas en un par de comillas triples:
 ``"""`` o ``'''``.  No se necesita escapar los finales de línea cuando se
 utilizan comillas triples, pero serán incluidos en la cadena. ::
@@ -224,6 +219,21 @@ utilizan comillas triples, pero serán incluidos en la cadena. ::
    Uso: algo [OPTIONS]
         -h                        Muestra el mensaje de uso
         -H nombrehost             Nombre del host al cual conectarse
+
+Si se hace de la cadena de texto una cadena "cruda", la secuencia ``\n`` no
+es convertida a salto de línea, pero la barra invertida al final de la línea
+y el carácter de nueva línea en la fuente, ambos son incluidos en la cadena
+como datos. Así, el ejemplo::
+
+   hola = r"Esta es una larga cadena que contiene\n\
+   varias líneas de texto, tal y como se hace en C."
+
+   print hola
+
+...imprimirá::
+
+   Esta es una larga cadena que contiene\n\
+   varias líneas de texto, tal y como se hace en C.
 
 El interprete imprime el resultado de operaciones entre cadenas de la misma
 forma en que son tecleadas como entrada: dentro de comillas, y con comillas y

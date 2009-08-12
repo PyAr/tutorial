@@ -48,6 +48,7 @@ Referencia de la Biblioteca de Python.
 También vale la pena mirar el `glosario`.
 
 .. toctree::
+   :numbered:
 
    appetite.rst
    interpreter.rst

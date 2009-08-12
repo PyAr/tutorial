@@ -13,44 +13,42 @@ embargo, se mantiene el poder completo de las características más importantes
 de las clases: el mecanismo de la herencia de clases permite múltiples clases
 base, una clase derivada puede sobreescribir cualquier método de su(s) clase(s)
 base, y un método puede llamar al método de la clase base con el mismo nombre.
-Los objetos pueden tener una cantidad arbitraria de datos privados.
+Los objetos pueden tener una cantidad arbitraria de datos.
 
 En terminología de C++, todos los miembros de las clases (incluyendo los
 miembros de datos), son *públicos*, y todas las funciones miembro son
-*virtuales*.  No hay constructores o destructores especiales.  Como en
-Modula-3, no hay atajos para hacer referencia a los miembros del objeto desde
-sus métodos: la función método se declara con un primer argumento explícito que
-representa al objeto, el cual se provee implícitamente por la llamada.  Como
-en Smalltalk, las clases mismas son objetos, aunque en un más amplio sentido
-de la palabra: en Python, todos los tipos de datos son objetos.  Esto provee
-una semántica para importar y renombrar.  A diferencia de C++ y Modula-3, los
-tipos de datos integrados pueden usarse como clases base para que el usuario
-los extienda.  También, como en C++ pero a diferencia de Modula-3, la mayoría
-de los operadores integrados con sintaxis especial (operadores aritméticos, de
-subíndice, etc.) pueden ser redefinidos por instancias de la clase.
+*virtuales*.  Como en Modula-3, no hay atajos para hacer referencia a los
+miembros del objeto desde sus métodos: la función método se declara con un
+primer argumento explícito que representa al objeto, el cual se provee
+implícitamente por la llamada.  Como en Smalltalk, las clases mismas son
+objetos.  Esto provee una semántica para importar y renombrar.  A diferencia
+de C++ y Modula-3, los tipos de datos integrados pueden usarse como clases
+base para que el usuario los extienda.  También, como en C++ pero a
+diferencia de Modula-3, la mayoría de los operadores integrados con
+sintaxis especial (operadores aritméticos, de subíndice, etc.) pueden ser
+redefinidos por instancias de la clase.
 
-
-.. _tut-terminology:
-
-Unas palabras sobre terminología
-================================
-
-Sin haber una terminología universalmente aceptada sobre clases, haré uso
-ocasional de términos de Smalltalk y C++.  (Usaría términos de Modula-3, ya que
+(Sin haber una terminología universalmente aceptada sobre clases, haré uso
+ocasional de términos de Smalltalk y C++.  Usaría términos de Modula-3, ya que
 su semántica orientada a objetos es más cercana a Python que C++, pero no
 espero que muchos lectores hayan escuchado hablar de él).
+
+
+.. _tut-object:
+
+Unas palabras sobre nombres y objetos
+=====================================
 
 Los objetos tienen individualidad, y múltiples nombres (en muchos ámbitos)
 pueden vincularse al mismo objeto.  Esto se conoce como *aliasing* en otros
 lenguajes.  Normalmente no se aprecia esto a primera vista en Python, y puede
 ignorarse sin problemas cuando se maneja tipos básicos inmutables (números,
 cadenas, tuplas).  Sin embargo, el *aliasing*, o renombrado,  tiene un efecto
-(¡intencional!) sobre la semántica de código Python que involucra objetos
-mutables como listas, diccionarios, y la mayoría de tipos que representan
-entidades afuera del programa (archivos, ventanas, etc.).  Esto se usa
-normalmente para beneficio del programa, ya que los renombres funcionan como
-punteros en algunos aspectos.  Por ejemplo, pasar un objeto es barato ya que
-la implementación solamente pasa el puntero; y si una función modifica el
+posiblemente sorpresivo sobre la semántica de código Python que involucra
+objetos mutables como listas, diccionarios, y la mayoría de otros tipos.  Esto
+se usa normalmente para beneficio del programa, ya que los renombres funcionan
+como punteros en algunos aspectos.  Por ejemplo, pasar un objeto es barato ya
+que la implementación solamente pasa el puntero; y si una función modifica el
 objeto que fue pasado, el que la llama verá el cambio; esto elimina la
 necesidad de tener dos formas diferentes de pasar argumentos, como en Pascal.
 
@@ -79,7 +77,7 @@ integradas); los nombres globales en un módulo; y los nombres locales en la
 invocación a una función.  Lo que es importante saber de los espacios de
 nombres es que no hay relación en absoluto entre los nombres de espacios de
 nombres distintos; por ejemplo, dos módulos diferentes pueden tener definidos
-los dos una función "maximizar" sin confusión; los usuarios de los módulos
+los dos una función ``maximizar`` sin confusión; los usuarios de los módulos
 deben usar el nombre del módulo como prefijo.
 
 Por cierto, yo uso la palabra *atributo* para cualquier cosa después de un
@@ -120,13 +118,16 @@ referencia sin calificar a un nombre intenta encontrar dicho nombre dentro del
 espacio de nombres.
 
 Aunque los alcances se determinan estáticamente, se usan dinámicamente. En
-cualquier momento durante la ejecución hay por lo menos tres alcances anidados
-cuyos espacios de nombres son directamente accesibles: el ámbito interno, donde
-se busca primero, contiene los nombres locales; los espacios de nombres de las
-funciones anexas, en las cuales se busca empezando por el alcance adjunto más
-cercano; el alcance intermedio, donde se busca a continuación, contiene el
-módulo de nombres globales actual; y el alcance exterior (donde se busca al
-final) es el espacio de nombres que contiene los nombres incluidos.
+cualquier momento durante la ejecución hay por lo menos cuatro alcances
+anidados cuyos espacios de nombres son directamente accesibles:
+
+ * el ámbito interno, donde se busca primero, contiene los nombres locales
+ * los espacios de nombres de las funciones anexas, en las cuales se busca
+   empezando por el alcance adjunto más cercano, contiene los nombres no
+   locales pero también los no globales
+ * el ámbito anteúltimo contiene  los nombres globales del módulo actual
+ * el alcance exterior (donde se busca al final) es el espacio de nombres que
+   contiene los nombres incluidos
 
 Si un nombre se declara como global, entonces todas las referencias y
 asignaciones al mismo van directo al alcance intermedio que contiene los
@@ -224,7 +225,7 @@ válidos son todos los nombres que estaban en el espacio de nombres de la clase
 cuando ésta se creó.  Por lo tanto, si la definición de la clase es así::
 
    class MiClase:
-       "Simple clase de ejemplo"
+       """Simple clase de ejemplo"""
        i = 12345
        def f(self):
            return 'hola mundo'
@@ -401,10 +402,10 @@ locales con variables de instancia cuando repasamos un método.
 
 A menudo, el primer argumento de un método se llama ``self`` (uno mismo).  Esto
 no es nada más que una convención: el nombre ``self`` no significa nada en
-especial para Python.  (Observá que, sin embargo, si no seguís la convención tu
+especial para Python.  Observá que, sin embargo, si no seguís la convención tu
 código puede resultar menos legible a otros programadores de Python, y puede
 llegar a pasar que un programa *navegador de clases* pueda escribirse de una
-manera que dependa de dicha convención.)
+manera que dependa de dicha convención.
 
 Cualquier objeto función que es un atributo de clase define un método para
 instancias de esa clase.  No es necesario que el la definición de la función
@@ -441,14 +442,14 @@ Los métodos pueden llamar a otros métodos de la instancia usando el argumento
 
 Los métodos pueden hacer referencia a nombres globales de la misma manera que
 lo hacen las funciones comunes.  El alcance global asociado a un método es el
-módulo que contiene la definición de la clase.  (¡La clase misma nunca se usa
-como un alcance global!)  Si bien es raro encontrar una buena razón para usar
+módulo que contiene la definición de la clase.  (La clase misma nunca se usa
+como un alcance global.)  Si bien es raro encontrar una buena razón para usar
 datos globales en un método, hay muchos usos legítimos del alcance global: por
 lo menos, las funciones y módulos importados en el alcance global pueden usarse
 por los métodos, al igual que las funciones y clases definidas en él.
 Habitualmente, la clase que contiene el método está definida en este alcance
-global, y en la siguiente sección ¡veremos algunas buenas razones por las que
-un método querría hacer referencia a su propia clase!
+global, y en la siguiente sección veremos algunas buenas razones por las que
+un método querría hacer referencia a su propia clase.
 
 Todo valor es un objeto, y por lo tanto tiene una *clase* (también llamado su
 *tipo*). Ésta se almacena como ``objeto.__class__``.
@@ -502,11 +503,11 @@ vez de simplemente reemplazar al método de la clase base con el mismo nombre.
 Hay una manera simple de llamar al método de la clase base directamente:
 simplemente llamás a ``ClaseBase.metodo(self, argumentos)``.  En ocasiones esto
 es útil para los clientes también.  (Observá que esto sólo funciona si la clase
-base está definida o importada directamente en el alcance global.)
+base es accesible como ``CalseBase`` en el alcance global.)
 
 Python tiene dos funciones integradas que funcionan con herencia:
 
-* Usá :func:`isinstance` para verificar el tipo de un objeto:
+* Usá :func:`isinstance` para verificar el tipo de una instancia:
   ``isinstance(obj, int)`` devuelve ``True`` solo si ``obj.__class__`` es
   :class:`int` o alguna clase derivada de :class:`int`.
 
@@ -574,12 +575,21 @@ Para más detalles mirá  http://www.python.org/download/releases/2.3/mro/.
 Variables privadas
 ==================
 
-Hay soporte limitado para identificadores privados de clase.  Cualquier
-identificador con la forma ``__spam`` (al menos dos guiones bajos al principio,
-como mucho un guión bajo al final) es textualmente reemplazado por
-``_nombredeclase__spam``, donde ``nombredeclase`` es el nombre de clase actual
-al que se le sacan guiones bajos del comienzo (si los tuviera).  Se modifica el
-nombre del identificador sin importar su posición sintáctica, así que puede ser
+Las variables "privadas" de instancia que no pueden accederse excepto desde
+dentro de un objeto, no existen en Python.  Sin embargo, hay una convención que
+se sigue en la mayoría del código Python: un nombre prefijado con un guión bajo
+(por ejemplo, ``_spam``) debería tratarse como una parte no pública de la API
+(más allá de que sea una función, un método, o un dato).  Debería considerarse
+un detalle de implementación y que está sujeto a cambios sin aviso.
+
+Ya que hay un caso de uso válido para los identificadores privados de clase
+(a saber: colisión de nombres con nombres definidos en las subclases), hay
+un soporte limitado para este mecanismo.  Cualquier identificador con la
+forma ``__spam`` (al menos dos guiones bajos al principio, como mucho un
+guión bajo al final) es textualmente reemplazado por ``_nombredeclase__spam``,
+donde ``nombredeclase`` es el nombre de clase actual al que se le sacan
+guiones bajos del comienzo (si los tuviera).  Se modifica el nombre del
+identificador sin importar su posición sintáctica, así que puede ser
 usado para definir instancias y variables de clase privadas, métodos, variables
 guardadas en globales, y aún variables guardadas en instancias privadas de esta
 clase en instancias de *otras* clases.  Puede ocurrir que se trunque si el
@@ -587,17 +597,10 @@ nombre modificado queda con más de 255 caracteres.  Fuera de las clases,
 o cuando el nombre de clase consiste solo en guiones bajos, no se modifican los
 nombres de identificadores.
 
-La modificación de nombres se usa para darle a las clases una forma fácil de
-definir variables de instancia y métodos "privados", sin tener que preocuparse
-por variables de instancia definidas por clases derivadas, o que el código
-fuera de la clase toquetee las variables de instancia.  Hay que aclarar que
-las reglas de modificación de nombres están diseñadas principalmente para
-evitar accidentes; es posible que un alma determinada acceda o modifique una
+Hay que aclarar que las reglas de modificación de nombres están diseñadas
+principalmente para evitar accidentes; es posible acceder o modificar una
 variable que es considerada como privada.  Esto hasta puede resultar útil en
-circunstancias especiales, tales como en el depurador, y esa es una de las
-razones por la que esta inconsistencia no se corrige. (Otra más: la derivación
-de una clase usando el mismo nombre que la clase base hace que sea posible el
-uso de variables privadas de la clase base.)
+circunstancias especiales, tales como en el depurador.
 
 Notar que el código pasado a ``exec``, a ``eval()`` o a ``execfile()`` no
 considera que el nombre de clase de la clase que invoca sea la clase actual;
@@ -652,7 +655,7 @@ Las excepciones también son clases
 Las excepciones definidas por el usuario también son identificadas por clases.
 Usando este mecanismo es posible crear jerarquías extensibles de excepciones::
 
-Hay dos nuevas formas (semánticas) válidas para la sentencia ``raise``::
+Hay dos nuevas formas (semánticas) válidas para la sentencia :keyword:`raise`::
 
    raise Clase, instancia
 
@@ -663,10 +666,10 @@ de una clase derivada de ella.  La segunda forma es una abreviatura de::
 
    raise instancia.__class__, instance
 
-Una clase en una cláusula ``except`` es compatible con una excepción si es de
-la misma clase o una clase base suya (pero no al revés, una cláusula except
-listando una clase derivada no es compatible con una clase base).  Por ejemplo,
-el siguiente código imprimirá B, C, D en ese orden::
+Una clase en una cláusula :keyword:`except` es compatible con una excepción si
+es de la misma clase o una clase base suya (pero no al revés, una cláusula
+except listando una clase derivada no es compatible con una clase base).  Por
+ejemplo, el siguiente código imprimirá B, C, D en ese orden::
 
    class B:
        pass

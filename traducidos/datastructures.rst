@@ -412,14 +412,12 @@ La operación inversa también es posible::
 
    >>> x, y, z = t
 
-Esto se llama, apropiadamente, *desempaquetado de secuencias*. El
-desempaquetado de secuencias requiere que la lista de variables a la izquierda
-tenga el mismo número de elementos que el tamaño de la secuencia.  ¡Notá que
+Esto se llama, apropiadamente, *desempaquetado de secuencias*, y funciona para
+cualquier secuencia en el lado derecho del igual.  El desempaquetado de
+secuencias requiere que la lista de variables a la izquierda
+tenga el mismo número de elementos que el tamaño de la secuencia.  Notá que
 la asignación múltiple es en realidad sólo una combinación de empaquetado de
-tuplas y desempaquetado de secuencias!
-
-Hay una pequeña asimetría aquí:  empaquetando múltiples valores siempre crea
-una tupla, y el desempaquetado funciona con cualquier secuencia.
+tuplas y desempaquetado de secuencias.
 
 
 .. _tut-sets:

@@ -230,8 +230,11 @@ una excepción específica.  Por ejemplo::
      File "<stdin>", line 1, in ?
    NameError: Hola
 
-El primer argumento de :keyword:`raise` nombra la excepción que se lanzará.  El
-segundo (opcional) especifica el argumento de la excepción.
+El argumento de :keyword:`raise` es una clase o instancia de excepción a ser
+generada.  Hay una sintaxis alternativa que no se usa más, que separa los
+argumentos de clase y constructor; lo de arriba podría escribirse como
+``raise NameError, 'Hola'``; ya que alguna vez era la única opción, esta forma
+es muy usada en códigos viejos.
 
 Si necesitás determinar cuando una excepción fue lanzada pero no querés
 manejarla, una forma simplificada de la instrucción :keyword:`raise` te permite
@@ -270,7 +273,7 @@ excepción.  Las excepciones, típicamente, deberán derivar de la clase
    ...     print u'Ocurrió mi excepción, valor:', e.valor
    ...
    Ocurrió mi excepción, valor: 4
-   >>> raise MiError, 'oops!'
+   >>> raise MiError('oops!')
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    __main__.MiError: 'oops!'

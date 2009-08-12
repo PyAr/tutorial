@@ -18,6 +18,7 @@ Tal vez el tipo más conocido de sentencia sea el :keyword:`if`. Por
 ejemplo::
 
    >>> x = int(raw_input("Ingresa un entero, por favor: "))
+   Ingresa un entero, por favor: 42
    >>> if x < 0:
    ...      x = 0
    ...      print 'Negativo cambiado a cero'
@@ -28,6 +29,7 @@ ejemplo::
    ... else:
    ...      print 'Mas'
    ...
+   'Mas'
 
 Puede haber cero o más bloques :keyword:`elif`, y el bloque :keyword:`else` es
 opcional. La palabra reservada ':keyword:`elif`' es una abreviación de 'else
@@ -104,7 +106,7 @@ llama 'paso')::
    >>> range(-10, -100, -30)
    [-10, -40, -70]
 
-Para iterar sobre los índices de una secuencia, se combina :func:`range` y
+Para iterar sobre los índices de una secuencia, podés combinar :func:`range` y
 :func:`len` así::
 
    >>> a = ['Mary', 'tenia', 'un', 'corderito']
@@ -115,6 +117,9 @@ Para iterar sobre los índices de una secuencia, se combina :func:`range` y
    1 tenia
    2 un
    3 corderito
+
+En la mayoría de los casos, sin embargo, conviene usar la función
+:func:`enumerate`, mirá :ref:`tut-loopidioms`.
 
 
 .. _tut-break:
@@ -163,8 +168,24 @@ es requerida por la sintáxis pero el programa no requiere ninguna acción.
 Por ejemplo::
 
    >>> while True:
-   ...       pass # Espera ocupada hasta una interrupción de teclado
+   ...     pass  # Espera ocupada hasta una interrupción de teclado (Ctrl+C)
    ...
+
+Se usa normalmente para crear clases en su mínima expresión::
+
+   >>> class MyEmptyClass:
+   ...     pass
+   ...
+
+Otro lugar donde se puede usar :keyword:`pass` es como una marca de lugar
+para una función o un cuerpo condicional cuando estás trabajando en código
+nuevo, lo cual te permite pensar a un nivel de abstracción mayor.  El
+:keyword:`pass` se ignora silenciosamente::
+
+   >>> def initlog(*args):
+   ...     pass   # Acordate de implementar esto!
+   ...
+
 
 
 .. _tut-functions:
@@ -194,14 +215,17 @@ determinado::
 La palabra reservada :keyword:`def` se usa para *definir* funciones.  Debe
 seguirle el nombre de la función y la lista de parámetros formales entre
 paréntesis.  Las sentencias que forman el cuerpo de la función empiezan en la
-línea siguiente, y deben estar con sangría.  La primer sentencia del cuerpo de
-la función puede ser opcionalmente una cadena de texto literal; esta es la
-cadena de texto de documentación de la función, o :dfn:`docstring`.
+línea siguiente, y deben estar con sangría.
+
+La primer sentencia del cuerpo de la función puede ser opcionalmente una
+cadena de texto literal; esta es la cadena de texto de documentación de la
+función, o :dfn:`docstring`.  (Podés encontrar más acerca de docstrings en la
+sección :ref:`tut-docstrings`.)
 
 Hay herramientas que usan las docstrings para producir automáticamente
 documentación en línea o imprimible, o para permitirle al usuario que navegue
 el código en forma interactiva; es una buena práctica incluir docstrings en el
-código que uno escribe, por lo que se debe intentar hacer un hábito de esto.
+código que uno escribe, por lo que se debe hacer un hábito de esto.
 
 La *ejecución* de una función introduce una nueva tabla de símbolos usada para
 las variables locales de la función.  Más precisamente, todas las asignaciones
@@ -232,12 +256,12 @@ función.  Esto sirve como un mecanismo general para renombrar::
    >>> f(100)
    1 1 2 3 5 8 13 21 34 55 89
 
-Se puede objetar que ``fib`` no es una función, sino un procedimiento.  En
-Python, como en C, los procedimientos son solo funciones que no retornan un
-valor.  De hecho, técnicamente hablando, los procedimientos sí retornan un
-valor, aunque uno aburrido.  Este valor se llama ``None`` (es un nombre
-predefinido).  El intérprete por lo general no escribe el valor ``None`` si va
-a ser el único valor escrito.  Si realmente se quiere, se puede verlo usando
+Viniendo de otros lenguajes, podés objetar que ``fib`` no es una función, sino
+un procedimiento, porque no devuelve un valor.  De hecho, técnicamente
+hablando, los procedimientos sí retornan un valor, aunque uno aburrido.  Este
+valor se llama ``None`` (es un nombre predefinido).  El intérprete por lo
+general no escribe el valor ``None`` si va a ser el único valor escrito.  Si
+realmente se quiere, se puede verlo usando
 :keyword:`print`::
 
    >>> fib(0)
@@ -264,7 +288,7 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
 
 * La sentencia :keyword:`return` devuelve un valor en una función.
   :keyword:`return` sin una expresión como argumento retorna ``None``.  Si se
-  alcanza el final de un procedimiento, también se retorna ``None``.
+  alcanza el final de una función, también se retorna ``None``.
 
 * La sentencia ``result.append(b)`` llama a un *método* del objeto lista
   ``result``.  Un método es una función que 'pertenece' a un objeto y se nombra
@@ -272,8 +296,8 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
   y ``methodname`` es el nombre del método que está definido por el tipo del
   objeto.  Distintos tipos definen distintos métodos.  Métodos de diferentes
   tipos pueden tener el mismo nombre sin causar ambigüedad.  (Es posible
-  definir tipos de objetos propios, y métodos, usando *clases*, como se
-  discutirá más adelante en el tutorial).
+  definir tipos de objetos propios, y métodos, usando *clases*, mirá
+  :ref:`tut-classes`).
   El método :meth:`append` mostrado en el ejemplo está definido para objetos
   lista; añade un nuevo elemento al final de la lista.  En este ejemplo es
   equivalente a ``result = result + [b]``, pero más eficiente.
@@ -309,9 +333,14 @@ que los que permite.  Por ejemplo::
                raise IOError('usuario duro')
            print queja
 
-Esta función puede ser llamada tanto así: ``pedir_confirmacion('¿Realmente
-queres salir?')`` como así: ``pedir_confirmacion('¿Sobreescribir archivo?',
-2)``.
+Esta función puede ser llamada de distintas maneras:
+
+* pasando sólo el argumento obligatorio:
+  ``pedir_confirmacion('¿Realmente queres salir?')``
+* pasando uno de los argumentos opcionales:
+  ``pedir_confirmacion('¿Sobreescribir archivo?', 2)``
+* o pasando todos los argumentos:
+  ``pedir_confirmacion('¿Sobreescribir archivo?', 2, "Vamos, solo si o no!)``
 
 Este ejemplo también introduce la palabra reservada :keyword:`in`, la cual
 prueba si una secuencia contiene o no un determinado valor.
@@ -414,23 +443,23 @@ debe ocurrir antes de ``**nombre``).  Por ejemplo, si definimos una función
 así::
 
    def ventadequeso(tipo, *argumentos, **palabrasclaves):
-       print "-- ¿Tiene", tipo, '?'
+       print "-- ¿Tiene", tipo, "?"
        print "-- Lo siento, nos quedamos sin", kind
        for arg in argumentos:
            print arg
-       print '-'*40
+       print "-"*40
        claves = palabrasclaves.keys()
        claves.sort()
        for c in claves:
-           print c, ':', palabrasclaves[c]
+           print c, ":", palabrasclaves[c]
 
 Puede ser llamada así::
 
-   ventadequeso('Limburger', "Es muy liquido, sr.",
+   ventadequeso("Limburger", "Es muy liquido, sr.",
               "Realmente es muy muy liquido, sr.",
-              cliente='Juan Garau',
-              vendedor='Miguel Paez',
-              puesto='Venta de Queso Argentino')
+              cliente="Juan Garau",
+              vendedor="Miguel Paez",
+              puesto="Venta de Queso Argentino")
 
 ...y por supuesto imprimirá::
 
@@ -458,11 +487,12 @@ Listas de argumentos arbitrarios
 
 Finalmente, la opción menos frecuentemente usada es especificar que una
 función puede ser llamada con un número arbitrario de argumentos.  Estos
-argumentos serán organizados en una tupla.  Antes del número variable de
-argumentos, cero o más argumentos normales pueden estar presentes.::
+argumentos serán organizados en una tupla (mirá :ref:`tut-tuples`).  Antes
+del número variable de argumentos, cero o más argumentos normales pueden
+estar presentes.::
 
-   def fprintf(file, template, *args):
-       file.write(template.format(args))
+   def muchos_items(archivo, separador, *args):
+       archivo.write(separador.join(args))
 
 
 .. _tut-unpacking-arguments:
@@ -620,8 +650,9 @@ aquí están extraídos los puntos más importantes:
 
 * Nombrar las clases y funciones consistentemente; la convención es usar
   ``NotacionCamello`` para clases y ``minusculas_con_guiones_bajos`` para
-  funciones y métodos.  Siempre usar ``self`` como el nombre para el primer
-  argumento en los métodos.
+  funciones y métodos.  Siempre usá ``self`` como el nombre para el primer
+  argumento en los métodos (mirá :ref:`tut-firstclasses` para más información
+  sobre clases y métodos).
 
 * No usar codificaciones estrafalarias si se espera usar el código en entornos
   internacionales.  ASCII plano funciona bien en la mayoría de los casos.

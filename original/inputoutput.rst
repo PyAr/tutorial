@@ -31,9 +31,7 @@ way is to use the :meth:`str.format` method.
 
 One question remains, of course: how do you convert values to strings? Luckily,
 Python has ways to convert any value to a string: pass it to the :func:`repr`
-or :func:`str` functions.  Reverse quotes (``````) are equivalent to
-:func:`repr`, but they are no longer used in modern Python code and are removed
-in future versions of the language.
+or :func:`str` functions.
 
 The :func:`str` function is meant to return representations of values which are
 fairly human-readable, while :func:`repr` is meant to generate representations
@@ -68,9 +66,6 @@ Some examples::
    >>> # The argument to repr() may be any Python object:
    ... repr((x, y, ('spam', 'eggs')))
    "(32.5, 40000, ('spam', 'eggs'))"
-   >>> # reverse quotes are convenient in interactive sessions:
-   ... `x, y, ('spam', 'eggs')`
-   "(32.5, 40000, ('spam', 'eggs'))"
 
 Here are two ways to write a table of squares and cubes::
 
@@ -92,7 +87,7 @@ Here are two ways to write a table of squares and cubes::
 
    >>> for x in range(1,11):
    ...     print '{0:2d} {1:3d} {2:4d}'.format(x, x*x, x*x*x)
-   ... 
+   ...
     1   1    1
     2   4    8
     3   9   27
@@ -132,40 +127,43 @@ Basic usage of the :meth:`str.format` method looks like this::
    We are the knights who say "Ni!"
 
 The brackets and characters within them (called format fields) are replaced with
-the objects passed into the format method.  The number in the brackets refers to
-the position of the object passed into the format method. ::
+the objects passed into the :meth:`~str.format` method.  The number in the
+brackets refers to the position of the object passed into the
+:meth:`~str.format` method. ::
 
    >>> print '{0} and {1}'.format('spam', 'eggs')
    spam and eggs
    >>> print '{1} and {0}'.format('spam', 'eggs')
    eggs and spam
 
-If keyword arguments are used in the format method, their values are referred to
-by using the name of the argument. ::
+If keyword arguments are used in the :meth:`~str.format` method, their values
+are referred to by using the name of the argument. ::
 
-   >>> print 'This {food} is {adjective}.'.format(food='spam', adjective='absolutely horrible')
+   >>> print 'This {food} is {adjective}.'.format(
+   ...       food='spam', adjective='absolutely horrible')
    This spam is absolutely horrible.
 
 Positional and keyword arguments can be arbitrarily combined::
 
-   >>> print 'The story of {0}, {1}, and {other}.'.format('Bill', 'Manfred', other='Georg')
+   >>> print 'The story of {0}, {1}, and {other}.'.format('Bill', 'Manfred',
+   ...                                                    other='Georg')
    The story of Bill, Manfred, and Georg.
 
-An optional ``':``` and format specifier can follow the field name. This also
+An optional ``':'`` and format specifier can follow the field name. This allows
 greater control over how the value is formatted.  The following example
-truncates the Pi to three places after the decimal.
+truncates Pi to three places after the decimal.
 
    >>> import math
    >>> print 'The value of PI is approximately {0:.3f}.'.format(math.pi)
    The value of PI is approximately 3.142.
 
 Passing an integer after the ``':'`` will cause that field to be a minimum
-number of characters wide.  This is useful for making tables pretty.::
+number of characters wide.  This is useful for making tables pretty. ::
 
    >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
    >>> for name, phone in table.items():
    ...     print '{0:10} ==> {1:10d}'.format(name, phone)
-   ... 
+   ...
    Jack       ==>       4098
    Dcab       ==>       7678
    Sjoerd     ==>       4127
@@ -176,11 +174,12 @@ instead of by position.  This can be done by simply passing the dict and using
 square brackets ``'[]'`` to access the keys ::
 
    >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-   >>> print 'Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(table)
+   >>> print ('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; '
+   ...        'Dcab: {0[Dcab]:d}'.format(table))
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
 This could also be done by passing the table as keyword arguments with the '**'
-notation.::
+notation. ::
 
    >>> table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
    >>> print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table)
@@ -189,7 +188,7 @@ notation.::
 This is particularly useful in combination with the new built-in :func:`vars`
 function, which returns a dictionary containing all local variables.
 
-For a complete overview of string formating with :meth:`str.format`, see
+For a complete overview of string formatting with :meth:`str.format`, see
 :ref:`formatstrings`.
 
 
@@ -206,8 +205,8 @@ operation. For example::
    The value of PI is approximately 3.142.
 
 Since :meth:`str.format` is quite new, a lot of Python code still uses the ``%``
-operator. However, because this old style of formatting will eventually removed
-from the language :meth:`str.format` should generally be used.
+operator. However, because this old style of formatting will eventually be
+removed from the language, :meth:`str.format` should generally be used.
 
 More information can be found in the :ref:`string-formatting` section.
 
@@ -239,15 +238,15 @@ automatically added to the end.  ``'r+'`` opens the file for both reading and
 writing. The *mode* argument is optional; ``'r'`` will be assumed if it's
 omitted.
 
-On Windows and the Macintosh, ``'b'`` appended to the mode opens the file in
-binary mode, so there are also modes like ``'rb'``, ``'wb'``, and ``'r+b'``.
-Windows makes a distinction between text and binary files; the end-of-line
-characters in text files are automatically altered slightly when data is read or
-written.  This behind-the-scenes modification to file data is fine for ASCII
-text files, but it'll corrupt binary data like that in :file:`JPEG` or
-:file:`EXE` files.  Be very careful to use binary mode when reading and writing
-such files.  On Unix, it doesn't hurt to append a ``'b'`` to the mode, so
-you can use it platform-independently for all binary files.
+On Windows, ``'b'`` appended to the mode opens the file in binary mode, so there
+are also modes like ``'rb'``, ``'wb'``, and ``'r+b'``.  Windows makes a
+distinction between text and binary files; the end-of-line characters in text
+files are automatically altered slightly when data is read or written.  This
+behind-the-scenes modification to file data is fine for ASCII text files, but
+it'll corrupt binary data like that in :file:`JPEG` or :file:`EXE` files.  Be
+very careful to use binary mode when reading and writing such files.  On Unix,
+it doesn't hurt to append a ``'b'`` to the mode, so you can use it
+platform-independently for all binary files.
 
 
 .. _tut-filemethods:
@@ -332,7 +331,7 @@ beginning of the file as the reference point. ::
    >>> f = open('/tmp/workfile', 'r+')
    >>> f.write('0123456789abcdef')
    >>> f.seek(5)     # Go to the 6th byte in the file
-   >>> f.read(1)        
+   >>> f.read(1)
    '5'
    >>> f.seek(-3, 2) # Go to the 3rd byte before the end
    >>> f.read(1)
@@ -348,9 +347,19 @@ attempts to use the file object will automatically fail. ::
      File "<stdin>", line 1, in ?
    ValueError: I/O operation on closed file
 
-File objects have some additional methods, such as :meth:`isatty` and
-:meth:`truncate` which are less frequently used; consult the Library Reference
-for a complete guide to file objects.
+It is good practice to use the :keyword:`with` keyword when dealing with file
+objects.  This has the advantage that the file is properly closed after its
+suite finishes, even if an exception is raised on the way.  It is also much
+shorter than writing equivalent :keyword:`try`\ -\ :keyword:`finally` blocks::
+
+    >>> with open('/tmp/workfile', 'r') as f:
+    ...     read_data = f.read()
+    >>> f.closed
+    True
+
+File objects have some additional methods, such as :meth:`~file.isatty` and
+:meth:`~file.truncate` which are less frequently used; consult the Library
+Reference for a complete guide to file objects.
 
 
 .. _tut-pickle:

@@ -32,9 +32,7 @@ discutiremos en breve.  La otra forma es usar el método :meth:`str.format`.
 
 Nos queda una pregunta, por supuesto: ¿cómo convertís valores a cadenas?
 Afortunadamente, Python tiene maneras de convertir cualquier valor a una
-cadena: pasalos a las funciones :func:`repr` o :func:`str`. Las comillas
-invertidas (``````) son equivalentes a la :func:`repr`, pero no se usan más
-en código actual de Python y se eliminaron de versiones futuras del lenguaje.
+cadena: pasalos a las funciones :func:`repr` o :func:`str`.
 
 La función :func:`str` devuelve representaciones de los valores que son
 bastante legibles por humanos, mientras que :func:`repr` genera
@@ -133,23 +131,26 @@ El uso básico del método :meth:`str.format` es como esto::
    Somos los caballeros quienes decimos "Nop!"
 
 Las llaves y caracteres dentro de las mismas (llamados campos de formato) son
-reemplazadas con los objetos pasados en el método :meth:`format`.  El número en
-las llaves se refiere a la posición del objeto pasado en el método. ::
+reemplazadas con los objetos pasados en el método :meth:`str.format`.  El
+número en las llaves se refiere a la posición del objeto pasado en el
+método. ::
 
    >>> print '{0} y {1}'.format('carne', 'huevos')
    carne y huevos
    >>> print '{1} y {0}'.format('carne', 'huevos')
    huevos y carne
 
-Si se usan argumentos nombrados en el método :meth:`format`, sus valores serán
-referidos usando el nombre del argumento. ::
+Si se usan argumentos nombrados en el método :meth:`str.format`, sus valores
+serán referidos usando el nombre del argumento. ::
 
-   >>> print 'Esta {comida} es {adjetivo}.'.format(comida='carne', adjetivo='espantosa')
+   >>> print 'Esta {comida} es {adjetivo}.'.format(
+   ...       comida='carne', adjetivo='espantosa')
    Esta carne es espantosa.
 
 Se pueden combinar arbitrariamente argumentos posicionales y nombrados::
 
-   >>> print 'La historia de {0}, {1}, y {otro}.'.format('Bill', 'Manfred', otro='Georg')
+   >>> print 'La historia de {0}, {1}, y {otro}.'.format('Bill', 'Manfred',
+   ...                                                   otro='Georg')
    La historia de Bill, Manfred, y Georg.
 
 Un ``':`` y especificador de formato opcionales pueden ir luego del nombre del
@@ -177,11 +178,12 @@ nombre en vez de la posición.  Esto puede hacerse simplemente pasando el
 diccionario y usando corchetes ``'[]'`` para acceder a las claves ::
 
    >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-   >>> print 'Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(tabla)
+   >>> print ('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; '
+   ...        'Dcab: {0[Dcab]:d}'.format(tabla))
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
 Esto se podría también hacer pasando la tabla como argumentos nombrados con la
-notación '**'.::
+notación '**'. ::
 
    >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
    >>> print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**tabla)
@@ -240,8 +242,8 @@ agregarle información; cualquier dato escrito al archivo será automáticamente
 agregado al final. ``'r+'`` abre el archivo tanto para leerlo como para
 escribirlo.  El argumento *modo* es opcional; si se omite se asume ``'r'``.
 
-En Windows y la Macintosh, agregando ``'b'`` al modo abre al archivo en modo
-binario, por lo que también hay modos como ``'rb'``, ``'wb'``, y ``'r+b'``.
+En Windows, agregando ``'b'`` al modo abre al archivo en modo binario,
+por lo que también hay modos como ``'rb'``, ``'wb'``, y ``'r+b'``.
 Windows hace una distinción entre archivos binarios y de texto; los caracteres
 de fin de linea en los archivos de texto son automáticamente alterados
 levemente cuando los datos son leídos o escritos.  Esta modificación en
@@ -351,6 +353,17 @@ automáticamente. ::
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
    ValueError: I/O operation on closed file
+
+Es una buena práctica usar la declaración :keyword:`with` cuando manejamos
+objetos archivo.  Tiene la ventaja que el archivo es cerrado apropiadamente
+luego de que el bloque termina, incluso si se generó una excepción.  También
+es mucho más corto que escribir los equivalentes bloques
+:keyword:`try`\ -\ :keyword:`finally` ::
+
+    >>> with open('/tmp/workfile', 'r') as f:
+    ...     read_data = f.read()
+    >>> f.closed
+    True
 
 Los objetos archivo tienen algunos métodos más, como :meth:`isatty` y
 :meth:`truncate` que son usados menos frecuentemente; consultá la

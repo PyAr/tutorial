@@ -62,7 +62,7 @@ formatting numbers with group separators::
    >>> locale.format("%d", x, grouping=True)
    '1,234,567'
    >>> locale.format("%s%.*f", (conv['currency_symbol'],
-   ...	      conv['frac_digits'], x), grouping=True)
+   ...               conv['frac_digits'], x), grouping=True)
    '$1,234,567.80'
 
 
@@ -286,7 +286,7 @@ sometimes there is a need for alternative implementations with different
 performance trade-offs.
 
 The :mod:`array` module provides an :class:`array()` object that is like a list
-that stores only homogenous data and stores it more compactly.  The following
+that stores only homogeneous data and stores it more compactly.  The following
 example shows an array of numbers stored as two byte unsigned binary numbers
 (typecode ``"H"``) rather than the usual 16 bytes per entry for regular lists of
 python int objects::
@@ -347,12 +347,15 @@ Decimal Floating Point Arithmetic
 
 The :mod:`decimal` module offers a :class:`Decimal` datatype for decimal
 floating point arithmetic.  Compared to the built-in :class:`float`
-implementation of binary floating point, the new class is especially helpful for
-financial applications and other uses which require exact decimal
-representation, control over precision, control over rounding to meet legal or
-regulatory requirements, tracking of significant decimal places, or for
-applications where the user expects the results to match calculations done by
-hand.
+implementation of binary floating point, the class is especially helpful for
+
+* financial applications and other uses which require exact decimal
+  representation,
+* control over precision,
+* control over rounding to meet legal or regulatory requirements,
+* tracking of significant decimal places, or
+* applications where the user expects the results to match calculations done by
+  hand.
 
 For example, calculating a 5% tax on a 70 cent phone charge gives different
 results in decimal floating point and binary floating point. The difference
@@ -360,7 +363,7 @@ becomes significant if the results are rounded to the nearest cent::
 
    >>> from decimal import *
    >>> Decimal('0.70') * Decimal('1.05')
-   Decimal("0.7350")
+   Decimal('0.7350')
    >>> .70 * 1.05
    0.73499999999999999
 
@@ -373,7 +376,7 @@ Exact representation enables the :class:`Decimal` class to perform modulo
 calculations and equality tests that are unsuitable for binary floating point::
 
    >>> Decimal('1.00') % Decimal('.10')
-   Decimal("0.00")
+   Decimal('0.00')
    >>> 1.00 % 0.10
    0.09999999999999995
 
@@ -386,6 +389,6 @@ The :mod:`decimal` module provides arithmetic with as much precision as needed::
 
    >>> getcontext().prec = 36
    >>> Decimal(1) / Decimal(7)
-   Decimal("0.142857142857142857142857142857142857")
+   Decimal('0.142857142857142857142857142857142857')
 
 

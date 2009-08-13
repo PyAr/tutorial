@@ -63,7 +63,7 @@ permite una forma directa de formatear números con separadores de grupo::
    >>> locale.format("%d", x, grouping=True)
    '1.234.567'
    >>> locale.format("%s%.*f", (conv['currency_symbol'],
-   ...	      conv['frac_digits'], x), grouping=True)
+   ...	             conv['frac_digits'], x), grouping=True)
    '$1.234.567,80'
 
 
@@ -363,12 +363,16 @@ Aritmética de punto flotante decimal
 
 El módulo :mod:`decimal` provee un tipo de dato :class:`Decimal` para soportar
 aritmética de punto flotante decimal.  Comparado con :class:`float`, la
-implementación de punto flotante binario incluida, la nueva clase es muy útil
-especialmente para aplicaciones financieras y para cualquier uso que requiera
-una representación decimal exacta, control de la precisión, control del
-redondeo para satisfacer requerimientos legales o reglamentarios, seguimiento
-de cifras significativas, o para aplicaciones donde el usuario espera que los
-resultados coincidan con cálculos hechos a mano.
+implementación de punto flotante binario incluida, la clase es muy útil
+especialmente para:
+
+* aplicaciones financieras y para cualquier uso que requiera una
+  representación decimal exacta,
+* control de la precisión,
+* control del redondeo para satisfacer requerimientos legales o reglamentarios,
+* seguimiento de cifras significativas,
+* o para aplicaciones donde el usuario espera que los resultados coincidan
+  con cálculos hechos a mano.
 
 Por ejemplo, calcular un impuesto del 5% de una tarifa telefónica de 70
 centavos da resultados distintos con punto flotante decimal y punto flotante

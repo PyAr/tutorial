@@ -346,8 +346,8 @@ querés una lista de esos, están definidos en el módulo estándar
     'enumerate', 'eval', 'execfile', 'exit', 'file', 'filter', 'float',
     'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex',
     'id', 'input', 'int', 'intern', 'isinstance', 'issubclass', 'iter',
-    'len', 'license', 'list', 'locals', 'long', 'map', 'max', 'min',
-    'object', 'oct', 'open', 'ord', 'pow', 'property', 'quit', 'range',
+    'len', 'license', 'list', 'locals', 'long', 'map', 'max', 'memoryview',
+    'min', 'object', 'oct', 'open', 'ord', 'pow', 'property', 'quit', 'range',
     'raw_input', 'reduce', 'reload', 'repr', 'reversed', 'round', 'set',
     'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super',
     'tuple', 'type', 'unichr', 'unicode', 'vars', 'xrange', 'zip']
@@ -476,13 +476,13 @@ archivos con la forma 8+3 agrega otro problema interesante para los nombres
 de módulos largos.
 
 La única solución es que el autor del paquete provea un índice explícito del
-paquete.  La declaración ``import`` usa la siguiente convención: si el código
-del :file:`__init__.py` de un paquete define una lista llamada ``__all__``, se
-toma como la lista de los nombres de módulos que deberían ser importados cuando
-se hace ``from package import *``.  Es tarea del autor del paquete mantener
-actualizada esta lista cuando se libera una nueva versión del paquete.  Los
-autores de paquetes podrían decidir no soportarlo, si no ven un uso para
-importar \* en sus paquetes.  Por ejemplo, el archivo
+paquete.  La declaración :keyword:`import` usa la siguiente convención: si el
+código del :file:`__init__.py` de un paquete define una lista llamada
+``__all__``, se toma como la lista de los nombres de módulos que deberían ser
+importados cuando se hace ``from package import *``.  Es tarea del autor del
+paquete mantener actualizada esta lista cuando se libera una nueva versión del
+paquete.  Los autores de paquetes podrían decidir no soportarlo, si no ven un
+uso para importar \* en sus paquetes.  Por ejemplo, el archivo
 :file:`sounds/effects/__init__.py` podría contener el siguiente código::
 
    __all__ = ["echo", "surround", "reverse"]
@@ -498,7 +498,7 @@ que haya en :file:`__init__.py`) y luego importa aquellos nombres que estén
 definidos en el paquete.  Esto incluye cualquier nombre definido (y submódulos
 explícitamente cargados) por :file:`__init__.py`.  También incluye cualquier
 submódulo del paquete que pudiera haber sido explícitamente cargado por
-declaraciones ``import`` previas.  Considerá este código::
+declaraciones :keyword:`import` previas.  Considerá este código::
 
    import sound.effects.echo
    import sound.effects.surround
@@ -571,5 +571,5 @@ extender el conjunto de módulos que se encuentran en el paquete.
 .. rubric:: Footnotes
 
 .. [#] De hecho las definiciones de función son también 'declaraciones' que
-   se 'ejecutan';  la ejecución mete el nombre de la función en el espacio
-   de nombres global.
+   se 'ejecutan';  la ejecución de una función a nivel de módulo mete el
+   nombre de la función en el espacio de nombres global.

@@ -281,7 +281,7 @@ defines.  It returns a sorted list of strings::
    ['__name__', 'fib', 'fib2']
    >>> dir(sys)
    ['__displayhook__', '__doc__', '__excepthook__', '__name__', '__stderr__',
-    '__stdin__', '__stdout__', '_getframe', 'api_version', 'argv', 
+    '__stdin__', '__stdout__', '_getframe', 'api_version', 'argv',
     'builtin_module_names', 'byteorder', 'callstats', 'copyright',
     'displayhook', 'exc_clear', 'exc_info', 'exc_type', 'excepthook',
     'exec_prefix', 'executable', 'exit', 'getdefaultencoding', 'getdlopenflags',
@@ -314,7 +314,7 @@ want a list of those, they are defined in the standard module
     'FloatingPointError', 'FutureWarning', 'IOError', 'ImportError',
     'IndentationError', 'IndexError', 'KeyError', 'KeyboardInterrupt',
     'LookupError', 'MemoryError', 'NameError', 'None', 'NotImplemented',
-    'NotImplementedError', 'OSError', 'OverflowError', 
+    'NotImplementedError', 'OSError', 'OverflowError',
     'PendingDeprecationWarning', 'ReferenceError', 'RuntimeError',
     'RuntimeWarning', 'StandardError', 'StopIteration', 'SyntaxError',
     'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'True',
@@ -328,8 +328,8 @@ want a list of those, they are defined in the standard module
     'enumerate', 'eval', 'execfile', 'exit', 'file', 'filter', 'float',
     'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex',
     'id', 'input', 'int', 'intern', 'isinstance', 'issubclass', 'iter',
-    'len', 'license', 'list', 'locals', 'long', 'map', 'max', 'min',
-    'object', 'oct', 'open', 'ord', 'pow', 'property', 'quit', 'range',
+    'len', 'license', 'list', 'locals', 'long', 'map', 'max', 'memoryview',
+    'min', 'object', 'oct', 'open', 'ord', 'pow', 'property', 'quit', 'range',
     'raw_input', 'reduce', 'reload', 'repr', 'reversed', 'round', 'set',
     'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super',
     'tuple', 'type', 'unichr', 'unicode', 'vars', 'xrange', 'zip']
@@ -446,14 +446,14 @@ one would hope that this somehow goes out to the filesystem, finds which
 submodules are present in the package, and imports them all.  Unfortunately,
 this operation does not work very well on Windows platforms, where the
 filesystem does not always have accurate information about the case of a
-filename!  On these platforms, there is no guaranteed way to know whether a file
+filename.  On these platforms, there is no guaranteed way to know whether a file
 :file:`ECHO.PY` should be imported as a module :mod:`echo`, :mod:`Echo` or
 :mod:`ECHO`.  (For example, Windows 95 has the annoying practice of showing all
 file names with a capitalized first letter.)  The DOS 8+3 filename restriction
 adds another interesting problem for long module names.
 
 The only solution is for the package author to provide an explicit index of the
-package.  The import statement uses the following convention: if a package's
+package.  The :keyword:`import` statement uses the following convention: if a package's
 :file:`__init__.py` code defines a list named ``__all__``, it is taken to be the
 list of module names that should be imported when ``from package import *`` is
 encountered.  It is up to the package author to keep this list up-to-date when a
@@ -474,16 +474,16 @@ been imported (possibly running any initialization code in :file:`__init__.py`)
 and then imports whatever names are defined in the package.  This includes any
 names defined (and submodules explicitly loaded) by :file:`__init__.py`.  It
 also includes any submodules of the package that were explicitly loaded by
-previous import statements.  Consider this code::
+previous :keyword:`import` statements.  Consider this code::
 
    import sound.effects.echo
    import sound.effects.surround
    from sound.effects import *
 
-In this example, the echo and surround modules are imported in the current
-namespace because they are defined in the :mod:`sound.effects` package when the
-``from...import`` statement is executed.  (This also works when ``__all__`` is
-defined.)
+In this example, the :mod:`echo` and :mod:`surround` modules are imported in the
+current namespace because they are defined in the :mod:`sound.effects` package
+when the ``from...import`` statement is executed.  (This also works when
+``__all__`` is defined.)
 
 Note that in general the practice of importing ``*`` from a module or package is
 frowned upon, since it often causes poorly readable code. However, it is okay to
@@ -546,5 +546,6 @@ modules found in a package.
 .. rubric:: Footnotes
 
 .. [#] In fact function definitions are also 'statements' that are 'executed'; the
-   execution enters the function name in the module's global symbol table.
+   execution of a module-level function enters the function name in the module's
+   global symbol table.
 

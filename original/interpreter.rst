@@ -51,8 +51,8 @@ and executes a *script* from that file.
 A second way of starting the interpreter is ``python -c command [arg] ...``,
 which executes the statement(s) in *command*, analogous to the shell's
 :option:`-c` option.  Since Python statements often contain spaces or other
-characters that are special to the shell, it is best to quote  *command* in its
-entirety with double quotes.
+characters that are special to the shell, it is usually advised to quote
+*command* in its entirety with single quotes.
 
 Some Python modules are also useful as scripts.  These can be invoked using
 ``python -m module [arg] ...``, which executes the source file for *module* as
@@ -112,7 +112,7 @@ example, take a look at this :keyword:`if` statement::
    >>> the_world_is_flat = 1
    >>> if the_world_is_flat:
    ...     print "Be careful not to fall off!"
-   ... 
+   ...
    Be careful not to fall off!
 
 
@@ -157,9 +157,9 @@ shell scripts, by putting the line ::
 (assuming that the interpreter is on the user's :envvar:`PATH`) at the beginning
 of the script and giving the file an executable mode.  The ``#!`` must be the
 first two characters of the file.  On some platforms, this first line must end
-with a Unix-style line ending (``'\n'``), not a Mac OS (``'\r'``) or Windows
-(``'\r\n'``) line ending.  Note that the hash, or pound, character, ``'#'``, is
-used to start a comment in Python.
+with a Unix-style line ending (``'\n'``), not a Windows (``'\r\n'``) line
+ending.  Note that the hash, or pound, character, ``'#'``, is used to start a
+comment in Python.
 
 The script can be given an executable mode, or permission, using the
 :program:`chmod` command::
@@ -180,7 +180,7 @@ It is possible to use encodings different than ASCII in Python source files. The
 best way to do it is to put one more special comment line right after the ``#!``
 line to define the source file encoding::
 
-   # -*- coding: encoding -*- 
+   # -*- coding: encoding -*-
 
 
 With that declaration, all characters in the source file will be treated as

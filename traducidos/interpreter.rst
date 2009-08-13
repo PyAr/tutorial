@@ -50,11 +50,11 @@ lee y ejecuta comandos en forma interactiva; cuando es llamada con un nombre de
 archivo como argumento o con un archivo como entrada estándar, lee y ejecuta
 un *script* del archivo.
 
-Una segunda forma de iniciar el intérprete es ``python -c command [arg] ...``,
-que ejecuta las sentencias en *command*, similar a la opción :option:`-c` de la
+Una segunda forma de iniciar el intérprete es ``python -c comando [arg] ...``,
+que ejecuta las sentencias en *comando*, similar a la opción :option:`-c` de la
 línea de comandos.  Ya que las sentencias de Python suelen tener espacios en
-blanco u otros caracteres que son especiales en la línea de comandos, es mejor
-citar *command* entre comillas dobles.
+blanco u otros caracteres que son especiales en la línea de comandos, es
+normalmente recomendado citar *comando* entre comillas dobles.
 
 Algunos módulos de Python son también útiles como scripts.  Pueden invocarse
 usando ``python -m module [arg] ...``, que ejecuta el código de *module* como
@@ -162,9 +162,9 @@ poniendo la linea::
 
 ...al principio del script y dándole al archivo permisos de ejecución
 (asumiendo que el intérprete están en la variable de entorno :envvar:`PATH` del
-usuario).  ``#!`` deben ser los primeros dos caracteres del archivo. En algunas
-plataformas, la primer línea debe terminar al estilo Unix (``'\n'``), no como
-en Mac OS (``'\r'``) o Windows (``'\r\n'``).  Notá que el caracter numeral
+usuario).  ``#!`` deben ser los primeros dos caracteres del archivo.  En
+algunas plataformas, la primer línea debe terminar al estilo Unix (``'\n'``),
+no como en Windows (``'\r\n'``).  Notá que el caracter numeral
 ``'#'`` se usa en Python para comenzar un comentario.
 
 Se le puede dar permisos de ejecución al script usando el comando

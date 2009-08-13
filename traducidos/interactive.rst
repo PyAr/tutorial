@@ -7,7 +7,7 @@ Edición de entrada interactiva y sustitución de historial
 Algunas versiones del intérprete de Python permiten editar la línea de entrada
 actual, y sustituir en base al historial, de forma similar a las capacidades
 del intérprete de comandos Korn y el GNU bash.  Esto se implementa con la
-biblioteca *GNU Readline*, que soporta edición al estilo de Emacs y al estilo
+biblioteca `GNU Readline`_, que soporta edición al estilo de Emacs y al estilo
 de vi.  Esta biblioteca tiene su propia documentación que no duplicaré aquí;
 pero la funcionalidad básica es fácil de explicar.  La edición interactiva y
 el historial aquí descriptos están disponibles como opcionales en las versiones
@@ -153,8 +153,8 @@ sesiones con el intérprete. ::
 
 .. _tut-commentary:
 
-Comentario
-==========
+Alternativas al intérprete interactivo
+======================================
 
 Esta funcionalidad es un paso enorme hacia adelante comparado con versiones
 anteriores del interprete; de todos modos, quedan pendientes algunos deseos:
@@ -164,7 +164,17 @@ El mecanismo de completado podría usar la tabla de símbolos del intérprete.
 Un comando para verificar (o incluso sugerir) coincidencia de paréntesis,
 comillas, etc. también sería útil.
 
+Un intérprete interactivo mejorado alternativo que está dando vueltas desde
+hace rato es `IPython`_, que ofrece completado por tab, exploración de
+objetos, y administración avanzada del historial.  También puede ser
+configurado en profundidad, e integrarse en otras aplicaciones.  Otro
+entorno interactivo mejorado similar es `bpython`_.
+
 .. rubric:: Footnotes
 
 .. [#] Python ejecutará el contenido de un archivo indicado por la variable de
    entorno :envvar:`PYTHONSTARTUP` cuando inicies un intérprete interactivo.
+
+.. _GNU Readline: http://tiswww.case.edu/php/chet/readline/rltop.html
+.. _IPython: http://ipython.scipy.org/
+.. _bpython: http://www.bpython-interpreter.org/

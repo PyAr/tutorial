@@ -109,7 +109,7 @@ Hay incluso una variante para importar todos los nombres que un módulo define::
 Esto importa todos los nombres excepto aquellos que comienzan con un subrayado
 (``_``).
 
-.. note::
+.. admonition:: Nota
 
    Por razones de eficiencia, cada módulo se importa una vez por sesión del
    intérprete.  Por lo tanto, si modificás los módulos, tenés que reiniciar el

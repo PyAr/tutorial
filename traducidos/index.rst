@@ -1,12 +1,5 @@
 .. _tutorial-index:
 
-######################
-  Tutorial de Python
-######################
-
-:Release: |version|
-:Date: |today|
-
 Python es un lenguaje de programación poderoso y fácil de aprender.  Cuenta con
 estructuras de datos eficientes y de alto nivel y un enfoque simple pero
 efectivo a la programación orientada a objetos.  La elegante sintaxis de Python

@@ -34,7 +34,7 @@ source_suffix = '.rst'
 #source_encoding = 'utf-8'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = 'contenido'
 
 # General information about the project.
 project = u'Tutorial de Python'
@@ -172,7 +172,7 @@ htmlhelp_basename = 'TutorialPythondoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'TutorialPython.tex', u'Tutorial Python Documentation',
+  ('contenido', 'TutorialPython.tex', u'Tutorial Python Documentation',
    u'Guido van Rossum', 'manual'),
 ]
 
@@ -196,7 +196,7 @@ latex_documents = [
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 pdf_documents = [
-  ('index','TutorialPython', u'Tutorial Python', u'Guido van Rossum'),
+  ('contenido','TutorialPython', u'Tutorial Python', u'Guido van Rossum'),
 ]
 
 # A comma-separated list of custom stylesheets. Example:
@@ -218,7 +218,10 @@ pdf_inline_footnotes = True
 #pdf_font_path= ['/usr/share/fonts', '/usr/share/texmf-dist/fonts/']
 
 # Language to be used for hyphenation support
-pdf_language="es_ES"
+pdf_language=""
 
 # If false, no index is generated.
 pdf_use_index = False
+
+# no cover
+pdf_use_coverpage=False

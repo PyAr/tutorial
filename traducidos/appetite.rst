@@ -1,7 +1,7 @@
 .. _tut-intro:
 
 *******************
-Saciando tu apetito
+Abriendo tu apetito
 *******************
 
 Si trabajás mucho con computadoras, eventualmente encontrarás que te gustaría

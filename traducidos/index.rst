@@ -1,5 +1,9 @@
 .. _tutorial-index:
 
+************
+Introducción
+************
+
 Python es un lenguaje de programación poderoso y fácil de aprender.  Cuenta con
 estructuras de datos eficientes y de alto nivel y un enfoque simple pero
 efectivo a la programación orientada a objetos.  La elegante sintaxis de Python
@@ -39,21 +43,3 @@ más de los variados módulos de la biblioteca de Python descriptos en la
 Referencia de la Biblioteca de Python.
 
 También vale la pena mirar el `glosario`.
-
-.. toctree::
-   :numbered:
-
-   appetite.rst
-   interpreter.rst
-   introduction.rst
-   controlflow.rst
-   datastructures.rst
-   modules.rst
-   inputoutput.rst
-   errors.rst
-   classes.rst
-   stdlib.rst
-   stdlib2.rst
-   whatnow.rst
-   interactive.rst
-   floatingpoint.rst

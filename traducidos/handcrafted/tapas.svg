@@ -18,6 +18,33 @@
    version="1.0"
    sodipodi:docname="tapas.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.9808706"
+     inkscape:cx="274.47526"
+     inkscape:cy="44.881163"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1910"
+     inkscape:window-height="1004"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     width="744.09449px"
+     height="1052.3622px"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     showgrid="false"
+     inkscape:window-maximized="0">
+    <sodipodi:guide
+       orientation="1,0"
+       position="148.85553,163.13423"
+       id="guide3390" />
+  </sodipodi:namedview>
   <defs
      id="defs4">
     <inkscape:perspective
@@ -1454,34 +1481,14 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3436"
+       inkscape:persp3d-origin="364 : 30 : 1"
+       inkscape:vp_z="728 : 45 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 45 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="1"
-     inkscape:pageshadow="2"
-     inkscape:zoom="7.9234822"
-     inkscape:cx="55.754921"
-     inkscape:cy="47.48898"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     inkscape:window-width="1910"
-     inkscape:window-height="1004"
-     inkscape:window-x="0"
-     inkscape:window-y="24"
-     width="744.09449px"
-     height="1052.3622px"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     showgrid="false"
-     inkscape:window-maximized="0">
-    <sodipodi:guide
-       orientation="1,0"
-       position="148.85553,163.13423"
-       id="guide3390" />
-  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -1498,6 +1505,102 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-842.36218)">
+    <g
+       inkscape:label="Layer 1"
+       id="layer1-7"
+       transform="matrix(0.15300988,0,0,0.15300988,31.032565,1030.758)">
+      <rect
+         y="2.6226044e-06"
+         x="0"
+         height="90"
+         width="728"
+         id="rect3191"
+         style="fill:#8aaac8;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:35.43307114;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <rect
+         y="3.0000024"
+         x="3"
+         height="60"
+         width="721.77777"
+         id="rect3195"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:35.43307114;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <g
+         transform="translate(8.2422277,0)"
+         id="g4767">
+        <g
+           transform="matrix(0.289633,0,0,0.289633,18.380077,5.4171024)"
+           id="g3354">
+          <metadata
+             id="metadata3356" />
+          <g
+             id="g3358">
+            <rect
+               style="fill:#8fbfdb"
+               id="rect3360"
+               class="fil0"
+               x="8.5833597"
+               y="12.4696"
+               width="199.62399"
+               height="84.060699" />
+            <rect
+               style="fill:#8fbfdb"
+               id="rect3362"
+               class="fil0"
+               x="7.6922002"
+               y="182.87"
+               width="199.62399"
+               height="84.060699" />
+            <rect
+               style="fill:none;stroke:#1f1a17;stroke-width:5.64440012;stroke-linejoin:round"
+               id="rect3364"
+               class="fil1 str0"
+               x="8.5833597"
+               y="12.4696"
+               width="199.62399"
+               height="253.304" />
+            <g
+               id="g3366"
+               label="Capa 1"
+               groupmode="layer">
+              <g
+                 id="g3368"
+                 export-xdpi="90"
+                 export-ydpi="90">
+                <g
+                   id="g3370">
+                  <path
+                     style="fill:#131516;fill-rule:nonzero"
+                     id="path3372"
+                     class="fil2"
+                     d="m 164.738,223.675 c 0,0 6.3701,-5.1187 6.3701,-5.1187 0,0 -14.1053,-19.6418 -14.1053,-19.6418 -4.4745,-6.1806 -13.499,-10.4649 -23.5091,-10.4649 -4.8156,0 -9.2514,0.9855 -12.9677,2.6918 0,0 -15.8495,-10.4271 -15.8495,-10.4271 2.427,-2.6166 3.7922,-5.7635 3.7163,-9.1002 -0.1136,-2.8055 -1.2136,-5.422 -3.0713,-7.6968 0,0 15.2045,-10.0866 15.2045,-10.0866 3.2609,1.0999 6.9007,1.7442 10.8067,1.7442 12.9297,0 22.7124,-6.9386 21.8406,-15.2802 -0.7967,-8.1143 -11.4896,-14.5603 -23.8123,-14.5603 -4.3227,0 -8.3416,0.7958 -11.7549,2.1989 0,0 -14.3705,-8.6071 -14.3705,-8.6071 2.2375,-2.1616 3.4889,-4.7775 3.413,-7.5077 -0.0757,-2.3507 -1.0998,-4.5502 -2.8439,-6.446 0,0 13.8774,-8.3418 13.8774,-8.3418 2.9955,0.9483 6.3322,1.4789 9.8969,1.4789 11.792,0 20.7787,-5.7635 20.0579,-12.7404 -0.6822,-6.7871 -10.389,-12.1712 -21.6883,-12.1712 -3.9439,0 -7.6215,0.6824 -10.7308,1.8198 0,0 -13.1573,-7.2042 -13.1573,-7.2042 2.0475,-1.8201 3.1851,-3.9813 3.1093,-6.2943 -0.1895,-6.2564 -9.1004,-11.2236 -19.9448,-11.2236 -3.8296,0 -7.4317,0.6446 -10.503,1.7065 0,0 -12.0958,-6.6357 -12.0958,-6.6357 2.0855,-1.6683 3.3748,-3.6779 3.4505,-5.8393 0.2656,-5.7633 -8.0005,-10.3514 -18.3897,-10.3514 -10.4274,0 -19.376,4.5881 -20.0584,10.3514 -0.6825,5.8773 7.5455,10.7685 18.3899,10.7685 3.4883,0 6.7872,-0.5307 9.7068,-1.4029 0,0 12.399,6.901 12.399,6.901 -1.82,1.6684 -2.8817,3.6021 -2.9955,5.7255 -0.2654,6.3703 8.6453,11.6787 19.9446,11.6787 3.678,0 7.1285,-0.5689 10.0858,-1.5547 0,0 13.4609,7.4696 13.4609,7.4696 -1.782,1.8201 -2.806,3.9435 -2.7301,6.2563 0.0757,2.6923 1.5546,5.1949 4.0574,7.2804 0,0 -13.0056,7.7348 -13.0056,7.7348 -3.4887,-1.4408 -7.6217,-2.2748 -12.0581,-2.2748 -11.7542,0 -21.5748,5.8776 -21.9161,13.3089 -0.3414,7.5836 9.4035,13.9159 21.7266,13.9159 4.0192,0 7.7731,-0.6829 10.9962,-1.858 0,0 14.7119,8.9482 14.7119,8.9482 -1.9336,2.1618 -3.0336,4.7019 -2.9198,7.4701 0.0757,3.2607 1.7442,6.2563 4.5124,8.7584 0,0 -14.257,9.2899 -14.257,9.2899 -3.7918,-1.7441 -8.3421,-2.7681 -13.2332,-2.7681 -12.9299,0 -23.7364,7.091 -24.1154,16.0392 -0.3792,9.214 10.2755,16.8355 23.8878,16.8355 4.4363,0 8.5694,-0.7965 12.0956,-2.2374 0,0 16.2285,10.8444 16.2285,10.8444 -2.1231,2.6544 -3.2988,5.8016 -3.2229,9.1383 0.2274,7.5079 6.7112,14.1055 15.8874,17.0624 0,0 27.1869,10.2382 27.1869,10.2382 0,0 6.1427,-4.8913 6.1427,-4.8913 10.351,11.7162 13.6877,27.6416 13.6877,27.6416 0,0 0,-19.9823 0,-19.9823 0,0 18.163,0 18.163,0 0,-0.0378 -14.5603,-3.185 -25.708,-12.5885 l 0,0 z" />
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-size:23.98314857px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans Mono;-inkscape-font-specification:Bitstream Vera Sans Mono"
+           x="88.845726"
+           y="31.531187"
+           id="text3374"><tspan
+             sodipodi:role="line"
+             id="tspan3376-1"
+             x="88.845726"
+             y="31.531187"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans Bold">PyCon Argentina 2009</tspan><tspan
+             sodipodi:role="line"
+             x="88.845726"
+             y="54.33857"
+             style="font-size:16.78820419px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;fill:#3782ad;fill-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+             id="tspan3400">La primera conferencia en español, conectando a la comunidad Python.</tspan><tspan
+             dy="4"
+             sodipodi:role="line"
+             x="88.845726"
+             y="75.323822"
+             style="font-size:16.78820419px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;text-anchor:start;fill:#ffffff;fill-opacity:1;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"
+             id="tspan3424">Buenos Aires, 4 y 5 de Septiembre.                           http://ar.pycon.org/</tspan></text>
+      </g>
+    </g>
     <g
        id="g3236"
        transform="matrix(0.04134784,0,0,0.04133132,107.89147,865.75534)">
@@ -1985,12 +2088,5 @@
          dx="-2.7253897 -0.90334725 0 -1.129184 -2.0325313 -2.0325313"
          style="font-size:40.48981476px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#005c8f;fill-opacity:1;font-family:URW Palladio L;-inkscape-font-specification:URW Palladio L Bold"
          dy="-2.2999432">Python</tspan></text>
-    <image
-       y="1030.839"
-       x="31.68766"
-       id="image3192"
-       height="13.608915"
-       width="110.081"
-       xlink:href="file:///home/facundo/Escritorio/present_scipy/inkscape_pasted_image_20090815_152000.png" />
   </g>
 </svg>

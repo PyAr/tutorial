@@ -16,6 +16,10 @@
     }
   },
   "styles": [
+    ["toc" , {
+        "parent": "normal",
+        "leading": 11
+    }],
     ["code", {
         "backColor": "#F5FFDF",
         "borderWidth": 0.3,

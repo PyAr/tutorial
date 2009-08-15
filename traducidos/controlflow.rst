@@ -157,6 +157,9 @@ lazo, que busca números primos::
    8 es igual a 2 * 4
    9 es igual a 3 * 3
 
+.. raw:: pdf
+
+   PageBreak
 
 .. _tut-pass:
 
@@ -529,6 +532,10 @@ con el operador ``**``\::
    >>> loro(**d)
    -- Este loro no va a VOLAR si le aplicas cuatro millones voltios. Esta demacrado !
 
+
+.. raw:: pdf
+
+   PageBreak
 
 .. _tut-lambda:
 

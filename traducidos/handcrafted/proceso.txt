@@ -1,0 +1,20 @@
+- Hice muchos ajustes con page breaks, cambié el interlineado de la
+  tabla de contenidos, y hasta reescribí una frase (porque me quedaba una
+  hoja con solo dos palabras).  Todo esto es en función de que quede bien
+  impreso, en función de que la hoja 1 era a mano, la tabla de contenidos
+  y la introducción quería que empiecen en página impar ("a la derecha"),
+  y de que el total de páginas tiene que ser múltiplo de 4.
+
+- Generé el TutorialPython.pdf haciendo "make pdf".
+
+- Lo separé en "cuerpo", "tabla de contenidos", y "pag en blanco", con las
+  siguientes órdenes:
+
+    pdftk ../_build/pdf/TutorialPython.pdf cat 1 output blank.pdf
+    pdftk ../_build/pdf/TutorialPython.pdf cat 2-5 output toc.pdf
+    pdftk ../_build/pdf/TutorialPython.pdf cat 7-end output cuerpo.pdf
+
+- Edité el toc.pdf con el vim y le borré los nros de página al pié de
+  cada una.
+
+- Agarré el pag1.odt, y generé un pag1.pdf

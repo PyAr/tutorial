@@ -315,7 +315,6 @@ condiciones de error::
            siguiente -- nuevo estado intentado
            mensaje -- explicacion de porque la transicion no esta permitida
        """
-
        def __init__(self, previo, siguiente, mensaje):
            self.previo = previo
            self.siguiente = siguiente

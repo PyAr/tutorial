@@ -196,6 +196,9 @@ locales.
 Para una completa descripción del formateo de cadenas con :meth:`str.format`,
 mirá en :ref:`formatstrings`.
 
+.. raw:: pdf
+
+   PageBreak
 
 Viejo formateo de cadenas
 -------------------------
@@ -253,9 +256,11 @@ cuidadoso en usar el modo binario al leer y escribir tales archivos.  En Unix,
 no hay problema en agregarle una ``'b'`` al modo, por lo que podés usarlo
 independientemente de la plataforma para todos los archivos binarios.
 
+.. raw:: pdf
+
+   PageBreak
 
 .. _tut-filemethods:
-
 
 Métodos de los objetos Archivo
 ------------------------------
@@ -401,7 +406,7 @@ de código::
 
    pickle.dump(x, f)
 
-Para despicklear el objeto nuevamente, si ``f`` es un objeto archivo que fue
+Para despicklear el objeto, si ``f`` es un objeto archivo que fue
 abierto para lectura::
 
    x = pickle.load(f)

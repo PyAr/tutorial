@@ -10,7 +10,6 @@
 - Lo separé en "cuerpo", "tabla de contenidos", y "pag en blanco", con las
   siguientes órdenes:
 
-    pdftk ../_build/pdf/TutorialPython.pdf cat 1 output blank.pdf
     pdftk ../_build/pdf/TutorialPython.pdf cat 2-5 output toc.pdf
     pdftk ../_build/pdf/TutorialPython.pdf cat 7-end output cuerpo.pdf
 
@@ -18,3 +17,5 @@
   cada una.
 
 - Agarré el pag1.odt, y generé un pag1.pdf
+
+- Junté todos los pdfs

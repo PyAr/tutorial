@@ -21,7 +21,7 @@
         "leading": 11
     }],
     ["code", {
-        "backColor": "#F5FFDF",
+        "backColor": "#FCFFF5",
         "borderWidth": 0.3,
         "borderColor": "#AACC99",
         "allowOrphans": false,

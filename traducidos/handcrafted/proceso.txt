@@ -18,4 +18,6 @@
 
 - Agarré el pag1.odt, y generé un pag1.pdf
 
-- Junté todos los pdfs
+- Junté todos los pdfs:
+
+    pdftk pag1.pdf toc.pdf cuerpo.pdf output TutorialPython.pdf

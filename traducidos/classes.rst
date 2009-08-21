@@ -211,10 +211,6 @@ efecto justo antes de que ingrese la definición de la clase) es restablecido, y
 el objeto clase se asocia allí al nombre que se le puso a la clase en el
 encabezado de su definición (:class:`Clase` en el ejemplo).
 
-.. raw:: pdf
-
-   PageBreak
-
 .. _tut-classobjects:
 
 Objetos clase
@@ -321,10 +317,6 @@ no es la misma cosa que ``MiClase.f``; es un *objeto método*, no un objeto
 función.
 
 
-.. raw:: pdf
-
-   PageBreak
-
 .. _tut-methodobjects:
 
 Objetos método
@@ -370,6 +362,10 @@ es nuevamente desempaquetado, una lista de argumentos nueva es construida a
 partir del objeto instancia y la lista de argumentos original, y el objeto
 función es llamado con esta nueva lista de argumentos.
 
+
+.. raw:: pdf
+
+   PageBreak
 
 .. _tut-remarks:
 
@@ -705,10 +701,6 @@ imprime el nombre de la clase de la excepción, luego dos puntos y un espacio y
 finalmente la instancia convertida a un string usando la función
 integrada :func:`str`.
 
-
-.. raw:: pdf
-
-   PageBreak
 
 .. _tut-iterators:
 

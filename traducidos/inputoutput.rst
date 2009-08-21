@@ -196,10 +196,6 @@ locales.
 Para una completa descripción del formateo de cadenas con :meth:`str.format`,
 mirá en :ref:`formatstrings`.
 
-.. raw:: pdf
-
-   PageBreak
-
 Viejo formateo de cadenas
 -------------------------
 
@@ -255,10 +251,6 @@ corromperá datos binarios como en archivos :file:`JPEG` o :file:`EXE`.  Sé muy
 cuidadoso en usar el modo binario al leer y escribir tales archivos.  En Unix,
 no hay problema en agregarle una ``'b'`` al modo, por lo que podés usarlo
 independientemente de la plataforma para todos los archivos binarios.
-
-.. raw:: pdf
-
-   PageBreak
 
 .. _tut-filemethods:
 

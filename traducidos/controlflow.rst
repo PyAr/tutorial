@@ -157,10 +157,6 @@ lazo, que busca números primos::
    8 es igual a 2 * 4
    9 es igual a 3 * 3
 
-.. raw:: pdf
-
-   PageBreak
-
 .. _tut-pass:
 
 La sentencia :keyword:`pass`
@@ -533,10 +529,6 @@ con el operador ``**``\::
    -- Este loro no va a VOLAR si le aplicas cuatro millones voltios. Esta demacrado !
 
 
-.. raw:: pdf
-
-   PageBreak
-
 .. _tut-lambda:
 
 Formas con lambda
@@ -561,6 +553,10 @@ son contenidas::
    >>> f(1)
    43
 
+
+.. raw:: pdf
+
+   PageBreak
 
 .. _tut-docstrings:
 

@@ -1,7 +1,10 @@
 {"pageSetup": {
     "firstTemplate": "cutePage",
-        "margin-top": "2mm",
-        "margin-bottom": "2mm",
+        "size": null,
+        "width": "170mm",
+        "height": "225mm",
+        "margin-top": "10mm",
+        "margin-bottom": "9mm",
         "margin-left": "16mm",
         "margin-right": "16mm"
   },

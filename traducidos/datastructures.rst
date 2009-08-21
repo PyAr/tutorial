@@ -133,6 +133,10 @@ sin un índice explícito.  Por ejemplo::
    [3, 4]
 
 
+.. raw:: pdf
+
+   PageBreak
+
 .. _tut-lists-as-queues:
 
 Usando listas como colas
@@ -458,6 +462,10 @@ Una pequeña demostración::
    set(['b', 'd', 'm', 'l', 'r', 'z'])
 
 
+.. raw:: pdf
+
+   PageBreak
+
 .. _tut-dictionaries:
 
 Diccionarios
@@ -672,11 +680,6 @@ determinístico pero arbitrario: los tipos se ordenan por su nombre.  Por lo
 tanto, una lista (``list``) siempre evalúa como menor que una cadena
 (``string``).
 
-[#]_ Tipos numéricos diferentes se comparan a su valor numérico, o sea 0 es
-igual a 0.0, etc.
-
-
-.. rubric:: Footnotes
-
-.. [#] No confiar demasiado en las reglas para comparar objetos de diferentes
-       tipos; pueden cambiar en una versión futura del lenguaje.
+Los tipos numéricos diferentes se comparan a su valor numérico, o sea 0 es
+igual a 0.0, etc.  No confiar demasiado en las reglas para comparar objetos de
+diferentes tipos; pueden cambiar en una versión futura del lenguaje.

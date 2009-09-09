@@ -43,3 +43,22 @@ más de los variados módulos de la biblioteca de Python descriptos en la
 Referencia de la Biblioteca de Python.
 
 También vale la pena mirar el `glosario`.
+
+
+.. toctree::
+   :numbered:
+
+   appetite.rst
+   interpreter.rst
+   introduction.rst
+   controlflow.rst
+   datastructures.rst
+   modules.rst
+   inputoutput.rst
+   errors.rst
+   classes.rst
+   stdlib.rst
+   stdlib2.rst
+   whatnow.rst
+   interactive.rst
+   floatingpoint.rst

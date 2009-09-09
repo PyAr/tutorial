@@ -22,7 +22,7 @@ import sys, os
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc']
+extensions = ['sphinx.ext.autodoc','rst2pdf.pdfbuilder']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -196,13 +196,13 @@ latex_documents = [
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 pdf_documents = [
-  ('contenido','TutorialPython', u'Tutorial Python', u'Guido van Rossum'),
+  ('index','TutorialPython', u'Tutorial Python', u'Guido van Rossum'),
 ]
 
 # A comma-separated list of custom stylesheets. Example:
 # stylesheets=["fruity.json", "a4paper.json", "verasans.json"]
 #pdf_stylesheets = ['sphinx','b5']
-pdf_stylesheets = ['eightpoint','a5','sphinx','estilo']
+pdf_stylesheets = ['eightpoint','a5','sphinx','estilo','bw']
 # What to do when a literal block is too wide
 pdf_fit_mode = 'shrink'
 pdf_break_level = 1
@@ -221,7 +221,7 @@ pdf_inline_footnotes = True
 pdf_language=""
 
 # If false, no index is generated.
-pdf_use_index = False
+pdf_use_index = True
 
 # no cover
-pdf_use_coverpage=False
+pdf_use_coverpage=True

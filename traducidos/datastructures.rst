@@ -42,7 +42,7 @@ de los objetos lista:
 .. method:: list.remove(x)
    :noindex:
 
-   Quita el primer ítem de la lista cuyo calor sea *x*. Es un error si no
+   Quita el primer ítem de la lista cuyo valor sea *x*. Es un error si no
    existe tal ítem.
 
 

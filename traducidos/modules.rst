@@ -555,8 +555,8 @@ nombre del módulo actual.  Ya que el nombre del módulo principal es siempre
 aplicación Python siempre deberían usar ``import`` absolutos.
 
 
-Paquetes en múltiple directorios
---------------------------------
+Paquetes en múltiples directorios
+---------------------------------
 
 Los paquetes soportan un atributo especial más, :attr:`__path__`.  Este
 se inicializa, antes de que el código en ese archivo se ejecute, a una lista

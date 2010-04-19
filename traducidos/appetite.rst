@@ -61,7 +61,7 @@ Java por varios motivos:
 * los tipos de datos de alto nivel permiten expresar operaciones complejas en
   una sola instrucción
 
-* la agrupación de instrucciones se hace por snagría en vez de llaves de
+* la agrupación de instrucciones se hace por sangría en vez de llaves de
   apertura y cierre
 
 * no es necesario declarar variables ni argumentos.

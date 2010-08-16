@@ -172,15 +172,11 @@ depende del tipo de excepción.
 El :keyword:`except` puede especificar una variable luego del nombre (o tupla)
 de excepción(es).  La variable se vincula a una instancia de excepción con los
 argumentos almacenados en ``instance.args``.  Por conveniencia, la instancia
-de excepción define :meth:`__getitem__` y :meth:`__str__` para que se pueda
-acceder o mostrar los argumentos directamente, sin necesidad de hacer
-referencia a ``.args``.
+de excepción define :meth:`__str__` para que se pueda mostrar los argumentos
+directamente, sin necesidad de hacer referencia a ``.args``.
 
-Pero se recomienda no usar ``.args``.  En cambio, el uso preferido es pasar un
-único argumento a la excepción (que puede ser una tupla se necesitan varios
-argumentos) y vincularlo al atributo ``message``.  Uno también puede instanciar
-una excepción antes de generarla, y agregarle cualquier atributo que se
-desee::
+Uno también puede instanciar una excepción antes de generarla, y agregarle
+cualquier atributo que se desee::
 
    >>> try:
    ...    raise Exception('carne', 'huevos')
@@ -234,11 +230,9 @@ una excepción específica.  Por ejemplo::
      File "<stdin>", line 1, in ?
    NameError: Hola
 
-El argumento de :keyword:`raise` es una clase o instancia de excepción a ser
-generada.  Hay una sintaxis alternativa que no se usa más, que separa los
-argumentos de clase y constructor; lo de arriba podría escribirse como
-``raise NameError, 'Hola'``; ya que alguna vez era la única opción, esta forma
-es muy usada en códigos viejos.
+El único argumento a :keyword:`raise` indica la excepción a generarse. Tiene
+que ser o una instancia de excepción, o una clase de excepción (una clase que
+hereda de :class:`Exception`).
 
 Si necesitás determinar cuando una excepción fue lanzada pero no querés
 manejarla, una forma simplificada de la instrucción :keyword:`raise` te permite
@@ -262,7 +256,8 @@ Excepciones definidas por el usuario
 ====================================
 
 Los programas pueden nombrar sus propias excepciones creando una nueva clase
-excepción.  Las excepciones, típicamente, deberán derivar de la clase
+excepción (mirá :ref:`tut-classes` para más información sobre las clases de
+Python).  Las excepciones, típicamente, deberán derivar de la clase
 :exc:`Exception`, directa o indirectamente.  Por ejemplo::
 
    >>> class MiError(Exception):

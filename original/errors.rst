@@ -165,14 +165,11 @@ exception type.
 The except clause may specify a variable after the exception name (or tuple).
 The variable is bound to an exception instance with the arguments stored in
 ``instance.args``.  For convenience, the exception instance defines
-:meth:`__getitem__` and :meth:`__str__` so the arguments can be accessed or
-printed directly without having to reference ``.args``.
+:meth:`__str__` so the arguments can be printed directly without having to
+reference ``.args``.
 
-But use of ``.args`` is discouraged.  Instead, the preferred use is to pass a
-single argument to an exception (which can be a tuple if multiple arguments are
-needed) and have it bound to the ``message`` attribute.  One may also
-instantiate an exception first before raising it and add any attributes to it as
-desired. ::
+One may also instantiate an exception first before raising it and add any
+attributes to it as desired. ::
 
    >>> try:
    ...    raise Exception('spam', 'eggs')
@@ -221,11 +218,9 @@ exception to occur. For example::
      File "<stdin>", line 1, in ?
    NameError: HiThere
 
-The argument to :keyword:`raise` is an exception class or instance to be
-raised.  There is a deprecated alternate syntax that separates class and
-constructor arguments; the above could be written as ``raise NameError,
-'HiThere'``.  Since it once was the only one available, the latter form is
-prevalent in older code.
+The sole argument to :keyword:`raise` indicates the exception to be raised.
+This must be either an exception instance or an exception class (a class that
+derives from :class:`Exception`).
 
 If you need to determine whether an exception was raised but don't intend to
 handle it, a simpler form of the :keyword:`raise` statement allows you to
@@ -248,9 +243,10 @@ re-raise the exception::
 User-defined Exceptions
 =======================
 
-Programs may name their own exceptions by creating a new exception class.
-Exceptions should typically be derived from the :exc:`Exception` class, either
-directly or indirectly.  For example::
+Programs may name their own exceptions by creating a new exception class (see
+:ref:`tut-classes` for more about Python classes).  Exceptions should typically
+be derived from the :exc:`Exception` class, either directly or indirectly.  For
+example::
 
    >>> class MyError(Exception):
    ...     def __init__(self, value):
@@ -288,28 +284,28 @@ to create specific exception classes for different error conditions::
        """Exception raised for errors in the input.
 
        Attributes:
-           expression -- input expression in which the error occurred
-           message -- explanation of the error
+           expr -- input expression in which the error occurred
+           msg  -- explanation of the error
        """
 
-       def __init__(self, expression, message):
-           self.expression = expression
-           self.message = message
+       def __init__(self, expr, msg):
+           self.expr = expr
+           self.msg = msg
 
    class TransitionError(Error):
        """Raised when an operation attempts a state transition that's not
        allowed.
 
        Attributes:
-           previous -- state at beginning of transition
+           prev -- state at beginning of transition
            next -- attempted new state
-           message -- explanation of why the specific transition is not allowed
+           msg  -- explanation of why the specific transition is not allowed
        """
 
-       def __init__(self, previous, next, message):
-           self.previous = previous
+       def __init__(self, prev, next, msg):
+           self.prev = prev
            self.next = next
-           self.message = message
+           self.msg = msg
 
 Most exceptions are defined with names that end in "Error," similar to the
 naming of the standard exceptions.

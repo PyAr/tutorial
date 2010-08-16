@@ -198,13 +198,13 @@ determinado::
    >>> def fib(n):    # escribe la serie de Fibonacci hasta n
    ...     """Escribe la serie de Fibonacci hasta n."""
    ...     a, b = 0, 1
-   ...     while b < n:
-   ...         print b,
+   ...     while a < n:
+   ...         print a,
    ...         a, b = b, a+b
    ...
    >>> # Ahora llamamos a la funcion que acabamos de definir:
    ... fib(2000)
-   1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
+   0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
 
 .. index::
    single: documentation strings
@@ -253,7 +253,7 @@ función.  Esto sirve como un mecanismo general para renombrar::
    <function fib at 10042ed0>
    >>> f = fib
    >>> f(100)
-   1 1 2 3 5 8 13 21 34 55 89
+   0 1 1 2 3 5 8 13 21 34 55 89
 
 Viniendo de otros lenguajes, podés objetar que ``fib`` no es una función, sino
 un procedimiento, porque no devuelve un valor.  De hecho, técnicamente
@@ -274,14 +274,14 @@ serie de Fibonacci en lugar de imprimirlos::
    ...     """Devuelve una lista conteniendo la serie de Fibonacci hasta n."""
    ...     result = []
    ...     a, b = 0, 1
-   ...     while b < n:
-   ...         result.append(b)    # ver abajo
+   ...     while a < n:
+   ...         result.append(a)    # ver abajo
    ...         a, b = b, a+b
    ...     return result
    ...
    >>> f100 = fib2(100)    # llamarla
    >>> f100                # escribir el resultado
-   [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+   [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 
 Este ejemplo, como es usual, demuestra algunas características más de Python:
 
@@ -289,7 +289,7 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
   :keyword:`return` sin una expresión como argumento retorna ``None``.  Si se
   alcanza el final de una función, también se retorna ``None``.
 
-* La sentencia ``result.append(b)`` llama a un *método* del objeto lista
+* La sentencia ``result.append(a)`` llama a un *método* del objeto lista
   ``result``.  Un método es una función que 'pertenece' a un objeto y se nombra
   ``obj.methodname``, dónde ``obj`` es algún objeto (puede ser una expresión),
   y ``methodname`` es el nombre del método que está definido por el tipo del
@@ -299,7 +299,7 @@ Este ejemplo, como es usual, demuestra algunas características más de Python:
   :ref:`tut-classes`).
   El método :meth:`append` mostrado en el ejemplo está definido para objetos
   lista; añade un nuevo elemento al final de la lista.  En este ejemplo es
-  equivalente a ``result = result + [b]``, pero más eficiente.
+  equivalente a ``result = result + [a]``, pero más eficiente.
 
 
 .. _tut-defining:

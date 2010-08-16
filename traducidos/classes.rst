@@ -354,13 +354,13 @@ argumento.
 Si aún no comprendés como funcionan los métodos, un vistazo a la implementación
 puede ayudar a clarificar este tema.  Cuando se hace referencia un atributo de
 instancia y no es un atributo de datos, se busca dentro de su clase.  Si el
-nombre denota un atributo de clase válido que es un objeto función, un método
-objeto es creado, juntando (punteros a) el objeto instancia y el objeto función
+nombre denota un atributo de clase válido que es un objeto función, se crea
+un objeto método juntando (punteros a) el objeto instancia y el objeto función
 que ha sido encontrado.  Este objeto abstracto creado de esta unión es el
 objeto método.  Cuando el objeto método es llamado con una lista de argumentos,
-es nuevamente desempaquetado, una lista de argumentos nueva es construida a
-partir del objeto instancia y la lista de argumentos original, y el objeto
-función es llamado con esta nueva lista de argumentos.
+una lista de argumentos nueva es construida a partir del objeto instancia y
+la lista de argumentos original, y el objeto función es llamado con esta
+nueva lista de argumentos.
 
 
 .. raw:: pdf
@@ -579,7 +579,7 @@ Para más detalles mirá  http://www.python.org/download/releases/2.3/mro/.
 Variables privadas
 ==================
 
-Las variables "privadas" de instancia que no pueden accederse excepto desde
+Las variables "privadas" de instancia, que no pueden accederse excepto desde
 dentro de un objeto, no existen en Python.  Sin embargo, hay una convención que
 se sigue en la mayoría del código Python: un nombre prefijado con un guión bajo
 (por ejemplo, ``_spam``) debería tratarse como una parte no pública de la API
@@ -593,13 +593,8 @@ forma ``__spam`` (al menos dos guiones bajos al principio, como mucho un
 guión bajo al final) es textualmente reemplazado por ``_nombredeclase__spam``,
 donde ``nombredeclase`` es el nombre de clase actual al que se le sacan
 guiones bajos del comienzo (si los tuviera).  Se modifica el nombre del
-identificador sin importar su posición sintáctica, así que puede ser
-usado para definir instancias y variables de clase privadas, métodos, variables
-guardadas en globales, y aún variables guardadas en instancias privadas de esta
-clase en instancias de *otras* clases.  Puede ocurrir que se trunque si el
-nombre modificado queda con más de 255 caracteres.  Fuera de las clases,
-o cuando el nombre de clase consiste solo en guiones bajos, no se modifican los
-nombres de identificadores.
+identificador sin importar su posición sintáctica, siempre y cuando
+ocurra dentro de la definición de una clase.
 
 Hay que aclarar que las reglas de modificación de nombres están diseñadas
 principalmente para evitar accidentes; es posible acceder o modificar una

@@ -50,8 +50,8 @@ need for two different argument passing mechanisms as in Pascal.
 
 .. _tut-scopes:
 
-Python Scopes and Name Spaces
-=============================
+Python Scopes and Namespaces
+============================
 
 Before introducing classes, I first have to tell you something about Python's
 scope rules.  Class definitions play some neat tricks with namespaces, and you
@@ -86,7 +86,7 @@ attributes is possible.  Module attributes are writable: you can write
 :keyword:`del` statement.  For example, ``del modname.the_answer`` will remove
 the attribute :attr:`the_answer` from the object named by ``modname``.
 
-Name spaces are created at different moments and have different lifetimes.  The
+Namespaces are created at different moments and have different lifetimes.  The
 namespace containing the built-in names is created when the Python interpreter
 starts up, and is never deleted.  The global namespace for a module is created
 when the module definition is read in; normally, module namespaces also last
@@ -331,9 +331,9 @@ data attribute, its class is searched.  If the name denotes a valid class
 attribute that is a function object, a method object is created by packing
 (pointers to) the instance object and the function object just found together in
 an abstract object: this is the method object.  When the method object is called
-with an argument list, it is unpacked again, a new argument list is constructed
-from the instance object and the original argument list, and the function object
-is called with this new argument list.
+with an argument list, a new argument list is constructed from the instance
+object and the argument list, and the function object is called with this new
+argument list.
 
 
 .. _tut-remarks:
@@ -537,7 +537,7 @@ Private Variables
 =================
 
 "Private" instance variables that cannot be accessed except from inside an
-object, don't exist in Python.  However, there is a convention that is followed
+object don't exist in Python.  However, there is a convention that is followed
 by most Python code: a name prefixed with an underscore (e.g. ``_spam``) should
 be treated as a non-public part of the API (whether it is a function, a method
 or a data member).  It should be considered an implementation detail and subject
@@ -549,11 +549,8 @@ such a mechanism, called :dfn:`name mangling`.  Any identifier of the form
 ``__spam`` (at least two leading underscores, at most one trailing underscore)
 is textually replaced with ``_classname__spam``, where ``classname`` is the
 current class name with leading underscore(s) stripped.  This mangling is done
-without regard to the syntactic position of the identifier, so it can be used to
-define class-private instance and class variables, methods, variables stored in
-globals, and even variables stored in instances.  Truncation may occur when the
-mangled name would be longer than 255 characters.  Outside classes, or when the
-class name consists of only underscores, no mangling occurs.
+without regard to the syntactic position of the identifier, as long as it
+occurs within the definition of a class.
 
 Note that the mangling rules are designed mostly to avoid accidents; it still is
 possible to access or modify a variable that is considered private.  This can

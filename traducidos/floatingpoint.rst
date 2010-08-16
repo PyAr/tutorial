@@ -122,7 +122,7 @@ de 0.1 quizás tampoco dé exactamente 1.0::
    ...     suma += 0.1
    ...
    >>> suma
-   0.99999999999999989
+   0.9999999999999999
 
 La aritmética de punto flotante binaria tiene varias sorpresas como esta.
 El problema con "0.1" es explicado con detalle abajo, en la sección "Error

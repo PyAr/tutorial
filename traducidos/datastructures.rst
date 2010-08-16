@@ -144,20 +144,25 @@ Usando listas como colas
 
 .. sectionauthor:: Ka-Ping Yee <ping@lfw.org>
 
-También puedes usar una lista convenientemente como una cola, donde el primer
+También es posible usar una lista como una cola, donde el primer
 elemento añadido es el primer elemento retirado ("primero en entrar, primero
-en salir").  Para agregar un ítem al final de la cola, use :meth:`append`.
-Para retirar un ítem del frente de la pila, use :meth:`pop` con ``0`` como
-índice. Por ejemplo::
+en salir"); sin embargo, las listas no son eficientes para este propósito.
+Agregar y sacar del final de la lista es rápido, pero insertar o sacar del
+comienzo de una lista es lento (porque todos los otros elementos tienen
+que ser desplazados por uno).
 
-   >>> queue = ["Eric", "John", "Michael"]
-   >>> queue.append("Terry")           # llega Terry
-   >>> queue.append("Graham")          # llega Graham
-   >>> queue.pop(0)
+Para implementar una cola, usá :class:`collections.deque` el cual fue diseñado
+para agregar y sacar de ambas puntas de forma rápida.  Por ejemplo::
+
+   >>> from collections import deque
+   >>> queue = deque(["Eric", "John", "Michael"])
+   >>> queue.append("Terry")         # llega Terry
+   >>> queue.append("Graham")        # llega Graham
+   >>> queue.popleft()               # el primero en llegar ahora se va
    'Eric'
-   >>> queue.pop(0)
+   >>> queue.popleft()               # el segundo en llegar ahora se va
    'John'
-   >>> queue
+   >>> queue                         # el resto de la cola en órden de llegada
    ['Michael', 'Terry', 'Graham']
 
 

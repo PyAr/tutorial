@@ -23,16 +23,16 @@ lugares; consultá a tu Gurú Python local o administrador de sistemas. (Por
 ejemplo, :file:`/usr/local/python` es una alternativa popular).
 
 En máquinas con Windows, la instalación de Python por lo general se encuentra
-en :file:`C:\\Python26`, aunque se puede cambiar durante la instalación.  Para
+en :file:`C:\\Python27`, aunque se puede cambiar durante la instalación.  Para
 añadir este directorio al camino, podes ingresar la siguiente orden en el
 prompt de DOS::
 
-   set path=%path%;C:\python26
+   set path=%path%;C:\python27
 
 Se puede salir del intérprete con estado de salida cero ingresando el carácter
 de fin de archivo (:kbd:`Control-D` en Unix, :kbd:`Control-Z` en Windows) en el
 prompt primario.  Si esto no funciona, se puede salir del intérprete
-ingresando: ``import sys; sys.exit()``.
+ingresando: ``quit()``.
 
 Las características para editar líneas del intérprete no son muy sofisticadas.
 En Unix, quien instale el intérprete tendrá habilitado el soporte para la
@@ -106,7 +106,7 @@ muestra un mensaje de bienvenida reportando su número de versión y una nota de
 copyright::
 
    python
-   Python 2.6 (#1, Feb 28 2007, 00:02:06)
+   Python 2.7 (#1, Feb 28 2010, 00:02:06)
    Type "help", "copyright", "credits" or "license" for more information.
    >>>
 

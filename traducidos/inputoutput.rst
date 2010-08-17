@@ -51,10 +51,10 @@ Algunos ejemplos::
    'Hola mundo.'
    >>> repr(s)
    "'Hola mundo.'"
-   >>> str(0.1)
-   '0.1'
-   >>> repr(0.1)
-   '0.10000000000000001'
+   >>> str(1.0/7.0)
+   '0.142857142857'
+   >>> repr(1.0/7.0)
+   '0.14285714285714285'
    >>> x = 10 * 3.25
    >>> y = 200 * 200
    >>> s = 'El valor de x es ' + repr(x) + ', y es ' + repr(y) + '...'
@@ -127,11 +127,11 @@ izquierda con ceros. Entiende signos positivos y negativos::
 
 El uso básico del método :meth:`str.format` es como esto::
 
-   >>> print 'Somos los {0} quienes decimos "{1}!"'.format('caballeros', 'Nop')
+   >>> print 'Somos los {} quienes decimos "{}!"'.format('caballeros', 'Nop')
    Somos los caballeros quienes decimos "Nop!"
 
 Las llaves y caracteres dentro de las mismas (llamados campos de formato) son
-reemplazadas con los objetos pasados en el método :meth:`str.format`.  El
+reemplazadas con los objetos pasados en el método :meth:`str.format`.  Un
 número en las llaves se refiere a la posición del objeto pasado en el
 método. ::
 
@@ -152,6 +152,15 @@ Se pueden combinar arbitrariamente argumentos posicionales y nombrados::
    >>> print 'La historia de {0}, {1}, y {otro}.'.format('Bill', 'Manfred',
    ...                                                   otro='Georg')
    La historia de Bill, Manfred, y Georg.
+
+Se pueden usar ``'!s'`` (aplica :func:`str`) y ``'!r'`` (aplica :func:`repr`)
+para convertir el valor antes de que se formatee. ::
+
+   >>> import math
+   >>> print 'El valor de Pi es aproximadamente {}.'.format(math.pi)
+   El valor de Pi es aproximadamente 3.14159265359.
+   >>> print 'El valor de Pi es aproximadamente {!r}.'.format(math.pi)
+   El valor de Pi es aproximadamente 3.141592653589793.
 
 Un ``':`` y especificador de formato opcionales pueden ir luego del nombre del
 campo.  Esto aumenta el control sobre cómo el valor es formateado.  El
@@ -243,10 +252,10 @@ escribirlo.  El argumento *modo* es opcional; si se omite se asume ``'r'``.
 
 En Windows, agregando ``'b'`` al modo abre al archivo en modo binario,
 por lo que también hay modos como ``'rb'``, ``'wb'``, y ``'r+b'``.
-Windows hace una distinción entre archivos binarios y de texto; los caracteres
-de fin de linea en los archivos de texto son automáticamente alterados
-levemente cuando los datos son leídos o escritos.  Esta modificación en
-bambalinas para guardar datos está bien con archivos de texto ASCII, pero
+Python en Windows hace una distinción entre archivos binarios y de texto; los
+caracteres de fin de linea en los archivos de texto son automáticamente
+alterados levemente cuando los datos son leídos o escritos.  Esta modificación
+en bambalinas para guardar datos está bien con archivos de texto ASCII, pero
 corromperá datos binarios como en archivos :file:`JPEG` o :file:`EXE`.  Sé muy
 cuidadoso en usar el modo binario al leer y escribir tales archivos.  En Unix,
 no hay problema en agregarle una ``'b'`` al modo, por lo que podés usarlo

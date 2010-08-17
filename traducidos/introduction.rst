@@ -141,7 +141,6 @@ obtener la parte real. ::
    4.0
    >>> abs(a)  # sqrt(a.real**2 + a.imag**2)
    5.0
-   >>>
 
 En el modo interactivo, la última expresión impresa es asignada a la variable
 ``_``.  Esto significa que cuando estés usando Python como una calculadora de
@@ -155,7 +154,6 @@ escritorio, es más fácil seguir calculando, por ejemplo::
    113.0625
    >>> round(_, 2)
    113.06
-   >>>
 
 Esta variable debería ser tratada como de sólo lectura por el usuario.  No le
 asignes explícitamente un valor; crearás una variable local independiente con
@@ -197,7 +195,9 @@ continuación lógica de la línea::
 
 Notá que de todas formas se necesita embeber los salto de líneas con ``\n``;
 la nueva línea que sigue a la barra invertida final es descartada.  Este
-ejemplo imprimiría::
+ejemplo imprimiría:
+
+.. code-block:: text
 
    Esta es una larga cadena que contiene
    varias líneas de texto, tal y como se hace en C.
@@ -214,7 +214,9 @@ utilizan comillas triples, pero serán incluidos en la cadena. ::
         -H nombrehost             Nombre del host al cual conectarse
    """
 
-...produce la siguiente salida::
+...produce la siguiente salida:
+
+.. code-block:: text
 
    Uso: algo [OPTIONS]
         -h                        Muestra el mensaje de uso
@@ -532,6 +534,13 @@ en 0, y las listas pueden ser rebanadas, concatenadas y todo lo demás::
    ['pan', 'huevos', 'carne', 4]
    >>> 3*a[:3] + ['Boo!']
    ['pan', 'huevos', 100, 'pan', 'huevos', 100, 'pan', 'huevos', 100, 'Boo!']
+
+Todas las operaciones de rebanado devuelven una nueva lista conteniendo los
+elementos pedidos.  Esto significa que la siguiente rebanada devuelve una copia
+superficial de la lista *a*::
+
+   >>> a[:]
+   ['pan', 'huevos', 100, 1234]
 
 A diferencia de las cadenas de texto, que son *inmutables*, es posible cambiar
 un elemento individual de una lista::

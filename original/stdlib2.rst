@@ -61,8 +61,8 @@ formatting numbers with group separators::
    >>> x = 1234567.8
    >>> locale.format("%d", x, grouping=True)
    '1,234,567'
-   >>> locale.format("%s%.*f", (conv['currency_symbol'],
-   ...               conv['frac_digits'], x), grouping=True)
+   >>> locale.format_string("%s%.*f", (conv['currency_symbol'],
+   ...                      conv['frac_digits'], x), grouping=True)
    '$1,234,567.80'
 
 
@@ -289,7 +289,7 @@ The :mod:`array` module provides an :class:`array()` object that is like a list
 that stores only homogeneous data and stores it more compactly.  The following
 example shows an array of numbers stored as two byte unsigned binary numbers
 (typecode ``"H"``) rather than the usual 16 bytes per entry for regular lists of
-python int objects::
+Python int objects::
 
    >>> from array import array
    >>> a = array('H', [4000, 10, 700, 22222])
@@ -362,10 +362,13 @@ results in decimal floating point and binary floating point. The difference
 becomes significant if the results are rounded to the nearest cent::
 
    >>> from decimal import *
-   >>> Decimal('0.70') * Decimal('1.05')
+   >>> x = Decimal('0.70') * Decimal('1.05')
+   >>> x
    Decimal('0.7350')
-   >>> .70 * 1.05
-   0.73499999999999999
+   >>> x.quantize(Decimal('0.01'))  # round to nearest cent
+   Decimal('0.74')
+   >>> round(.70 * 1.05, 2)         # same calculation with floats
+   0.73
 
 The :class:`Decimal` result keeps a trailing zero, automatically inferring four
 place significance from multiplicands with two place significance.  Decimal

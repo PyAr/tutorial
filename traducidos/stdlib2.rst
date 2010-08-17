@@ -62,8 +62,8 @@ permite una forma directa de formatear números con separadores de grupo::
    >>> x = 1234567.8
    >>> locale.format("%d", x, grouping=True)
    '1.234.567'
-   >>> locale.format("%s%.*f", (conv['currency_symbol'],
-   ...	             conv['frac_digits'], x), grouping=True)
+   >>> locale.format_string("%s%.*f", (conv['currency_symbol'],
+   ...	                    conv['frac_digits'], x), grouping=True)
    '$1.234.567,80'
 
 
@@ -380,10 +380,13 @@ binario. La diferencia se vuelve significativa si los resultados se redondean
 al centavo más próximo::
 
    >>> from decimal import *
-   >>> Decimal('0.70') * Decimal('1.05')
+   >>> x = Decimal('0.70') * Decimal('1.05')
+   >>> x
    Decimal('0.7350')
-   >>> .70 * 1.05
-   0.73499999999999999
+   >>> x.quantize(Decimal('0.01'))  # redondea al centavo más cercano
+   Decimal('0.74')
+   >>> round(.70 * 1.05, 2)         # el mismo cálculo con floats
+   0.73
 
 El resultado con :class:`Decimal` conserva un cero al final, calculando
 automáticamente cuatro cifras significativas a partir de los multiplicandos con

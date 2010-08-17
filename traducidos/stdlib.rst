@@ -71,7 +71,7 @@ una lista.  Por ejemplo, la siguiente salida resulta de ejecutar
    ['demo.py', 'uno', 'dos', 'tres']
 
 El módulo :mod:`getopt` procesa *sys.argv* usando las convenciones de la
-función de Unix :func:`getopt`.  El módulo :mod:`optparse` provee un
+función de Unix :func:`getopt`.  El módulo :mod:`argparse` provee un
 procesamiento más flexible de la linea de órdenes.
 
 
@@ -180,20 +180,20 @@ tiempos, el foco de la implementación es en la extracción eficiente de partes
 para manejarlas o formatear la salida.  El módulo también soporta objetos que
 son conscientes de la zona horaria. ::
 
-    # las fechas son fácilmente construidas y formateadas
+    >>> # las fechas son fácilmente construidas y formateadas
     >>> from datetime import date
     >>> hoy = date.today()
     >>> hoy
     datetime.date(2009, 7, 19)
 
-    # nos aseguramos de tener la info de localización correcta
+    >>> # nos aseguramos de tener la info de localización correcta
     >>> import locale
     >>> locale.setlocale(locale.LC_ALL, locale.getdefaultlocale())
     'es_ES.UTF8'
     >>> hoy.strftime("%m-%d-%y. %d %b %Y es %A. hoy es %d de %B.")
     '07-19-09. 19 jul 2009 es domingo. hoy es 19 de julio.'
 
-    # las fechas soportan aritmética de calendario
+    >>> # las fechas soportan aritmética de calendario
     >>> nacimiento = date(1964, 7, 31)
     >>> edad = hoy - nacimiento
     >>> edad.days

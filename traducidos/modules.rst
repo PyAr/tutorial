@@ -109,6 +109,10 @@ Hay incluso una variante para importar todos los nombres que un módulo define::
 Esto importa todos los nombres excepto aquellos que comienzan con un subrayado
 (``_``).
 
+Notá que en general la práctica de importar ``*`` de un módulo o paquete está
+muy mal vista, ya que frecuentemente genera un código poco legible.  Sin
+embargo, está bien usarlo para ahorrar tecleo en sesiones interactivas.
+
 .. admonition:: Nota
 
    Por razones de eficiencia, cada módulo se importa una vez por sesión del
@@ -465,15 +469,9 @@ Importando \* desde un paquete
 Ahora, ¿qué sucede cuando el usuario escribe ``from sound.effects import *``?
 Idealmente, uno esperaría que esto de alguna manera vaya al sistema de
 archivos, encuentre cuales submódulos están presentes en el paquete, y los
-importe a todos.  Desafortunadamente, esta operación no funciona muy bien en
-las plataformas Windows, donde el sistema de archivos no siempre tiene
-información precisa sobre mayúsculas y minúsculas.  En estas plataformas,
-no hay una manera garantizada de saber si el archivo `ECHO.PY` debería
-importarse como el módulo :mod:`echo`, :mod:`Echo` o :mod:`ECHO`. (Por ejemplo,
-Windows 95 tiene la molesta costumbre de mostrar todos los nombres de archivos
-con la primer letra en mayúsculas.)  La restricción de DOS de los nombres de
-archivos con la forma 8+3 agrega otro problema interesante para los nombres
-de módulos largos.
+importe a todos. Esto puede tardar mucho y el importar sub-módulos puede tener
+efectos secundarios no deseados que sólo deberían ocurrir cuando se importe
+explícitamente el sub-módulo.
 
 La única solución es que el autor del paquete provea un índice explícito del
 paquete.  La declaración :keyword:`import` usa la siguiente convención: si el
@@ -509,11 +507,9 @@ nombre actual porque están definidos en el paquete :mod:`sound.effects` cuando
 se ejecuta la declaración ``from...import``.  (Esto también funciona cuando se
 define ``__all__``).
 
-Notá que en general la práctica de importar ``*`` desde un módulo o paquete no
-se recomienda, ya que frecuentemente genera un código con mala legibilidad.
-Sin embargo, está bien usarlo para ahorrar tecleo en sesiones interactivas,
-y algunos módulos están diseñados para exportar sólo nombres que siguen
-ciertos patrones.
+A pesar de que ciertos módulos están diseñados para exportar solo nombres que
+siguen ciertos patrones cuando usás ``import *``, también se considera una
+mala práctica en código de producción.
 
 Recordá que no está mal usar ``from paquete import submodulo_especifico``!  De
 hecho, esta notación se recomienda a menos que el módulo que estás importando

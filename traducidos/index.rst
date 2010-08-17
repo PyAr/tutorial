@@ -28,19 +28,19 @@ características básicas del lenguaje y el sistema de Python.  Es bueno tener u
 interprete de Python a mano para experimentar, sin embargo todos los ejemplos
 están aislados, por lo tanto el tutorial puede leerse estando desconectado.
 
-Para una descripción de los objetos y módulos estándar, mira la Referencia de
-la Biblioteca de Python.  El Manual de Referencia de Python provee una
-definición más formal del lenguaje.  Para escribir extensiones en C o C++, lee
-Extendiendo e Integrando el Intérprete de Python y la Referencia de la API
-Python/C.  Hay también numerosos libros que tratan a Python en profundidad.
+Para una descripción de los objetos y módulos estándar, mirá
+:ref:`library-index`.  :ref:`library-index` provee una definición más formal
+del lenguaje.  Para escribir extensiones en C o C++, leé Extendiendo e
+Integrando el Intérprete de Python y la Referencia de la API Python/C.
+Hay también numerosos libros que tratan a Python en profundidad.
 
 Este tutorial no pretende ser exhaustivo ni tratar cada una de las
 características, o siquiera las características más usadas.  En cambio,
 introduce la mayoría de las características más notables de Python, y te dará
 una buena idea del gusto y estilo del lenguaje.  Luego de leerlo, serás capaz
 de leer y escribir módulos y programas en Python, y estarás listo para aprender
-más de los variados módulos de la biblioteca de Python descriptos en la
-Referencia de la Biblioteca de Python.
+más de los variados módulos de la biblioteca de Python descriptos en
+:ref:`library-index`.
 
 También vale la pena mirar el `glosario`.
 

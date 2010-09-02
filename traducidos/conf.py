@@ -34,7 +34,7 @@ source_suffix = '.rst'
 #source_encoding = 'utf-8'
 
 # The master toctree document.
-master_doc = 'contenido'
+master_doc = 'index'
 
 # General information about the project.
 project = u'Tutorial de Python'
@@ -172,7 +172,7 @@ htmlhelp_basename = 'TutorialPythondoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('contenido', 'TutorialPython.tex', u'Tutorial Python Documentation',
+  ('index', 'TutorialPython.tex', u'Tutorial Python Documentation',
    u'Guido van Rossum', 'manual'),
 ]
 
@@ -221,7 +221,7 @@ pdf_inline_footnotes = True
 pdf_language=""
 
 # If false, no index is generated.
-pdf_use_index = True
+pdf_use_index = False
 
 # no cover
 pdf_use_coverpage=True

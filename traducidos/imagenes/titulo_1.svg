@@ -14,8 +14,8 @@
    height="100"
    id="svg2998"
    version="1.1"
-   inkscape:version="0.47 r22583"
-   sodipodi:docname="Nuevo documento 1">
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="titulo_1.svg">
   <defs
      id="defs3000">
     <inkscape:perspective
@@ -183,11 +183,11 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-page="true"
-     inkscape:window-width="611"
-     inkscape:window-height="500"
-     inkscape:window-x="0"
-     inkscape:window-y="53"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1440"
+     inkscape:window-height="852"
+     inkscape:window-x="-3"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata3003">
     <rdf:RDF>
@@ -196,7 +196,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -273,5 +273,5 @@
            height="38.814392"
            width="273.32361"
            id="rect3052" /></flowRegion><flowPara
-         id="flowPara3054">Título uno con dos renglones es título uno con dos renglones</flowPara></flowRoot>  </g>
+         id="flowPara3054">TITLEGOESHERE</flowPara></flowRoot>  </g>
 </svg>

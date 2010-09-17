@@ -205,8 +205,12 @@ pdf_documents = [
 pdf_stylesheets = ['eightpoint','a5','sphinx','estilo','bw']
 # What to do when a literal block is too wide
 pdf_fit_mode = 'shrink'
+pdf_fit_background_mode = 'scale'
+pdf_use_numbered_links = False
 pdf_break_level = 1
 pdf_inline_footnotes = True
+pdf_extensions = ['vectorpdf', 'inkscape', 'supertitles']
+pdf_cover_template = 'cover.tmpl'
 
 # Create a compressed PDF
 # Use True/False or 1/0

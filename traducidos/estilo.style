@@ -1,14 +1,22 @@
 {"pageSetup": {
-    "firstTemplate": "coverPage",
         "size": null,
         "width": "170mm",
         "height": "225mm",
         "margin-top": "10mm",
         "margin-bottom": "9mm",
         "margin-left": "16mm",
-        "margin-right": "16mm"
+        "margin-right": "16mm",
+        "firstTemplate": "coverPage"
   },
   "pageTemplates" : {
+    "coverPage": {
+        "frames": [
+            ["0cm", "0cm", "100%", "100%"]
+          ],
+        "background" : "handcrafted/tapa-version_digital.svg",
+        "showHeader" : false,
+        "showFooter" : false
+    },
     "cutePage": {
         "frames": [
             ["0%", "0%", "100%", "100%"]

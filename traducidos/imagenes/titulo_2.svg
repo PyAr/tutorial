@@ -14,7 +14,7 @@
    height="100"
    id="svg3183"
    version="1.1"
-   inkscape:version="0.47 r22583"
+   inkscape:version="0.48.0 r9654"
    sodipodi:docname="titulo_2.svg">
   <defs
      id="defs3185">
@@ -72,11 +72,11 @@
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-page="true"
-     inkscape:window-width="611"
-     inkscape:window-height="500"
-     inkscape:window-x="150"
-     inkscape:window-y="79"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1440"
+     inkscape:window-height="852"
+     inkscape:window-x="-3"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata3188">
     <rdf:RDF>
@@ -85,7 +85,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -106,7 +106,7 @@
            x="52.282532"
            y="96.56205"
            style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:100%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#0048b4;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans" /></flowRegion><flowPara
-         id="flowPara2925-7-7">Título dos</flowPara></flowRoot>    <rect
+         id="flowPara2925-7-7">TITLEGOESHERE</flowPara></flowRoot>    <rect
        style="color:#000000;fill:url(#linearGradient5738);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect5712-3"
        width="598.9328"

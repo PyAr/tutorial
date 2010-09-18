@@ -13,7 +13,7 @@
         "frames": [
             ["0cm", "0cm", "100%", "100%"]
           ],
-        "background" : "handcrafted/tapa-version_digital.svg",
+        "background" : "imagenes/tapa-version_digital.svg",
         "showHeader" : false,
         "showFooter" : false
     },

@@ -37,7 +37,7 @@
        xlink:href="#linearGradient4699-7"
        id="linearGradient5738"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.5353048,0,0,1.6725046,-63.053595,324.98838)"
+       gradientTransform="matrix(1.5353048,0,0,1.6725046,-63.053595,304.98838)"
        x1="41.069092"
        y1="433.70508"
        x2="431.17584"
@@ -95,7 +95,7 @@
      id="layer1"
      transform="translate(0,-952.36218)">
     <flowRoot
-       transform="matrix(1.5353048,0,0,1.5353048,-80.195687,872.31304)"
+       transform="matrix(1.5353048,0,0,1.5353048,-80.195687,852.31304)"
        xml:space="preserve"
        id="flowRoot2919-4-3"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:100%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#0048b4;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"><flowRegion
@@ -112,7 +112,7 @@
        width="598.9328"
        height="4"
        x="0"
-       y="1048.3622"
+       y="1028.3622"
        ry="0" />
   </g>
 </svg>

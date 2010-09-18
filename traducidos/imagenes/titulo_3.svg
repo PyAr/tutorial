@@ -37,7 +37,7 @@
        xlink:href="#linearGradient4699-7-2"
        id="linearGradient5762"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.5353048,0,0,0.83625232,-63.053585,688.67529)"
+       gradientTransform="matrix(1.5353048,0,0,0.83625232,-63.053585,674.67529)"
        x1="41.069092"
        y1="433.70508"
        x2="431.17584"
@@ -65,8 +65,8 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="6.6399522"
-     inkscape:cx="20.096154"
+     inkscape:zoom="1.04"
+     inkscape:cx="275.54365"
      inkscape:cy="19.775266"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -95,7 +95,7 @@
      id="layer1"
      transform="translate(0,-952.36218)">
     <flowRoot
-       transform="matrix(1.5353048,0,0,1.5353048,-79.191236,866.74244)"
+       transform="matrix(1.5353048,0,0,1.5353048,-79.191236,852.74244)"
        xml:space="preserve"
        id="flowRoot2919-4-3-4"
        style="font-size:14px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:100%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#0048b4;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:DejaVu Sans;-inkscape-font-specification:Andale Mono Italic"><flowRegion
@@ -112,7 +112,7 @@
        width="598.9328"
        height="2"
        x="0"
-       y="1050.3622"
+       y="1036.3622"
        ry="0" />
   </g>
 </svg>

@@ -14,7 +14,7 @@
    height="100"
    id="svg3183"
    version="1.1"
-   inkscape:version="0.48.0 r9654"
+   inkscape:version="0.47 r22583"
    sodipodi:docname="titulo_2.svg">
   <defs
      id="defs3185">
@@ -37,7 +37,7 @@
        xlink:href="#linearGradient4699-7"
        id="linearGradient5738"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.5353048,0,0,1.5353048,-63.053595,384.65672)"
+       gradientTransform="matrix(1.5353048,0,0,1.6725046,-63.053595,324.98838)"
        x1="41.069092"
        y1="433.70508"
        x2="431.17584"
@@ -65,17 +65,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.84333333"
+     inkscape:zoom="1.041804"
      inkscape:cx="300"
      inkscape:cy="50"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-page="true"
-     inkscape:window-width="1440"
-     inkscape:window-height="852"
-     inkscape:window-x="-3"
-     inkscape:window-y="-3"
+     inkscape:window-width="1024"
+     inkscape:window-height="691"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata3188">
@@ -95,13 +95,13 @@
      id="layer1"
      transform="translate(0,-952.36218)">
     <flowRoot
-       transform="matrix(1.5353048,0,0,1.5353048,-63.053595,872.31304)"
+       transform="matrix(1.5353048,0,0,1.5353048,-80.195687,872.31304)"
        xml:space="preserve"
        id="flowRoot2919-4-3"
        style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:100%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#0048b4;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans"><flowRegion
          id="flowRegion2921-1-9"><rect
            id="rect2923-8-6"
-           width="341.73904"
+           width="372.20612"
            height="16.680204"
            x="52.282532"
            y="96.56205"
@@ -110,9 +110,9 @@
        style="color:#000000;fill:url(#linearGradient5738);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect5712-3"
        width="598.9328"
-       height="3.6718698"
+       height="4"
        x="0"
-       y="1048.6903"
+       y="1048.3622"
        ry="0" />
   </g>
 </svg>

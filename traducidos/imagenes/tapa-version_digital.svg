@@ -32,7 +32,7 @@
      inkscape:cx="105"
      inkscape:cy="148.5"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer4"
      inkscape:window-width="1024"
      inkscape:window-height="691"
      inkscape:window-x="0"
@@ -2627,11 +2627,12 @@
     </g>
     <path
        style="opacity:0.9;color:#000000;fill:url(#linearGradient4273);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       d="m 0.04490698,-27.861645 0,52.961489 C 20.705797,49.267347 36.479539,74.091726 41.546893,88.060745 l 10.663091,4.51301 C 55.675167,60.644444 27.053303,-16.102782 0.04490698,-27.861645 z"
+       d="m 0.04490698,-27.861645 0,52.961489 C 20.705797,49.267347 36.479539,74.091726 41.546893,88.060745 c 2.105138,3.525626 5.533759,5.20534 10.663091,4.51301 C 55.675167,60.644444 27.053303,-16.102782 0.04490698,-27.861645 z"
        id="path3464"
        inkscape:export-filename="/home/manuq/pytuto_diseño/path3456.png"
        inkscape:export-xdpi="1000"
-       inkscape:export-ydpi="1000" />
+       inkscape:export-ydpi="1000"
+       sodipodi:nodetypes="ccccc" />
     <path
        id="path3466"
        d="m 157.15956,51.071769 c 18.65005,5.164944 32.96924,16.564974 33.00691,16.5477 l 3.80509,-0.08849 c 0.081,-0.0071 -16.31207,-12.405734 -36.812,-16.459209 z"

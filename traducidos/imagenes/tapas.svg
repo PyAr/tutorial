@@ -28,11 +28,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0333333"
-     inkscape:cx="148.5"
-     inkscape:cy="105"
+     inkscape:zoom="68.96124"
+     inkscape:cx="181.88659"
+     inkscape:cy="85.815642"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      inkscape:window-width="1024"
      inkscape:window-height="691"
      inkscape:window-x="0"
@@ -2544,7 +2544,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2674,8 +2674,9 @@
        inkscape:export-xdpi="1000"
        inkscape:export-filename="/home/manuq/pytuto_diseño/path3456.png"
        id="path3464"
-       d="m 148.84375,40.5 0,37.40625 c 14.59261,17.069302 25.73347,34.60255 29.3125,44.46875 l 7.53125,3.1875 C 188.13493,103.0111 167.91955,48.805185 148.84375,40.5 z"
-       style="opacity:0.9;color:#000000;fill:url(#linearGradient4273);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+       d="m 148.84375,40.5 0,37.40625 c 14.59261,17.069302 25.73347,34.60255 29.3125,44.46875 0.24601,2.44084 2.83861,3.45331 7.53125,3.1875 C 188.13493,103.0111 167.91955,48.805185 148.84375,40.5 z"
+       style="opacity:0.9;color:#000000;fill:url(#linearGradient4273);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:nodetypes="ccccc" />
     <path
        style="opacity:0.9;color:#000000;fill:url(#linearGradient4683);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        d="m 259.8125,96.25 c 13.17237,3.647956 23.28589,11.6997 23.3125,11.6875 l 2.6875,-0.0625 c 0.0572,-0.005 -11.52107,-8.762065 -26,-11.625 z"

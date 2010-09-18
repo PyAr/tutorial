@@ -25,7 +25,10 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
     # The height in pixels of each SVG heading image, by
     # depth:
     heading_heights = {1: 120, 2: 55, 3: 48}
-
+    heading_heights_long = {2: 80}
+    
+    max_chars = 156
+    
     def gather_elements(self, client, node, style):
         # This method is copied from the HandleTitle class
         # in rst2pdf.genelements.
@@ -67,9 +70,18 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
             # The parent ID is the refid + an ID to make it unique for Sphinx
             parent_id=(node.parent.get('ids', [None]) or [None])[0]+u'-'+unicode(id(node))
             if client.depth <=3:
+                depth = min(client.depth, maxdepth)
+                
                 # This is an important title, do our magic ;-)
                 # Hack the title template SVG
-                tfile = codecs.open('imagenes/titulo_%s.svg'%client.depth,'r','utf-8')
+                if client.depth == 2 and len(text) > self.max_chars:
+                    bar = '%s-long' % depth
+                    height = self.heading_heights_long[depth]
+                else:
+                    bar = '%s' % depth
+                    height = self.heading_heights[depth]
+                
+                tfile = codecs.open('imagenes/titulo_%s.svg'%bar,'r','utf-8')
                 tdata = tfile.read()
                 tfile.close()
                 tfile = tempfile.NamedTemporaryFile(dir='.', delete=False, suffix='.svg')
@@ -83,7 +95,7 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
                 
                 e = FancyHeading(tfname,
                     width=700,
-                    height=self.heading_heights[min(client.depth, maxdepth)],
+                    height=height,
                     client=client,
                     snum=snum,
                     parent_id=parent_id,

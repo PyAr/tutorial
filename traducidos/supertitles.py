@@ -22,6 +22,10 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
     effectively replaces rst2pdf.genelements.HandleTitle.
     '''
     
+    # The height in pixels of each SVG heading image, by
+    # depth:
+    heading_heights = {1: 120, 2: 55, 3: 48}
+
     def gather_elements(self, client, node, style):
         # This method is copied from the HandleTitle class
         # in rst2pdf.genelements.
@@ -76,10 +80,10 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
                 # Now tfname contains a SVG with the right title.
                 # Make rst2pdf delete it later.
                 client.to_unlink.append(tfname)
-
+                
                 e = FancyHeading(tfname,
                     width=700,
-                    height=100,
+                    height=self.heading_heights[min(client.depth, maxdepth)],
                     client=client,
                     snum=snum,
                     parent_id=parent_id,

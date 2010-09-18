@@ -10,11 +10,11 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="600"
-   height="100"
+   width="600.00006"
+   height="120"
    id="svg2998"
    version="1.1"
-   inkscape:version="0.48.0 r9654"
+   inkscape:version="0.47 r22583"
    sodipodi:docname="titulo_1.svg">
   <defs
      id="defs3000">
@@ -168,6 +168,27 @@
        y1="40.5"
        x2="148.85553"
        y2="126.54716" />
+    <inkscape:perspective
+       id="perspective4405"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4552"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4664"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -176,17 +197,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.64167067"
-     inkscape:cx="378.00377"
-     inkscape:cy="68.700993"
+     inkscape:zoom="1.0766666"
+     inkscape:cx="300.00003"
+     inkscape:cy="60"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer3"
      showgrid="false"
      inkscape:snap-page="true"
-     inkscape:window-width="1440"
-     inkscape:window-height="852"
-     inkscape:window-x="-3"
-     inkscape:window-y="-3"
+     inkscape:window-width="1024"
+     inkscape:window-height="691"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata3003">
@@ -274,4 +295,17 @@
            width="273.32361"
            id="rect3052" /></flowRegion><flowPara
          id="flowPara3054">TITLEGOESHERE</flowPara></flowRoot>  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="margenes"
+     style="display:none">
+    <rect
+       style="opacity:0.3;fill:#ffff00;fill-opacity:1;stroke:none"
+       id="rect2823"
+       width="600"
+       height="20"
+       x="0"
+       y="100" />
+  </g>
 </svg>

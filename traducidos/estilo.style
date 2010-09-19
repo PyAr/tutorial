@@ -17,6 +17,14 @@
         "showHeader" : false,
         "showFooter" : false
     },
+    "caratula": {
+        "frames": [
+            ["0cm", "0cm", "100%", "100%"]
+          ],
+        "background" : "imagenes/pag1.svg",
+        "showHeader" : false,
+        "showFooter" : false
+    },
     "cutePage": {
         "frames": [
             ["0%", "0%", "100%", "100%"]

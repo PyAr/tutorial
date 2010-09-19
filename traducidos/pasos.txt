@@ -1,19 +1,23 @@
-Nos bajamos el trunk de rst2pdf y usamos ese. Estas pruebas están hechas con la versión 2317.
+Nos bajamos el trunk de rst2pdf y usamos ese. Estas pruebas están hechas
+con la versión 2317.
 
-FIXME: poner el svn de rst2pdf
+  svn checkout http://rst2pdf.googlecode.com/svn/trunk/ rst2pdf
 
 No lo instalamos, sino que hacemos...
 
-    sudo python setup.py develop
+  sudo python setup.py develop
 
-...con lo que sólo instalamos algo que nos usa el trunk cuando lo importemos (si actualizamos el proyecto, no lo tenemos que reinstalar).
+...con lo que sólo instalamos algo que nos usa el trunk cuando lo
+importemos (si actualizamos el proyecto, no lo tenemos que reinstalar).
 
-FIXME: lo mismo con sphinx
-hg clone http://bitbucket.org/birkenfeld/sphinx/
+Luego hacemos exactamente lo mismo con Sphinx, tomando el proyecto de:
 
-Luego hacemos:
+  hg clone http://bitbucket.org/birkenfeld/sphinx/
 
-    make pdf
+Ya estamos en posición de generar el PDF. Vamos al directorio de 'traducidos'
+y hacemos:
+
+  make pdf
 
 Esto nos deja _build/pdf/TutorialPython.pdf
 

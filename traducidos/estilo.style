@@ -23,7 +23,7 @@
         ],
         "showHeader" : false,
         "showFooter" : true,
-        "defaultFooter" : "###Page###"
+        "defaultFooter" : "\\n.. oddeven::\\n\\n    .. class:: right\\n\\n    ###Page###\\n\\n    .. class:: left\\n\\n    ###Page###\\n"
     }
   },
   "styles": [
@@ -64,4 +64,3 @@
     }]
   ]
 }
-

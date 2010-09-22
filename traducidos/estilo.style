@@ -32,7 +32,8 @@
         "showHeader" : false,
         "showFooter" : true,
         "defaultFooter": ".. oddeven::\n\n    .. cssclass:: right\n\n    ###Page###\n\n    ###Page###\n\n"
-    }
+    },
+  "embeddedFonts" : [ ["DejaVuSans.ttf","DejaVuSans-Bold.ttf","DejaVuSans-Oblique.ttf","DejaVuSans-BoldOblique.ttf"] ]
   },
   "styles": [
     ["toc" , {
@@ -61,6 +62,11 @@
       "borderWidth": 0.5,
       "spaceBefore": 12,
       "spaceAfter": 6
+    }],
+    ["heading", {
+      "parent": "normal",
+      "fontName" : "DejaVuSans",
+      "textColor": "#0048B4"
     }],
      [ "endnote", {
          "parent": "bodytext",

@@ -7,14 +7,13 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="600"
-   height="48"
+   height="16"
    id="svg3329"
    version="1.1"
-   inkscape:version="0.47 r22583"
+   inkscape:version="0.48.0 r9654"
    sodipodi:docname="titulo_3.svg">
   <defs
      id="defs3331">
@@ -32,16 +31,6 @@
        inkscape:vp_y="0 : 1000 : 0"
        inkscape:vp_x="0 : 0.5 : 1"
        sodipodi:type="inkscape:persp3d" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4699-7-2"
-       id="linearGradient5762"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.5353048,0,0,0.83625232,-63.053585,674.67529)"
-       x1="41.069092"
-       y1="433.70508"
-       x2="431.17584"
-       y2="433.70508" />
     <linearGradient
        id="linearGradient4699-7-2">
       <stop
@@ -79,15 +68,15 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0766667"
-     inkscape:cx="300"
-     inkscape:cy="24"
+     inkscape:zoom="1.4110387"
+     inkscape:cx="530.87974"
+     inkscape:cy="-121.78543"
      inkscape:document-units="px"
-     inkscape:current-layer="layer4"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-page="true"
-     inkscape:window-width="1024"
-     inkscape:window-height="691"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1" />
@@ -107,33 +96,27 @@
      inkscape:label="Capa 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1005.3622)">
+     transform="translate(0,-1037.3622)">
     <flowRoot
-       transform="matrix(1.5353048,0,0,1.5353048,-79.191236,852.74244)"
+       transform="matrix(1.3704086,0,0,1.5353048,-71.577446,882.21125)"
        xml:space="preserve"
        id="flowRoot2919-4-3-4"
        style="font-size:14px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:100%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#0048b4;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:DejaVu Sans;-inkscape-font-specification:Andale Mono Italic"><flowRegion
          id="flowRegion2921-1-9-4"><rect
            id="rect2923-8-6-8"
-           width="373.76782"
-           height="13.358862"
+           width="437.77383"
+           height="9.9347858"
            x="52.282532"
            y="101.54207"
            style="font-size:14px;font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:100%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;color:#000000;fill:#0048b4;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:DejaVu Sans;-inkscape-font-specification:Andale Mono Italic" /></flowRegion><flowPara
-         id="flowPara2925-7-7-6">TITLEGOESHERE</flowPara></flowRoot>    <rect
-       style="color:#000000;fill:url(#linearGradient5762);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
-       id="rect5712-3-4"
-       width="598.9328"
-       height="2"
-       x="0"
-       y="1036.3622"
-       ry="0" />
-  </g>
+         id="flowPara2925-7-7-6"
+         style="font-size:9.77004719px;font-style:oblique;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:DejaVu Sans;-inkscape-font-specification:DejaVu Sans Oblique">TITLEGOESHERE</flowPara></flowRoot>  </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="margenes"
-     style="display:none">
+     style="display:none"
+     transform="translate(0,-32)">
     <g
        transform="translate(0,-1005.3622)"
        id="g4679">

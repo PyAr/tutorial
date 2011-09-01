@@ -1,7 +1,7 @@
 .. toctree::
    :numbered:
 
-   indice.rst
+   real-index.rst
    appetite.rst
    interpreter.rst
    introduction.rst

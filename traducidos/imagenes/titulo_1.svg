@@ -14,7 +14,7 @@
    height="120"
    id="svg2998"
    version="1.1"
-   inkscape:version="0.47 r22583"
+   inkscape:version="0.48.0 r9654"
    sodipodi:docname="titulo_1.svg">
   <defs
      id="defs3000">
@@ -201,11 +201,11 @@
      inkscape:cx="300.00003"
      inkscape:cy="60"
      inkscape:document-units="px"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:snap-page="true"
-     inkscape:window-width="1024"
-     inkscape:window-height="691"
+     inkscape:window-width="1920"
+     inkscape:window-height="1005"
      inkscape:window-x="0"
      inkscape:window-y="24"
      inkscape:window-maximized="1" />
@@ -225,7 +225,8 @@
      inkscape:label="Capa 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-952.36218)">
+     transform="translate(0,-952.36218)"
+     style="display:inline">
     <g
        id="g3151">
       <g
@@ -236,7 +237,8 @@
              sodipodi:nodetypes="ccccccc"
              id="path4186-2"
              d="M 571.68698,1037.7576 C 529.0918,987.67133 444.55307,967.60787 395.77876,967.60787 l -10.18958,3.01569 c 41.57005,0 132.66284,22.09915 175.55735,69.76784 l 10.54045,-2.6339 0,10e-5 0,0 z"
-             style="opacity:0.9;color:#000000;fill:url(#linearGradient3131);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+             style="opacity:0.9;color:#000000;fill:url(#linearGradient3131);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+             inkscape:connector-curvature="0" />
           <rect
              y="952.36218"
              x="384.1438"
@@ -254,7 +256,8 @@
                id="path3464-5-4"
                inkscape:export-filename="/home/manuq/pytuto_diseño/path3456.png"
                inkscape:export-xdpi="1000"
-               inkscape:export-ydpi="1000" />
+               inkscape:export-ydpi="1000"
+               inkscape:connector-curvature="0" />
             <path
                style="color:#000000;fill:#2a7fff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
                d="m 336.14929,47.333991 c 8.78362,63.313839 67.30474,55.999999 148.81168,55.999999 l 0,2.39876 -148.81168,0 0,-58.398759 z"
@@ -262,7 +265,8 @@
                sodipodi:nodetypes="ccccc"
                inkscape:export-filename="/home/manuq/pytuto_diseño/path3456.png"
                inkscape:export-xdpi="1000"
-               inkscape:export-ydpi="1000" />
+               inkscape:export-ydpi="1000"
+               inkscape:connector-curvature="0" />
           </g>
         </g>
         <rect
@@ -294,7 +298,8 @@
            height="38.814392"
            width="273.32361"
            id="rect3052" /></flowRegion><flowPara
-         id="flowPara3054">TITLEGOESHERE</flowPara></flowRoot>  </g>
+         id="flowPara3054"
+         style="font-size:14.32940221px">TITLEGOESHERE</flowPara></flowRoot>  </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"

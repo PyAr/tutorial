@@ -1,11 +1,13 @@
 {"pageSetup": {
         "size": null,
         "width": "170mm",
-        "height": "225mm",
-        "margin-top": "10mm",
-        "margin-bottom": "9mm",
+        "height": "230mm",
+        "margin-top": "7mm",
+        "margin-bottom": "5mm",
         "margin-left": "16mm",
         "margin-right": "16mm",
+        "margin-gutter": "-8mm",
+        "spacing-footer": "2mm",
         "firstTemplate": "coverPage"
   },
   "pageTemplates" : {
@@ -66,7 +68,9 @@
     ["heading", {
       "parent": "normal",
       "fontName" : "DejaVuSans",
-      "textColor": "#0048B4"
+      "textColor": "#0048B4",
+      "spaceBefore": 14,
+      "spaceAfter": 8
     }],
      [ "endnote", {
          "parent": "bodytext",

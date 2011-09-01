@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 import rst2pdf.genelements as genelements
 from rst2pdf.flowables import Heading, MyPageBreak
 from rst2pdf.image import MyImage
@@ -6,8 +7,6 @@ import docutils
 from rst2pdf.opt_imports import Paragraph
 import reportlab
 import tempfile
-import re
-from xml.sax.saxutils import unescape
 import codecs
 
 class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
@@ -21,18 +20,15 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
     Since this class is defined in an extension, it
     effectively replaces rst2pdf.genelements.HandleTitle.
     '''
-    
+
     # The height in pixels of each SVG heading image, by
     # depth:
-    heading_heights = {1: 120, 2: 55, 3: 48}
-    heading_heights_long = {2: 80}
-    
-    max_chars = 156
-    
+    heading_heights = {1: 120, 2: 25, 3: 16}
+
     def gather_elements(self, client, node, style):
         # This method is copied from the HandleTitle class
         # in rst2pdf.genelements.
-        
+
         # Special cases: (Not sure this is right ;-)
         if isinstance(node.parent, docutils.nodes.document):
             #node.elements = [Paragraph(client.gen_pdftext(node),
@@ -71,16 +67,9 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
             parent_id=(node.parent.get('ids', [None]) or [None])[0]+u'-'+unicode(id(node))
             if client.depth <=3:
                 depth = min(client.depth, maxdepth)
-                
-                # This is an important title, do our magic ;-)
-                # Hack the title template SVG
-                if client.depth == 2 and len(text) > self.max_chars:
-                    bar = '%s-long' % depth
-                    height = self.heading_heights_long[depth]
-                else:
-                    bar = '%s' % depth
-                    height = self.heading_heights[depth]
-                
+                bar = '%s' % depth
+                height = self.heading_heights[depth]
+
                 tfile = codecs.open('imagenes/titulo_%s.svg'%bar,'r','utf-8')
                 tdata = tfile.read()
                 tfile.close()
@@ -92,7 +81,7 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
                 # Now tfname contains a SVG with the right title.
                 # Make rst2pdf delete it later.
                 client.to_unlink.append(tfname)
-                
+
                 e = FancyHeading(tfname,
                     width=700,
                     height=height,
@@ -111,28 +100,25 @@ class FancyTitleHandler(genelements.HandleParagraph, docutils.nodes.title):
                         parent_id=parent_id,
                         node=node,
                         )]
-                
+
             if client.depth <= client.breaklevel:
                 node.elements.insert(0, MyPageBreak(breakTo=client.breakside))
         return node.elements
+
 
 class FancyHeading(MyImage, Heading):
     '''This is a cross between the Heading flowable, that adds outline
     entries so you have a PDF TOC, and MyImage, that draws images'''
 
     def __init__(self, *args, **kwargs):
-        # The inicialization is taken from rst2pdf.flowables.Heading
+        # the initialization is taken from rst2pdf.flowables.Heading
         hstyle = kwargs.pop('hstyle')
         level = kwargs.pop('level')
         text = kwargs.pop('text')
         self.snum = kwargs.pop('snum')
         self.parent_id= kwargs.pop('parent_id')
-        #self.stext = 
         Heading.__init__(self,text,hstyle,level=level,
             parent_id=self.parent_id)
-        # Cleanup title text
-        #self.stext = re.sub(r'<[^>]*?>', '', unescape(self.stext))
-        #self.stext = self.stext.strip()
 
         # Stuff needed for the outline entry
         MyImage.__init__(self, *args, **kwargs)
@@ -142,7 +128,7 @@ class FancyHeading(MyImage, Heading):
         ## These two lines are magic.
         #if isinstance(self.parent_id, tuple):
             #self.parent_id=self.parent_id[0]
-        
+
         # Add outline entry. This is copied from rst2pdf.flowables.heading
         canv.bookmarkHorizontal(self.parent_id,0,y+self.image.height)
 

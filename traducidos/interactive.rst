@@ -50,10 +50,6 @@ entrada para marcar una línea como editada.  Presionando la tecla :kbd:`Return`
 (Intro) se pasa la línea activa al intérprete.  :kbd:`C-R` inicia una búsqueda
 incremental hacia atrás, :kbd:`C-S` inicia una búsqueda hacia adelante.
 
-.. raw:: pdf
-
-   PageBreak
-
 .. _tut-keybindings:
 
 Atajos de teclado

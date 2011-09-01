@@ -179,10 +179,6 @@ extensión también puede ser ``.pyw``, en este caso se omite la ventana con la
 consola que normalmente aparece.
 
 
-.. raw:: pdf
-
-   PageBreak
-
 Codificación del código fuente
 ------------------------------
 

@@ -55,7 +55,6 @@ de búsquedas con comodines en directorios::
    >>> glob.glob('*.py')
    ['primes.py', 'random.py', 'quote.py']
 
-
 .. _tut-command-line-arguments:
 
 Argumentos de linea de órdenes
@@ -290,7 +289,6 @@ de pruebas::
            self.assertRaises(TypeError, promedio, 20, 30, 70)
 
    unittest.main() # llamarlo de la linea de comandos ejecuta todas las pruebas
-
 
 .. _tut-batteries-included:
 

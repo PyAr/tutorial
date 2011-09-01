@@ -362,11 +362,6 @@ una lista de argumentos nueva es construida a partir del objeto instancia y
 la lista de argumentos original, y el objeto función es llamado con esta
 nueva lista de argumentos.
 
-
-.. raw:: pdf
-
-   PageBreak
-
 .. _tut-remarks:
 
 Algunas observaciones

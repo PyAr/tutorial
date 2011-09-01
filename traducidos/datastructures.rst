@@ -133,10 +133,6 @@ sin un índice explícito.  Por ejemplo::
    [3, 4]
 
 
-.. raw:: pdf
-
-   PageBreak
-
 .. _tut-lists-as-queues:
 
 Usando listas como colas
@@ -466,10 +462,6 @@ Una pequeña demostración::
    >>> a ^ b                              # letras en a o b pero no en ambos
    set(['b', 'd', 'm', 'l', 'r', 'z'])
 
-
-.. raw:: pdf
-
-   PageBreak
 
 .. _tut-dictionaries:
 

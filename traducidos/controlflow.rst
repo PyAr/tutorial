@@ -121,7 +121,6 @@ Para iterar sobre los índices de una secuencia, podés combinar :func:`range` y
 En la mayoría de los casos, sin embargo, conviene usar la función
 :func:`enumerate`, mirá :ref:`tut-loopidioms`.
 
-
 .. _tut-break:
 
 Las sentencias :keyword:`break`, :keyword:`continue`, y :keyword:`else` en lazos
@@ -552,11 +551,6 @@ son contenidas::
    42
    >>> f(1)
    43
-
-
-.. raw:: pdf
-
-   PageBreak
 
 .. _tut-docstrings:
 

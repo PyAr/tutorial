@@ -442,7 +442,7 @@ así::
 
    def ventadequeso(tipo, *argumentos, **palabrasclaves):
        print "-- ¿Tiene", tipo, "?"
-       print "-- Lo siento, nos quedamos sin", kind
+       print "-- Lo siento, nos quedamos sin", tipo
        for arg in argumentos:
            print arg
        print "-"*40

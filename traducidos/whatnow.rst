@@ -49,16 +49,22 @@ Más recursos sobre Python:
   están recolectadas en un libro también titulado Recetario de Python
   (O'Reilly & Associates, ISBN 0-596-00797-3.)
 
+* http://scipy.org: El proyecto "Python Científico" incluye módulos para
+  manipulación y cálculo rápido de arreglos además de incluir paquetes para
+  cosas como álgebra lineal, transformaciones de Fourier, soluciones no
+  lineales, distribuciones de números al azar, análisis estadísticos, y
+  similares.
+
 Para preguntas relacionadas con Python y reportes de problemas puedes escribir
 al grupo de noticias :newsgroup:`comp.lang.python`, o enviarlas a la lista de
 correo que hay en python-list@python.org. El grupo de noticias y la lista de
 correo están interconectadas, por lo que los mensajes enviados a uno serán
 retransmitidos al otro.  Hay alrededor de 120 mensajes diarios (con picos de
 hasta varios cientos), haciendo (y respondiendo) preguntas, sugiriendo nuevas
-características, y anunciando nuevos módulos. Antes de escribir, asegúrate de
-haber revisado la lista de `Preguntas Frecuentes
-<http://www.python.org/doc/faq/>`_ (también llamado el FAQ), o buscalo en
-el directorio :file:`Misc/` de la distribución de código fuente de Python.
+características, y anunciando nuevos módulos.  Antes de escribir, asegúrate de
+haber revisado la lista de :ref:`Preguntas Frecuentes
+<http://www.python.org/doc/faq/>`_ (también llamado el FAQ).
+
 Hay archivos de la lista de correo disponibles en
 http://mail.python.org/pipermail/. El FAQ responde a muchas de las preguntas
 que aparecen una y otra vez, y puede que ya contenga la solución a tu problema.

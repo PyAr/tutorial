@@ -48,21 +48,23 @@ More Python resources:
   Particularly notable contributions are collected in a book also titled Python
   Cookbook (O'Reilly & Associates, ISBN 0-596-00797-3.)
 
+* http://scipy.org: The Scientific Python project includes modules for fast
+  array computations and manipulations plus a host of packages for such
+  things as linear algebra, Fourier transforms, non-linear solvers,
+  random number distributions, statistical analysis and the like.
+
 For Python-related questions and problem reports, you can post to the newsgroup
 :newsgroup:`comp.lang.python`, or send them to the mailing list at
 python-list@python.org.  The newsgroup and mailing list are gatewayed, so
 messages posted to one will automatically be forwarded to the other.  There are
 around 120 postings a day (with peaks up to several hundred), asking (and
 answering) questions, suggesting new features, and announcing new modules.
-Before posting, be sure to check the list of `Frequently Asked Questions
-<http://www.python.org/doc/faq/>`_ (also called the FAQ), or look for it in the
-:file:`Misc/` directory of the Python source distribution.  Mailing list
-archives are available at http://mail.python.org/pipermail/. The FAQ answers
-many of the questions that come up again and again, and may already contain the
-solution for your problem.
+Before posting, be sure to check the list of :ref:`Frequently Asked Questions
+<faq-index>` (also called the FAQ).
+Mailing list archives are available at http://mail.python.org/pipermail/.
+The FAQ answers many of the questions that come up again and again,
+and may already contain the solution for your problem.
 
 .. Postings figure based on average of last six months activity as
    reported by www.egroups.com; Jan. 2000 - June 2000: 21272 msgs / 182
    days = 116.9 msgs / day and steadily increasing. (XXX up to date figures?)
-
-

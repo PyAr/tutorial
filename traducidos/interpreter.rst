@@ -11,23 +11,25 @@ Invocando al intérprete
 =======================
 
 Por lo general, el intérprete de Python se instala en
-file:`/usr/local/bin/python` en las máquinas dónde está disponible; poner
+file:`/usr/local/bin/python3.3` en las máquinas dónde está disponible; poner
 :file:`/usr/local/bin` en el camino de búsqueda de tu intérprete de comandos
 Unix hace posible iniciarlo ingresando la orden::
 
-   python
+.. code-block:: text
 
-...en la terminal.  Ya que la elección del directorio dónde vivirá el
+   python3.3
+
+...en la terminal. [#]_ Ya que la elección del directorio dónde vivirá el
 intérprete es una opción del proceso de instalación, puede estar en otros
 lugares; consultá a tu Gurú Python local o administrador de sistemas. (Por
 ejemplo, :file:`/usr/local/python` es una alternativa popular).
 
 En máquinas con Windows, la instalación de Python por lo general se encuentra
-en :file:`C:\\Python27`, aunque se puede cambiar durante la instalación.  Para
+en :file:`C:\\Python33`, aunque se puede cambiar durante la instalación.  Para
 añadir este directorio al camino, podes ingresar la siguiente orden en el
 prompt de DOS::
 
-   set path=%path%;C:\python27
+   set path=%path%;C:\python33
 
 Se puede salir del intérprete con estado de salida cero ingresando el carácter
 de fin de archivo (:kbd:`Control-D` en Unix, :kbd:`Control-Z` en Windows) en el
@@ -60,19 +62,10 @@ Algunos módulos de Python son también útiles como scripts.  Pueden invocarse
 usando ``python -m module [arg] ...``, que ejecuta el código de *module* como
 si se hubiese ingresado su nombre completo en la línea de comandos.
 
-Notá que existe una diferencia entre ``python file`` y ``python <file``.
-En el último caso, la entrada solicitada por el programa, como en llamadas a
-:func:`input` y :func:`raw_input`, son satisfechas desde *file*.  Ya que este
-archivo ya fue leído hasta el final por el analizador antes de que el programa
-empiece su ejecución, se encontrará el fin de archivo enseguida.  En el primer
-caso (lo que usualmente vas a querer) son satisfechas por cualquier archivo o
-dispositivo que esté conectado a la entrada estándar del intérprete de Python.
-
 Cuando se usa un script, a veces es útil correr primero el script y luego
 entrar al modo interactivo.  Esto se puede hacer pasándole la opción
-:option:`-i` antes del nombre del script. (Esto no funciona si el script es
-leído desde la entrada estándar, por la misma razón explicada en el párrafo
-anterior).
+:option:`-i` antes del nombre del script.
+
 
 .. _tut-argpassing:
 
@@ -80,8 +73,9 @@ Pasaje de argumentos
 --------------------
 
 Cuando son conocidos por el intérprete, el nombre del script y los argumentos
-adicionales son entonces pasados al script en la variable ``sys.argv``,
-una lista de cadenas de texto.  Su longitud es al menos uno; cuando ningún
+adicionales son entonces convertidos a una lista de cadenas de texto asignada
+a la variable ``argv`` del módulo ``sys``.  Podés acceder a esta lista
+haciendo ``import sys``.  El largo de esta lista es al menos uno; cuando ningún
 script o argumentos son pasados, ``sys.argv[0]`` es una cadena vacía.  Cuando
 se pasa el nombre del script con ``'-'`` (lo que significa la entrada
 estándar), ``sys.argv[0]`` vale ``'-'``.  Cuando se usa :option:`-c` *command*,
@@ -105,8 +99,9 @@ tres puntos (``...``).  Antes de mostrar el prompt primario, el intérprete
 muestra un mensaje de bienvenida reportando su número de versión y una nota de
 copyright::
 
-   python
-   Python 2.7 (#1, Feb 28 2010, 00:02:06)
+   $ python3.3
+   Python 3.3 (default, Sep 24 2012, 09:25:04)
+   [GCC 4.6.3] on linux2
    Type "help", "copyright", "credits" or "license" for more information.
    >>>
 
@@ -115,7 +110,7 @@ constructor multilínea.  Como en el ejemplo, mirá la sentencia :keyword:`if`::
 
    >>> el_mundo_es_plano = 1
    >>> if el_mundo_es_plano:
-   ...     print u"¡Tené cuidado de no caerte!"
+   ...     print("¡Tené cuidado de no caerte!")
    ...
    ¡Tené cuidado de no caerte!
 
@@ -158,7 +153,7 @@ En los sistemas Unix y tipo BSD, los programas Python pueden convertirse
 directamente en ejecutables, como programas del intérprete de comandos,
 poniendo la linea::
 
-   #! /usr/bin/env python
+   #! /usr/bin/env python3.3
 
 ...al principio del script y dándole al archivo permisos de ejecución
 (asumiendo que el intérprete están en la variable de entorno :envvar:`PATH` del
@@ -179,45 +174,39 @@ extensión también puede ser ``.pyw``, en este caso se omite la ventana con la
 consola que normalmente aparece.
 
 
+.. _tut-source-encoding:
+
 Codificación del código fuente
 ------------------------------
 
-Es posible utilizar una codificación distinta a ASCII en el código fuente de
-Python.  La mejor forma de hacerlo es poner otro comentario especial enseguida
-después de la línea con ``#!`` para definir la codificación::
+Por default, los archivos fuente de Python son tratados como codificados en
+UTF-8.  En ese codificación, los caracteres de la mayoría de los lenguajes
+del mundo pueden ser usados simultáneamente en literales, identificadores
+y comentarios, a pesar de que la biblioteca estándar usa solamente caracteres
+ASCII para los identificadores, una convención que debería seguir cualquier
+código que sea portable. Para mostrar estos caracteres correctamente, tu editor
+debe reconocer que el archivo está en UTF-8 y usar una tipografía que soporte
+todos los careacteres del archivo.
+
+También es posible especificar una codificación distinta para los archivos
+fuente.   Para hacer esto, poné una o más lineas de comentarios especiales
+luego de la linea del ``#!`` para definir la codificación del archivo fuente::
 
    # -*- coding: encoding -*-
 
-
-Con esa declaración, todos los caracteres en el archivo fuente serán traducidos
-utilizando la codificación *encoding*, y será posible escribir directamente
-cadenas de texto literales Unicode en la codificación seleccionada.  La lista
-de posibles codificaciones se puede encontrar en la Referencia de la Biblioteca
+Con esa declaración, todo en el archivo fuente será tratado utilizando la
+codificación *encoding* en lugar de UTF-8.  La lista de posibles
+codificaciones se puede encontrar en la Referencia de la Biblioteca
 de Python, en la sección sobre :mod:`codecs`.
 
-Por ejemplo, para escribir literales Unicode, incluyendo el símbolo de la
-moneda Euro, se puede usar la codificación ISO-8859-15, en la que el símbolo
-Euro tiene el valor 164.  Este script imprimirá el valor 8364 (el código
-Unicode correspondiente al símbolo Euro) y luego saldrá::
+Por ejemplo, si tu editor no soporta la codificación UTF-8 e insiste en usar
+alguna otra, digamos Windows-1252, podés escribir::
 
-   # -*- coding: iso-8859-15 -*-
+   # -*- coding: cp-1252 -*-
 
-   moneda = u"€"
-   print ord(moneda)
-
-Si tu editor tiene soporte para guardar archivos como ``UTF-8`` con
-*marca de orden de byte* UTF-8 (también conocida como BOM), podés usar eso en
-lugar de la declaración de codificación.  IDLE lo soporta si se activa
-``Options/General/Default Source Encoding/UTF-8``.  Notá que esto no funciona
-en versiones antiguas de Python (2.2 y anteriores), ni por el sistema operativo
-en scripts con la línea con ``#!`` (solo usado en sistemas Unix).
-
-Usando UTF-8 (ya sea mediante BOM o la declaración de codificación), los
-caracteres de la mayoría de los idiomas del mundo pueden ser usados
-simultáneamente en cadenas de texto o comentarios.  No se soporta usar
-caracteres no-ASCII en identificadores.  Para mostrar todos estos caracteres de
-forma apropiada, tu editor debe reconocer que el archivo es UTF-8, y debe usar
-una tipografía que soporte todos los caracteres del archivo.
+y usar todos los caracteres del conjunto de Windows-1252 en los archivos
+fuente.  El comentario especial de la codificación debe estar en la *primera
+o segunda* linea del archivo.
 
 
 .. _tut-startup:
@@ -244,16 +233,43 @@ podés cambiar los prompts ``sys.ps1`` y ``sys.ps2``.
 
 Si querés leer un archivo de inicio adicional desde el directorio actual,
 podés programarlo en el archivo de inicio global usando algo como ``if
-os.path.isfile('.pythonrc.py'): execfile('.pythonrc.py')``.  Si querés usar el
-archivo de inicio en un script, tenés que hacer lo siguiente en forma explícita
-en el script::
+os.path.isfile('.pythonrc.py'): exec(open('.pythonrc.py').read())``.  Si
+querés usar el archivo de inicio en un script, tenés que hacer lo siguiente
+de forma explícita en el script::
 
    import os
    nombrearchivo = os.environ.get('PYTHONSTARTUP')
    if nombrearchivo and os.path.isfile(nombrearchivo):
-       execfile(nombrearchivo)
+       exec(open(nombrearchivo).read())
+
+
+.. _tut-customize:
+
+Los Módulos de customización
+----------------------------
+
+Python provides two hooks to let you customize it: :mod:`sitecustomize` and
+:mod:`usercustomize`.  To see how it works, you need first to find the location
+of your user site-packages directory.  Start Python and run this code:
+
+   >>> import site
+   >>> site.getusersitepackages()
+   '/home/user/.local/lib/python3.2/site-packages'
+
+Now you can create a file named :file:`usercustomize.py` in that directory and
+put anything you want in it.  It will affect every invocation of Python, unless
+it is started with the :option:`-s` option to disable the automatic import.
+
+:mod:`sitecustomize` works in the same way, but is typically created by an
+administrator of the computer in the global site-packages directory, and is
+imported before :mod:`usercustomize`.  See the documentation of the :mod:`site`
+module for more details.
 
 
 .. rubric:: Footnotes
+
+.. [#] En Unix, el intérprete de Python 3.x no se instala por default con el
+   ejecutable llamdo ``python`` para que no conflictúe con un ejecutable de
+   Python 2.x que esté instalado simultaneamente.
 
 .. [#] Un problema con el paquete GNU Readline puede evitar que funcione.

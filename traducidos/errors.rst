@@ -18,19 +18,20 @@ Los errores de sintaxis, también conocidos como errores de interpretación, son
 quizás el tipo de queja más común que tenés cuando todavía estás aprendiendo
 Python::
 
-   >>> while True print 'Hola mundo'
+   >>> while True print('Hola mundo')
    Traceback (most recent call last):
    ...
-       while True print 'Hola mundo'
+       while True print('Hola mundo')
                       ^
    SyntaxError: invalid syntax
 
 El intérprete repite la línea culpable y muestra una pequeña 'flecha'
 que apunta al primer lugar donde se detectó el error.  Este es causado por (o
 al menos detectado en) el símbolo que *precede* a la flecha: en el ejemplo,
-el error se detecta en el :keyword:`print`, ya que faltan dos puntos (``':'``)
-antes del mismo.  Se muestran el nombre del archivo y el número de línea para
-que sepas dónde mirar en caso de que la entrada venga de un programa.
+el error se detecta en la función :func:`print`, ya que faltan dos
+puntos (``':'``) antes del mismo.  Se muestran el nombre del archivo y
+el número de línea para que sepas dónde mirar en caso de que la entrada
+venga de un programa.
 
 
 .. _tut-exceptions:
@@ -48,7 +49,7 @@ mensajes de error como los mostrados aquí::
    >>> 10 * (1/0)
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
-   ZeroDivisionError: integer division or modulo by zero
+   ZeroDivisionError: int division or modulo by zero
    >>> 4 + spam*3
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
@@ -56,7 +57,7 @@ mensajes de error como los mostrados aquí::
    >>> '2' + 2
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
-   TypeError: cannot concatenate 'str' and 'int' objects
+   TypeError: Can't convert 'int' object to str implicitly
 
 La última línea de los mensajes de error indica qué sucedió.  Las excepciones
 vienen de distintos tipos, y el tipo se imprime como parte del mensaje: los
@@ -92,10 +93,10 @@ interrupción generada por el usuario se señaliza generando la excepción
 
    >>> while True:
    ...     try:
-   ...         x = int(raw_input(u"Por favor ingrese un número: "))
+   ...         x = int(input("Por favor ingrese un número: "))
    ...         break
    ...     except ValueError:
-   ...         print u"Oops!  No era válido.  Intente nuevamente..."
+   ...         print("Oops! No era válido. Intente nuevamente...")
    ...
 
 La declaración :keyword:`try` funciona de la siguiente manera:
@@ -138,12 +139,12 @@ llama, manejar también la excepción)::
        f = open('miarchivo.txt')
        s = f.readline()
        i = int(s.strip())
-   except IOError as (errno, strerror):
-       print "Error E/S ({0}): {1}".format(errno, strerror)
+   except IOError as err:
+       print("Error E/S: {0}".format(err))
    except ValueError:
-       print "No pude convertir el dato a un entero."
+       print("No pude convertir el dato a un entero.")
    except:
-       print "Error inesperado:", sys.exc_info()[0]
+       print("Error inesperado:", sys.exc_info()[0])
        raise
 
 Las declaraciones :keyword:`try` ... :keyword:`except` tienen un *bloque else*
@@ -155,9 +156,9 @@ excepción.  Por ejemplo::
        try:
            f = open(arg, 'r')
        except IOError:
-           print 'no pude abrir', arg
+           print('no pude abrir', arg)
        else:
-           print arg, 'tiene', len(f.readlines()), 'lineas'
+           print(arg, 'tiene', len(f.readlines()), 'lineas')
            f.close()
 
 El uso de :keyword:`else` es mejor que agregar código adicional en el
@@ -169,32 +170,32 @@ Cuando ocurre una excepción, puede tener un valor asociado, también conocido
 como el *argumento* de la excepción.  La presencia y el tipo de argumento
 depende del tipo de excepción.
 
-El :keyword:`except` puede especificar una variable luego del nombre (o tupla)
-de excepción(es).  La variable se vincula a una instancia de excepción con los
+El :keyword:`except` puede especificar una variable luego del nombre de
+excepción.  La variable se vincula a una instancia de excepción con los
 argumentos almacenados en ``instance.args``.  Por conveniencia, la instancia
 de excepción define :meth:`__str__` para que se pueda mostrar los argumentos
-directamente, sin necesidad de hacer referencia a ``.args``.
-
-Uno también puede instanciar una excepción antes de generarla, y agregarle
-cualquier atributo que se desee::
+directamente, sin necesidad de hacer referencia a ``.args``.  También
+se puede instanciar la excepción primero, antes de generarla, y agregarle
+los atributos que se desee::
 
    >>> try:
    ...    raise Exception('carne', 'huevos')
    ... except Exception as inst:
-   ...    print type(inst)     # la instancia de excepción
-   ...    print inst.args      # argumentos guardados en .args
-   ...    print inst           # __str__ permite imprimir args directamente
-   ...    x, y = inst          # __getitem__ permite usar args directamente
-   ...    print 'x =', x
-   ...    print 'y =', y
+   ...    print(type(inst))    # la instancia de excepción
+   ...    print(inst.args)     # argumentos guardados en .args
+   ...    print(inst)          # __str__ permite imprimir args directamente,
+   ...                         # pero puede ser cambiado en subclases de la exc
+   ...    x, y = inst          # desempacar argumentos
+   ...    print('x =', x)
+   ...    print('y =', y)
    ...
-   <type 'exceptions.Exception'>
+   <class 'Exception'>
    ('carne', 'huevos')
    ('carne', 'huevos')
    x = carne
    y = huevos
 
-Si una excepción tiene un argumento, este se imprime como la última parte (el
+Si una excepción tiene argumentos, estos se imprimen como la última parte (el
 'detalle') del mensaje para las excepciones que no están manejadas.
 
 Los manejadores de excepciones no manejan solamente las excepciones que
@@ -207,10 +208,10 @@ dentro de las funciones que se llaman (inclusive indirectamente) dentro del
    ...
    >>> try:
    ...     esto_falla()
-   ... except ZeroDivisionError as detail:
-   ...     print 'Manejando error en tiempo de ejecucion:', detail
+   ... except ZeroDivisionError as err:
+   ...     print('Manejando error en tiempo de ejecución:', err)
    ...
-   Manejando error en tiempo de ejecucion: integer division or modulo by zero
+   Manejando error en tiempo de ejecución: int division or modulo by zero
 
 
 .. _tut-raising:
@@ -237,10 +238,10 @@ relanzarla::
    >>> try:
    ...     raise NameError('Hola')
    ... except NameError:
-   ...     print u'Voló una excepción!'
+   ...     print(u'Voló una excepción!')
    ...     raise
    ...
-   Voló una excpeción!
+   Voló una excepción!
    Traceback (most recent call last):
      File "<stdin>", line 2, in ?
    NameError: Hola
@@ -265,7 +266,7 @@ Python).  Las excepciones, típicamente, deberán derivar de la clase
    >>> try:
    ...     raise MiError(2*2)
    ... except MyError as e:
-   ...     print u'Ocurrió mi excepción, valor:', e.valor
+   ...     print('Ocurrió mi excepción, valor:', e.valor)
    ...
    Ocurrió mi excepción, valor: 4
    >>> raise MiError('oops!')
@@ -286,15 +287,15 @@ módulo y extenderla para crear clases excepciones específicas para distintas
 condiciones de error::
 
    class Error(Exception):
-       """Clase base para excepciones en el modulo."""
+       """Clase base para excepciones en el módulo."""
        pass
 
    class EntradaError(Error):
-       """Excepcion lanzada por errores en las entradas.
+       """Excepción lanzada por errores en las entradas.
 
        Atributos:
-           expresion -- expresion de entrada en la que ocurre el error
-           mensaje -- explicacion del error
+           expresion -- expresión de entrada en la que ocurre el error
+           mensaje -- explicación del error
        """
 
        def __init__(self, expresion, mensaje):
@@ -306,9 +307,9 @@ condiciones de error::
        permitida.
 
        Atributos:
-           previo -- estado al principio de la transicion
+           previo -- estado al principio de la transición
            siguiente -- nuevo estado intentado
-           mensaje -- explicacion de porque la transicion no esta permitida
+           mensaje -- explicación de por qué la transición no está permitida
        """
        def __init__(self, previo, siguiente, mensaje):
            self.previo = previo
@@ -335,7 +336,7 @@ circunstancias. Por ejemplo::
    >>> try:
    ...     raise KeyboardInterrupt
    ... finally:
-   ...     print 'Chau, mundo!'
+   ...     print('Chau, mundo!')
    ...
    Chau, mundo!
    Traceback (most recent call last):
@@ -347,27 +348,26 @@ Una *cláusula finally* siempre es ejecutada antes de salir de la declaración
 excepción en la cláusula :keyword:`try` y no fue manejada por una cláusula
 :keyword:`except` (o ocurrió en una cláusula :keyword:`except` o
 :keyword:`else`), es relanzada luego de que se ejecuta la cláusula
-:keyword:`finally`. :keyword:`finally` es también ejecutada "a la salida"
+:keyword:`finally`. El :keyword:`finally` es también ejecutado "a la salida"
 cuando cualquier otra cláusula de la declaración :keyword:`try` es dejada
 via :keyword:`break`, :keyword:`continue` or :keyword:`return`.  Un ejemplo
-más complicado (cláusulas :keyword:`except` y :keyword:`finally` en la misma
-declaración :keyword:`try`)::
+más complicado::
 
    >>> def dividir(x, y):
    ...     try:
    ...         result = x / y
    ...     except ZeroDivisionError:
-   ...         print "¡division por cero!"
+   ...         print("¡división por cero!")
    ...     else:
-   ...         print "el resultado es", result
+   ...         print("el resultado es", result)
    ...     finally:
-   ...         print "ejecutando la clausula finally"
+   ...         print("ejecutando la clausula finally")
    ...
    >>> dividir(2, 1)
-   el resultado es 2
+   el resultado es 2.0
    ejecutando la clausula finally
    >>> dividir(2, 0)
-   ¡division por cero!
+   ¡división por cero!
    ejecutando la clausula finally
    >>> divide("2", "1")
    ejecutando la clausula finally
@@ -397,19 +397,20 @@ sobre el objeto hayan sido exitosas o no.  Mirá el siguiente ejemplo, que
 intenta abrir un archivo e imprimir su contenido en la pantalla.::
 
    for linea in open("miarchivo.txt"):
-       print linea
+       print(linea)
 
 El problema con este código es que deja el archivo abierto por un periodo de
-tiempo indeterminado luego de que termine de ejecutarse.  Esto no es un
-problema en scripts simples, pero puede ser un problema en aplicaciones más
-grandes.  La declaración :keyword:`with` permite que objetos como archivos sean
-usados de una forma que asegure que siempre se los libera rápido y en forma
-correcta. ::
+tiempo indeterminado luego de que esta parte termine de ejecutarse.  Esto
+no es un problema en scripts simples, pero puede ser un problema en
+aplicaciones más grandes.  La declaración :keyword:`with` permite que
+objetos como archivos sean usados de una forma que asegure que siempre se
+los libera rápido y en forma correcta.::
 
    with open("miarchivo.txt") as f:
        for linea in f:
-           print linea
+           print(linea)
 
 Luego de que la declaración sea ejecutada, el archivo *f* siempre es cerrado,
-incluso si se encuentra un problema al procesar las líneas.  Otros objetos que
-provean acciones de limpieza predefinidas lo indicarán en su documentación.
+incluso si se encuentra un problema al procesar las líneas.  Objetos que,
+como los archivos, provean acciones de limpieza predefinidas lo indicarán
+en su documentación.

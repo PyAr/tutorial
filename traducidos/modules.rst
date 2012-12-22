@@ -32,8 +32,9 @@ el directorio actual, con el siguiente contenido::
    def fib(n):    # escribe la serie Fibonacci hasta n
        a, b = 0, 1
        while b < n:
-           print b,
+           print(b, end=' ')
            a, b = b, a+b
+        print()
 
    def fib2(n): # devuelve la serie Fibonacci hasta n
        resultado = []
@@ -107,7 +108,9 @@ Hay incluso una variante para importar todos los nombres que un módulo define::
    1 1 2 3 5 8 13 21 34 55 89 144 233 377
 
 Esto importa todos los nombres excepto aquellos que comienzan con un subrayado
-(``_``).
+(``_``). La mayoría de las veces los programadores de Python no usan esto
+ya que introduce un conjunto de nombres en el intérprete, posiblemente
+escondiendo cosas que ya estaban definidas.
 
 Notá que en general la práctica de importar ``*`` de un módulo o paquete está
 muy mal vista, ya que frecuentemente genera un código poco legible.  Sin
@@ -118,7 +121,8 @@ embargo, está bien usarlo para ahorrar tecleo en sesiones interactivas.
    Por razones de eficiencia, cada módulo se importa una vez por sesión del
    intérprete.  Por lo tanto, si modificás los módulos, tenés que reiniciar el
    intérprete -- o, si es sólo un módulo que querés probar interactivamente,
-   usá  :func:`reload`, por ejemplo ``reload(nombremodulo)``.
+   usá  :func:`imp.reload`, por ejemplo
+   ``import imp; imp.reload(nombremodulo)``.
 
 
 .. _tut-modulesasscripts:
@@ -162,26 +166,24 @@ El camino de búsqueda de los módulos
 
 .. index:: triple: module; search; path
 
-Cuando se importa un módulo llamado :mod:`spam`, el intérprete busca un archivo
-llamado  :file:`spam.py` en el directorio actual, y luego en la lista de
-directorios especificada por la variable de entorno :envvar:`PYTHONPATH`.  Esta
-tiene la misma sintáxis que la variable de shell :envvar:`PATH`, o sea, una
-lista de nombres de directorios.  Cuando :envvar:`PYTHONPATH` no está
-configurada, o cuando el archivo no se encuentra allí, la búsqueda continua en
-un camino por omisión que depende de la instalación; en Unix, este es
-normalmente :file:`.:/usr/lib/python`.
+Cuando se importa un módulo llamado :mod:`spam`, el intérprete busca
+primero por un módulo con ese nombre que esté integrado en el intérprete.
+Si no lo encuentra, entonces busca un archivo llamado  :file:`spam.py` en
+una lista de directorios especificada por la variable :data:`sys.path`.
+:data:`sys.path` se inicializa con las siguientes ubicaciones:
 
-En realidad, los módulos se buscan en la lista de directorios dada por la
-variable ``sys.path``, la cual se inicializa con el directorio que contiene al
-script de entrada (o el directorio actual), :envvar:`PYTHONPATH`, y el
-directorio default dependiente de la instalación.  Esto permite que los
-programas en Python que saben lo que están haciendo modifiquen o reemplacen el
-camino de búsqueda de los módulos.  Notar que como el directorio que contiene
-el script que se ejecuta está en el camino de búsqueda, es importante que el
-script no tenga el mismo nombre que un módulo estándar, o Python intentará
-cargar el script como un módulo cuando ese módulo se importe.  Esto
-generalmente será un error.  Mirá la sección :ref:`tut-standardmodules` para
-más información.
+* el directorio conteniendo el script (o el directorio actual).
+* :envvar:`PYTHONPATH` (una lista de nombres de directorios, con la misma
+  sintaxis que la variable de entorno :envvar:`PATH`.
+* el directorio default de la instalación.
+
+Luego de la inicialización, los programas Python pueden modificar
+:data:`sys.path`. El directorio que contiene el script que se está
+ejecutando se ubica al principio de la búsqueda, adelante de la
+biblioteca estándar. Esto significa que se cargarán scripts en ese
+directorio en lugar de módulos de la biblioteca estándar con el mismo
+nombre. Esto es un error a menos que se esté reemplazando intencionalmente.
+Mirá la sección :ref:`tut-standardmodules` para más información.
 
 
 Archivos "compilados" de Python
@@ -272,7 +274,7 @@ primarios y secundarios::
    >>> sys.ps2
    '... '
    >>> sys.ps1 = 'C> '
-   C> print 'Yuck!'
+   C> print('Yuck!')
    Yuck!
    C>
 
@@ -305,7 +307,7 @@ módulo.  Devuelve una lista ordenada de cadenas::
    ['__displayhook__', '__doc__', '__excepthook__', '__name__', '__stderr__',
     '__stdin__', '__stdout__', '_getframe', 'api_version', 'argv',
     'builtin_module_names', 'byteorder', 'callstats', 'copyright',
-    'displayhook', 'exc_clear', 'exc_info', 'exc_type', 'excepthook',
+    'displayhook', 'exc_info', 'excepthook',
     'exec_prefix', 'executable', 'exit', 'getdefaultencoding', 'getdlopenflags',
     'getrecursionlimit', 'getrefcount', 'hexversion', 'maxint', 'maxunicode',
     'meta_path', 'modules', 'path', 'path_hooks', 'path_importer_cache',
@@ -323,38 +325,38 @@ Sin argumentos, :func:`dir` lista los nombres que tenés actualmente definidos::
 
 Notá que lista todos los tipos de nombres: variables, módulos, funciones, etc.
 
-.. index:: module: __builtin__
+.. index:: module: builtins
 
 :func:`dir` no lista los nombres de las funciones y variables integradas.  Si
 querés una lista de esos, están definidos en el módulo estándar
-:mod:`__builtin__`::
+:mod:`builtins`::
 
-   >>> import __builtin__
-   >>> dir(__builtin__)
-   ['ArithmeticError', 'AssertionError', 'AttributeError', 'DeprecationWarning',
-    'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False',
-    'FloatingPointError', 'FutureWarning', 'IOError', 'ImportError',
-    'IndentationError', 'IndexError', 'KeyError', 'KeyboardInterrupt',
-    'LookupError', 'MemoryError', 'NameError', 'None', 'NotImplemented',
-    'NotImplementedError', 'OSError', 'OverflowError',
-    'PendingDeprecationWarning', 'ReferenceError', 'RuntimeError',
-    'RuntimeWarning', 'StandardError', 'StopIteration', 'SyntaxError',
-    'SyntaxWarning', 'SystemError', 'SystemExit', 'TabError', 'True',
-    'TypeError', 'UnboundLocalError', 'UnicodeDecodeError',
-    'UnicodeEncodeError', 'UnicodeError', 'UnicodeTranslateError',
-    'UserWarning', 'ValueError', 'Warning', 'WindowsError',
-    'ZeroDivisionError', '_', '__debug__', '__doc__', '__import__',
-    '__name__', 'abs', 'apply', 'basestring', 'bool', 'buffer',
-    'callable', 'chr', 'classmethod', 'cmp', 'coerce', 'compile',
-    'complex', 'copyright', 'credits', 'delattr', 'dict', 'dir', 'divmod',
-    'enumerate', 'eval', 'execfile', 'exit', 'file', 'filter', 'float',
-    'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help', 'hex',
-    'id', 'input', 'int', 'intern', 'isinstance', 'issubclass', 'iter',
-    'len', 'license', 'list', 'locals', 'long', 'map', 'max', 'memoryview',
-    'min', 'object', 'oct', 'open', 'ord', 'pow', 'property', 'quit', 'range',
-    'raw_input', 'reduce', 'reload', 'repr', 'reversed', 'round', 'set',
-    'setattr', 'slice', 'sorted', 'staticmethod', 'str', 'sum', 'super',
-    'tuple', 'type', 'unichr', 'unicode', 'vars', 'xrange', 'zip']
+   >>> import builtins
+   >>> dir(builtins)
+
+   ['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException',
+   'BufferError', 'BytesWarning', 'DeprecationWarning', 'EOFError', 'Ellipsis',
+   'EnvironmentError', 'Exception', 'False', 'FloatingPointError',
+   'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning',
+   'IndentationError', 'IndexError', 'KeyError', 'KeyboardInterrupt',
+   'LookupError', 'MemoryError', 'NameError', 'None', 'NotImplemented',
+   'NotImplementedError', 'OSError', 'OverflowError',
+   'PendingDeprecationWarning', 'ReferenceError', 'RuntimeError',
+   'RuntimeWarning', ' StopIteration', 'SyntaxError', 'SyntaxWarning',
+   'SystemError', 'SystemExit', 'TabError', 'True', 'TypeError',
+   'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError',
+   'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning',
+   'ValueError', 'Warning', 'ZeroDivisionError', '__build_class__',
+   '__debug__', '__doc__', '__import__', '__name__', '__package__', 'abs',
+   'all', 'any', 'ascii', 'bin', 'bool', 'bytearray', 'bytes', 'chr',
+   'classmethod', 'compile', ' complex', 'copyright', 'credits', 'delattr',
+   'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit', 'filter',
+   'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash',
+   'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter',
+   'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min',
+   'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property' , 'quit',
+   'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted',
+   'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']
 
 
 .. _tut-packages:
@@ -519,36 +521,25 @@ necesite usar submódulos con el mismo nombre desde otros paquetes.
 Referencias internas en paquetes
 --------------------------------
 
-Los submódulos frecuentemente necesitan referirse unos a otros.  Por ejemplo,
-el módulo :mod:`surround` quizás necesite usar el módulo :mod:`echo` module.
-De hecho, tales referencias son tan comunes que la declaración
-:keyword:`import` primero mira en el paquete actual antes de mirar en el camino
-estándar de búsqueda de módulos.  Por lo tanto, el módulo :mod:`surround` puede
-simplemente hacer ``import echo`` o ``from echo import echofilter``.  Si el
-módulo importado no se encuentra en el paquete actual (el paquete del cual el
-módulo actual es un submódulo), la declaración :keyword:`import` busca en el
-nivel superior por un módulo con el nombre dado.
-
 Cuando se estructuran los paquetes en subpaquetes (como en el ejemplo
 :mod:`sound`), podés usar ``import`` absolutos para referirte a
 submódulos de paquetes hermanos.  Por ejemplo, si el módulo
 :mod:`sound.filters.vocoder` necesita usar el módulo :mod:`echo` en el paquete
 :mod:`sound.effects`, puede hacer ``from sound.effects import echo``.
 
-Desde Python 2.5, además de los ``import`` relativos implícitos descritos
-arriba, podés escribir ``import`` relativos explícitos con la declaración de la
-forma ``from module import name``.  Estos ``import`` relativos explícitos usan
-puntos adelante para indicar los paquetes actual o padres involucrados en el
-``import`` relativo. En el ejemplo :mod:`surround`, podrías hacer::
+También podés escribir ``import`` relativos con la forma
+``from module import name``.  Estos imports usan puntos adelante para
+indicar los paquetes actual o padres involucrados en el import relativo.
+En el ejemplo :mod:`surround`, podrías hacer::
 
    from . import echo
    from .. import formats
    from ..filters import equalizer
 
-Notá que ambos ``import``, relativos explícitos e implícitos, se basan en el
-nombre del módulo actual.  Ya que el nombre del módulo principal es siempre
-``"__main__"``,  los módulos pensados para usarse como módulo principal de una
-aplicación Python siempre deberían usar ``import`` absolutos.
+Notá que los imports relativos se basan en el nombre del módulo actual.  Ya
+que el nombre del módulo principal es siempre ``"__main__"``,  los módulos
+pensados para usarse como módulo principal de una aplicación Python siempre
+deberían usar ``import`` absolutos.
 
 
 Paquetes en múltiples directorios

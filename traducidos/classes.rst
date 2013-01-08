@@ -4,21 +4,23 @@
 Clases
 ******
 
-El mecanismo de clases de Python agrega clases al lenguaje con un mínimo de
-nuevas sintaxis y semánticas.  Es una mezcla de los mecanismos de clase
-encontrados en C++ y Modula-3.  Como es cierto para los módulos, las clases en
-Python no ponen una barrera absoluta entre la definición y el usuario, sino que
-más bien se apoya en la cortesía del usuario de no "forzar la definición".  Sin
-embargo, se mantiene el poder completo de las características más importantes
-de las clases: el mecanismo de la herencia de clases permite múltiples clases
-base, una clase derivada puede sobreescribir cualquier método de su(s) clase(s)
-base, y un método puede llamar al método de la clase base con el mismo nombre.
-Los objetos pueden tener una cantidad arbitraria de datos.
+Comparado con otros lenguajes de programación, el mecanismo de clases de
+Python agrega clases con un mínimo de nuevas sintaxis y semánticas.  Es
+una mezcla de los mecanismos de clases encontrados en C++ y Modula-3.  Las
+clases de Python proveen todas las características normales de la
+Programación Orientada a Objetos: el mecanismo de la herencia de clases
+permite múltiples clases base, una clase derivada puede sobreescribir
+cualquier método de su(s) clase(s) base, y un método puede llamar al método
+de la clase base con el mismo nombre.  Los objetos pueden tener una
+cantidad arbitraria de datos de cualquier tipo.  Igual que con los módulos,
+las clases participan de la naturaleza dinámica de Python: se crean en tiempo
+de ejecución, y pueden modificarse luego de la creación.
 
-En terminología de C++, todos los miembros de las clases (incluyendo los
-miembros de datos), son *públicos*, y todas las funciones miembro son
-*virtuales*.  Como en Modula-3, no hay atajos para hacer referencia a los
-miembros del objeto desde sus métodos: la función método se declara con un
+En terminología de C++, normalmente los miembros de las clases
+(incluyendo los miembros de datos), son *públicos* (excepto ver abajo
+:ref:`tut-private`), y todas las funciones miembro son *virtuales*.  Como
+en Modula-3, no hay atajos para hacer referencia a los miembros del
+objeto desde sus métodos: la función método se declara con un
 primer argumento explícito que representa al objeto, el cual se provee
 implícitamente por la llamada.  Como en Smalltalk, las clases mismas son
 objetos.  Esto provee una semántica para importar y renombrar.  A diferencia
@@ -56,10 +58,10 @@ necesidad de tener dos formas diferentes de pasar argumentos, como en Pascal.
 .. _tut-scopes:
 
 
-Alcances y espacios de nombres en Python
+Ámbitos y espacios de nombres en Python
 ========================================
 
-Antes de ver clases, primero debo decirte algo acerca de las reglas de alcance
+Antes de ver clases, primero debo decirte algo acerca de las reglas de ámbito
 de Python.  Las definiciones de clases hacen unos lindos trucos con los
 espacios de nombres, y necesitás saber cómo funcionan los alcances y espacios
 de nombres para entender por completo cómo es la cosa.  De paso, los
@@ -72,7 +74,7 @@ Un *espacio de nombres* es una relación de nombres a objetos.  Muchos espacios
 de nombres están implementados en este momento como diccionarios de Python,
 pero eso no se nota para nada (excepto por el desempeño), y puede cambiar en el
 futuro.  Como ejemplos de espacios de nombres tenés: el conjunto de nombres
-incluidos (funciones como :func:`abs`, y los nombres de excepciones
+incluidos (conteniendo funciones como :func:`abs`, y los nombres de excepciones
 integradas); los nombres globales en un módulo; y los nombres locales en la
 invocación a una función.  Lo que es importante saber de los espacios de
 nombres es que no hay relación en absoluto entre los nombres de espacios de
@@ -91,7 +93,7 @@ definidos en el módulo: ¡están compartiendo el mismo espacio de nombres! [#]_
 Los atributos pueden ser de sólo lectura, o de escritura.  En el último caso es
 posible la asignación a atributos.  Los atributos de módulo pueden escribirse:
 ``modulo.la_respuesta = 42``.  Los atributos de escritura se pueden borrar
-también con la instrucción :keyword:`del`.  Por ejemplo,
+también con la declaración :keyword:`del`.  Por ejemplo,
 ``del modulo.la_respuesta`` va a eliminar el atributo :attr:`la_respuesta` del
 objeto con nombre ``modulo``.
 
@@ -104,7 +106,7 @@ intérprete finaliza.  Las instrucciones ejecutadas en el nivel de llamadas
 superior del intérprete, ya sea desde un script o interactivamente, se
 consideran parte del módulo llamado :mod:`__main__`, por lo tanto tienen su
 propio espacio de nombres global.  (Los nombres incluidos en realidad también
-viven en un módulo; este se llama :mod:`__builtin__`.)
+viven en un módulo; este se llama :mod:`builtins`.)
 
 El espacio de nombres local a una función se crea cuando la función es llamada,
 y se elimina cuando la función retorna o lanza una excepción que no se maneje
@@ -112,7 +114,7 @@ dentro de la función.  (Podríamos decir que lo que pasa en realidad es que ese
 espacio de nombres se "olvida".)  Por supuesto, las llamadas recursivas tienen
 cada una su propio espacio de nombres local.
 
-Un *alcance* es una región textual de un programa en Python donde un espacio de
+Un *ámbito* es una región textual de un programa en Python donde un espacio de
 nombres es accesible directamente.  "Accesible directamente" significa que una
 referencia sin calificar a un nombre intenta encontrar dicho nombre dentro del
 espacio de nombres.
@@ -123,27 +125,26 @@ anidados cuyos espacios de nombres son directamente accesibles:
 
  * el ámbito interno, donde se busca primero, contiene los nombres locales
  * los espacios de nombres de las funciones anexas, en las cuales se busca
-   empezando por el alcance adjunto más cercano, contiene los nombres no
+   empezando por el ámbito adjunto más cercano, contiene los nombres no
    locales pero también los no globales
- * el ámbito anteúltimo contiene  los nombres globales del módulo actual
- * el alcance exterior (donde se busca al final) es el espacio de nombres que
+ * el ámbito anteúltimo contiene los nombres globales del módulo actual
+ * el ámbito exterior (donde se busca al final) es el espacio de nombres que
    contiene los nombres incluidos
 
 Si un nombre se declara como global, entonces todas las referencias y
-asignaciones al mismo van directo al alcance intermedio que contiene los
-nombres globales del módulo.  De otra manera, todas las variables que se
-encuentren fuera del alcance interno son de sólo lectura (un intento de
-escribir a esas variables simplemente crea una *nueva* variable en el alcance
-interno, dejando intacta la variable externa del mismo nombre).
+asignaciones al mismo van directo al ámbito intermedio que contiene los
+nombres globales del módulo.  Para reasignar nombres encontrados afuera
+del ámbito más interno, se puede usar la declaración :keyword:`nonlocal`;
+si no se declara nonlocal, esas variables serán de sólo lectura (un intento
+de escribir a esas variables simplemente crea una *nueva* variable local en
+el ámbito interno, dejando intacta la variable externa del mismo nombre).
 
-.. XXX mencionar nonlocal
+Habitualmente, el ámbito local referencia los nombres locales de la función
+actual.  Fuera de una función, el ámbito local referencia al mismo espacio de
+nombres que el ámbito global: el espacio de nombres del módulo. Las
+definiciones de clases crean un espacio de nombres más en el ámbito local.
 
-Habitualmente, el alcance local referencia los nombres locales de la función
-actual.  Fuera de una función, el alcance local referencia al mismo espacio de
-nombres que el alcance global: el espacio de nombres del módulo. Las
-definiciones de clases crean un espacio de nombres más en el alcance local.
-
-Es importante notar que los alcances se determinan textualmente: el alcance
+Es importante notar que los alcances se determinan textualmente: el ámbito
 global de una función definida en un módulo es el espacio de nombres de ese
 módulo, no importa desde dónde o con qué alias se llame a la función.  Por otro
 lado, la búsqueda de nombres se hace dinámicamente, en tiempo de ejecución;
@@ -154,14 +155,67 @@ determinan estáticamente.)
 
 Una peculiaridad especial de Python es que, si no hay una declaración
 :keyword:`global` o :keyword:`nonlocal` en efecto, las asignaciones a nombres
-siempre van al alcance interno.  Las asignaciones no copian datos, solamente
-asocian nombres a objetos.  Lo mismo cuando se borra: la instrucción ``del x``
-quita la asociación de ``x`` del espacio de nombres referenciado por el alcance
+siempre van al ámbito interno.  Las asignaciones no copian datos, solamente
+asocian nombres a objetos.  Lo mismo cuando se borra: la declaración ``del x``
+quita la asociación de ``x`` del espacio de nombres referenciado por el ámbito
 local.  De hecho, todas las operaciones que introducen nuevos nombres usan el
-alcance local: en particular, las instrucciones :keyword:`import` y las
+ámbito local: en particular, las instrucciones :keyword:`import` y las
 definiciones de funciones asocian el módulo o nombre de la función al espacio
-de nombres en el alcance local.  (La instrucción :keyword:`global` puede usarse
-para indicar que ciertas variables viven en el alcance global.)
+de nombres en el ámbito local.
+
+La declaración :keyword:`global` puede usarse para indicar que ciertas
+variables viven en el ámbito global y deberían reasignarse allí; la declaración
+:keyword:`nonlocal` indica que ciertas variables viven en un ámbito encerrado
+y deberían reasignarse allí.
+
+
+.. _tut-scopeexample:
+
+Ejémplo de ámbitos y espacios de nombre
+---------------------------------------
+
+Este es un ejemplo que muestra como hacer referencia a distintos ámbitos y
+espacios de nombres, y cómo las declaraciones :keyword:`global` y
+:keyword:`nonlocal` afectan la asignación de variables::
+
+   def prueba_ambitos():
+       def hacer_local():
+           algo = "algo local"
+       def hacer_nonlocal():
+           nonlocal algo
+           algo = "algo no local"
+       def hacer_global():
+           global algo
+           algo = "algo global"
+
+       algo = "algo de prueba"
+       hacer_local()
+       print("Luego de la asignación local:", algo)
+       hacer_nonlocal()
+       print("Luego de la asignación no local:", algo)
+       hacer_global()
+       print("Luego de la asignación global:", algo)
+
+   prueba_ambitos()
+   print("In global scope:", algo)
+
+
+El resultado del código ejemplo es:
+
+.. code-block:: none
+
+   Luego de la asignación local: algo de prueba
+   Luego de la asignación no local: algo no local
+   Luego de la asignación global: algo no local
+   En el ámbito global: algo global
+
+Notá como la asignación *local* (que es el comportamiento normal) no cambió
+la vinculación de *algo* de *prueba_ambitos*.  La asignación
+:keyword:`nonlocal` cambió la vinculación de *algo* de *prueba_ambitos*,
+y la asignación :keyword:`global` cambió la vinculación a nivel de módulo.
+
+También podés ver que no había vinculación para *algo* antes de la
+asignación :keyword:`global`.
 
 
 .. _tut-firstclasses:
@@ -199,14 +253,14 @@ clase normalmente tienen una lista de argumentos peculiar, dictada por las
 convenciones de invocación de métodos; a esto también lo veremos más adelante.
 
 Cuando se ingresa una definición de clase, se crea un nuevo espacio de nombres,
-el cual se usa como alcance local; por lo tanto, todas las asignaciones a
+el cual se usa como ámbito local; por lo tanto, todas las asignaciones a
 variables locales van a este nuevo espacio de nombres.  En particular, las
 definiciones de funciones asocian el nombre de las funciones nuevas allí.
 
 Cuando una definición de clase se finaliza normalmente se crea un
 *objeto clase*.  Básicamente, este objeto envuelve los contenidos del espacio
 de nombres creado por la definición de la clase; aprenderemos más acerca de los
-objetos clase en la sección siguiente.  El alcance local original (el que tenía
+objetos clase en la sección siguiente.  El ámbito local original (el que tenía
 efecto justo antes de que ingrese la definición de la clase) es restablecido, y
 el objeto clase se asocia allí al nombre que se le puso a la clase en el
 encabezado de su definición (:class:`Clase` en el ejemplo).
@@ -295,7 +349,7 @@ imprimir el valor ``16``, sin dejar ningún rastro::
    x.contador = 1
    while x.contador < 10:
        x.contador = x.contador * 2
-   print x.contador
+   print(x.contador)
    del x.contador
 
 El otro tipo de atributo de instancia es el *método*.  Un método es una función
@@ -332,7 +386,7 @@ un objeto método, y puede ser guardado y llamado más tarde.  Por ejemplo::
 
    xf = x.f
    while True:
-       print xf()
+       print(xf())
 
 ...continuará imprimiendo ``hola mundo`` hasta el fin de los días.
 
@@ -440,13 +494,13 @@ Los métodos pueden llamar a otros métodos de la instancia usando el argumento
            self.agregar(x)
 
 Los métodos pueden hacer referencia a nombres globales de la misma manera que
-lo hacen las funciones comunes.  El alcance global asociado a un método es el
-módulo que contiene la definición de la clase.  (La clase misma nunca se usa
-como un alcance global.)  Si bien es raro encontrar una buena razón para usar
-datos globales en un método, hay muchos usos legítimos del alcance global: por
-lo menos, las funciones y módulos importados en el alcance global pueden usarse
+lo hacen las funciones comunes.  El ámbito global asociado a un método es el
+módulo que contiene su definición.  (Una clase nunca se usa
+como un ámbito global.)  Si bien es raro encontrar una buena razón para usar
+datos globales en un método, hay muchos usos legítimos del ámbito global: por
+lo menos, las funciones y módulos importados en el ámbito global pueden usarse
 por los métodos, al igual que las funciones y clases definidas en él.
-Habitualmente, la clase que contiene el método está definida en este alcance
+Habitualmente, la clase que contiene el método está definida en este ámbito
 global, y en la siguiente sección veremos algunas buenas razones por las que
 un método querría hacer referencia a su propia clase.
 
@@ -470,7 +524,7 @@ ve así::
        .
        <declaración-N>
 
-El nombre :class:`ClaseBase` debe estar definido en un alcance que contenga a
+El nombre :class:`ClaseBase` debe estar definido en un ámbito que contenga a
 la definición de la clase derivada.  En el lugar del nombre de la clase base se
 permiten otras expresiones arbitrarias.  Esto puede ser útil, por ejemplo,
 cuando la clase base está definida en otro módulo::
@@ -502,7 +556,7 @@ vez de simplemente reemplazar al método de la clase base con el mismo nombre.
 Hay una manera simple de llamar al método de la clase base directamente:
 simplemente llamás a ``ClaseBase.metodo(self, argumentos)``.  En ocasiones esto
 es útil para los clientes también.  (Observá que esto sólo funciona si la clase
-base es accesible como ``CalseBase`` en el alcance global.)
+base es accesible como ``CalseBase`` en el ámbito global.)
 
 Python tiene dos funciones integradas que funcionan con herencia:
 
@@ -512,9 +566,8 @@ Python tiene dos funciones integradas que funcionan con herencia:
 
 * Usá :func:`issubclass` para comprobar herencia de clase:
   ``issubclass(bool, int)`` da ``True`` ya que :class:`bool` es una subclase de
-  :class:`int`.  Sin embargo, ``issubclass(unicode, str)`` devuelve ``False``
-  porque :class:`unicode` no es una subclase de :class:`str` (solamente tienen
-  un ancestro en común, :class:`basestring`).
+  :class:`int`.  Sin embargo, ``issubclass(float, int)`` devuelve ``False``
+  porque :class:`float` no es una subclase de :class:`int`.
 
 
 
@@ -523,7 +576,7 @@ Python tiene dos funciones integradas que funcionan con herencia:
 Herencia múltiple
 -----------------
 
-Python también soporta una forma limitada de herencia múltiple.  Una definición
+Python también soporta una forma de herencia múltiple.  Una definición
 de clase con múltiples clases base se ve así::
 
    class ClaseDerivada(Base1, Base2, Base3):
@@ -533,31 +586,24 @@ de clase con múltiples clases base se ve así::
        .
        <declaración-N>
 
-Para clases de estilo viejo la única regla es buscar en profundidad, de
-izquierda a derecha.  Por lo tanto, si un atributo no se encuentra en
-:class:`ClaseDerivada`, se busca en :class:`Base1`, luego (recursivamente) en
-las clases base de :class:`Base1`, y sólo si no se encuentra allí se lo busca
-en :class:`Base2`, y así sucesivamente.
+Para la mayoría de los propósitos, en los casos más simples, podés pensar en
+la búsqueda de los atributos heredados de clases padres como primero en
+profundidad, de izquierda a derecha, sin repetir la misma clase cuando
+está dos veces en la jerarquía.  Por lo tanto, si un atributo no se
+encuentra en :class:`ClaseDerivada`, se busca en :class:`Base1`, luego
+(recursivamente) en las clases base de :class:`Base1`, y sólo si no se
+encuentra allí se lo busca en :class:`Base2`, y así sucesivamente.
 
-(A algunos la búsqueda en anchura, o sea, buscar en :class:`Base2` y
-:class:`Base3` antes que en las clases base de :class:`Base1`, les parece más
-natural.  Sin embargo, para esto haría falta que sepas si un atributo en
-particular de :class:`Base1` está de hecho definido en :class:`Base1` o en
-alguna de sus clases base antes de que puedas entender las consecuencias de un
-conflicto de nombres con un atributo de :class:`Base2`.  La regla de buscar
-primero en profundidad no hace diferencias entre atributos directos o heredados
-de :class:`Base1`.)
+En realidad es un poco más complejo que eso; el orden de resolución de
+métodos cambia dinámicamente para soportar las llamadas cooperativas a
+:func:`super`.  Este enfoque es conocido en otros lenguajes con herencia
+múltiple como "llámese al siguiente método" y es más poderoso que la
+llamada al superior que se encuentra en lenguajes con sólo herencia simple.
 
-Para las clases de :term:`estilo nuevo`, el método de resolución de orden
-cambia dinámicamente para soportar llamadas cooperativas a :func:`super`.  Este
-enfoque es conocido en otros lenguajes con herencia múltiple como "llámese al
-siguiente método" y es más poderoso que la llamada al superior que se encuentra
-en lenguajes con sólo herencia simple.
-
-Con las clases de estilo nuevo, se necesita el orden dinámico porque todos los
+El ordenamiento dinámico es necesario porque todos los
 casos de herencia múltiple exhiben una o más relaciones en diamante (cuando se
 puede llegar al menos a una de las clases base por distintos caminos desde la
-clase de más abajo).  Por ejemplo, todas las clases de nuevo estilo heredan de
+clase de más abajo).  Por ejemplo, todas las clases heredan de
 :class:`object`, por lo tanto cualquier caso de herencia múltiple provee más de
 un camino para llegar a :class:`object`.  Para que las clases base no sean
 accedidas más de una vez, el algoritmo dinámico hace lineal el orden de
@@ -591,12 +637,36 @@ guiones bajos del comienzo (si los tuviera).  Se modifica el nombre del
 identificador sin importar su posición sintáctica, siempre y cuando
 ocurra dentro de la definición de una clase.
 
+La modificación de nombres es útil para dejar que las subclases sobreescriban
+los métodos sin romper las llamadas a los métodos desde la misma clase.  Por
+ejemplo::
+
+    class Mapeo:
+        def __init__(self, iterable):
+            self.lista_de_items = []
+            self.__actualizar(iterable)
+
+        def actualizar(self, iterable):
+            for item in iterable:
+                self.lista_de_items.append(item)
+
+        __actualizar = actualizar   # copia privada del actualizar() original
+
+    class SubClaseMapeo(Mapeo):
+
+        def actualizar(self, keys, values):
+            # provee una nueva signatura para actualizar()
+            # pero no rompe __init__()
+            for item in zip(keys, values):
+                self.lista_de_items.append(item)
+
+
 Hay que aclarar que las reglas de modificación de nombres están diseñadas
 principalmente para evitar accidentes; es posible acceder o modificar una
 variable que es considerada como privada.  Esto hasta puede resultar útil en
 circunstancias especiales, tales como en el depurador.
 
-Notar que el código pasado a ``exec``, a ``eval()`` o a ``execfile()`` no
+Notar que el código pasado a ``exec`` o ``eval()`` no
 considera que el nombre de clase de la clase que invoca sea la clase actual;
 esto es similar al efecto de la sentencia ``global``, efecto que es de
 similar manera restringido a código que es compilado en conjunto.  La
@@ -636,8 +706,8 @@ memoria intermedia, y pasarlo como argumento.
    pseudo-archivo a sys.stdin no causará que el intérprete continúe leyendo
    desde ahí.)
 
-Los objetos método de instancia tienen atributos también: ``m.im_self`` es
-el objeto instancia con el método :meth:`m`, y ``m.im_func`` es el objeto
+Los objetos método de instancia tienen atributos también: ``m.__self__`` es
+el objeto instancia con el método :meth:`m`, y ``m.__func__`` es el objeto
 función correspondiente al método.
 
 
@@ -651,36 +721,36 @@ Usando este mecanismo es posible crear jerarquías extensibles de excepciones::
 
 Hay dos nuevas formas (semánticas) válidas para la sentencia :keyword:`raise`::
 
-   raise Clase, instancia
+   raise Clase
 
-   raise instancia
+   raise Instancia
 
-En la primera forma, ``instancia`` debe ser una instancia de :class:`Clase` o
+En la primera forma, ``Clase`` debe ser una instancia de :class:`type` o
 de una clase derivada de ella.  La segunda forma es una abreviatura de::
 
-   raise instancia.__class__, instance
+   raise Clase()
 
 Una clase en una cláusula :keyword:`except` es compatible con una excepción si
 es de la misma clase o una clase base suya (pero no al revés, una cláusula
 except listando una clase derivada no es compatible con una clase base).  Por
 ejemplo, el siguiente código imprimirá B, C, D en ese orden::
 
-   class B:
+   class B(Exception):
        pass
    class C(B):
        pass
    class D(C):
        pass
 
-   for c in [B, C, D]:
+   for cls in [B, C, D]:
        try:
-           raise c()
+           raise cls()
        except D:
-           print "D"
+           print("D")
        except C:
-           print "C"
+           print("C")
        except B:
-           print "B"
+           print("B")
 
 Notar que si la cláusulas ``except`` fueran invertidas (dejando ``except B`` al
 principio), habría impreso B, B, B; se dispara la primera cláusula ``except``
@@ -701,60 +771,65 @@ Es probable que hayas notado que la mayoría de los objetos contenedores pueden
 ser recorridos usando una sentencia :keyword:`for`::
 
    for elemento in [1, 2, 3]:
-       print elemento
+       print(elemento)
    for elemento in (1, 2, 3):
-       print elemento
+       print(elemento)
    for clave in {'uno':1, 'dos':2}:
-       print clave
+       print(clave)
    for caracter in "123":
-       print caracter
+       print(caracter)
    for linea in open("miarchivo.txt"):
-       print linea
+       print(linea)
 
 Este estilo de acceso es limpio, conciso y conveniente.  El uso de iteradores
 está impregnado y unifica a Python.  En bambalinas, la sentencia :keyword:`for`
 llama a :func:`iter` en el objeto contenedor.  La función devuelve un objeto
-iterador que define el método :meth:`next` que accede elementos en el
-contenedor de a uno por vez.  Cuando no hay más elementos, :meth:`next` levanta
-una excepción :exc:`StopIteration` que le avisa al bucle del :keyword:`for` que
-hay que terminar.  Este ejemplo muestra como funciona todo esto::
+iterador que define el método :meth:`__next__` que accede elementos en el
+contenedor de a uno por vez.  Cuando no hay más elementos, :meth:`__next__`
+levanta una excepción :exc:`StopIteration` que le avisa al bucle del
+:keyword:`for` que hay que terminar.  Podés llamar al método
+:meth:`__next__` usando la función integrada :func:`next`; este ejemplo
+muestra como funciona todo esto::
 
    >>> s = 'abc'
    >>> it = iter(s)
    >>> it
    <iterator object at 0x00A1DB50>
-   >>> it.next()
+   >>> next(it)
    'a'
-   >>> it.next()
+   >>> next(it)
    'b'
-   >>> it.next()
+   >>> next(it)
    'c'
-   >>> it.next()
+   >>> next(it)
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
-       it.next()
+       next(it)
    StopIteration
 
 Habiendo visto la mecánica del protocolo de iteración, es fácil agregar
 comportamiento de iterador a tus clases.  Definí un método :meth:`__iter__`
-que devuelva un objeto con un método :meth:`next`.  Si la clase define
-:meth:`next`, entonces alcanza con que :meth:`__iter__` devuelva ``self``::
+que devuelva un objeto con un método :meth:`__next__`.  Si la clase define
+:meth:`__next__`, entonces alcanza con que :meth:`__iter__` devuelva ``self``::
 
    >>> class Reversa:
-   ...     "Iterador para recorrer una secuencia marcha atrás"
+   ...     """Iterador para recorrer una secuencia marcha atrás."""
    ...     def __init__(self, datos):
    ...         self.datos = datos
    ...         self.indice = len(datos)
    ...     def __iter__(self):
    ...         return self
-   ...     def next(self):
+   ...     def __next__(self):
    ...         if self.indice == 0:
    ...             raise StopIteration
    ...         self.indice = self.indice - 1
    ...         return self.datos[self.indice]
    ...
-   >>> for letra in Reversa('spam'):
-   ...     print letra
+   >>> rev = Reversa('spam')
+   >>> iter(rev)
+   <__main__.Reversa object at 0x00A1DB50>
+   >>> for char in rev:
+   ...     print(char)
    ...
    m
    a
@@ -769,17 +844,17 @@ Generadores
 
 Los :term:`generador`\es son una simple y poderosa herramienta para crear
 iteradores.  Se escriben como funciones regulares pero usan la sentencia
-:keyword:`yield` cuando quieren devolver datos.  Cada vez que :meth:`next`
-es llamado, el generador continúa desde donde dejó (y recuerda todos los
-valores de datos y cual sentencia fue ejecutada última).  Un ejemplo muestra
-que los generadores pueden ser muy fáciles de crear::
+:keyword:`yield` cuando quieren devolver datos.  Cada vez que se llama
+:func:`next` sobre él, el generador continúa desde donde dejó (y recuerda
+todos los valores de datos y cual sentencia fue ejecutada última).  Un
+ejemplo muestra que los generadores pueden ser muy fáciles de crear::
 
    >>> def reversa(datos):
    ...     for indice in range(len(datos)-1, -1, -1):
    ...         yield datos[indice]
    ...
    >>> for letra in reversa('golf'):
-   ...     print letra
+   ...     print(letra)
    ...
    f
    l
@@ -789,7 +864,7 @@ que los generadores pueden ser muy fáciles de crear::
 Todo lo que puede ser hecho con generadores también puede ser hecho con
 iteradores basados en clases, como se describe en la sección anterior.  Lo
 que hace que los generadores sean tan compactos es que los métodos
-:meth:`__iter__` y :meth:`next` son creados automáticamente.
+:meth:`__iter__` y :meth:`__next__` son creados automáticamente.
 
 Otra característica clave es que las variables locales y el estado de la
 ejecución son guardados automáticamente entre llamadas.  Esto hace que la
@@ -827,14 +902,14 @@ Ejemplos::
    260
 
    >>> from math import pi, sin
-   >>> tabla_de_senos = dict((x, sin(x*pi/180)) for x in range(0, 91))
+   >>> tabla_de_senos = {x: sin(x*pi/180) for x in range(0, 91)}
 
    >>> palabras_unicas = set(word  for line in page  for word in line.split())
 
    >>> mejor_promedio = max((alumno.promedio, alumno.nombre) for alumno in graduados)
 
    >>> data = 'golf'
-   >>> list(data[i] for i in range(len(data)-1,-1,-1))
+   >>> list(data[i] for i in range(len(data) - 1, -1, -1))
    ['f', 'l', 'o', 'g']
 
 

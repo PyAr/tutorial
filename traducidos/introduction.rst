@@ -56,11 +56,24 @@ ejemplo::
    >>> 2+2  # y un comentario en la misma línea que el código
    4
    >>> (50-5*6)/4
-   5
+   5.0
+   >>> 8 / 5  # las fracciones no se pierden al dividir enteros
+   1.6
+
+Nota: Quizás no veas exactamente el mismo resultado; los resultados de
+punto flotante pueden diferir de una computadora a otra.  Hablaremos
+luego sobre cómo controlar la apariencia de las salidas de punto
+flotante.  También mirá :ref:`tut-fp-issues` para una discusión completa
+de algunas de las sutilezas de los números de punto flotante y sus
+representaciones.
+
+Para hacer división de enteros y obtener un resultado entero, descartando
+cualquier parte decimal, hay otro operador, ``//``::
+
    >>> # La división entera retorna redondeado al piso:
-   ... 7/3
+   ... 7//3
    2
-   >>> 7/-3
+   >>> 7//-3
    -3
 
 El signo igual (``=``) es usado para asignar un valor a una variable.  Luego,
@@ -84,8 +97,7 @@ Un valor puede ser asignado a varias variables simultáneamente::
 Las variables deben estar "definidas" (con un valor asignado) antes de que
 puedan usarse, o un error ocurrirá::
 
-   >>> # tratamos de acceder a una variable no definida
-   ... n
+   >>> n  # tratamos de acceder a una variable no definida
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
    NameError: name 'n' is not defined
@@ -105,7 +117,7 @@ ser escrito con la función ``complex(real, imag)``. ::
 
    >>> 1j * 1J
    (-1+0j)
-   >>> 1j * complex(0,1)
+   >>> 1j * complex(0, 1)
    (-1+0j)
    >>> 3+1j*3
    (3+3j)
@@ -124,9 +136,9 @@ número complejo *z*, usá ``z.real`` y ``z.imag``. ::
    >>> a.imag
    0.5
 
-La función de conversión de los punto flotante y enteros (:func:`float`,
-:func:`int` y :func:`long`) no funciona para números complejos; aquí no hay
-una forma correcta de convertir un número complejo a un número real.  Usá
+La función de conversión de los punto flotante y enteros (:func:`float` y
+:func:`int`) no funcionan para números complejos; no hay una forma
+correcta de convertir un número complejo a un número real.  Usá
 ``abs(z)`` para obtener esta magnitud (como un flotante) o ``z.real`` para
 obtener la parte real. ::
 
@@ -181,6 +193,14 @@ simples o dobles::
    >>> '"Isn\'t," she said.'
    '"Isn\'t," she said.'
 
+El intérprete muestra el resultado de las operaciones sobre cadenas de la
+misma manera que si fueran escritas para ingresarlas: dentro de comillas,
+y con comillas y otros caracteres extraños escapados por barras
+invertidas, para poder mostrar el valor exacto.  La cadena se encierra
+entre comillas dobles si la cadena contiene un apóstrofo y ninguna comilla
+doble, sino se encierra entre apóstrofos.  La función :func:`print`
+produce una salida más legible para tales cadenas.
+
 Las cadenas de texto literales pueden contener múltiples líneas de distintas
 formas.  Las líneas continuas se pueden usar, con una barra invertida como el
 último carácter de la línea para indicar que la siguiente línea es la
@@ -191,7 +211,7 @@ continuación lógica de la línea::
        Notar que los espacios en blanco al principio de la linea\
     son significantes."
 
-   print hola
+   print(hola)
 
 Notá que de todas formas se necesita embeber los salto de líneas con ``\n``;
 la nueva línea que sigue a la barra invertida final es descartada.  Este
@@ -206,13 +226,15 @@ ejemplo imprimiría:
 
 O, las cadenas de texto pueden ser rodeadas en un par de comillas triples:
 ``"""`` o ``'''``.  No se necesita escapar los finales de línea cuando se
-utilizan comillas triples, pero serán incluidos en la cadena. ::
+utilizan comillas triples, pero serán incluidos en la cadena.  Entonces
+el siguiente ejemplo usa un escape para evitar una linea blanca inicial
+no deseada. ::
 
-   print """
+   print("""\
    Uso: algo [OPTIONS]
         -h                        Muestra el mensaje de uso
         -H nombrehost             Nombre del host al cual conectarse
-   """
+   """)
 
 ...produce la siguiente salida:
 
@@ -230,20 +252,12 @@ como datos. Así, el ejemplo::
    hola = r"Esta es una larga cadena que contiene\n\
    varias líneas de texto, tal y como se hace en C."
 
-   print hola
+   print(hola)
 
 ...imprimirá::
 
    Esta es una larga cadena que contiene\n\
    varias líneas de texto, tal y como se hace en C.
-
-El interprete imprime el resultado de operaciones entre cadenas de la misma
-forma en que son tecleadas como entrada: dentro de comillas, y con comillas y
-otros caracteres raros escapados con barras invertidas, para mostrar
-el valor preciso.  La cadena de texto es encerrada con comillas dobles si
-contiene una comilla simple y no comillas dobles, sino es encerrada con
-comillas simples.  (La declaración :keyword:`print`, descrita luego,
-puede ser usado para escribir cadenas sin comillas o escapes).
 
 Las cadenas de texto pueden ser concatenadas (pegadas juntas) con el operador
 ``+`` y repetidas con ``*``::
@@ -269,9 +283,9 @@ solo funciona con dos literales, no con expresiones arbitrarias::
 
 Las cadenas de texto se pueden indexar; como en C, el primer carácter de la
 cadena tiene el índice 0.  No hay un tipo de dato para los caracteres; un
-carácter es simplemente una cadena de longitud uno.  Como en Icon, se pueden
-especificar subcadenas con la *notación de rebanadas*: dos índices separados
-por dos puntos. ::
+carácter es simplemente una cadena de longitud uno.  Como en el lenguaje
+de programación Icon, se pueden especificar subcadenas con la *notación de
+rebanadas*: dos índices separados por dos puntos. ::
 
    >>> palabra[4]
    'a'
@@ -309,8 +323,7 @@ eficiente::
    >>> 'Mas' + palabra[5]
    'MasA'
 
-Algo útil de las operaciones de rebanada: ``s[:i] + s[i:]`` es ``s``.
-::
+Algo útil de las operaciones de rebanada: ``s[:i] + s[i:]`` es ``s``. ::
 
    >>> palabra[:2] + palabra[2:]
    'AyudaA'
@@ -386,21 +399,19 @@ de texto::
 
 .. seealso::
 
-   :ref:`typesseq`
-      Las cadenas de texto y la cadenas de texto Unicode descritas en la
-      siguiente sección son ejemplos de *tipos secuencias*, y soportan
+   :ref:`textseq`
+      Las cadenas de texto son ejemplos de *tipos secuencias*, y soportan
       las operaciones comunes para esos tipos.
 
    :ref:`string-methods`
-      Tanto las cadenas de texto normales como las cadenas de texto Unicode
-      soportan una gran cantidad de métodos para transformaciones básicas y
-      búsqueda.
+      Las cadenas de texto soportan una gran cantidad de métodos para
+      transformaciones básicas y búsqueda.
 
-   :ref:`new-string-formatting`
+   :ref:`string-formatting`
       Aquí se da información sobre formateo de cadenas de texto con
       :meth:`str.format`.
 
-   :ref:`string-formatting`
+   :ref:`old-string-formatting`
       Aquí se describe con más detalle las operaciones viejas para formateo
       usadas cuando una cadena de texto o una cadena Unicode están a la
       izquierda del operador ``%``.
@@ -408,16 +419,13 @@ de texto::
 
 .. _tut-unicodestrings:
 
-Cadenas de texto Unicode
-------------------------
+Sobre Unicode
+-------------
 
-.. sectionauthor:: Marc-Andre Lemburg <mal@lemburg.com>
+.. sectionauthor:: Marc-André Lemburg <mal@lemburg.com>
 
-Desde la versión 2.0 de Python, se encuentra disponible un nuevo tipo de datos
-para que los programadores almacenen texto: el objeto Unicode. Puede ser usado
-para almacenar y manipular datos Unicode (ver http://www.unicode.org/) y se
-integran bien con los objetos existentes para cadenas de texto, mediante
-auto-conversión cuando es necesario.
+Desde la versión 3.0 de Python todas las cadenas soportan Unicode
+(ver http://www.unicode.org/).
 
 Unicode tiene la ventaja de tener un número ordinal para cada carácter
 usado tanto en textos modernos como antiguos.  Previamente, había sólo
@@ -427,19 +435,12 @@ en scripts.  Esto lleva a mucha confusión, especialmente al internacionalizar
 software.  Unicode resuelve estos problemas definiendo una sola codificación
 para todos los scripts.
 
-Crear cadenas Unicode en Python es tan simple como crear cadenas de texto
-normales::
+Si querés incluir caracteres especiales en una cadena, podés hacerlo
+usando una forma de escapar caracteres Unicode provista por Python.  El
+siguiente ejemplo muestra cómo::
 
-   >>> u'Hola Mundo!'
-   u'Hola Mundo!'
-
-La ``'u'`` al frente de la comilla indica que se espera una cadena Unicode. Si
-querés incluir caracteres especiales en la cadena, podés hacerlo usando una
-forma de escapar caracteres Unicode provista por Python.  El siguiente ejemplo
-muestra cómo::
-
-   >>> u'Hola\u0020Mundo!'
-   u'Hola Mundo!'
+   >>> 'Hola\u0020Mundo!'
+   'Hola Mundo!'
 
 La secuencia de escape ``\u0020`` indica que se debe insertar el carácter
 Unicode con valor ordinal 0x0020 (el espacio en blanco) en la posición dada.
@@ -450,59 +451,16 @@ estándar Latin-1 que es muy usada en países occidentales, encontrarás
 conveniente que los primeros 256 caracteres de Unicode son los mismos primeros
 256 caracteres de Latin-1.
 
-También existe un modo crudo para expertos, del mismo modo que con las cadenas
-de texto normales. Debés anteponer 'ur' a la comilla inicial para que Python
-use el modo de escape crudo de Unicode. Solo se aplicará la conversión
-``\uXXXX`` si hay un número impar de barras invertidas frente a la 'u'. ::
-
-   >>> ur'Hola\u0020Mundo!'
-   u'Hola Mundo!'
-   >>> ur'Hola\\u0020Mundo!'
-   u'Hola\\\\u0020Mundo!'
-
-El modo crudo es útil principalmente cuando tenés que insertar muchas
-barras invertidas, como puede suceder al trabajar con expresiones regulares.
-
 Además de estas codificaciones estándar, Python provee muchas más formas de
 crear cadenas de texto Unicode en las bases de codificaciones conocidas.
 
-.. index:: builtin: unicode
-
-La función predefinida :func:`unicode` da acceso a todos los codecs
-(CODificadores y DECodificadores).  Algunos de los códigos más conocidos
-que estos codecs pueden convertir son *Latin-1*, *ASCII*, *UTF-8*, y *UTF-16*.
-Los dos últimas son códigos de longitud variable que almacenan cada
-carácter Unicode en uno o más bytes.  El código por defecto es normalmente
-configurado a ASCII, que contiene los caracteres del rango 0-127 y rechaza
-cualquier otro con un error.  Cuando una cadena Unicode se imprime, escribe en
-un archivo, o se convierte con la función :func:`str`, se realiza la conversión
-utilizando el código por defecto. ::
-
-   >>> u"abc"
-   u'abc'
-   >>> str(u"abc")
-   'abc'
-   >>> u"äöü"
-   u'\xe4\xf6\xfc'
-   >>> str(u"äöü")
-   Traceback (most recent call last):
-   ...
-   UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-5: ordinal not in range(128)
-
-Para convertir una cadena Unicode en una cadena de 8-bit utilizando un
-código en particular, los objetos Unicode tienen un método :func:`encode`
+Para convertir una cadena de texto en secuencia de bytes utilizando un
+código en particular, los objetos string tienen un método :func:`encode`
 que toma un argumento, el nombre del código. Se prefieren los nombres
 en minúsculas para los nombres de los códigos. ::
 
-   >>> u"äöü".encode('utf-8')
-   '\xc3\xa4\xc3\xb6\xc3\xbc'
-
-Si tenés datos en un código en particular y querés producir la cadena
-Unicode correspondiente, podés usar la función :func:`unicode` con el nombre
-del código como segundo argumento. ::
-
-   >>> unicode('\xc3\xa4\xc3\xb6\xc3\xbc', 'utf-8')
-   u'\xe4\xf6\xfc'
+   >>> "Äpfel".encode('utf-8')
+   b'\xc3\x84pfel'
 
 
 .. _tut-lists:
@@ -592,7 +550,10 @@ ejemplo::
    [2, 3]
    >>> p[1][0]
    2
-   >>> p[1].append('extra')     # Ver seccion 5.1
+
+Podés agregar algo al final de la lista::
+
+   >>> p[1].append('extra')
    >>> p
    [1, [2, 3, 'extra'], 4]
    >>> q
@@ -615,7 +576,7 @@ y dos.  Por ejemplo, podemos escribir una subsecuencia inicial de la serie de
    ... # la suma de dos elementos define el siguiente
    ... a, b = 0, 1
    >>> while b < 10:
-   ...     print b
+   ...     print(b)
    ...     a, b = b, a+b
    ...
    1
@@ -644,36 +605,34 @@ Este ejemplo introduce varias características nuevas.
   ``!=`` (distinto a).
 
 * El *cuerpo* del bucle está *sangrado*: la sangría es la forma que usa
-  Python para agrupar declaraciones.  El intérprete interactivo de Python
-  (¡aún!) no provee una facilidad inteligente para editar líneas, así que
+  Python para agrupar declaraciones.  En el intérprete interactivo
   debés teclear un tab o espacio(s) para cada línea sangrada.  En la práctica
   vas a preparar entradas más complicadas para Python con un editor de
-  texto; la mayoría de los editores de texto tienen la facilidad de
+  texto; todos los editores de texto decentes tienen la facilidad de
   agregar la sangría automáticamente.  Al ingresar una declaración compuesta en
   forma interactiva, debés finalizar con una línea en blanco para indicar que
   está completa (ya que el analizador no puede adivinar cuando tecleaste la
   última línea).  Notá que cada línea de un bloque básico debe estar sangrada
   de la misma forma.
 
-* La declaración :keyword:`print` escribe el valor de la o las expresiones que
+* La función :func:`print` escribe el valor de la o las expresiones que
   se le pasan.  Difiere de simplemente escribir la expresión que se quiere
   mostrar (como hicimos antes en los ejemplos de la calculadora) en la forma
-  en que maneja múltiples expresiones y cadenas.  Las cadenas de texto son
-  impresas sin comillas, y un espacio en blanco es insertado entre los
-  elementos, así podés formatear cosas de una forma agradable::
+  en que maneja múltiples expresiones, cantidades en punto flotante, y
+  cadenas.  Las cadenas de texto son impresas sin comillas, y un espacio
+  en blanco es insertado entre los elementos, así podés formatear
+  cosas de una forma agradable::
 
      >>> i = 256*256
-     >>> print 'El valor de i es', i
+     >>> print('El valor de i es', i)
      El valor de i es 65536
 
-  Una coma final evita el salto de línea al final de la salida::
+  El parámetro *end* puede usarse para evitar el salto de linea al final de
+  la salida, o terminar la salida con una cadena diferente::
 
      >>> a, b = 0, 1
      >>> while b < 1000:
-     ...     print b,
+     ...     print(b, end=',')
      ...     a, b = b, a+b
      ...
-     1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987
-
-  Notá que el intérprete inserta un salto de línea antes de imprimir el
-  próximo prompt si la última línea no estaba completa.
+     1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,

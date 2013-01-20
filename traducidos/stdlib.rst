@@ -14,11 +14,11 @@ El módulo :mod:`os` provee docenas de funciones para interactuar
 con el sistema operativo::
 
    >>> import os
-   >>> os.system('time 0:02')
-   0
    >>> os.getcwd()      # devuelve el directorio de trabajo actual
-   'C:\\Python26'
-   >>> os.chdir('/server/accesslogs')
+   'C:\\Python33'
+   >>> os.chdir('/server/accesslogs')   # cambia el directorio de trabajo
+   >>> os.system('mkdir today')   # ejecuta el comando 'mkdir' en el sistema
+   0
 
 Asegurate de usar el estilo ``import os`` en lugar de ``from os import *``.
 Esto evitará que :func:`os.open` oculte a la función integrada :func:`open`,
@@ -66,7 +66,7 @@ una lista.  Por ejemplo, la siguiente salida resulta de ejecutar
 ``python demo.py uno dos tres`` en la línea de órdenes::
 
    >>> import sys
-   >>> print sys.argv
+   >>> print(sys.argv)
    ['demo.py', 'uno', 'dos', 'tres']
 
 El módulo :mod:`getopt` procesa *sys.argv* usando las convenciones de la
@@ -121,7 +121,7 @@ El módulo :mod:`math` permite el acceso a las funciones de la biblioteca C
 subyacente para la matemática de punto flotante::
 
    >>> import math
-   >>> math.cos(math.pi / 4.0)
+   >>> math.cos(math.pi / 4)
    0.70710678118654757
    >>> math.log(1024, 2)
    10.0
@@ -131,12 +131,15 @@ El módulo :mod:`random` provee herramientas para realizar selecciones al azar::
    >>> import random
    >>> random.choice(['manzana', 'pera', 'banana'])
    'manzana'
-   >>> random.sample(xrange(100), 10)   # elección sin reemplazo
+   >>> random.sample(range(100), 10)   # elección sin reemplazo
    [30, 83, 16, 4, 8, 81, 41, 50, 18, 33]
    >>> random.random()    # un float al azar
    0.17970987693706186
    >>> random.randrange(6)    # un entero al azar tomado de range(6)
    4
+
+El proyecto SciPy <http://scipy.org> tiene muchos otros módulos para
+cálculos numéricos.
 
 
 .. _tut-internet-access:
@@ -145,13 +148,13 @@ Acceso a Internet
 =================
 
 Hay varios módulos para acceder a internet y procesar sus protocolos.  Dos de
-los más simples son :mod:`urllib2` para traer data de URLs y :mod:`smtplib`
-para mandar correos::
+los más simples son :mod:`urllib.request` para traer data de URLs y
+:mod:`smtplib` para mandar correos::
 
-   >>> import urllib2
-   >>> for line in urllib2.urlopen('http://tycho.usno.navy.mil/cgi-bin/timer.pl'):
+   >>> from urllib.request import urlopen
+   >>> for line in urlopen('http://tycho.usno.navy.mil/cgi-bin/timer.pl'):
    ...     if 'EST' in line or 'EDT' in line:  # buscamos la hora del este
-   ...         print line
+   ...         print(line)
 
    <BR>Nov. 25, 09:43:32 PM EST
 
@@ -205,18 +208,18 @@ Compresión de datos
 ===================
 
 Los formatos para archivar y comprimir datos se soportan directamente con los
-módulos: :mod:`zlib`, :mod:`gzip`, :mod:`bz2`, :mod:`zipfile` y :mod:`tarfile`.
-::
+módulos: :mod:`zlib`, :mod:`gzip`, :mod:`bz2`, :mod:`lzma`, :mod:`zipfile`
+y :mod:`tarfile`.  ::
 
     >>> import zlib
-    >>> s = 'witch which has which witches wrist watch'
+    >>> s = b'witch which has which witches wrist watch'
     >>> len(s)
     41
     >>> t = zlib.compress(s)
     >>> len(t)
     37
     >>> zlib.decompress(t)
-    'witch which has which witches wrist watch'
+    b'witch which has which witches wrist watch'
     >>> zlib.crc32(s)
     226805979
 
@@ -266,10 +269,10 @@ documentación::
    def promedio(valores):
        """Calcula la media aritmética de una lista de números.
 
-       >>> print promedio([20, 30, 70])
+       >>> print(promedio([20, 30, 70]))
        40.0
        """
-       return sum(valores, 0.0) / len(valores)
+       return sum(valores) / len(valores)
 
    import doctest
    doctest.testmod()   # valida automáticamente las pruebas integradas
@@ -290,6 +293,7 @@ de pruebas::
 
    unittest.main() # llamarlo de la linea de comandos ejecuta todas las pruebas
 
+
 .. _tut-batteries-included:
 
 Las pilas incluidas
@@ -298,7 +302,7 @@ Las pilas incluidas
 Python tiene una filosofía de "pilas incluidas".  Esto se ve mejor en las
 capacidades robustas y sofisticadas de sus paquetes más grandes.  Por ejemplo:
 
-* Los módulos :mod:`xmlrpclib` y :mod:`SimpleXMLRPCServer` hacen que
+* Los módulos :mod:`xmlrpc.client` y :mod:`xmlrpc.server` hacen que
   implementar llamadas a procedimientos remotos sea una tarea trivial.  A
   pesar de los nombres de los módulos, no se necesita conocimiento directo
   o manejo de XML.

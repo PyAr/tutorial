@@ -15,20 +15,21 @@ Formateo elegante de la salida
 ==============================
 
 Hasta ahora encontramos dos maneras de escribir valores: *declaraciones de
-expresión* y la declaración :keyword:`print`.  (Una tercer manera es usando el
+expresión* y la función :func:`print`.  (Una tercer manera es usando el
 método :meth:`write` de los objetos tipo archivo; el archivo de salida estándar
 puede referenciarse como ``sys.stdout``.  Mirá la Referencia de la Biblioteca
 para más información sobre esto.)
-
-.. index:: module: string
 
 Frecuentemente querrás más control sobre el formateo de tu salida que
 simplemente imprimir valores separados por espacios.  Hay dos maneras de
 formatear tu salida; la primera es hacer todo el manejo de las cadenas vos
 mismo: usando rebanado de cadenas y operaciones de concatenado podés crear
-cualquier forma que puedas imaginar.  El módulo :mod:`string` contiene algunas
-operaciones útiles para emparejar cadenas a un determinado ancho; estas las
+cualquier forma que puedas imaginar.  El tipo *string* contiene algunos
+métodos útiles para emparejar cadenas a un determinado ancho; estas las
 discutiremos en breve.  La otra forma es usar el método :meth:`str.format`.
+
+El módulo :mod:`string` contiene una clase :class:`string.Template` que
+ofrece otra forma de sustituir valores en las cadenas.
 
 Nos queda una pregunta, por supuesto: ¿cómo convertís valores a cadenas?
 Afortunadamente, Python tiene maneras de convertir cualquier valor a una
@@ -41,8 +42,8 @@ un :exc:`SyntaxError` si no hay sintáxis equivalente).  Para objetos que no
 tienen una representación en particular para consumo humano, :func:`str`
 devolverá el mismo valor que :func:`repr`.  Muchos valores, como números o
 estructuras como listas y diccionarios, tienen la misma representación
-usando cualquiera de las dos funciones.  Las cadenas y los números de punto
-flotante, en particular, tienen dos representaciones distintas.
+usando cualquiera de las dos funciones.  Las cadenas, en particular,
+tienen dos representaciones distintas.
 
 Algunos ejemplos::
 
@@ -51,19 +52,17 @@ Algunos ejemplos::
    'Hola mundo.'
    >>> repr(s)
    "'Hola mundo.'"
-   >>> str(1.0/7.0)
+   >>> str(1 / 7)
    '0.142857142857'
-   >>> repr(1.0/7.0)
-   '0.14285714285714285'
    >>> x = 10 * 3.25
    >>> y = 200 * 200
    >>> s = 'El valor de x es ' + repr(x) + ', y es ' + repr(y) + '...'
-   >>> print s
+   >>> print(s)
    El valor de x es 32.5, y es 40000...
    >>> # El repr() de una cadena agrega apóstrofos y barras invertidas
    ... hola = 'hola mundo\n'
    >>> holas = repr(hola)
-   >>> print holas
+   >>> print(holas)
    'hola mundo\n'
    >>> # El argumento de repr() puede ser cualquier objeto Python:
    ... repr((x, y, ('carne', 'huevos')))
@@ -72,9 +71,9 @@ Algunos ejemplos::
 Acá hay dos maneras de escribir una tabla de cuadrados y cubos::
 
    >>> for x in range(1, 11):
-   ...     print repr(x).rjust(2), repr(x*x).rjust(3),
-   ...     # notar la coma al final de la linea anterior
-   ...     print repr(x*x*x).rjust(4)
+   ...     print(repr(x).rjust(2), repr(x * x).rjust(3), end=' ')
+   ...     # notar el uso de 'end' en la linea anterior
+   ...     print(repr(x * x * x).rjust(4))
    ...
     1   1    1
     2   4    8
@@ -88,7 +87,7 @@ Acá hay dos maneras de escribir una tabla de cuadrados y cubos::
    10 100 1000
 
    >>> for x in range(1,11):
-   ...     print '{0:2d} {1:3d} {2:4d}'.format(x, x*x, x*x*x)
+   ...     print('{0:2d} {1:3d} {2:4d}'.format(x, x * x, x * x * x))
    ...
     1   1    1
     2   4    8
@@ -102,20 +101,21 @@ Acá hay dos maneras de escribir una tabla de cuadrados y cubos::
    10 100 1000
 
 (Notar que en el primer ejemplo, un espacio entre cada columna fue agregado por
-la manera en que :keyword:`print` trabaja: siempre agrega espacios entre sus
+la manera en que :func:`print` trabaja: siempre agrega espacios entre sus
 argumentos)
 
-Este ejemplo muestra el método :meth:`rjust` de los objetos cadena, el cual
-ordena una cadena a la derecha en un campo del ancho dado llenándolo con
-espacios a la izquierda.  Hay métodos similares :meth:`ljust` y :meth:`center`.
-Estos métodos no escriben nada, sólo devuelven una nueva cadena.  Si la cadena
-de entrada es demasiado larga, no la truncan, sino la devuelven intacta; esto
-te romperá la alineación de tus columnas pero es normalmente mejor que la
-alternativa, que te estaría mintiendo sobre el valor.  (Si realmente querés que
+Este ejemplo muestra el método :meth:`str.rjust` de los objetos cadena,
+el cual ordena una cadena a la derecha en un campo del ancho dado
+llenándolo con espacios a la izquierda.  Hay métodos similares
+:meth:`str.ljust` y :meth:`str.center`.  Estos métodos no escriben nada,
+sólo devuelven una nueva cadena.  Si la cadena de entrada es demasiado
+larga, no la truncan, sino la devuelven intacta; esto te romperá la
+alineación de tus columnas pero es normalmente mejor que la alternativa,
+que te estaría mintiendo sobre el valor.  (Si realmente querés que
 se recorte, siempre podés agregarle una operación de rebanado, como en
 ``x.ljust(n)[:n]``.)
 
-Hay otro método, :meth:`zfill`, el cual rellena una cadena numérica a la
+Hay otro método, :meth:`str.zfill`, el cual rellena una cadena numérica a la
 izquierda con ceros. Entiende signos positivos y negativos::
 
    >>> '12'.zfill(5)
@@ -127,7 +127,7 @@ izquierda con ceros. Entiende signos positivos y negativos::
 
 El uso básico del método :meth:`str.format` es como esto::
 
-   >>> print 'Somos los {} quienes decimos "{}!"'.format('caballeros', 'Nop')
+   >>> print('Somos los {} quienes decimos "{}!"'.format('caballeros', 'Nop'))
    Somos los caballeros quienes decimos "Nop!"
 
 Las llaves y caracteres dentro de las mismas (llamados campos de formato) son
@@ -135,39 +135,40 @@ reemplazadas con los objetos pasados en el método :meth:`str.format`.  Un
 número en las llaves se refiere a la posición del objeto pasado en el
 método. ::
 
-   >>> print '{0} y {1}'.format('carne', 'huevos')
+   >>> print('{0} y {1}'.format('carne', 'huevos'))
    carne y huevos
-   >>> print '{1} y {0}'.format('carne', 'huevos')
+   >>> print('{1} y {0}'.format('carne', 'huevos'))
    huevos y carne
 
 Si se usan argumentos nombrados en el método :meth:`str.format`, sus valores
 serán referidos usando el nombre del argumento. ::
 
-   >>> print 'Esta {comida} es {adjetivo}.'.format(
-   ...       comida='carne', adjetivo='espantosa')
+   >>> print('Esta {comida} es {adjetivo}.'.format(
+   ...       comida='carne', adjetivo='espantosa'))
    Esta carne es espantosa.
 
 Se pueden combinar arbitrariamente argumentos posicionales y nombrados::
 
-   >>> print 'La historia de {0}, {1}, y {otro}.'.format('Bill', 'Manfred',
-   ...                                                   otro='Georg')
+   >>> print('La historia de {0}, {1}, y {otro}.'.format('Bill', 'Manfred',
+   ...                                                   otro='Georg'))
    La historia de Bill, Manfred, y Georg.
 
-Se pueden usar ``'!s'`` (aplica :func:`str`) y ``'!r'`` (aplica :func:`repr`)
-para convertir el valor antes de que se formatee. ::
+Se pueden usar ``'!a'`` (aplica :func:`apply`), ``'!s'`` (aplica
+:func:`str`) y ``'!r'`` (aplica :func:`repr`) para convertir el valor
+antes de que se formatee. ::
 
    >>> import math
-   >>> print 'El valor de Pi es aproximadamente {}.'.format(math.pi)
+   >>> print('El valor de Pi es aproximadamente {}.'.format(math.pi))
    El valor de Pi es aproximadamente 3.14159265359.
-   >>> print 'El valor de Pi es aproximadamente {!r}.'.format(math.pi)
+   >>> print('El valor de Pi es aproximadamente {!r}.'.format(math.pi))
    El valor de Pi es aproximadamente 3.141592653589793.
 
 Un ``':`` y especificador de formato opcionales pueden ir luego del nombre del
 campo.  Esto aumenta el control sobre cómo el valor es formateado.  El
-siguiente ejemplo trunca Pi a tres lugares luego del punto decimal.
+siguiente ejemplo redondea Pi a tres lugares luego del punto decimal.
 
    >>> import math
-   >>> print 'El valor de PI es aproximadamente {0:.3f}.'.format(math.pi)
+   >>> print('El valor de PI es aproximadamente {0:.3f}.'.format(math.pi))
    El valor de PI es aproximadamente 3.142.
 
 Pasando un entero luego del ``':'`` causará que que el campo sea de un mínimo
@@ -175,7 +176,7 @@ número de caracteres de ancho.  Esto es útil para hacer tablas lindas. ::
 
    >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
    >>> for nombre, telefono in tabla.items():
-   ...     print '{0:10} ==> {1:10d}'.format(nombre, telefono)
+   ...     print('{0:10} ==> {1:10d}'.format(nombre, telefono))
    ...
    Dcab       ==>       7678
    Jack       ==>       4098
@@ -187,18 +188,19 @@ nombre en vez de la posición.  Esto puede hacerse simplemente pasando el
 diccionario y usando corchetes ``'[]'`` para acceder a las claves ::
 
    >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-   >>> print ('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; '
-   ...        'Dcab: {0[Dcab]:d}'.format(tabla))
+   >>> print('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; '
+   ...       'Dcab: {0[Dcab]:d}'.format(tabla))
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
 Esto se podría también hacer pasando la tabla como argumentos nombrados con la
 notación '**'. ::
 
    >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-   >>> print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**tabla)
+   >>> print('Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; '
+             'Dcab: {Dcab:d}'.format(**tabla))
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
-Esto es particularmente útil en combinación con la nueva función integrada
+Esto es particularmente útil en combinación con la función integrada
 :func:`vars`, que devuelve un diccionario conteniendo todas las variables
 locales.
 
@@ -209,12 +211,12 @@ Viejo formateo de cadenas
 -------------------------
 
 El operador ``%`` también puede usarse para formateo de cadenas.  Interpreta el
-argumento de la izquierda con el estilo de formateo de :cfunc:`sprintf` para
+argumento de la izquierda con el estilo de formateo de :c:func:`sprintf` para
 ser aplicado al argumento de la derecha, y devuelve la cadena resultante de
-esta operación de formateo.  Por ejemplo:
+esta operación de formateo.  Por ejemplo::
 
    >>> import math
-   >>> print 'El valor de PI es aproximadamente %5.3f.' % math.pi
+   >>> print('El valor de PI es aproximadamente %5.3f.' % math.pi)
    El valor de PI es aproximadamente 3.142.
 
 Ya que :meth:`str.format` es bastante nuevo, un montón de código Python todavía
@@ -222,7 +224,7 @@ usa el operador ``%``.  Sin embargo, ya que este viejo estilo de formateo será
 eventualmente eliminado del lenguaje, en general debería usarse
 :meth:`str.format`.
 
-Podés encontrar más información en la sección :ref:`string-formatting`.
+Podés encontrar más información en la sección :ref:`old-string-formatting`.
 
 
 .. _tut-files:
@@ -234,12 +236,12 @@ Leyendo y escribiendo archivos
    builtin: open
    object: file
 
-La función :func:`open` devuelve un objeto archivo, y es normalmente usado con
-dos argumentos: ``open(nombre_de_archivo, modo)``. ::
+La función :func:`open` devuelve un :term:`objeto archivo`, y se usa
+normalmente con dos argumentos: ``open(nombre_de_archivo, modo)``. ::
 
    >>> f = open('/tmp/workfile', 'w')
-   >>> print f
-   <open file '/tmp/workfile', mode 'w' at 80a0960>
+   >>> print(f)
+   <_io.TextIOWrapper name='/tmp/workfile' mode='w' encoding='UTF-8'>
 
 El primer argumento es una cadena conteniendo el nombre de archivo.  El segundo
 argumento es otra cadena conteniendo unos pocos caracteres que describen la
@@ -250,16 +252,20 @@ agregarle información; cualquier dato escrito al archivo será automáticamente
 agregado al final. ``'r+'`` abre el archivo tanto para leerlo como para
 escribirlo.  El argumento *modo* es opcional; si se omite se asume ``'r'``.
 
-En Windows, agregando ``'b'`` al modo abre al archivo en modo binario,
-por lo que también hay modos como ``'rb'``, ``'wb'``, y ``'r+b'``.
-Python en Windows hace una distinción entre archivos binarios y de texto; los
-caracteres de fin de linea en los archivos de texto son automáticamente
-alterados levemente cuando los datos son leídos o escritos.  Esta modificación
-en bambalinas para guardar datos está bien con archivos de texto ASCII, pero
-corromperá datos binarios como en archivos :file:`JPEG` o :file:`EXE`.  Sé muy
-cuidadoso en usar el modo binario al leer y escribir tales archivos.  En Unix,
-no hay problema en agregarle una ``'b'`` al modo, por lo que podés usarlo
-independientemente de la plataforma para todos los archivos binarios.
+Normalmente los archivos se abren en :dfn:`modo texto`, lo que significa
+que podés leer y escribir cadenas del y al archivo, las cuales se
+codifican utilizando un código específico (por defecto es UTF-8).  Si se
+agrega ``b`` al modo el archivo se abre en :dfn:`modo binario`: ahora
+los datos se leen y escriben en forma de objetos bytes.  Se debería usar
+este modo para todos los archivos que no contengan texto.
+
+Cuando se lee en modo texto, por defecto se convierten los fines de lineas
+que son específicos a las plataformas (``\n`` en Unix, ``\r\n`` en Windows)
+a solamente ``\n``.  Cuando se escribe en modo texto, por defecto se
+convierten los ``\n`` a los finales de linea específicos de la plataforma.
+Este cambio automático está bien para archivos de texto, pero corrompería
+datos binarios como los de archivos :file:`JPEG` o :file:`EXE`.  Asegurate
+de usar modo binario cuando leas y escribas tales archivos.
 
 .. _tut-filemethods:
 
@@ -269,12 +275,13 @@ Métodos de los objetos Archivo
 El resto de los ejemplos en esta sección asumirán que ya se creó un objeto
 archivo llamado ``f``.
 
-Para leer el contenido de una archivo llamá a ``f.read(cantidad)``, el cual lee
-alguna cantidad de datos y los devuelve como una cadena.  *cantidad* es un
-argumento numérico opcional.  Cuando se omite *cantidad* o es negativo, el
-contenido entero del archivo será leido y devuelto; es tu problema si el
-archivo es el doble de grande que la memoria de tu máquina.  De otra manera,
-a lo sumo una *cantidad* de bytes son leídos y devueltos.  Si se alcanzó el
+Para leer el contenido de una archivo llamá a ``f.read(cantidad)``, el
+cual lee alguna cantidad de datos y los devuelve como una cadena de
+texto o bytes.  *cantidad* es un argumento numérico opcional.  Cuando
+se omite *cantidad* o es negativo, el contenido entero del archivo
+será leido y devuelto; es tu problema si el archivo es el doble de
+grande que la memoria de tu máquina.  De otra manera, a lo sumo una
+*cantidad* de bytes son leídos y devueltos.  Si se alcanzó el
 fin del archivo, ``f.read()`` devolverá una cadena vacía (``""``). ::
 
    >>> f.read()
@@ -310,7 +317,7 @@ Una forma alternativa a leer lineas es iterar sobre el objeto archivo.  Esto es
 eficiente en memoria, rápido, y conduce a un código más simple::
 
    >>> for linea in f:
-   ...     print linea,
+   ...     print(linea, end='')
 
    Esta es la primer linea del archivo
    Segunda linea del archivo
@@ -320,9 +327,10 @@ Como los dos enfoques manejan diferente el buffer de lineas, no deberían
 mezclarse.
 
 ``f.write(cadena)`` escribe el contenido de la *cadena* al archivo, devolviendo
-``None``. ::
+la cantidad de caracteres escritos. ::
 
    >>> f.write('Esto es una prueba\n')
+   19
 
 Para escribir algo más que una cadena, necesita convertirse primero a una
 cadena::
@@ -330,6 +338,7 @@ cadena::
    >>> valor = ('la respuesta', 42)
    >>> s = str(valor)
    >>> f.write(s)
+   20
 
 ``f.tell()`` devuelve un entero que indica la posición actual en el archivo,
 medida en bytes desde el comienzo del archivo.  Para cambiar la posición usá
@@ -340,14 +349,20 @@ el comienzo del archivo, 1 usa la posición actual del archivo, y 2 usa el fin
 del archivo como punto de referencia.  *desde_donde* puede omitirse, el default
 es 0, usando el comienzo del archivo como punto de referencia. ::
 
-   >>> f = open('/tmp/archivodetrabajo', 'r+')
-   >>> f.write('0123456789abcdef')
+   >>> f = open('/tmp/archivodetrabajo', 'rb+')
+   >>> f.write(b'0123456789abcdef')
    >>> f.seek(5)     # Va al sexto byte en el archivo
+   5
    >>> f.read(1)
-   '5'
+   b'5'
    >>> f.seek(-3, 2) # Va al tercer byte antes del final
+   13
    >>> f.read(1)
-   'd'
+   b'd'
+
+En los archivos de texto (aquellos que se abrieron sin una ``b`` en el
+modo), se permiten solamente desplazamientos con ``seek`` relativos al
+comienzo (con la excepción de ir justo al final con ``seek(0, 2)``).
 
 Cuando hayas terminado con un archivo, llamá a ``f.close()`` para cerrarlo
 y liberar cualquier recurso del sistema tomado por el archivo abierto.  Luego

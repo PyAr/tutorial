@@ -13,11 +13,11 @@ de programación complejas.  Estos módulos raramente se usan en scripts cortos.
 Formato de salida
 =================
 
-El módulo :mod:`repr` provee una versión de :func:`repr` ajustada para
+El módulo :mod:`reprlib` provee una versión de :func:`repr` ajustada para
 mostrar contenedores grandes o profundamente anidados, en forma abreviada:
 
-   >>> import repr
-   >>> repr.repr(set('supercalifragilisticoespialidoso'))
+   >>> import reprlib
+   >>> reprlib.repr(set('supercalifragilisticoespialidoso'))
    "set(['a', 'c', 'd', 'e', 'f', 'g', ...])"
 
 El módulo :mod:`pprint` ofrece un control más sofisticado de la forma
@@ -45,7 +45,7 @@ dentro de cierto ancho de pantalla::
    >>> doc = u"""El método wrap() es como fill(), excepto que devuelve
    ... una lista de strings en lugar de una gran string con saltos de
    ... línea como separadores."""
-   >>> print textwrap.fill(doc, width=40)
+   >>> print(textwrap.fill(doc, width=40))
    El método wrap() es como fill(), excepto
    que devuelve una lista de strings en
    lugar de una gran string con saltos de
@@ -97,7 +97,7 @@ los marcadores inalterados cuando hay datos faltantes::
    >>> d = dict(item='unladen swallow')
    >>> t.substitute(d)
    Traceback (most recent call last):
-     . . .
+     ...
    KeyError: 'owner'
    >>> t.safe_substitute(d)
    'Return the unladen swallow to $owner.'
@@ -113,14 +113,14 @@ o el formato de archivo::
    >>> class BatchRename(Template):
    ...     delimiter = '%'
    ...
-   >>> fmt = raw_input('Enter rename style (%d-date %n-seqnum %f-format):  ')
+   >>> fmt = input('Enter rename style (%d-date %n-seqnum %f-format):  ')
    Enter rename style (%d-date %n-seqnum %f-format):  Ashley_%n%f
    >>> t = BatchRename(fmt)
    >>> date = time.strftime('%d%b%y')
    >>> for i, filename in enumerate(photofiles):
    ...     base, ext = os.path.splitext(filename)
    ...     newname = t.substitute(d=date, n=i, f=ext)
-   ...     print '{0} --> {1}'.format(filename, newname)
+   ...     print('{0} --> {1}'.format(filename, newname))
    ...
    img_1074.jpg --> Ashley_0.jpg
    img_1076.jpg --> Ashley_1.jpg
@@ -147,7 +147,9 @@ bytes tienen ordenamiento `little-endian`::
 
    import struct
 
-   datos = open('miarchivo.zip', 'rb').read()
+   with open('miarchivo.zip', 'rb') as f:
+       datos = f.read()
+
    inicio = 0
    for i in range(3):                     # mostrar los 3 primeros encabezados
        inicio += 14
@@ -158,7 +160,7 @@ bytes tienen ordenamiento `little-endian`::
        nomarch = datos[inicio:inicio+tam_nomarch]
        inicio += tam_nomarch
        extra = datos[inicio:inicio+tam_extra]
-       print nomarch, hex(crc32), tam_comp, tam_descomp
+       print(nomarch, hex(crc32), tam_comp, tam_descomp)
 
        inicio += tam_extra + tam_comp     # saltear hasta el próximo encabezado
 
@@ -189,14 +191,14 @@ su ejecución::
            f = zipfile.ZipFile(self.arch_sal, 'w', zipfile.ZIP_DEFLATED)
            f.write(self.arch_ent)
            f.close()
-           print u'Terminó zip en segundo plano de: ', self.arch_ent
+           print('Terminó zip en segundo plano de: ', self.arch_ent)
 
    seg_plano = AsyncZip('misdatos.txt', 'miarchivo.zip')
    seg_plano.start()
-   print u'El programa principal continúa la ejecución en primer plano.'
+   print('El programa principal continúa la ejecución en primer plano.')
 
    seg_plano.join()    # esperar que termine la tarea en segundo plano
-   print u'El programa principal esperó hasta que el segundo plano terminara.'
+   print('El programa principal esperó hasta que el segundo plano terminara.')
 
 
 El desafío principal de las aplicaciones multi-hilo es la coordinación entre
@@ -207,8 +209,8 @@ variables de condición, y semáforos.
 Aún cuando esas herramientas son poderosas, pequeños errores de diseño pueden
 resultar en problemas difíciles de reproducir.  La forma preferida de coordinar
 tareas es concentrar todos los accesos a un recurso en un único hilo y después
-usar el módulo :mod:`Queue` para alimentar dicho hilo con pedidos desde otros
-hilos.  Las aplicaciones que usan objetos :class:`Queue.Queue` para
+usar el módulo :mod:`queue` para alimentar dicho hilo con pedidos desde otros
+hilos.  Las aplicaciones que usan objetos :class:`Queue` para
 comunicación y coordinación entre hilos son más fáciles de diseñar,
 más legibles, y más confiables.
 
@@ -231,6 +233,8 @@ archivo o a ``sys.stderr``::
    logging.critical(u'Error crítico -- cerrando')
 
 Ésta es la salida obtenida::
+
+.. code-block:: none
 
    WARNING:root:Atención: archivo de configuración server.conf no se encuentra
    ERROR:root:Ocurrió un error
@@ -273,10 +277,10 @@ objetos que son caros de crear:
 
    >>> import weakref, gc
    >>> class A:
-   ...     def __init__(self, value):
-   ...             self.value = value
+   ...     def __init__(self, valor):
+   ...         self.valor = valor
    ...     def __repr__(self):
-   ...             return str(self.value)
+   ...         return str(self.valor)
    ...
    >>> a = A(10)                    # crear una referencia
    >>> d = weakref.WeakValueDictionary()
@@ -316,14 +320,16 @@ los 16 bytes por elemento habituales en listas de objetos int de Python::
 
 El módulo :mod:`collections` provee un objeto :class:`deque()` que es como una
 lista más rápida para agregar y quitar elementos por el lado izquierdo pero
-búsquedas más lentas por el medio.  Estos objetos son adecuados para implementar
-colas y árboles de búsqueda a lo ancho::
+con búsquedas más lentas por el medio.  Estos objetos son adecuados para
+implementar colas y árboles de búsqueda a lo ancho::
 
    >>> from collections import deque
    >>> d = deque(["tarea1", "tarea2", "tarea3"])
    >>> d.append("tarea4")
-   >>> print "Realizando", d.popleft()
+   >>> print("Realizando", d.popleft())
    Realizando tarea1
+
+::
 
    no_visitado = deque([nodo_inicial])
    def busqueda_a_lo_ancho(no_visitado):
@@ -380,12 +386,9 @@ binario. La diferencia se vuelve significativa si los resultados se redondean
 al centavo más próximo::
 
    >>> from decimal import *
-   >>> x = Decimal('0.70') * Decimal('1.05')
-   >>> x
-   Decimal('0.7350')
-   >>> x.quantize(Decimal('0.01'))  # redondea al centavo más cercano
+   >>> round(Decimal('0.70') * Decimal('1.05'), 2)
    Decimal('0.74')
-   >>> round(.70 * 1.05, 2)         # el mismo cálculo con floats
+   >>> round(0.70 * 1.05, 2)
    0.73
 
 El resultado con :class:`Decimal` conserva un cero al final, calculando

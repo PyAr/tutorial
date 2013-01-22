@@ -20,13 +20,13 @@ de los objetos lista:
 .. method:: list.append(x)
    :noindex:
 
-   Agrega un ítem al final de la lista; equivale a ``a[len(a):] = [x]``.
+   Agrega un ítem al final de la lista. Equivale a ``a[len(a):] = [x]``.
 
 
 .. method:: list.extend(L)
    :noindex:
 
-   Extiende la lista agregándole todos los ítems de la lista dada; equivale
+   Extiende la lista agregándole todos los ítems de la lista dada. Equivale
    a  ``a[len(a):] = L``.
 
 
@@ -42,7 +42,7 @@ de los objetos lista:
 .. method:: list.remove(x)
    :noindex:
 
-   Quita el primer ítem de la lista cuyo valor sea *x*. Es un error si no
+   Quita el primer ítem de la lista cuyo valor sea *x*.  Es un error si no
    existe tal ítem.
 
 
@@ -72,18 +72,18 @@ de los objetos lista:
 .. method:: list.sort()
    :noindex:
 
-   Ordena los ítems de la lista, in situ.
+   Ordena los ítems de la lista in situ.
 
 
 .. method:: list.reverse()
    :noindex:
 
-   Invierte los elementos de la lista, in situ.
+   Invierte los elementos de la lista in situ.
 
 Un ejemplo que usa la mayoría de los métodos de lista::
 
    >>> a = [66.25, 333, 333, 1, 1234.5]
-   >>> print a.count(333), a.count(66.25), a.count('x')
+   >>> print(a.count(333), a.count(66.25), a.count('x'))
    2 1 0
    >>> a.insert(2, -1)
    >>> a.append(333)
@@ -100,6 +100,12 @@ Un ejemplo que usa la mayoría de los métodos de lista::
    >>> a.sort()
    >>> a
    [-1, 1, 66.25, 333, 333, 1234.5]
+
+
+Quizás hayas notado que métodos como ``insert``, ``remove`` o ``sort``, que
+modifican a la lista, no tienen impreso un valor de retorno -- devuelven
+None. [1]_ Esto es un principio de diseño para todas las estructuras
+de datos mutables en Python.
 
 
 .. _tut-lists-as-stacks:
@@ -164,170 +170,150 @@ para agregar y sacar de ambas puntas de forma rápida.  Por ejemplo::
 
 .. _tut-functional:
 
-Herramientas de programación funcional
---------------------------------------
+Comprensión de listas
+---------------------
 
-Hay tres funciones integradas que son muy útiles cuando se usan con listas:
-:func:`filter`, :func:`map`, y :func:`reduce`.
+Las comprensiones de listas ofrecen una manera concisa de crear listas.
+Sus usos comunes son para hacer nuevas listas donde cada elemento es el
+resultado de algunas operaciones aplicadas a cada miembro de otra
+secuencia o iterable, o para crear una subsecuencia de esos elementos
+para satisfacer una condición determinada.
 
-``filter(funcion, secuencia)`` devuelve una secuencia con aquellos ítems de la
-secuencia para los cuales ``funcion(item)`` es verdadero. Si *secuencia* es un
-:class:`string` o :class:`tuple`, el resultado será del mismo tipo;
-de otra manera, siempre será :class:`list`.  Por ejemplo, para calcular unos
-números primos::
+Por ejemplo, asumamos que queremos crear una lista de cuadrados, como::
 
-   >>> def f(x): return x % 2 != 0 and x % 3 != 0
+   >>> cuadrados = []
+   >>> for x in range(10):
+   ...     cuadrados.append(x**2)
    ...
-   >>> filter(f, range(2, 25))
-   [5, 7, 11, 13, 17, 19, 23]
+   >>> cuadrados
+   [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
-``map(funcion, secuencia)`` llama a ``funcion(item)`` por cada uno de los
-ítems de la secuencia y devuelve una lista de los valores retornados.  Por
-ejemplo, para calcular unos cubos::
+Podemos obtener el mismo resultado con::
 
-   >>> def cubo(x): return x*x*x
+   cuadrados = [x ** 2 for x in range(10)]
+
+Esto es equivalente también a
+``squares = list(map(lambda x: x**2, range(10)))`` pero es más conciso
+y legible.
+
+Una lista de comprensión consiste de corchetes rodeando una expresión
+seguida de la declaración :keyword:`for` y luego cero o más declaraciones
+:keyword:`for` o :keyword:`if`.  El resultado será una nueva lista que
+sale de evaluar la expresión en el contexto de los :keyword:`for` o
+:keyword:`if` que le siguen.  Por ejemplo, esta lista de comprensión
+combina los elementos de dos listas si no son iguales::
+
+   >>> [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+   [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
+
+y es equivalente a::
+
+
+   >>> combs = []
+   >>> for x in [1,2,3]:
+   ...     for y in [3,1,4]:
+   ...         if x != y:
+   ...             combs.append((x, y))
    ...
-   >>> map(cubo, range(1, 11))
-   [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
+   >>> combs
+   [(1, 3), (1, 4), (2, 3), (2, 1), (2, 4), (3, 1), (3, 4)]
 
-Se puede pasar más de una secuencia; la función debe entonces tener tantos
-argumentos como secuencias haya y es llamada con el ítem correspondiente de
-cada secuencia (o ``None`` si alguna secuencia es más corta que otra).  Por
-ejemplo::
+Notá como el orden de los :keyword:`for` y :keyword:`if` es el mismo
+en ambos pedacitos de código.
 
-   >>> sec = range(8)
-   >>> def add(x, y): return x+y
-   ...
-   >>> map(add, sec, sec)
-   [0, 2, 4, 6, 8, 10, 12, 14]
+Si la expresión es una tupla (como el ``(x, y)`` en el ejemplo anterior),
+debe estar entre paréntesis. ::
 
-``reduce(funcion, secuencia)`` devuelve un único valor que se construye
-llamando a la función binaria *funcion* con los primeros dos ítems de la
-secuencia, entonces con el resultado y el siguiente ítem, y así sucesivamente.
-Por ejemplo, para calcular la suma de los números de 1 a 10::
-
-   >>> def sumar(x,y): return x+y
-   ...
-   >>> reduce(sumar, range(1, 11))
-   55
-
-Si sólo hay un ítem en la secuencia, se devuelve su valor; si la secuencia
-está vacía, se lanza una excepción.
-
-Un tercer argumento puede pasarse para indicar el valor inicial.  En este caso
-el valor inicial se devuelve para una secuencia vacía, y la función se aplica
-primero al valor inicial y el primer ítem de la secuencia, entonces al
-resultado y al siguiente ítem, y así sucesivamente. Por ejemplo, ::
-
-   >>> def sum(sec):
-   ...     def sumar(x,y): return x+y
-   ...     return reduce(sumar, sec, 0)
-   ...
-   >>> sum(range(1, 11))
-   55
-   >>> sum([])
-   0
-
-No uses la definición de este ejemplo de :func:`sum`: ya que la sumatoria es
-una necesidad tan común, se provee una función integrada ``sum(secuencia)``
-que funciona exactamente así.
-
-.. versionadded:: 2.3
-
-
-Listas por comprensión
-----------------------
-
-Las listas por comprensión proveen una forma concisa de crear listas sin tener
-que recurrir al uso de :func:`map`, :func:`filter` y/o :keyword:`lambda`.  La
-definición resultante de la lista a menudo tiende a ser más clara que las
-listas formadas usando esas construcciones.
-
-Cada lista por comprensión consiste de una expresión seguida por una cláusula
-:keyword:`for`, luego cero o más cláusulas :keyword:`for` o :keyword:`if`. El
-resultado será una lista que resulta de evaluar la expresión en el contexto de
-las cláusulas :keyword:`for` y :keyword:`if` que sigan.  Si la expresión
-evalua a una tupla, debe encerrarse entre paréntesis. ::
-
+   >>> vec = [-4, -2, 0, 2, 4]
+   >>> # crear una nueva lista con los valores duplicados
+   >>> [x * 2 for x in vec]
+   [-8, -4, 0, 4, 8]
+   >>> # filtrar la lista para excluir números negativos
+   >>> [x for x in vec if x >= 0]
+   [0, 2, 4]
+   >>> # aplica una función a todos los elementos
+   >>> [abs(x) for x in vec]
+   [4, 2, 0, 2, 4]
+   >>> # llama un método a cada elemento
    >>> frutafresca = ['  banana', '  mora de Logan ', 'maracuya  ']
    >>> [arma.strip() for arma in frutafresca]
    ['banana', 'mora de Logan', 'maracuya']
-   >>> vec = [2, 4, 6]
-   >>> [3*x for x in vec]
-   [6, 12, 18]
-   >>> [3*x for x in vec if x > 3]
-   [12, 18]
-   >>> [3*x for x in vec if x < 2]
-   []
-   >>> [[x,x**2] for x in vec]
-   [[2, 4], [4, 16], [6, 36]]
-   >>> [x, x**2 for x in vec]	# error - se requieren paréntesis para tuplas
+   >>> # crea una lista de tuplas de dos como (número, cuadrado)
+   >>> [(x, x ** 2) for x in range(6)]
+   [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
+   >>> # la tupla debe estar entre paréntesis, sino es un error
+   >>> [x, x ** 2 for x in range(6)]
    Traceback (most recent call last):
    ...
-     [x, x**2 for x in vec]
-                ^
+       [x, x ** 2 for x in range(6)]
+                    ^
    SyntaxError: invalid syntax
-   >>> [(x, x**2) for x in vec]
-   [(2, 4), (4, 16), (6, 36)]
-   >>> vec1 = [2, 4, 6]
-   >>> vec2 = [4, 3, -9]
-   >>> [x*y for x in vec1 for y in vec2]
-   [8, 6, -18, 16, 12, -36, 24, 18, -54]
-   >>> [x+y for x in vec1 for y in vec2]
-   [6, 5, -7, 8, 7, -5, 10, 9, -3]
-   >>> [vec1[i]*vec2[i] for i in range(len(vec1))]
-   [8, 12, -54]
+   >>> # aplanar una lista usando comprensión de listas con dos 'for'
+   >>> vec = [[1,2,3], [4,5,6], [7,8,9]]
+   >>> [num for elem in vec for num in elem]
+   [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-Las listas por comprensión son mucho más flexibles que :func:`map` y pueden
-aplicarse a expresiones complejas y funciones anidadas::
+Las comprensiones de listas pueden contener expresiones complejas y
+funciones anidadas::
 
-   >>> [str(round(355/113.0, i)) for i in range(1,6)]
+   >>> from math import pi
+   >>> [str(round(pi, i)) for i in range(1, 6)]
    ['3.1', '3.14', '3.142', '3.1416', '3.14159']
 
 
 Listas por comprensión anidadas
 -------------------------------
 
-Si tienes el estómago suficiente, las listas por comprensión pueden anidarse.
-Son una herramienta poderosa pero, como toda herramienta poderosa, deben
-usarse con cuidado, o ni siquiera usarse.
+La expresión inicial de una comprensión de listas puede ser cualquier
+expresión arbitraria, incluyendo otra comprensión de listas.
 
-Considera el siguiente ejemplo de una matriz de 3x3 como una lista que
-contiene tres listas, una por fila::
+Considerá el siguiente ejemplo de una matriz de 3x4 implementada como
+una lista de tres listas de largo 4::
 
-    >>> mat = [
-    ...        [1, 2, 3],
-    ...        [4, 5, 6],
-    ...        [7, 8, 9],
-    ...       ]
+   >>> matriz = [
+   ...     [1, 2, 3, 4],
+   ...     [5, 6, 7, 8],
+   ...     [9, 10, 11, 12],
+   ... ]
 
-Ahora, si quisieras intercambiar filas y columnas, podrías usar una lista por
-comprensión::
+La siguiente comprensión de lista transpondrá las filas y columnas::
 
-    >>> print [[fila[i] for fila in mat] for i in [0, 1, 2]]
-    [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+   >>> [[fila[i] for fila in matriz] for i in range(4)]
+   [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 
-Se debe tener cuidado especial para la lista por comprensión *anidada*:
+Como vimos en la sección anterior, la lista de comprensión anidada se
+evalua en el contexto del :keyword:`for` que lo sigue, por lo que
+este ejemplo equivale a::
 
-    Para evitar aprensión cuando se anidan lista por comprensión, lee de
-    derecha a izquierda.
+   >>> transpuesta = []
+   >>> for i in range(4):
+   ...     transpuesta.append([fila[i] for fila in matriz])
+   ...
+   >>> transpuesta
+   [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 
-Una versión más detallada de este retazo de código muestra el flujo de manera
-explícita::
+el cual, a la vez, es lo mismo que::
 
-    for i in [0, 1, 2]:
-        for fila in mat:
-            print fila[i],
-        print
+   >>> transpuesta = []
+   >>> for i in range(4):
+   ...     # las siguientes 3 lineas hacen la comprensión de listas anidada
+   ...     fila_transpuesta = []
+   ...     for fila in matriz:
+   ...         fila_transpuesta.append(fila[i])
+   ...     transpuesta.append(fila_transpuesta)
+   ...
+   >>> transpuesta
+   [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
 
 En el mundo real, deberías preferir funciones predefinidas a declaraciones con
 flujo complejo.  La función :func:`zip` haría un buen trabajo para este caso de
 uso::
 
-    >>> zip(*mat)
-    [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+    >>> list(zip(*matriz))
+   [(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
 
 Ver :ref:`tut-unpacking-arguments` para detalles en el asterisco de esta línea.
+
 
 .. _tut-del:
 
@@ -381,18 +367,31 @@ Una tupla consiste de un número de valores separados por comas, por ejemplo::
    ... u = t, (1, 2, 3, 4, 5)
    >>> u
    ((12345, 54321, 'hola!'), (1, 2, 3, 4, 5))
+   >>> # Las tuplas son inmutables:
+   ... t[0] = 88888
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   TypeError: 'tuple' object does not support item assignment
+   >>> # pero pueden contener objetos mutables:
+   ... v = ([1, 2, 3], [3, 2, 1])
+   >>> v
+   ([1, 2, 3], [3, 2, 1])
 
 Como puedes ver, en la salida las tuplas siempre se encierran entre paréntesis,
 para que las tuplas anidadas puedan interpretarse correctamente; pueden
 ingresarse con o sin paréntesis, aunque a menudo los paréntesis son necesarios
-de todas formas (si la tupla es parte de una expresión más grande).
+de todas formas (si la tupla es parte de una expresión más grande).  No es
+posible asignar a los ítems individuales de una tupla, pero sin embargo sí
+se puede crear tuplas que contengan objetos mutables, como las listas.
 
-Las tuplas tienen muchos usos.  Por ejemplo: pares ordenados (x, y), registros
-de empleados de una base de datos, etc.  Las tuplas, al igual que las cadenas,
-son inmutables: no es posible asignar a los ítems individuales de una tupla
-(aunque puedes simular bastante ese efecto mediante seccionado y
-concatenación).  También es posible crear tuplas que contengan objetos mutables
-como listas.
+A pesar de que las tuplas puedan parecerse a las listas, frecuentemente
+se utilizan en distintas situaciones y para distintos propósitos.  Las
+tuplas son :term:`inmutables` y normalmente contienen una secuencia
+heterogénea de elementos que son accedidos al desempaquetar (ver más
+adelante en esta sección) o indizar (o incluso acceder por atributo en
+el caso de las :func:`namedtuples <collections.namedtuple>`).  Las listas
+son :term:`mutables`, y sus elementos son normalmente homogéneos y se
+acceden iterando a la lista.
 
 Un problema particular es la construcción de tuplas que contengan 0 o 1 ítem:
 la sintaxis presenta algunas peculiaridades para estos casos.  Las tuplas
@@ -419,10 +418,10 @@ La operación inversa también es posible::
 
 Esto se llama, apropiadamente, *desempaquetado de secuencias*, y funciona para
 cualquier secuencia en el lado derecho del igual.  El desempaquetado de
-secuencias requiere que la lista de variables a la izquierda
-tenga el mismo número de elementos que el tamaño de la secuencia.  Notá que
-la asignación múltiple es en realidad sólo una combinación de empaquetado de
-tuplas y desempaquetado de secuencias.
+secuencias requiere que la cantidad de variables a la izquierda del signo
+igual sea el tamaño de la secuencia.  Notá que la asignación múltiple
+es en realidad sólo una combinación de empaquetado de tuplas y
+desempaquetado de secuencias.
 
 
 .. _tut-sets:
@@ -436,15 +435,19 @@ incluyen verificación de pertenencia y eliminación de entradas duplicadas.
 Los conjuntos también soportan operaciones matemáticas como la unión,
 intersección, diferencia, y diferencia simétrica.
 
+Las llaves o la función :func:`set` pueden usarse para crear conjuntos.
+Notá que  para crear un conjunto vacío tenés que usar ``set()``, no ``{}``;
+esto último crea un diccionario vacío, una estructura de datos que
+discutiremos en la sección siguiente.
+
 Una pequeña demostración::
 
-   >>> canasta = ['manzana', 'naranja', 'manzana', 'pera', 'naranja', 'banana']
-   >>> fruta = set(canasta)               # crea un conjunto sin repetidos
-   >>> fruta
-   set(['pera', 'manzana', 'banana', 'naranja'])
-   >>> 'naranja' in fruta                 # verificación de pertenencia rápida
+   >>> canasta = {'manzana', 'naranja', 'manzana', 'pera', 'naranja', 'banana'}
+   >>> print fruta                  # muestra que se removieron los duplicados
+   {'pera', 'manzana', 'banana', 'naranja'}
+   >>> 'naranja' in canasta         # verificación de pertenencia rápida
    True
-   >>> 'yerba' in fruta
+   >>> 'yerba' in canasta
    False
 
    >>> # veamos las operaciones para las letras únicas de dos palabras
@@ -452,15 +455,22 @@ Una pequeña demostración::
    >>> a = set('abracadabra')
    >>> b = set('alacazam')
    >>> a                                  # letras únicas en a
-   set(['a', 'r', 'b', 'c', 'd'])
+   {a', 'r', 'b', 'c', 'd'}
    >>> a - b                              # letras en a pero no en b
-   set(['r', 'b', 'd'])
+   {'r', 'b', 'd'}
    >>> a | b                              # letras en a o en b
-   set(['a', 'c', 'b', 'd', 'm', 'l', 'r', 'z'])
+   {'a', 'c', 'b', 'd', 'm', 'l', 'r', 'z'}
    >>> a & b                              # letras en a y en b
-   set(['a', 'c'])
+   {'a', 'c'}
    >>> a ^ b                              # letras en a o b pero no en ambos
-   set(['b', 'd', 'm', 'l', 'r', 'z'])
+   {'b', 'd', 'm', 'l', 'r', 'z'}
+
+Como :ref:`para las listas <tut-listcomps>`, hay una sintaxis para la
+comprensión de conjuntos::
+
+   >>> a = {x for x in 'abracadabra' if x not in 'abc'}
+   >>> a
+   {'r', 'd'}
 
 
 .. _tut-dictionaries:
@@ -493,11 +503,10 @@ clave:valor con ``del``.  Si usás una clave que ya está en uso para guardar un
 valor, el valor que estaba asociado con esa clave se pierde.  Es un error
 extraer un valor usando una clave no existente.
 
-El método :meth:`keys` de un diccionario devuelve una lista de todas las claves
-en uso de ese diccionario, en un orden arbitrario (si la querés ordenada,
-simplemente usá el metodo :meth:`sort` sobre la lista de claves).  Para
-verificar si una clave está en el diccionario, utilizá la palabra clave
-:keyword:`in`.
+Hacer ``list(d.keys())`` en un diccionario devuelve una lista de todas las
+claves usadas en el diccionario, en un orden arbitrario (si las querés
+ordenadas, usá en cambio ``sorted(d.keys())``. [2]_ Para controlar si
+una clave está en el diccionario, usá el :keyword:`in`.
 
 Un pequeño ejemplo de uso de un diccionario::
 
@@ -511,24 +520,26 @@ Un pequeño ejemplo de uso de un diccionario::
    >>> tel['irv'] = 4127
    >>> tel
    {'jack': 4098, 'irv': 4127, 'guido': 4127}
-   >>> tel.keys()
-   ['jack', 'irv', 'guido']
+   >>> list(tel.keys())
+   ['irv', 'guido', 'jack']
+   >>> sorted(tel.keys())
+   ['guido', 'irv', 'jack']
    >>> 'guido' in tel
    True
+   >>> 'jack' not in tel
+   False
 
-El constructor :func:`dict` crea un diccionario directamente desde listas de
-pares clave-valor guardados como tuplas.  Cuando los pares siguen un patrón,
-se puede especificar de forma compacta la lista de pares clave-valor por
-comprensión. ::
+El constructor :func:`dict` crea un diccionario directamente desde
+secuencias de pares clave-valor::
 
    >>> dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
    {'sape': 4139, 'jack': 4098, 'guido': 4127}
-   >>> dict([(x, x**2) for x in (2, 4, 6)])     # use a list comprehension
-   {2: 4, 4: 16, 6: 36}
 
-Más adelante en este tutorial, aprenderemos acerca de Expresiones Generadoras
-que están mejor preparadas para la tarea de proveer pares clave-valor al
-constructor :func:`dict`.
+Además, las comprensiones de diccionarios se pueden usar para crear
+diccionarios desde expresiones arbitrarias de clave y valor::
+
+   >>> {x: x ** 2 for x in (2, 4, 6)}
+   {2: 4, 4: 16, 6: 36}
 
 Cuando las claves son cadenas simples, a veces resulta más fácil especificar
 los pares usando argumentos por palabra clave::
@@ -543,11 +554,11 @@ Técnicas de iteración
 =====================
 
 Cuando iteramos sobre diccionarios, se pueden obtener al mismo tiempo la clave
-y su valor correspondiente usando el método :meth:`iteritems`. ::
+y su valor correspondiente usando el método :meth:`items`. ::
 
    >>> caballeros = {'gallahad': 'el puro', 'robin': 'el valiente'}
-   >>> for k, v in caballeros.iteritems():
-   ...     print k, v
+   >>> for k, v in caballeros.items():
+   ...     print(k, v)
    ...
    gallahad el puro
    robin el valiente
@@ -556,7 +567,7 @@ Cuando se itera sobre una secuencia, se puede obtener el índice de posición
 junto a su valor correspondiente usando la función :func:`enumerate`. ::
 
    >>> for i, v in enumerate(['ta', 'te', 'ti']):
-   ...     print i, v
+   ...     print(i, v)
    ...
    0 ta
    1 te
@@ -568,7 +579,7 @@ emparejarse con la función :func:`zip`. ::
    >>> preguntas = ['nombre', 'objetivo', 'color favorito']
    >>> respuestas = ['lancelot', 'el santo grial', 'azul']
    >>> for p, r in zip(preguntas, respuestas):
-   ...     print 'Cual es tu {0}?  {1}.'.format(p, r)
+   ...     print('Cual es tu {0}?  {1}.'.format(p, r))
    ...	
    Cual es tu nombre?  lancelot.
    Cual es tu objetivo?  el santo grial.
@@ -577,8 +588,8 @@ emparejarse con la función :func:`zip`. ::
 Para iterar sobre una secuencia en orden inverso, se especifica primero la
 secuencia al derecho y luego se llama a la función :func:`reversed`. ::
 
-   >>> for i in reversed(xrange(1,10,2)):
-   ...     print i
+   >>> for i in reversed(range(1, 10, 2)):
+   ...     print(i)
    ...
    9
    7
@@ -591,12 +602,26 @@ la cual devuelve una nueva lista ordenada dejando a la original intacta. ::
 
    >>> canasta = ['manzana', 'naranja', 'manzana', 'pera', 'naranja', 'banana']
    >>> for f in sorted(set(canasta)):
-   ...     print f
+   ...     print(f)
    ... 	
    banana
    manzana
    naranja
    pera
+
+Para cambiar una secuencia sobre la que estás iterando mientras estás
+adentro del ciclo (por ejemplo para duplicar algunos ítems), se recomienda
+que primera hagas una copia.  Ciclar sobre una secuencia no hace
+implícitamente una copia.  La notación de rebanadas es especialmente
+conveniente para esto::
+
+   >>> palabras = ['gato', 'ventana', 'defenestrar']
+   >>> for p in palabras[:]:  # ciclar sobre una copia de la lista entera
+   ...     if len(p) > 6:
+   ...         palabras.insert(0, p)
+   ...
+   >>> palabras
+   ['defenestrar', 'gato', 'ventana', 'defenestrar']
 
 
 .. _tut-conditions:
@@ -659,10 +684,11 @@ llegar al final de alguna de las secuencias. Si dos ítems a comparar son ambos
 secuencias del mismo tipo, la comparación lexicográfica es recursiva.  Si todos
 los ítems de dos secuencias resultan iguales, se considera que las secuencias
 son iguales.
+
 Si una secuencia es una subsecuencia inicial de la otra, la secuencia más corta
 es la menor. El orden lexicográfico para cadenas de caracteres utiliza el orden
-ASCII para caracteres individuales.  Algunos ejemplos de comparaciones entre
-secuencias del mismo tipo::
+de códigos Unicode para caracteres individuales.  Algunos ejemplos de
+comparaciones entre secuencias del mismo tipo::
 
    (1, 2, 3)              < (1, 2, 4)
    [1, 2, 3]              < [1, 2, 4]
@@ -672,11 +698,18 @@ secuencias del mismo tipo::
    (1, 2, 3)             == (1.0, 2.0, 3.0)
    (1, 2, ('aa', 'ab'))   < (1, 2, ('abc', 'a'), 4)
 
-Observá que comparar objetos de diferentes tipos es legal.  El resultado es
-determinístico pero arbitrario: los tipos se ordenan por su nombre.  Por lo
-tanto, una lista (``list``) siempre evalúa como menor que una cadena
-(``string``).
+Observá que comparar objetos de diferentes tipos con ``<`` o ``>`` es
+legal siempre y cuando los objetas tenga los métodos de comparación
+apropiados.  Por ejemplo, los tipos de números mezclados son comparados
+de acuerdo a su valor numérico, o sea 0 es igual a 0.0, etc.  Si no es
+el caso, en lugar de proveer un ordenamiento arbitrario, el intérprete
+generará una excepción :exc:`TypeError`.
 
-Los tipos numéricos diferentes se comparan a su valor numérico, o sea 0 es
-igual a 0.0, etc.  No confiar demasiado en las reglas para comparar objetos de
-diferentes tipos; pueden cambiar en una versión futura del lenguaje.
+.. rubric:: Footnotes
+
+.. [1] Otros lenguajes pueden devolver el objeto mutado, lo cual permite
+       encadenado de métodos, como ``d->insert("a")->remove("b")->sort();``.
+
+.. [2] Llamar a ``d.keys()`` devolverá un objeto :dfn:`vista de diccionario`.
+       Soporta operaciones como prueba de pertenencia e iteración, pero sus
+       contenidos dependen del diccionario original -- son sólo una *vista*.

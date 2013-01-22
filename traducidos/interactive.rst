@@ -128,10 +128,7 @@ sesiones con el intérprete. ::
    # modificarlo - lee la documentación de readline).
    #
    # Guarda este archivo en ~/.pystartup, y configura una variable de inicio
-   # que lo apunte: en bash "export PYTHONSTARTUP=/home/usuario/.pystartup".
-   #
-   # Tené en cuenta que PYTHONSTARTUP *no* expande "~", así que debés poner
-   # la ruta completa a tu directorio personal.
+   # que lo apunte: en bash "export PYTHONSTARTUP=~/.pystartup".
 
    import atexit
    import os
@@ -165,15 +162,17 @@ Un comando para verificar (o incluso sugerir) coincidencia de paréntesis,
 comillas, etc. también sería útil.
 
 Un intérprete interactivo mejorado alternativo que está dando vueltas desde
-hace rato es `IPython`_, que ofrece completado por tab, exploración de
+hace rato es IPython_, que ofrece completado por tab, exploración de
 objetos, y administración avanzada del historial.  También puede ser
 configurado en profundidad, e integrarse en otras aplicaciones.  Otro
-entorno interactivo mejorado similar es `bpython`_.
+entorno interactivo mejorado similar es bpython_.
 
 .. rubric:: Footnotes
 
 .. [#] Python ejecutará el contenido de un archivo indicado por la variable de
    entorno :envvar:`PYTHONSTARTUP` cuando inicies un intérprete interactivo.
+   Para personalizar Python incluso en modo no interactivo, mirá
+   :ref:`tut-customize`.
 
 .. _GNU Readline: http://tiswww.case.edu/php/chet/readline/rltop.html
 .. _IPython: http://ipython.scipy.org/

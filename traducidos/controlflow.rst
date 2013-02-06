@@ -17,17 +17,17 @@ La sentencia :keyword:`if`
 Tal vez el tipo más conocido de sentencia sea el :keyword:`if`. Por
 ejemplo::
 
-   >>> x = int(raw_input("Ingresa un entero, por favor: "))
+   >>> x = int(input("Ingresa un entero, por favor: "))
    Ingresa un entero, por favor: 42
    >>> if x < 0:
    ...      x = 0
-   ...      print 'Negativo cambiado a cero'
+   ...      print('Negativo cambiado a cero')
    ... elif x == 0:
-   ...      print 'Cero'
+   ...      print('Cero')
    ... elif x == 1:
-   ...      print 'Simple'
+   ...      print('Simple')
    ... else:
-   ...      print 'Mas'
+   ...      print('Más')
    ...
    'Mas'
 
@@ -60,24 +60,25 @@ en la secuencia. Por ejemplo:
 ::
 
    >>> # Midiendo cadenas de texto
-   ... a = ['gato', 'ventana', 'defenestrado']
-   >>> for x in a:
-   ...     print x, len(x)
+   ... palabras = ['gato', 'ventana', 'defenestrado']
+   >>> for p in palabras:
+   ...     print(p, len(p))
    ...
    gato 4
    ventana 7
    defenestrado 12
 
-No es seguro modificar la secuencia sobre la que se está iterando en el lazo
-(esto solo es posible para tipos de secuencias mutables, como las listas).  Si
-se necesita modificar la lista sobre la que se está iterando (por ejemplo, para
-duplicar ítems seleccionados) se debe iterar sobre una copia.  La notación de
-rebanada es conveniente para esto::
+Si necesitás modificar la secuencia sobre la que estás iterando mientras
+estás adentro del ciclo (por ejemplo para borrar algunos ítems), se
+recomienda que hagas primero una copia.  Iterar sobre una secuencia no
+hace implícitamente una copia.  La notación de rebanada es especialmente
+conveniente para esto::
 
-   >>> for x in a[:]: # hacer una copia por rebanada de toda la lista
-   ...    if len(x) > 6: a.insert(0, x)
+   >>> for p in palabras[:]:  # hace una copia por rebanada de toda la lista
+   ...    if len(p) > 6:
+   ...        palabras.insert(0, p)
    ...
-   >>> a
+   >>> palabras
    ['defenestrado', 'ventana', 'gato', 'ventana', 'defenestrado']
 
 
@@ -87,31 +88,39 @@ La función :func:`range`
 ========================
 
 Si se necesita iterar sobre una secuencia de números, es apropiado utilizar
-la función integrada :func:`range`.  Genera una lista conteniendo
-progresiones aritméticas::
+la función integrada :func:`range`, la cual genera progresiones
+aritméticas::
 
-   >>> range(10)
-   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>> for i in range(5):
+    ...     print(i)
+    ...
+    0
+    1
+    2
+    3
+    4
 
-El valor final dado nunca es parte de la lista; ``range(10)`` genera una lista
-de 10 valores, los índices correspondientes para los ítems de una secuencia de
+El valor final dado nunca es parte de la secuencia; ``range(10)`` genera
+10 valores, los índices correspondientes para los ítems de una secuencia de
 longitud 10. Es posible hacer que el rango empiece con otro número, o
 especificar un incremento diferente (incluso negativo; algunas veces se lo
 llama 'paso')::
 
-   >>> range(5, 10)
-   [5, 6, 7, 8, 9]
-   >>> range(0, 10, 3)
-   [0, 3, 6, 9]
-   >>> range(-10, -100, -30)
-   [-10, -40, -70]
+    range(5, 10)
+       5 through 9
+
+    range(0, 10, 3)
+       0, 3, 6, 9
+
+    range(-10, -100, -30)
+      -10, -40, -70
 
 Para iterar sobre los índices de una secuencia, podés combinar :func:`range` y
 :func:`len` así::
 
    >>> a = ['Mary', 'tenia', 'un', 'corderito']
    >>> for i in range(len(a)):
-   ...     print i, a[i]
+   ...     print(i, a[i])
    ...
    0 Mary
    1 tenia
@@ -121,6 +130,29 @@ Para iterar sobre los índices de una secuencia, podés combinar :func:`range` y
 En la mayoría de los casos, sin embargo, conviene usar la función
 :func:`enumerate`, mirá :ref:`tut-loopidioms`.
 
+Algo extraño sucede si mostrás un ``range``::
+
+   >>> print(range(10))
+   range(0, 10)
+
+De muchas maneras el objeto devuelto por :func:`range` se comporta
+como si fuera una lista, pero no lo es.  Es un objeto que devuelve
+los ítems sucesivos de la secuencia deseada cuando iterás sobre él,
+pero realmente no construye la lista, ahorrando entonces espacio.
+
+Decimos que tal objeto es *iterable*; esto es, que se lo puede usar
+en funciones y construcciones que esperan algo de lo cual obtener
+ítems sucesivos hasta que se termine.  Hemos visto que la declaración
+:keyword:`for` es un *iterador* en ese sentido.  La función
+:func:`list` es otra; crea listas a partir de iterables::
+
+   >>> list(range(5))
+   [0, 1, 2, 3, 4]
+
+Más tarde veremos más funciones que devuelven iterables y que toman
+iterables como entrada.
+
+
 .. _tut-break:
 
 Las sentencias :keyword:`break`, :keyword:`continue`, y :keyword:`else` en lazos
@@ -128,9 +160,6 @@ Las sentencias :keyword:`break`, :keyword:`continue`, y :keyword:`else` en lazos
 
 La sentencia :keyword:`break`, como en C, termina el lazo :keyword:`for` o
 :keyword:`while` más anidado.
-
-La sentencia :keyword:`continue`, también tomada prestada de C, continua
-con la próxima iteración del lazo.
 
 Las sentencias de lazo pueden tener una cláusula ``else`` que es ejecutada
 cuando el lazo termina, luego de agotar la lista (con :keyword:`for`) o cuando
@@ -141,11 +170,11 @@ lazo, que busca números primos::
    >>> for n in range(2, 10):
    ...     for x in range(2, n):
    ...         if n % x == 0:
-   ...             print n, 'es igual a', x, '*', n/x
+   ...             print(n, 'es igual a', x, '*', n/x)
    ...             break
    ...     else:
    ...         # sigue el bucle sin encontrar un factor
-   ...         print n, 'es un numero primo'
+   ...         print(n, 'es un numero primo')
    ...
    2 es un numero primo
    3 es un numero primo
@@ -155,6 +184,34 @@ lazo, que busca números primos::
    7 es un numero primo
    8 es igual a 2 * 4
    9 es igual a 3 * 3
+
+(Sí, este es el código correcto.  Fijate bien: el ``else`` pertenece al
+ciclo :keyword:`for`, **no** al :keyword:`if`.)
+
+Cuando se usa con un ciclo, el ``else`` tiene más en común con el ``else``
+de una declaración :keyword:`try` que con el de un :keyword:`if`: el
+``else`` de un :keyword:`try` se ejecuta cuando no se genera ninguna
+excepción, y el ``else`` de un ciclo se ejecuta cuando no hay ningún
+``break``.  Para más sobre la declaración :keyword:`try` y excepciones,
+mirá :ref:`tut-handling`.
+
+La declaración :keyword:`continue`, también tomada de C, continua con
+la siguiente iteración del ciclo::
+
+    >>> for num in range(2, 10):
+    ...     if num % 2 == 0:
+    ...         print("Encontré un número par", num)
+    ...         continue
+    ...     print("Encontré un número", num)
+    Encontré un número par 2
+    Encontré un número 3
+    Encontré un número par 4
+    Encontré un número 5
+    Encontré un número par 6
+    Encontré un número 7
+    Encontré un número par 8
+    Encontré un número 9
+
 
 .. _tut-pass:
 
@@ -198,8 +255,9 @@ determinado::
    ...     """Escribe la serie de Fibonacci hasta n."""
    ...     a, b = 0, 1
    ...     while a < n:
-   ...         print a,
+   ...         print(a, end=' ')
    ...         a, b = b, a+b
+   ...     print()
    ...
    >>> # Ahora llamamos a la funcion que acabamos de definir:
    ... fib(2000)
@@ -259,11 +317,10 @@ un procedimiento, porque no devuelve un valor.  De hecho, técnicamente
 hablando, los procedimientos sí retornan un valor, aunque uno aburrido.  Este
 valor se llama ``None`` (es un nombre predefinido).  El intérprete por lo
 general no escribe el valor ``None`` si va a ser el único valor escrito.  Si
-realmente se quiere, se puede verlo usando
-:keyword:`print`::
+realmente se quiere, se puede verlo usando la función :func:`print`::
 
    >>> fib(0)
-   >>> print fib(0)
+   >>> print(fib(0))
    None
 
 Es simple escribir una función que retorne una lista con los números de la
@@ -321,7 +378,7 @@ que los que permite.  Por ejemplo::
 
    def pedir_confirmacion(prompt, reintentos=4, queja='Si o no, por favor!'):
        while True:
-           ok = raw_input(prompt)
+           ok = input(prompt)
            if ok in ('s', 'S', 'si', 'Si', 'SI'):
                return True
            if ok in ('n', 'no', 'No', 'NO'):
@@ -329,7 +386,7 @@ que los que permite.  Por ejemplo::
            reintentos = reintentos - 1
            if reintentos < 0:
                raise IOError('usuario duro')
-           print queja
+           print(queja)
 
 Esta función puede ser llamada de distintas maneras:
 
@@ -349,7 +406,7 @@ función, en el ámbito de la *definición*, entonces::
    i = 5
 
    def f(arg=i):
-       print arg
+       print(arg)
 
    i = 6
    f()
@@ -366,9 +423,9 @@ llamadas::
        L.append(a)
        return L
 
-   print f(1)
-   print f(2)
-   print f(3)
+   print(f(1))
+   print(f(2))
+   print(f(3))
 
 Imprimirá::
 
@@ -391,37 +448,42 @@ llamadas, se pueden escribir la función así::
 Palabras claves como argumentos
 -------------------------------
 
-Las funciones también puede ser llamadas nombrando a los argumentos
-de la forma ``keyword = value``.  Por ejemplo, la siguiente función::
+Las funciones también puede ser llamadas usando argumentos de palabras clave
+(o argumentos nombrados) de la forma ``keyword = value``.  Por ejemplo,
+la siguiente función::
 
    def loro(tension, estado='muerto', accion='explotar', tipo='Azul Nordico'):
-       print "-- Este loro no va a", accion,
-       print "si le aplicas", tension, "voltios."
-       print "-- Gran plumaje tiene el", tipo
-       print "-- Esta", estado, "!"
+       print("-- Este loro no va a", accion, end=' ')
+       print("si le aplicás", tension, "voltios.")
+       print("-- Gran plumaje tiene el", tipo)
+       print("-- Está", estado, "!")
 
-...puede ser llamada de cualquiera de las siguientes formas::
+...acepta un argumento obligatorio (``tension``) y tres argumentos opcionales
+(``estado``, ``accion``, y ``tipo``).  Esta función puede llamarse de
+cualquiera de las siguientes maneras::
 
-   loro(1000)
-   loro(accion='EXPLOTARRRRR', tension=1000000)
-   loro('mil', estado='boca arriba')
-   loro('un millon', 'rostizado', 'saltar')
+   loro(1000)                                          # 1 argumento posicional
+   loro(tension=1000)                                  # 1 argumento nombrado
+   loro(tension=1000000, accion='VOOOOOM')             # 2 argumentos nombrados
+   loro(accion='VOOOOOM', tension=1000000)             # 2 argumentos nombrados
+   loro('un millón', 'despojado de vida', 'saltar')    # 3 args posicionales
+   loro('mil', state='viendo crecer las flores desde abajo')  # uno y uno
 
 ...pero estas otras llamadas serían todas inválidas::
 
    loro()                      # falta argumento obligatorio
-   loro(tension=5.0, 'muerto') # argumento nombrado seguido de uno posicional
-   loro(110, tension=220)      # valor duplicado para argumento
-   loro(actor='Juan Garau')    # palabra clave desconocida
+   loro(tension=5.0, 'muerto') # argumento posicional luego de uno nombrado
+   loro(110, tension=220)      # valor duplicado para el mismo argumento
+   loro(actor='Juan Garau')    # nombre del argumento desconocido
 
-En general, una lista de argumentos debe tener todos sus argumentos
-posicionales seguidos por los argumentos nombrados, dónde las palabras
-claves deben ser elegidas entre los nombres de los parámetros formales.  No es
-importante si un parámetro formal tiene un valor por omisión o no.  Ningún
-argumento puede recibir un valor más de una vez (los nombres de parámetros
-formales correspondientes a argumentos posicionales no pueden ser usados como
-palabras clave en la misma llamada).  Aquí hay un ejemplo que falla debido a
-esta restricción::
+En una llamada a una función, los argumentos nombrados deben seguir a los
+argumentos posicionales.  Cada uno de los argumentos nombrados pasados deben
+coincidir con un argumento aceptado por la función (por ejemplo, ``actor`` no
+es un argumento válido para la función ``loro``), y el orden de los mismos
+no es importante. Esto también se aplica a los argumentos obligatorios (por
+ejemplo, ``loro(tension=1000)`` también es válido).  Ningún argumento puede
+recibir más de un valor al mismo tiempo.  Aquí hay un ejemplo que falla
+debido a esta restricción::
 
    >>> def funcion(a):
    ...     pass
@@ -441,23 +503,22 @@ debe ocurrir antes de ``**nombre``).  Por ejemplo, si definimos una función
 así::
 
    def ventadequeso(tipo, *argumentos, **palabrasclaves):
-       print "-- ¿Tiene", tipo, "?"
-       print "-- Lo siento, nos quedamos sin", tipo
+       print("-- ¿Tiene", tipo, "?")
+       print("-- Lo siento, nos quedamos sin", tipo)
        for arg in argumentos:
-           print arg
-       print "-"*40
-       claves = palabrasclaves.keys()
-       claves.sort()
+           print(arg)
+       print("-" * 40)
+       claves = sorted(palabrasclaves.keys())
        for c in claves:
-           print c, ":", palabrasclaves[c]
+           print(c, ":", palabrasclaves[c])
 
 Puede ser llamada así::
 
    ventadequeso("Limburger", "Es muy liquido, sr.",
-              "Realmente es muy muy liquido, sr.",
-              cliente="Juan Garau",
-              vendedor="Miguel Paez",
-              puesto="Venta de Queso Argentino")
+                "Realmente es muy muy liquido, sr.",
+                cliente="Juan Garau",
+                vendedor="Miguel Paez",
+                puesto="Venta de Queso Argentino")
 
 ...y por supuesto imprimirá::
 
@@ -470,9 +531,9 @@ Puede ser llamada así::
    vendedor : Miguel Paez
    puesto : Venta de Queso Argentino
 
-Se debe notar que el método :meth:`sort` de la lista de nombres de argumentos
-nombrados es llamado antes de imprimir el contenido del diccionario
-``palabrasclaves``; si esto no se hace, el orden en que los argumentos son
+Se debe notar que la lista de nombres de argumentos nombrados se crea al
+ordenar el resultado del método ``keys()`` del diccionario antes de imprimir
+su contenido; si esto no se hace, el orden en que los argumentos son
 impresos no está definido.
 
 .. _tut-arbitraryargs:
@@ -492,6 +553,20 @@ estar presentes.::
    def muchos_items(archivo, separador, *args):
        archivo.write(separador.join(args))
 
+Normalmente estos argumentos de cantidad variables son los últimos en la
+lista de parámetros formales, porque toman todo el remanente de argumentos
+que se pasan a la función.  Cualquier parámetro que suceda luego del ``*args``
+será 'sólo nombrado', o sea que sólo se pueden usar como nombrados
+y no posicionales.::
+
+   >>> def concatenar(*args, sep="/"):
+   ...    return sep.join(args)
+   ...
+   >>> concatenar("tierra", "marte", "venus")
+   'tierra/marte/venus'
+   >>> concatenar("tierra", "marte", "venus", sep=".")
+   'tierra.marte.venus'
+
 
 .. _tut-unpacking-arguments:
 
@@ -505,10 +580,10 @@ predefinida :func:`range` espera los argumentos *inicio* y *fin*.  Si no están
 disponibles en forma separada, se puede escribir la llamada a la función con
 el operador para desempaquetar argumentos de una lista o una tupla ``*``\::
 
-   >>> range(3, 6)       # llamada normal con argumentos separados
+   >>> list(range(3, 6))   # llamada normal con argumentos separados
    [3, 4, 5]
    >>> args = [3, 6]
-   >>> range(*args)      # llamada con argumentos desempaquetados de una lista
+   >>> list(range(*args))  # llamada con argumentos desempaquetados de la lista
    [3, 4, 5]
 
 .. index::
@@ -518,14 +593,14 @@ Del mismo modo, los diccionarios pueden entregar argumentos nombrados
 con el operador ``**``\::
 
    >>> def loro(tension, estado='rostizado', accion='explotar'):
-   ...     print "-- Este loro no va a", accion,
-   ...     print "si le aplicas", tension, "voltios.",
-   ...     print "Esta", estado, "!"
+   ...     print("-- Este loro no va a", accion, end=' ')
+   ...     print("si le aplicás", tension, "voltios.", end=' ')
+   ...     print("Está", estado, "!")
    ...
-   >>> d = {"tension": "cuatro millones", "estado": "demacrado",
+   >>> d = {"tension": "cinco mil", "estado": "demacrado",
    ...      "accion": "VOLAR"}
    >>> loro(**d)
-   -- Este loro no va a VOLAR si le aplicas cuatro millones voltios. Esta demacrado !
+   -- Este loro no va a VOLAR si le aplicás cinco mil voltios. Está demacrado !
 
 
 .. _tut-lambda:
@@ -562,7 +637,7 @@ Cadenas de texto de documentación
    single: documentation strings
    single: strings, documentation
 
-Hay convenciones emergentes sobre el contenido y formato de las cadenas de
+Acá hay algunas convenciones sobre el contenido y formato de las cadenas de
 texto de documentación.
 
 La primer línea debe ser siempre un resumen corto y conciso del propósito del
@@ -598,10 +673,47 @@ Este es un ejemplo de un docstring multi-línea::
    ...     """
    ...     pass
    ...
-   >>> print mi_funcion.__doc__
+   >>> print(mi_funcion.__doc__)
    No hace mas que documentar la funcion.
 
    No, de verdad. No hace nada.
+
+
+.. _tut-annotations:
+
+Anotación de funciones
+----------------------
+
+.. sectionauthor:: Zachary Ware <zachary.ware@gmail.com>
+.. index::
+   pair: function; annotations
+   single: -> (return annotation assignment)
+
+Las anotaciones de funciones es información arbitraria y completamente
+opcional en funciones definidas por el usuario.  Ni Python mismo ni
+la biblioteca estándar usan anotaciones de funciones de ninguna manera;
+esta sección sólo muestra la sintaxis.  Proyectos de terceros son libres
+de usar las anotaciones de funciones para documentación, control de
+tipos, y otros casos.
+
+Las anotaciones se almacenan en el atributo :attr:`__annotations__` de
+la función como un diccionario y no tienen efecto en ninguna otra
+parte de la función. Las anotaciones de los parámetros se definen
+luego de dos puntos después del nombre del parámetro, seguido de una
+expresión que evalúa al valor de la anotación.  Las anotaciones de
+retorno son definidas por el literal ``->``, seguidas de una expresión,
+entre la lista de parámetros y los dos puntos que marcan el final
+de la declaración :keyword:`def`.  El siguiente ejemplo tiene un
+argumento posicional, uno nombrado, y el valor de retorno anotado
+sin sentido::
+
+   >>> def f(jamon: 42, huevos: int = 'carne') -> "nada nada":
+   ...     print("Anotaciones:", f.__annotations__)
+   ...     print("Argumentos:", jamon, huevos)
+   ...
+   >>> f('maravillosa')
+   Anotaciones: {'huevos: <class 'int'>, 'return': 'nada nada', 'jamon': 42}
+   Argumentos: maravillosa carne
 
 
 .. _tut-codingstyle:
@@ -651,8 +763,13 @@ aquí están extraídos los puntos más importantes:
   argumento en los métodos (mirá :ref:`tut-firstclasses` para más información
   sobre clases y métodos).
 
-* No usar codificaciones estrafalarias si se espera usar el código en entornos
-  internacionales.  ASCII plano funciona bien en la mayoría de los casos.
+* No uses codificaciones estrafalarias si esperás usar el código en entornos
+  internacionales.  El default de Python, UTF-8, o incluso ASCII plano
+  funcionan bien en la mayoría de los casos.
+
+* De la misma manera, no uses caracteres no-ASCII en los identificadores si
+  hay incluso una pequeñísima chance de que gente que hable otro idioma
+  tenga que leer o mantener el código.
 
 
 .. rubric:: Footnotes

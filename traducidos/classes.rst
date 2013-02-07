@@ -690,7 +690,7 @@ definición de clase vacía funcionará perfecto::
 
    # Llenar los campos del registro
    juan.nombre = 'Juan Pistola'
-   juan.depto = u'laboratorio de computación'
+   juan.depto = 'laboratorio de computación'
    juan.salario = 1000
 
 Algún código Python que espera un tipo abstracto de datos en particular

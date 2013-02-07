@@ -238,7 +238,7 @@ relanzarla::
    >>> try:
    ...     raise NameError('Hola')
    ... except NameError:
-   ...     print(u'Voló una excepción!')
+   ...     print('Voló una excepción!')
    ...     raise
    ...
    Voló una excepción!

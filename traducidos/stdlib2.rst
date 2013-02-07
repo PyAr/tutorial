@@ -42,7 +42,7 @@ El módulo :mod:`textwrap` formatea párrafos de texto para que quepan
 dentro de cierto ancho de pantalla::
 
    >>> import textwrap
-   >>> doc = u"""El método wrap() es como fill(), excepto que devuelve
+   >>> doc = """El método wrap() es como fill(), excepto que devuelve
    ... una lista de strings en lugar de una gran string con saltos de
    ... línea como separadores."""
    >>> print(textwrap.fill(doc, width=40))
@@ -225,12 +225,12 @@ flexible.  En su forma más simple, los mensajes de registro se envían a un
 archivo o a ``sys.stderr``::
 
    import logging
-   logging.debug(u'Información de depuración')
-   logging.info(u'Mensaje informativo')
-   logging.warning(u'Atención: archivo de configuración %s no se encuentra',
+   logging.debug('Información de depuración')
+   logging.info('Mensaje informativo')
+   logging.warning('Atención: archivo de configuración %s no se encuentra',
                    'server.conf')
-   logging.error(u'Ocurrió un error')
-   logging.critical(u'Error crítico -- cerrando')
+   logging.error('Ocurrió un error')
+   logging.critical('Error crítico -- cerrando')
 
 Ésta es la salida obtenida::
 

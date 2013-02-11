@@ -177,7 +177,7 @@ Fechas y tiempos
 ================
 
 El módulo :mod:`datetime` ofrece clases para manejar fechas y tiempos tanto de
-manera simple como compleja.  Aunque se soporta aritmética sobre fechas y
+manera simple como compleja.  Aunque soporta aritmética sobre fechas y
 tiempos, el foco de la implementación es en la extracción eficiente de partes
 para manejarlas o formatear la salida.  El módulo también soporta objetos que
 son conscientes de la zona horaria. ::

@@ -465,8 +465,8 @@ Una pequeña demostración::
    >>> a ^ b                              # letras en a o b pero no en ambos
    {'b', 'd', 'm', 'l', 'r', 'z'}
 
-Como :ref:`para las listas <tut-listcomps>`, hay una sintaxis para la
-comprensión de conjuntos::
+De forma similar a las :ref:`comprensiones de listas <tut-listcomps>`, está
+también soportada la comprensión de conjuntos::
 
    >>> a = {x for x in 'abracadabra' if x not in 'abc'}
    >>> a

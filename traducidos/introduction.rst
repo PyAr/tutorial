@@ -615,10 +615,10 @@ Este ejemplo introduce varias características nuevas.
   última línea).  Notá que cada línea de un bloque básico debe estar sangrada
   de la misma forma.
 
-* La función :func:`print` escribe el valor de la o las expresiones que
+* La función :func:`print` escribe el valor de el o los argumentos que
   se le pasan.  Difiere de simplemente escribir la expresión que se quiere
   mostrar (como hicimos antes en los ejemplos de la calculadora) en la forma
-  en que maneja múltiples expresiones, cantidades en punto flotante, y
+  en que maneja múltiples argumentos, cantidades en punto flotante, y
   cadenas.  Las cadenas de texto son impresas sin comillas, y un espacio
   en blanco es insertado entre los elementos, así podés formatear
   cosas de una forma agradable::
@@ -627,8 +627,8 @@ Este ejemplo introduce varias características nuevas.
      >>> print('El valor de i es', i)
      El valor de i es 65536
 
-  El parámetro *end* puede usarse para evitar el salto de linea al final de
-  la salida, o terminar la salida con una cadena diferente::
+  El parámetro nombrado *end* puede usarse para evitar el salto de linea
+  al final de la salida, o terminar la salida con una cadena diferente::
 
      >>> a, b = 0, 1
      >>> while b < 1000:

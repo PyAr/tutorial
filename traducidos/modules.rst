@@ -303,17 +303,25 @@ módulo.  Devuelve una lista ordenada de cadenas::
    >>> import fibo, sys
    >>> dir(fibo)
    ['__name__', 'fib', 'fib2']
-   >>> dir(sys)
-   ['__displayhook__', '__doc__', '__excepthook__', '__name__', '__stderr__',
-    '__stdin__', '__stdout__', '_getframe', 'api_version', 'argv',
-    'builtin_module_names', 'byteorder', 'callstats', 'copyright',
-    'displayhook', 'exc_info', 'excepthook',
-    'exec_prefix', 'executable', 'exit', 'getdefaultencoding', 'getdlopenflags',
-    'getrecursionlimit', 'getrefcount', 'hexversion', 'maxint', 'maxunicode',
-    'meta_path', 'modules', 'path', 'path_hooks', 'path_importer_cache',
-    'platform', 'prefix', 'ps1', 'ps2', 'setcheckinterval', 'setdlopenflags',
-    'setprofile', 'setrecursionlimit', 'settrace', 'stderr', 'stdin', 'stdout',
-    'version', 'version_info', 'warnoptions']
+   >>> dir(sys)  # doctest: +NORMALIZE_WHITESPACE
+   ['__displayhook__', '__doc__', '__excepthook__', '__loader__', '__name__',
+    '__package__', '__stderr__', '__stdin__', '__stdout__',
+    '_clear_type_cache', '_current_frames', '_debugmallocstats', '_getframe',
+    '_home', '_mercurial', '_xoptions', 'abiflags', 'api_version', 'argv',
+    'base_exec_prefix', 'base_prefix', 'builtin_module_names', 'byteorder',
+    'call_tracing', 'callstats', 'copyright', 'displayhook',
+    'dont_write_bytecode', 'exc_info', 'excepthook', 'exec_prefix',
+    'executable', 'exit', 'flags', 'float_info', 'float_repr_style',
+    'getcheckinterval', 'getdefaultencoding', 'getdlopenflags',
+    'getfilesystemencoding', 'getobjects', 'getprofile', 'getrecursionlimit',
+    'getrefcount', 'getsizeof', 'getswitchinterval', 'gettotalrefcount',
+    'gettrace', 'hash_info', 'hexversion', 'implementation', 'int_info',
+    'intern', 'maxsize', 'maxunicode', 'meta_path', 'modules', 'path',
+    'path_hooks', 'path_importer_cache', 'platform', 'prefix', 'ps1',
+    'setcheckinterval', 'setdlopenflags', 'setprofile', 'setrecursionlimit',
+    'setswitchinterval', 'settrace', 'stderr', 'stdin', 'stdout',
+    'thread_info', 'version', 'version_info', 'warnoptions']
+
 
 Sin argumentos, :func:`dir` lista los nombres que tenés actualmente definidos::
 
@@ -321,7 +329,7 @@ Sin argumentos, :func:`dir` lista los nombres que tenés actualmente definidos::
    >>> import fibo
    >>> fib = fibo.fib
    >>> dir()
-   ['__builtins__', '__doc__', '__file__', '__name__', 'a', 'fib', 'fibo', 'sys']
+   ['__builtins__', '__name__', 'a', 'fib', 'fibo', 'sys']
 
 Notá que lista todos los tipos de nombres: variables, módulos, funciones, etc.
 
@@ -332,31 +340,36 @@ querés una lista de esos, están definidos en el módulo estándar
 :mod:`builtins`::
 
    >>> import builtins
-   >>> dir(builtins)
-
+   >>> dir(builtins)  # doctest: +NORMALIZE_WHITESPACE
    ['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException',
-   'BufferError', 'BytesWarning', 'DeprecationWarning', 'EOFError', 'Ellipsis',
-   'EnvironmentError', 'Exception', 'False', 'FloatingPointError',
-   'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError', 'ImportWarning',
-   'IndentationError', 'IndexError', 'KeyError', 'KeyboardInterrupt',
-   'LookupError', 'MemoryError', 'NameError', 'None', 'NotImplemented',
-   'NotImplementedError', 'OSError', 'OverflowError',
-   'PendingDeprecationWarning', 'ReferenceError', 'RuntimeError',
-   'RuntimeWarning', ' StopIteration', 'SyntaxError', 'SyntaxWarning',
-   'SystemError', 'SystemExit', 'TabError', 'True', 'TypeError',
-   'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError',
-   'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning',
-   'ValueError', 'Warning', 'ZeroDivisionError', '__build_class__',
-   '__debug__', '__doc__', '__import__', '__name__', '__package__', 'abs',
-   'all', 'any', 'ascii', 'bin', 'bool', 'bytearray', 'bytes', 'chr',
-   'classmethod', 'compile', ' complex', 'copyright', 'credits', 'delattr',
-   'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit', 'filter',
-   'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash',
-   'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter',
-   'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview', 'min',
-   'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property' , 'quit',
-   'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice', 'sorted',
-   'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars', 'zip']
+    'BlockingIOError', 'BrokenPipeError', 'BufferError', 'BytesWarning',
+    'ChildProcessError', 'ConnectionAbortedError', 'ConnectionError',
+    'ConnectionRefusedError', 'ConnectionResetError', 'DeprecationWarning',
+    'EOFError', 'Ellipsis', 'EnvironmentError', 'Exception', 'False',
+    'FileExistsError', 'FileNotFoundError', 'FloatingPointError',
+    'FutureWarning', 'GeneratorExit', 'IOError', 'ImportError',
+    'ImportWarning', 'IndentationError', 'IndexError', 'InterruptedError',
+    'IsADirectoryError', 'KeyError', 'KeyboardInterrupt', 'LookupError',
+    'MemoryError', 'NameError', 'None', 'NotADirectoryError', 'NotImplemented',
+    'NotImplementedError', 'OSError', 'OverflowError',
+    'PendingDeprecationWarning', 'PermissionError', 'ProcessLookupError',
+    'ReferenceError', 'ResourceWarning', 'RuntimeError', 'RuntimeWarning',
+    'StopIteration', 'SyntaxError', 'SyntaxWarning', 'SystemError',
+    'SystemExit', 'TabError', 'TimeoutError', 'True', 'TypeError',
+    'UnboundLocalError', 'UnicodeDecodeError', 'UnicodeEncodeError',
+    'UnicodeError', 'UnicodeTranslateError', 'UnicodeWarning', 'UserWarning',
+    'ValueError', 'Warning', 'ZeroDivisionError', '_', '__build_class__',
+    '__debug__', '__doc__', '__import__', '__name__', '__package__', 'abs',
+    'all', 'any', 'ascii', 'bin', 'bool', 'bytearray', 'bytes', 'callable',
+    'chr', 'classmethod', 'compile', 'complex', 'copyright', 'credits',
+    'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'exec', 'exit',
+    'filter', 'float', 'format', 'frozenset', 'getattr', 'globals', 'hasattr',
+    'hash', 'help', 'hex', 'id', 'input', 'int', 'isinstance', 'issubclass',
+    'iter', 'len', 'license', 'list', 'locals', 'map', 'max', 'memoryview',
+    'min', 'next', 'object', 'oct', 'open', 'ord', 'pow', 'print', 'property',
+    'quit', 'range', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice',
+    'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'vars',
+    'zip']
 
 
 .. _tut-packages:

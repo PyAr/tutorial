@@ -292,7 +292,7 @@ objetos que son caros de crear:
    0
    >>> d['primaria']                # la entrada fue automáticamente eliminada
    Traceback (most recent call last):
-     . . .
+     ...
    KeyError: 'primaria'
 
 

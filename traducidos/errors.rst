@@ -397,7 +397,7 @@ sobre el objeto hayan sido exitosas o no.  Mirá el siguiente ejemplo, que
 intenta abrir un archivo e imprimir su contenido en la pantalla.::
 
    for linea in open("miarchivo.txt"):
-       print(linea)
+       print(linea, end="")
 
 El problema con este código es que deja el archivo abierto por un periodo de
 tiempo indeterminado luego de que esta parte termine de ejecutarse.  Esto
@@ -408,7 +408,7 @@ los libera rápido y en forma correcta.::
 
    with open("miarchivo.txt") as f:
        for linea in f:
-           print(linea)
+           print(linea, end="")
 
 Luego de que la declaración sea ejecutada, el archivo *f* siempre es cerrado,
 incluso si se encuentra un problema al procesar las líneas.  Objetos que,

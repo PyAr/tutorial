@@ -15,7 +15,7 @@ con el sistema operativo::
 
    >>> import os
    >>> os.getcwd()      # devuelve el directorio de trabajo actual
-   'C:\\Python33'
+   'C:\\Python34'
    >>> os.chdir('/server/accesslogs')   # cambia el directorio de trabajo
    >>> os.system('mkdir today')   # ejecuta el comando 'mkdir' en el sistema
    0

@@ -1,5 +1,5 @@
 Nos bajamos el trunk de rst2pdf y usamos ese. Estas pruebas están hechas
-con la versión 2317.
+con la versión 2317 (FIXME: 2632).
 
   svn checkout http://rst2pdf.googlecode.com/svn/trunk/ rst2pdf
 

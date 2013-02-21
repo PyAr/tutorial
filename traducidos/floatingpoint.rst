@@ -154,7 +154,7 @@ de la aritmética de punto flotante al final verás el resultado que esperás
 si simplemente redondeás lo que mostrás de tus resultados finales al número
 de dígitos decimales que esperás.  :func:`str` es normalmente suficiente, y
 para un control más fino mirá los parámetros del método de formateo
-:meth:`str.format` en :ref:`formatstrings`.
+:meth:`str.format` en :ref:`string-formatting`.
 
 Para los casos de uso que necesitan una representación decimal exacta,
 probá el módulo :mod:`decimal`, que implementa aritmética decimal útil

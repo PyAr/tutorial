@@ -13,7 +13,7 @@ Invocando al intérprete
 Por lo general, el intérprete de Python se instala en
 file:`/usr/local/bin/python3.4` en las máquinas dónde está disponible; poner
 :file:`/usr/local/bin` en el camino de búsqueda de tu intérprete de comandos
-Unix hace posible iniciarlo ingresando la orden::
+Unix hace posible iniciarlo ingresando la orden:
 
 .. code-block:: text
 

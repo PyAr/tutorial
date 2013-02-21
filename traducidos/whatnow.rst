@@ -62,7 +62,7 @@ correo están interconectadas, por lo que los mensajes enviados a uno serán
 retransmitidos al otro.  Hay alrededor de 120 mensajes diarios (con picos de
 hasta varios cientos), haciendo (y respondiendo) preguntas, sugiriendo nuevas
 características, y anunciando nuevos módulos.  Antes de escribir, asegúrate de
-haber revisado la lista de :ref:`Preguntas Frecuentes
+haber revisado la lista de `Preguntas Frecuentes
 <http://www.python.org/doc/faq/>`_ (también llamado el FAQ).
 
 Hay archivos de la lista de correo disponibles en

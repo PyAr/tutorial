@@ -717,7 +717,7 @@ Las excepciones también son clases
 ==================================
 
 Las excepciones definidas por el usuario también son identificadas por clases.
-Usando este mecanismo es posible crear jerarquías extensibles de excepciones::
+Usando este mecanismo es posible crear jerarquías extensibles de excepciones.
 
 Hay dos nuevas formas (semánticas) válidas para la sentencia :keyword:`raise`::
 
@@ -842,7 +842,7 @@ que devuelva un objeto con un método :meth:`__next__`.  Si la clase define
 Generadores
 ===========
 
-Los :term:`generador`\es son una simple y poderosa herramienta para crear
+Los `generadores` son una simple y poderosa herramienta para crear
 iteradores.  Se escriben como funciones regulares pero usan la sentencia
 :keyword:`yield` cuando quieren devolver datos.  Cada vez que se llama
 :func:`next` sobre él, el generador continúa desde donde dejó (y recuerda

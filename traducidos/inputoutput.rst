@@ -205,7 +205,7 @@ Esto es particularmente útil en combinación con la función integrada
 locales.
 
 Para una completa descripción del formateo de cadenas con :meth:`str.format`,
-mirá en :ref:`formatstrings`.
+mirá en :ref:`string-formatting`.
 
 Viejo formateo de cadenas
 -------------------------
@@ -236,7 +236,7 @@ Leyendo y escribiendo archivos
    builtin: open
    object: file
 
-La función :func:`open` devuelve un :term:`objeto archivo`, y se usa
+La función :func:`open` devuelve un `objeto archivo`, y se usa
 normalmente con dos argumentos: ``open(nombre_de_archivo, modo)``. ::
 
    >>> f = open('/tmp/workfile', 'w')

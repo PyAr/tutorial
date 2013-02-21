@@ -52,7 +52,7 @@ dentro de cierto ancho de pantalla::
    línea como separadores.
 
 El módulo :mod:`locale` accede a una base de datos de formatos específicos
-a una cultura.  El atributo :var:`grouping` de la función :function:`format`
+a una cultura.  El atributo `grouping` de la función :func:`format`
 permite una forma directa de formatear números con separadores de grupo::
 
    >>> import locale
@@ -259,7 +259,7 @@ Referencias débiles
 ===================
 
 Python realiza administración de memoria automática (cuenta de referencias
-para la mayoría de los objetos, y :term:`garbage collection` (recolección
+para la mayoría de los objetos, y `garbage collection` (recolección
 de basura) para eliminar ciclos).  La memoria se libera poco después de que
 la última referencia a la misma haya sido eliminada.
 

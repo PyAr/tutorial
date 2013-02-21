@@ -386,11 +386,11 @@ se puede crear tuplas que contengan objetos mutables, como las listas.
 
 A pesar de que las tuplas puedan parecerse a las listas, frecuentemente
 se utilizan en distintas situaciones y para distintos propósitos.  Las
-tuplas son :term:`inmutables` y normalmente contienen una secuencia
+tuplas son `inmutables` y normalmente contienen una secuencia
 heterogénea de elementos que son accedidos al desempaquetar (ver más
 adelante en esta sección) o indizar (o incluso acceder por atributo en
 el caso de las :func:`namedtuples <collections.namedtuple>`).  Las listas
-son :term:`mutables`, y sus elementos son normalmente homogéneos y se
+son `mutables`, y sus elementos son normalmente homogéneos y se
 acceden iterando a la lista.
 
 Un problema particular es la construcción de tuplas que contengan 0 o 1 ítem:
@@ -465,7 +465,7 @@ Una pequeña demostración::
    >>> a ^ b                              # letras en a o b pero no en ambos
    {'b', 'd', 'm', 'l', 'r', 'z'}
 
-De forma similar a las :ref:`comprensiones de listas <tut-listcomps>`, está
+De forma similar a las :ref:`comprensiones de listas <tut-functional>`, está
 también soportada la comprensión de conjuntos::
 
    >>> a = {x for x in 'abracadabra' if x not in 'abc'}

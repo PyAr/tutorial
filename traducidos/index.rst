@@ -16,3 +16,4 @@
    whatnow.rst
    interactive.rst
    floatingpoint.rst
+   reference.rst

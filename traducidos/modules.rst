@@ -212,7 +212,7 @@ Algunos consejos para expertos:
   genera código optimizado que se almacena en archivos :file:`.pyo`.  El
   optimizador actualmente no ayuda mucho; sólo remueve las declaraciones
   :keyword:`assert`.  Cuando se usa :option:`-O`, se optimiza *todo* el
-  :term:`bytecode`; se ignoran los archivos ``.pyc`` y los archivos ``.py``
+  `bytecode`; se ignoran los archivos ``.pyc`` y los archivos ``.py``
   se compilan a bytecode optimizado.
 
 * Pasando dos opciones :option:`-O` al intérprete de Python (:option:`-OO`)

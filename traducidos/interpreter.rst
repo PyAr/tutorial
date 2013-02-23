@@ -245,25 +245,27 @@ de forma explícita en el script::
 
 .. _tut-customize:
 
-Los Módulos de customización
+Los módulos de customización
 ----------------------------
 
-Python provides two hooks to let you customize it: :mod:`sitecustomize` and
-:mod:`usercustomize`.  To see how it works, you need first to find the location
-of your user site-packages directory.  Start Python and run this code:
+Python provee dos formas para customizarlo: :mod:`sitecustomize` y
+:mod:`usercustomize`.  Para ver como funciona, necesitás primero encontrar
+dónde está tu directorio para tu usuario de paquetes del sistema.  Arrancá
+Python y ejecutá el siguiente código::
 
    >>> import site
    >>> site.getusersitepackages()
    '/home/user/.local/lib/python3.2/site-packages'
 
-Now you can create a file named :file:`usercustomize.py` in that directory and
-put anything you want in it.  It will affect every invocation of Python, unless
-it is started with the :option:`-s` option to disable the automatic import.
+Ahora podés crear un archivo llamado :file:`usercustomize.py` en ese
+directorio y poner lo que quieras en él.  Eso afectará cada ejecución de
+Python, a menos que se arranque con la opción :option:`-s` para
+deshabilitar esta importación automática.
 
-:mod:`sitecustomize` works in the same way, but is typically created by an
-administrator of the computer in the global site-packages directory, and is
-imported before :mod:`usercustomize`.  See the documentation of the :mod:`site`
-module for more details.
+:mod:`sitecustomize` funciona de la misma manera, pero normalmente lo crea
+el administrador de la computadora en el directorio global de paquetes para el
+sistema, y se importa antes que :mod:`usercustomize`. Para más detalles, mirá
+la documentación del módulo :mod:`site`.
 
 
 .. rubric:: Footnotes

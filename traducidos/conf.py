@@ -200,10 +200,12 @@ pdf_documents = [
   ('index','TutorialPython', u'Tutorial Python', u'Guido van Rossum'),
 ]
 
-# A comma-separated list of custom stylesheets. Example:
+# Los dos estilos que estamos usando, el primero es para el PDF descargable,
+# el segundo es para imprimir el manualcito
 # stylesheets=["fruity.json", "a4paper.json", "verasans.json"]
-#pdf_stylesheets = ['sphinx','b5']
-pdf_stylesheets = ['eightpoint','a5','sphinx','estilo','bw']
+pdf_stylesheets = ['a4','sphinx','estilo-descargable']
+#pdf_stylesheets = ['eightpoint','a5','sphinx','estilo-manualcito','bw']
+
 # What to do when a literal block is too wide
 pdf_fit_mode = 'shrink'
 pdf_fit_background_mode = 'scale'
@@ -212,7 +214,7 @@ pdf_break_level = 1
 pdf_inline_footnotes = True
 pdf_extensions = ['vectorpdf', 'inkscape', 'supertitles']
 pdf_cover_template = 'cover.tmpl'
-pdf_breakside = 'odd'
+pdf_breakside = 'any'  # 'odd' is good for printed PDFs
 
 # Create a compressed PDF
 # Use True/False or 1/0

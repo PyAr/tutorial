@@ -14,7 +14,7 @@
    height="210"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.47 r22583"
+   inkscape:version="0.48.3.1 r9886"
    version="1.0"
    sodipodi:docname="tapas.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
@@ -28,14 +28,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="68.96124"
-     inkscape:cx="181.88659"
-     inkscape:cy="85.815642"
+     inkscape:zoom="3.047685"
+     inkscape:cx="195.61151"
+     inkscape:cy="117.52295"
      inkscape:document-units="mm"
      inkscape:current-layer="layer3"
-     inkscape:window-width="1024"
-     inkscape:window-height="691"
-     inkscape:window-x="0"
+     inkscape:window-width="1871"
+     inkscape:window-height="1026"
+     inkscape:window-x="49"
      inkscape:window-y="24"
      width="744.09449px"
      height="1052.3622px"
@@ -2895,11 +2895,11 @@
        id="rect3930"
        width="19.192677"
        height="19.192677"
-       x="387.82095"
-       y="867.92773" />
+       x="389.46155"
+       y="861.03723" />
     <rect
-       y="867.92773"
-       x="407.82095"
+       y="861.03723"
+       x="409.46155"
        height="19.192677"
        width="19.192677"
        id="rect3947"
@@ -2944,8 +2944,8 @@
        id="rect4050"
        width="19.192677"
        height="19.192677"
-       x="407.82095"
-       y="847.92773" />
+       x="409.46155"
+       y="841.03723" />
     <g
        style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:center;text-decoration:none;line-height:100%;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:middle;color:#000000;fill:#4600b0;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:TakaoPGothic;-inkscape-font-specification:TakaoPGothic"
        id="text4806">
@@ -3007,8 +3007,8 @@
        id="rect3930-8"
        width="19.192677"
        height="19.192677"
-       x="387.82095"
-       y="847.92773" />
+       x="389.46155"
+       y="841.03723" />
     <path
        inkscape:export-ydpi="1000"
        inkscape:export-xdpi="1000"

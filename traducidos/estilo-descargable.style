@@ -1,0 +1,94 @@
+{"pageSetup": {
+        "size": null,
+        "width": "210mm",
+        "height": "297mm",
+        "margin-top": "10mm",
+        "margin-bottom": "8mm",
+        "margin-left": "15mm",
+        "margin-right": "15mm",
+        "margin-gutter": "0mm",
+        "spacing-footer": "2mm",
+        "firstTemplate": "coverPage"
+  },
+  "pageTemplates" : {
+    "coverPage": {
+        "frames": [
+            ["0cm", "0cm", "100%", "100%"]
+          ],
+        "background" : "imagenes/tapa-version_digital.svg",
+        "showHeader" : false,
+        "showFooter" : false
+    },
+    "caratula": {
+        "frames": [
+            ["0cm", "0cm", "100%", "100%"]
+          ],
+        "background" : "imagenes/pag1.svg",
+        "showHeader" : false,
+        "showFooter" : false
+    },
+    "cutePage": {
+        "frames": [
+            ["0%", "0%", "100%", "100%"]
+        ],
+        "showHeader" : false,
+        "showFooter" : true,
+        "defaultFooter": ".. oddeven::\n\n    .. cssclass:: right\n\n    ###Page###\n\n    ###Page###\n\n"
+    },
+  "embeddedFonts" : [ ["DejaVuSans.ttf","DejaVuSans-Bold.ttf","DejaVuSans-Oblique.ttf","DejaVuSans-BoldOblique.ttf"] ]
+  },
+  "styles": [
+    ["normal" , {
+        "fontSize": 9,
+        "fontName": "UbuntuRegular",
+        "leading": 14
+    }],
+    ["toc" , {
+        "parent": "normal",
+        "leading": 11
+    }],
+    ["code", {
+        "backColor": "#FCFFF5",
+        "borderWidth": 0.3,
+        "borderColor": "#AACC99",
+        "allowOrphans": false,
+        "allowWidows": false,
+        "spaceAfter": 12,
+        "fontName": "UbuntuMonoRegular",
+        "leading": 12,
+        "fontSize": 8
+    }],
+    ["admonition" , {
+      "borderColor": "#AACC99",
+      "backColor": "#F5FFDF",
+      "borderPadding": 8,
+      "borderWidth": 0.5,
+      "spaceBefore": 12,
+      "spaceAfter": 6
+    }],
+    ["sidebar", {
+      "borderColor": "#AACC99",
+      "backColor": "#F5FFDF",
+      "borderPadding": 8,
+      "borderWidth": 0.5,
+      "spaceBefore": 12,
+      "spaceAfter": 6
+    }],
+    ["heading", {
+      "parent": "normal",
+      "fontName" : "DejaVuSans",
+      "textColor": "#0048B4",
+      "spaceBefore": 14,
+      "spaceAfter": 8,
+      "keepWithNext": true
+    }],
+     [ "endnote", {
+         "parent": "bodytext",
+         "commands": [
+            [ "VALIGN", [ 0, 0 ], [ -1, -1 ], "TOP" ],
+            [ "ALIGNMENT", [ 0, 0 ], [ 1, -1 ], "RIGHT" ]
+        ],
+        "colWidths": ["1cm",null]
+    }]
+  ]
+}

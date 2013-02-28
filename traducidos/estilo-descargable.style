@@ -2,8 +2,8 @@
         "size": null,
         "width": "210mm",
         "height": "297mm",
-        "margin-top": "10mm",
-        "margin-bottom": "8mm",
+        "margin-top": "15mm",
+        "margin-bottom": "10mm",
         "margin-left": "15mm",
         "margin-right": "15mm",
         "margin-gutter": "0mm",
@@ -33,9 +33,9 @@
         ],
         "showHeader" : false,
         "showFooter" : true,
-        "defaultFooter": ".. oddeven::\n\n    .. cssclass:: right\n\n    ###Page###\n\n    ###Page###\n\n"
+        "defaultFooter": ".. cssclass:: right\n\n    ###Page###\n\n"
     },
-  "embeddedFonts" : [ ["DejaVuSans.ttf","DejaVuSans-Bold.ttf","DejaVuSans-Oblique.ttf","DejaVuSans-BoldOblique.ttf"] ]
+  "embeddedFonts" : [ ["Ubuntu-R.ttf","UbuntuMono-R.ttf"] ]
   },
   "styles": [
     ["normal" , {

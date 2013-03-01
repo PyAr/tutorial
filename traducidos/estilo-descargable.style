@@ -34,13 +34,11 @@
         "showHeader" : false,
         "showFooter" : true,
         "defaultFooter": ".. cssclass:: right\n\n    ###Page###\n\n"
-    },
-  "embeddedFonts" : [ ["Ubuntu-R.ttf","UbuntuMono-R.ttf"] ]
+    }
   },
   "styles": [
     ["normal" , {
         "fontSize": 9,
-        "fontName": "UbuntuRegular",
         "leading": 14
     }],
     ["toc" , {
@@ -54,7 +52,6 @@
         "allowOrphans": false,
         "allowWidows": false,
         "spaceAfter": 12,
-        "fontName": "UbuntuMonoRegular",
         "leading": 12,
         "fontSize": 8
     }],
@@ -76,7 +73,6 @@
     }],
     ["heading", {
       "parent": "normal",
-      "fontName" : "DejaVuSans",
       "textColor": "#0048B4",
       "spaceBefore": 14,
       "spaceAfter": 8,

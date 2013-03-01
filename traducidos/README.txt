@@ -30,6 +30,11 @@ La versión de sphinx que usé es la que trae Quantal por default:
   1.1.3+dfsg-4ubuntu3
 
 
+Para el tema del html necesitamos tener instalado este proyecto:
+
+  https://pypi.python.org/pypi/sphinx-bootstrap-theme/
+
+
 Una última consideración con respecto a las herramientas utilizadas. Resulta que inkscape genera mal el PDF de los títulos cabecera de capítulo (ver
 
   https://bugs.launchpad.net/ubuntu/+source/inkscape/+bug/1131731

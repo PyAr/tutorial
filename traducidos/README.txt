@@ -35,7 +35,8 @@ Para el tema del html necesitamos tener instalado este proyecto:
   https://pypi.python.org/pypi/sphinx-bootstrap-theme/
 
 
-Una última consideración con respecto a las herramientas utilizadas. Resulta que inkscape genera mal el PDF de los títulos cabecera de capítulo (ver
+Una última consideración con respecto a las herramientas utilizadas. Resulta
+que inkscape genera mal el PDF de los títulos cabecera de capítulo (ver
 
   https://bugs.launchpad.net/ubuntu/+source/inkscape/+bug/1131731
 
@@ -45,14 +46,24 @@ archivo "pdfreader.py" del proyecto "pdfrw" con lo siguiente:
   http://pastebin.ubuntu.com/5573793/
 
 
-En fin, ya estamos en posición de generar el PDF. Vamos al directorio de 'traducidos'
-y hacemos:
+En fin, ya estamos en posición de generar el PDF.  Hay varios tipos de PDFs
+que podemos generar (hoy por hoy: uno en hoja pequeña, blanco y negro, a
+dos páginas, para imprimir en imprenta, y otro A4, en color, para leer de
+la PC o imprimir en casa), esto se controla con el campo "pdf_stylesheets"
+del conf.py.
+
+Luego de elegir cual, vamos al directorio de 'traducidos' y hacemos:
 
   make pdf
 
-Esto nos deja _build/pdf/TutorialPython.pdf
+Esto nos deja _build/pdf/TutorialPython.pdf, el cual no es el PDF más
+prístino que podríamos desear. Para limpiarlo y achicarlo, usamos el
+querido ghostscript:
 
-Hay varios tipos de PDFs que podemos generar (hoy por hoy: uno en hoja pequeña, blanco y negro, a dos páginas, para imprimir en imprenta, y otro A4, en color, para leer de la PC o imprimir en casa), esto se controla con el campo "pdf_stylesheets" del conf.py.
+gs -dCompatibilityLevel=1.4 -dCompressFonts=true -dSubsetFonts=true \
+    -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=output2.pdf \
+    -f _build/pdf/TutorialPython.pdf
+
 
 Para generar el html:
 

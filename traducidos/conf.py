@@ -11,8 +11,6 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
-
 import sphinx_bootstrap_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -40,7 +38,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Tutorial de Python'
-copyright = u'2011, Python Software Foundation'
+copyright = u'2013, Python Software Foundation'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -205,8 +203,8 @@ pdf_documents = [
 # Los dos estilos que estamos usando, el primero es para el PDF descargable,
 # el segundo es para imprimir el manualcito
 # stylesheets=["fruity.json", "a4paper.json", "verasans.json"]
-pdf_stylesheets = ['a4','sphinx','estilo-descargable']
-#pdf_stylesheets = ['eightpoint','a5','sphinx','estilo-manualcito','bw']
+#pdf_stylesheets = ['a4','sphinx','estilo-descargable']
+pdf_stylesheets = ['eightpoint','a5','sphinx','estilo-manualcito','bw']
 
 # What to do when a literal block is too wide
 pdf_fit_mode = 'shrink'
@@ -215,8 +213,14 @@ pdf_use_numbered_links = False
 pdf_break_level = 1
 pdf_inline_footnotes = True
 pdf_extensions = ['vectorpdf', 'inkscape', 'supertitles']
-pdf_cover_template = 'cover.tmpl'
-pdf_breakside = 'any'  # 'odd' is good for printed PDFs
+
+# decide according to version
+#pdf_cover_template = 'cover-screen.tmpl'
+pdf_cover_template = 'cover-printed.tmpl'
+
+# 'any' is good for to-screen PDFs
+# 'odd' is good for printed PDFs
+pdf_breakside = 'odd'
 
 # Create a compressed PDF
 # Use True/False or 1/0

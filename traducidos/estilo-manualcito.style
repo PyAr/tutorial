@@ -1,24 +1,15 @@
 {"pageSetup": {
         "size": null,
-        "width": "170mm",
-        "height": "230mm",
-        "margin-top": "7mm",
-        "margin-bottom": "5mm",
+        "width": "148.5mm",
+        "height": "210mm",
+        "margin-top": "8mm",
+        "margin-bottom": "6mm",
         "margin-left": "16mm",
         "margin-right": "16mm",
         "margin-gutter": "-8mm",
-        "spacing-footer": "2mm",
-        "firstTemplate": "coverPage"
+        "spacing-footer": "2mm"
   },
   "pageTemplates" : {
-    "coverPage": {
-        "frames": [
-            ["0cm", "0cm", "100%", "100%"]
-          ],
-        "background" : "imagenes/tapa-version_digital.svg",
-        "showHeader" : false,
-        "showFooter" : false
-    },
     "caratula": {
         "frames": [
             ["0cm", "0cm", "100%", "100%"]
@@ -43,7 +34,7 @@
         "leading": 11
     }],
     ["code", {
-        "backColor": "#FCFFF5",
+        "backColor": "#CDCDCD",
         "borderWidth": 0.3,
         "borderColor": "#AACC99",
         "allowOrphans": false,

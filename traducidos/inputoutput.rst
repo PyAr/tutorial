@@ -1,3 +1,7 @@
+.. raw:: pdf
+
+   PageBreak
+
 .. _tut-io:
 
 ****************
@@ -239,9 +243,9 @@ Leyendo y escribiendo archivos
 La función :func:`open` devuelve un `objeto archivo`, y se usa
 normalmente con dos argumentos: ``open(nombre_de_archivo, modo)``. ::
 
-   >>> f = open('/tmp/workfile', 'w')
+   >>> f = open('archivodetrabajo', 'w')
    >>> print(f)
-   <_io.TextIOWrapper name='/tmp/workfile' mode='w' encoding='UTF-8'>
+   <_io.TextIOWrapper name='archivodetrabajo' mode='w' encoding='UTF-8'>
 
 El primer argumento es una cadena conteniendo el nombre de archivo.  El segundo
 argumento es otra cadena conteniendo unos pocos caracteres que describen la
@@ -349,7 +353,7 @@ el comienzo del archivo, 1 usa la posición actual del archivo, y 2 usa el fin
 del archivo como punto de referencia.  *desde_donde* puede omitirse, el default
 es 0, usando el comienzo del archivo como punto de referencia. ::
 
-   >>> f = open('/tmp/archivodetrabajo', 'rb+')
+   >>> f = open('archivodetrabajo', 'rb+')
    >>> f.write(b'0123456789abcdef')
    >>> f.seek(5)     # Va al sexto byte en el archivo
    5
@@ -381,7 +385,7 @@ luego de que el bloque termina, incluso si se generó una excepción.  También
 es mucho más corto que escribir los equivalentes bloques
 :keyword:`try`\ -\ :keyword:`finally` ::
 
-    >>> with open('/tmp/workfile', 'r') as f:
+    >>> with open('archivodetrabajo', 'r') as f:
     ...     read_data = f.read()
     >>> f.closed
     True

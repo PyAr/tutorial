@@ -72,10 +72,10 @@ Si pensás usar la función frecuentemente, podés asignarla a un nombre local::
 Más sobre los módulos
 =====================
 
-Un módulo puede contener tanto declaraciones ejecutables como definiciones
-de funciones.  Estas declaraciones están pensadas para inicializar el módulo.
-Se ejecutan solamente la *primera* vez que el módulo se importa en algún
-lado. [#]_
+Un módulo puede contener tanto declaraciones ejecutables como definiciones de
+funciones.  Estas declaraciones están pensadas para inicializar el módulo.  Se
+ejecutan solamente la *primera* vez que el módulo se encuentra en una sentencia
+import. [#]_ (Son también ejecutados si el archivo es ejecutado como un script).
 
 Cada módulo tiene su propio espacio de nombres, el que es usado como espacio
 de nombres global por todas las funciones definidas en el módulo.  Por lo
@@ -571,5 +571,5 @@ extender el conjunto de módulos que se encuentran en el paquete.
 .. rubric:: Footnotes
 
 .. [#] De hecho las definiciones de función son también 'declaraciones' que
-   se 'ejecutan';  la ejecución de una función a nivel de módulo mete el
-   nombre de la función en el espacio de nombres global.
+   se 'ejecutan';  la ejecución de una definición de función a nivel de módulo
+   mete el nombre de la función en el espacio de nombres global.

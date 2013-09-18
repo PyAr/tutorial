@@ -1,0 +1,3 @@
+*.pyc
+traducidos/_build/
+traducidos/tmp*.svg

@@ -5,12 +5,12 @@ Una introducción informal a Python
 **********************************
 
 En los siguientes ejemplos, las entradas y salidas son distinguidas por la
-presencia o ausencia de los prompts (```>>>``` and ```...```): para
+presencia o ausencia de los prompts (``>>>`` and ``...``): para
 reproducir los ejemplos, debés escribir todo lo que esté después del prompt,
-cuando este aparezca; las líneas que no comiencen con el prompt son las
-salidas del intérprete.  Tené en cuenta que el prompt secundario que
-aparece por si sólo en una línea de un ejemplo significa que debés escribir
-una línea en blanco; esto es usado para terminar un comando multilínea.
+cuando este aparezca; las líneas que no comiencen con el prompt son las salidas
+del intérprete.  Tené en cuenta que el prompt secundario que aparece por si
+sólo en una línea de un ejemplo significa que debés escribir una línea en
+blanco; esto es usado para terminar un comando multilínea.
 
 Muchos de los ejemplos de este manual, incluso aquellos ingresados en el prompt
 interactivo, incluyen comentarios.  Los comentarios en Python comienzan con
@@ -24,9 +24,9 @@ pueden omitirse cuando se escriben ejemplos.
 Algunos ejemplos::
 
    # este es el primer comentario
-   SPAM = 1                 # y este es el segundo comentario
+   spam = 1                 # y este es el segundo comentario
                             # ... y ahora un tercero!
-   STRING = "# Este no es un comentario".
+   text = "# Este no es un comentario".
 
 
 .. _tut-calculator:
@@ -42,117 +42,64 @@ esperá por el prompt primario, ``>>>``. (No debería demorar tanto).
 Números
 -------
 
-El intérprete actúa como una simple calculadora; podés ingrsar una expresión
-y este escribirá los valores.  La sintaxis es sencilla: los operadores ``+``,
+El intérprete actúa como una simple calculadora; podés ingrsar una expresión y
+este escribirá los valores.  La sintaxis es sencilla: los operadores ``+``,
 ``-``, ``*`` y ``/`` funcionan como en la mayoría de los lenguajes (por
-ejemplo, Pascal o C); los paréntesis pueden ser usados para agrupar. Por
-ejemplo::
+ejemplo, Pascal o C); los paréntesis (``()``) pueden ser usados para agrupar.
+Por ejemplo::
 
-   >>> 2+2
+   >>> 2 + 2
    4
-   >>> # Este es un comentario
-   ... 2+2
-   4
-   >>> 2+2  # y un comentario en la misma línea que el código
-   4
-   >>> (50-5*6)/4
+   >>> 50 - 5*6
+   20
+   >>> (50 - 5*6) / 4
    5.0
-   >>> 8 / 5  # las fracciones no se pierden al dividir enteros
+   >>> 8 / 5  # la división simpre retorna un número de punto flotante
    1.6
 
-Nota: Quizás no veas exactamente el mismo resultado; los resultados de
-punto flotante pueden diferir de una computadora a otra.  Hablaremos
-luego sobre cómo controlar la apariencia de las salidas de punto
-flotante.  También mirá :ref:`tut-fp-issues` para una discusión completa
-de algunas de las sutilezas de los números de punto flotante y sus
-representaciones.
+Los números enteros (por ejemplo ``2``, ``4``, ``20``) son de tipo
+:class:`int`, aquellos con una parte fraccional (por ejemplo ``5.0``, ``1.6``)
+son de tipo :class:`float`. Vamos a ver más sobre tipos de números luego en
+este tutorial.
 
-Para hacer división de enteros y obtener un resultado entero, descartando
-cualquier parte decimal, hay otro operador, ``//``::
+La división (``/``) siempre retorna un punto flotante. Para hacer `floor
+division` y obtener un resultado entero (descartando cualquier resultado
+fraccional) podés usar el operador ``//``; para calcular el resto podés usar
+``%``::
 
-   >>> # La división entera retorna redondeado al piso:
-   ... 7//3
+   >>> 17 / 3  # la división clásica retorna un punto flotante
+   5.666666666666667
+   >>>
+   >>> 17 // 3  # la división entera descarta la parte fraccional
+   5
+   >>> 17 % 3  # el operado % retorna el resto de la división
    2
-   >>> 7//-3
-   -3
+   >>> 5 * 3 + 2  # resultado * divisor + resto
+   17
+
+Con Python es posible usar el operador ``**`` para calcular potencias [#]_::
+
+
+   >>> 5 ** 2  # 5 al cuadrado
+   25
+   >>> 2 ** 7  # 2 a la potencia de 7
+   128
 
 El signo igual (``=``) es usado para asignar un valor a una variable.  Luego,
 ningún resultado es mostrado antes del próximo prompt::
 
    >>> ancho = 20
-   >>> largo = 5*9
+   >>> largo = 5 * 9
    >>> ancho * largo
    900
 
-Un valor puede ser asignado a varias variables simultáneamente::
-
-   >>> x = y = z = 0  # Cero a x, y, y z
-   >>> x
-   0
-   >>> y
-   0
-   >>> z
-   0
-
-Las variables deben estar "definidas" (con un valor asignado) antes de que
-puedan usarse, o un error ocurrirá::
+Si una variable no está "definida" (con un valor asignado), intentar usarla
+producirá un error::
 
    >>> n  # tratamos de acceder a una variable no definida
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
    NameError: name 'n' is not defined
-
-Se soporta completamente los números de punto flotante; las operaciones con
-mezclas en los tipos de los operandos convierten los enteros a punto flotante::
-
-   >>> 3 * 3.75 / 1.5
-   7.5
-   >>> 7.0 / 2
-   3.5
-
-Los números complejos también están soportados; los números imaginarios son
-escritos con el sufijo de ``j`` o ``J``.  Los números complejos con un
-componente real que no sea cero son escritos como ``(real+imagj)``, o pueden
-ser escrito con la función ``complex(real, imag)``. ::
-
-   >>> 1j * 1J
-   (-1+0j)
-   >>> 1j * complex(0, 1)
-   (-1+0j)
-   >>> 3+1j*3
-   (3+3j)
-   >>> (3+1j)*3
-   (9+3j)
-   >>> (1+2j)/(1+1j)
-   (1.5+0.5j)
-
-Los números complejos son siempre representados como dos números de punto
-flotante, la parte real y la imaginaria.  Para extraer estas partes desde un
-número complejo *z*, usá ``z.real`` y ``z.imag``. ::
-
-   >>> a=1.5+0.5j
-   >>> a.real
-   1.5
-   >>> a.imag
-   0.5
-
-La función de conversión de los punto flotante y enteros (:func:`float` y
-:func:`int`) no funcionan para números complejos; no hay una forma
-correcta de convertir un número complejo a un número real.  Usá
-``abs(z)`` para obtener esta magnitud (como un flotante) o ``z.real`` para
-obtener la parte real. ::
-
-   >>> a=3.0+4.0j
-   >>> float(a)
-   Traceback (most recent call last):
-   ...
-   TypeError: can't convert complex to float
-   >>> a.real
-   3.0
-   >>> a.imag
-   4.0
-   >>> abs(a)  # sqrt(a.real**2 + a.imag**2)
-   5.0
 
 En el modo interactivo, la última expresión impresa es asignada a la variable
 ``_``.  Esto significa que cuando estés usando Python como una calculadora de
@@ -171,6 +118,12 @@ Esta variable debería ser tratada como de sólo lectura por el usuario.  No le
 asignes explícitamente un valor; crearás una variable local independiente con
 el mismo nombre enmascarando la variable con el comportamiento mágico.
 
+Además de :class:`int` y :class:`float`, Python soporta otros tipos de números,
+como ser :class:`~decimal.Decimal` y :class:`~fractions.Fraction`. Python
+también tiene soporte integrado para :ref:`númreos complejos <typesnumeric>`, y
+usa el sufijo ``j`` o ``J`` para indicar la parte imaginaria (por ejemplo
+``3+5j``).
+
 .. _tut-strings:
 
 Cadenas de caracteres
@@ -178,13 +131,14 @@ Cadenas de caracteres
 
 Además de números, Python puede manipular cadenas de texto, las cuales pueden
 ser expresadas de distintas formas.  Pueden estar encerradas en comillas
-simples o dobles::
+simples (``'...'``) o dobles (``"..."``) con el mismo resultado [#]_. ``\``
+puede ser usado para escapar comillas::
 
-   >>> 'huevos y pan'
+   >>> 'huevos y pan'  # comillas simples
    'huevos y pan'
-   >>> 'doesn\'t'
+   >>> 'doesn\'t'  # usa \' para escapar comillas simples...
    "doesn't"
-   >>> "doesn't"
+   >>> "doesn't"  # ...o de lo contrario usa comillas doblas
    "doesn't"
    >>> '"Si," le dijo.'
    '"Si," le dijo.'
@@ -193,42 +147,40 @@ simples o dobles::
    >>> '"Isn\'t," she said.'
    '"Isn\'t," she said.'
 
-El intérprete muestra el resultado de las operaciones sobre cadenas de la
-misma manera que si fueran escritas para ingresarlas: dentro de comillas,
-y con comillas y otros caracteres extraños escapados por barras
-invertidas, para poder mostrar el valor exacto.  La cadena se encierra
-entre comillas dobles si la cadena contiene un apóstrofo y ninguna comilla
-doble, sino se encierra entre apóstrofos.  La función :func:`print`
-produce una salida más legible para tales cadenas.
+En el intéprete interactivo, la salida de cadenas está encerrada en comillas y
+los caracteres especiales son escapados con barras invertidas. Aunque esto a
+veces luzca diferente de la entrada (las comillas que encierran pueden
+cambiar), las dos cadenas son equivalentes. La cadena se encierra en comillas
+dobles si la cadena contiene una comilla simple y ninguna doble, de lo
+contrario es encerrada en comillas simples. La función :func:`print` produce
+una salida más legible, omitiendo las comillas que la encierran e imprimiendo
+caracteres especiales y escapados::
 
-Las cadenas de texto literales pueden contener múltiples líneas de distintas
-formas.  Las líneas continuas se pueden usar, con una barra invertida como el
-último carácter de la línea para indicar que la siguiente línea es la
-continuación lógica de la línea::
+   >>> '"Isn\'t," she said.'
+   '"Isn\'t," she said.'
+   >>> print('"Isn\'t," she said.')
+   "Isn't," she said.
+   >>> s = 'Primerea línea.\nSegunda línea.'  # \n significa nueva línea
+   >>> s  # sin print(), \n es incluído en la salida
+   'Primera línea.\nSegunda línea.'
+   >>> print(s)  # con print(), \n produce una nueva línea
+   Primera línea.
+   Segunda línea.
 
-   hola = "Esta es una larga cadena que contiene\n\
-   varias líneas de texto, tal y como se hace en C.\n\
-       Notar que los espacios en blanco al principio de la linea\
-    son significantes."
+Si no querés que los caracteres antepuestos por ``\`` sean interpretados como
+caracteres especiales, podés usar *cadenas crudas* agregando una ``r`` antes de
+la primera comilla::
 
-   print(hola)
+   >>> print('C:\algun\nombre')  # aquí \n significa nueva línea!
+   C:\some
+   ame
+   >>> print(r'C:\algun\nombre')  # nota la r antes de la comilla
+   C:\some\name
 
-Notá que de todas formas se necesita embeber los salto de líneas con ``\n``;
-la nueva línea que sigue a la barra invertida final es descartada.  Este
-ejemplo imprimiría:
-
-.. code-block:: text
-
-   Esta es una larga cadena que contiene
-   varias líneas de texto, tal y como se hace en C.
-        Notar que los espacios en blanco al principio de la linea son
-        significantes.
-
-O, las cadenas de texto pueden ser rodeadas en un par de comillas triples:
-``"""`` o ``'''``.  No se necesita escapar los finales de línea cuando se
-utilizan comillas triples, pero serán incluidos en la cadena.  Entonces
-el siguiente ejemplo usa un escape para evitar una linea blanca inicial
-no deseada. ::
+Las cadenas de texto literales pueden contener múltiples líneas. Una forma es
+usar triple comillas: ``"""..."""`` o ``'''...'''``. Los fin de línea son
+incluídos automáticamente, pero es posible prevenir esto agregando una ``\`` al
+final de la línea. Por ejemplo::
 
    print("""\
    Uso: algo [OPTIONS]
@@ -236,7 +188,7 @@ no deseada. ::
         -H nombrehost             Nombre del host al cual conectarse
    """)
 
-...produce la siguiente salida:
+produce la siguiente salida: (nota que la línea inicial no está incluída)
 
 .. code-block:: text
 
@@ -244,130 +196,90 @@ no deseada. ::
         -h                        Muestra el mensaje de uso
         -H nombrehost             Nombre del host al cual conectarse
 
-Si se hace de la cadena de texto una cadena "cruda", la secuencia ``\n`` no
-es convertida a salto de línea, pero la barra invertida al final de la línea
-y el carácter de nueva línea en la fuente, ambos son incluidos en la cadena
-como datos. Así, el ejemplo::
-
-   hola = r"Esta es una larga cadena que contiene\n\
-   varias líneas de texto, tal y como se hace en C."
-
-   print(hola)
-
-...imprimirá::
-
-   Esta es una larga cadena que contiene\n\
-   varias líneas de texto, tal y como se hace en C.
-
 Las cadenas de texto pueden ser concatenadas (pegadas juntas) con el operador
 ``+`` y repetidas con ``*``::
 
-   >>> palabra = 'Ayuda' + 'A'
-   >>> palabra
-   'AyudaA'
-   >>> '<' + palabra*5 + '>'
-   '<AyudaAAyudaAAyudaAAyudaAAyudaA>'
+   >>> # 3 veces 'un', seguido de 'ium'
+   >>> 3 * 'un' + 'ium'
+   'unununium'
 
-Dos cadenas de texto juntas son automáticamente concatenadas; la primer línea
-del ejemplo anterior podría haber sido escrita ``palabra = 'Ayuda' 'A'``; esto
-solo funciona con dos literales, no con expresiones arbitrarias::
+Dos o más *cadenas literales* (aquellas encerradas entre comillas) una al lado
+de la otra son automáticamente concatenadas::
 
-   >>> 'cad' 'ena'                   #  <-  Esto es correcto
-   'cadena'
-   >>> 'cad'.strip() + 'ena'   #  <-  Esto es correcto
-   'cadena'
-   >>> 'cad'.strip() 'ena'     #  <-  Esto no es correcto
-   Traceback (most recent call last):
-   ...
+   >>> 'Py' 'thon'
+   'Python'
+
+Esto solo funciona con dos literales, no con variables ni expresiones::
+
+   >>> prefix = 'Py'
+   >>> prefix 'thon'  # no se puede concatenar una viariable y una cadena literal
+     ...
+   SyntaxError: invalid syntax
+   >>> ('un' * 3) 'ium'
+     ...
    SyntaxError: invalid syntax
 
-Las cadenas de texto se pueden indexar; como en C, el primer carácter de la
-cadena tiene el índice 0.  No hay un tipo de dato para los caracteres; un
-carácter es simplemente una cadena de longitud uno.  Como en el lenguaje
-de programación Icon, se pueden especificar subcadenas con la *notación de
-rebanadas*: dos índices separados por dos puntos. ::
+Si querés concatenar variables o una variable con un literal, usá ``+``::
 
-   >>> palabra[4]
-   'a'
-   >>> palabra[0:2]
-   'Ay'
-   >>> palabra[2:4]
-   'ud'
+   >>> prefix + 'thon'
+   'Python'
+
+Esta característica es particularmente útil cuando querés separar cadenadas largas::
+
+   >>> texto = ('Poné muchas cadenas dentro de paréntesis '
+                'para que ellas sean unidas juntas.')
+   >>> texto
+   'Poné muchas cadenas dentro de paréntesis para que ellas sean unidas juntas.'
+   
+Las cadenas de texto se pueden *indexar* (subíndices), el primer carácter de la
+cadena tiene el índice 0.  No hay un tipo de dato para los caracteres; un
+carácter es simplemente una cadena de longitud uno::
+
+   >>> palabra = 'Python'
+   >>> palabra[0]  # caracter en la posición 0
+   'P'
+   >>> palabra[5]  # caracter en la posición 5
+   'n'
+
+Los índices quizás sean números negativos, para empezar a contar desde la dereche::
+
+   >>> palabra[-1]  # último caracter
+   'n'
+   >>> palabra[-2]  # ante último caracter
+   'o'
+   >>> palabra[-6]
+   'P'
+
+Nota que -0 es lo mismo que 0, los índice negativos comienzan desde -1.
+
+Además de los índices, las *rebanadas* también están soportadas. Mientras que
+los índices son usados para obtener caracteres individuales, las *rebanadas* te
+permiten obtener sub-cadenas::
+
+   >>> palabra[0:2]  # caracteres desde la posición 0 (incluída) hasta la 2 (excluída)
+   'Py'
+   >>> palabra[2:5]  # caracteres desde la posición 2 (incluída) hasta la 5 (excluída)
+   'tho'
+
+
+Nota como el primero es siempre incluído, y que el último es siempre excluído.
+Esto asegura que ``s[:i] + s[i:]`` siempre sea igual a ``s``::
+
+   >>> palabra[:2] + palabra[2:]
+   'Python'
+   >>> palabra[:4] + palabra[4:]
+   'Python'
 
 Los índices de las rebanadas tienen valores por defecto útiles; el valor por
 defecto para el primer índice es cero, el valor por defecto para el segundo
 índice es la longitud de la cadena a rebanar. ::
 
-   >>> palabra[:2]    # Los primeros dos caracteres
-   'Ay'
-   >>> palabra[2:]    # Todo menos los primeros dos caracteres
-   'udaA'
-
-A diferencia de las cadenas de texto en C, en Python no pueden ser
-modificadas.  Intentar asignar a una posición de la cadena es un error::
-
-   >>> palabra[0] = 'x'
-   Traceback (most recent call last):
-   ...
-   TypeError: 'str' object does not support item assignment
-   >>> palabra[:1] = 'Mas'
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
-   TypeError: 'str' object does not support item assignment
-
-Sin embargo, crear una nueva cadena con contenido combinado es fácil y
-eficiente::
-
-   >>> 'x' + palabra[1:]
-   'xyudaA'
-   >>> 'Mas' + palabra[5]
-   'MasA'
-
-Algo útil de las operaciones de rebanada: ``s[:i] + s[i:]`` es ``s``. ::
-
-   >>> palabra[:2] + palabra[2:]
-   'AyudaA'
-   >>> palabra[:3] + palabra[3:]
-   'AyudaA'
-
-Los índices degenerados en las rebanadas son manejados bien: un índice
-muy largo es reemplazado por la longitud de la cadena, un límite superior más
-chico que el límite menor retorna una cadena vacía. ::
-
-   >>> palabra[1:100]
-   'yudaA'
-   >>> palabra[10:]
-   ''
-   >>> palabra[2:1]
-   ''
-
-Los índices pueden ser números negativos, para empezar a contar desde la
-derecha. Por ejemplo::
-
-   >>> palabra[-1]     # El último caracter
-   'A'
-   >>> palabra[-2]     # El penúltimo caracter
-   'a'
-   >>> palabra[-2:]    # Los últimos dos caracteres
-   'aA'
-   >>> palabra[:-2]    # Todo menos los últimos dos caracteres
-   'Ayud'
-
-Pero notá que -0 es en realidad lo mismo que 0, ¡por lo que no cuenta desde
-la derecha! ::
-
-   >>> palabra[-0]     # (ya que -0 es igual a 0)
-   'A'
-
-Los índices negativos fuera de rango son truncados, pero esto no funciona para
-índices de un solo elemento (no rebanada)::
-
-   >>> palabra[-100:]
-   'AyudaA'
-   >>> palabra[-10]    # error
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
-   IndexError: string index out of range
+   >>> palabra[:2]  # caracteres desde el principio hasta la posición 2 (excluída)
+   'Py'
+   >>> palabra[4:]  # caracterrs desde la posición 4 (incluída) hasta el final
+   'on'
+   >>> palabra[-2:] # caracteres desde la ante-última (incluída) hasta el final
+   'on'
 
 Una forma de recordar cómo funcionan las rebanadas es pensar en los índices
 como puntos *entre* caracteres, con el punto a la izquierda del primer carácter
@@ -375,7 +287,7 @@ numerado en 0.  Luego, el punto a la derecha del último carácter de una cadena
 de *n* caracteres tienen índice *n*, por ejemplo::
 
     +---+---+---+---+---+---+
-    | A | y | u | d | a | A |
+    | P | y | t | h | o | n |
     +---+---+---+---+---+---+
     0   1   2   3   4   5   6
    -6  -5  -4  -3  -2  -1
@@ -388,6 +300,38 @@ respectivamente.
 Para índices no negativos, la longitud de la rebanada es la diferencia de los
 índices, si ambos entran en los límites. Por ejemplo, la longitud de
 ``palabra[1:3]`` es 2.
+
+Intentar usar un índice que es muy grande resultará en un error::
+
+   >>> palabra[42]  # la palabra solo tiene 7 caracteres
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   IndexError: string index out of range
+
+Sin embargo, índices fuera de rango en rebanadas son manejados
+satisfactoriamente::
+
+   >>> palabra[4:42]
+   'on'
+   >>> palabra[42:]
+   ''
+
+Las cadenas de Python no pueden ser modificadas -- son `immutable`. Por
+eso, asignar a una posición indexada de la cadena resulta en un error::
+
+   >>> palabra[0] = 'J'
+     ...
+   TypeError: 'str' object does not support item assignment
+   >>> palabra[2:] = 'py'
+     ...
+   TypeError: 'str' object does not support item assignment
+
+Si necesitás una cadena diferente, deberías crear una nueva::
+
+   >>> 'J' + palabra[1:]
+   'Jython'
+   >>> palabra[:2] + 'py'
+   'Pypy'
 
 La función incorporada :func:`len` devuelve la longitud de una cadena
 de texto::
@@ -417,52 +361,6 @@ de texto::
       izquierda del operador ``%``.
 
 
-.. _tut-unicodestrings:
-
-Sobre Unicode
--------------
-
-.. sectionauthor:: Marc-André Lemburg <mal@lemburg.com>
-
-Desde la versión 3.0 de Python todas las cadenas soportan Unicode
-(ver http://www.unicode.org/).
-
-Unicode tiene la ventaja de tener un número ordinal para cada carácter
-usado tanto en textos modernos como antiguos.  Previamente, había sólo
-256 ordinales posibles para los caracteres en scripts.  Los textos
-eran típicamente asociados a un código que relaciona los ordinales a caracteres
-en scripts.  Esto lleva a mucha confusión, especialmente al internacionalizar
-software.  Unicode resuelve estos problemas definiendo una sola codificación
-para todos los scripts.
-
-Si querés incluir caracteres especiales en una cadena, podés hacerlo
-usando una forma de escapar caracteres Unicode provista por Python.  El
-siguiente ejemplo muestra cómo::
-
-   >>> 'Hola\u0020Mundo!'
-   'Hola Mundo!'
-
-La secuencia de escape ``\u0020`` indica que se debe insertar el carácter
-Unicode con valor ordinal 0x0020 (el espacio en blanco) en la posición dada.
-
-Otros caracteres son interpretados usando su respectivo valor ordinal como
-ordinales Unicode. Si tenés cadenas de texto literales en la codificación
-estándar Latin-1 que es muy usada en países occidentales, encontrarás
-conveniente que los primeros 256 caracteres de Unicode son los mismos primeros
-256 caracteres de Latin-1.
-
-Además de estas codificaciones estándar, Python provee muchas más formas de
-crear cadenas de texto Unicode en las bases de codificaciones conocidas.
-
-Para convertir una cadena de texto en secuencia de bytes utilizando un
-código en particular, los objetos string tienen un método :func:`encode`
-que toma un argumento, el nombre del código. Se prefieren los nombres
-en minúsculas para los nombres de los códigos. ::
-
-   >>> "Äpfel".encode('utf-8')
-   b'\xc3\x84pfel'
-
-
 .. _tut-lists:
 
 Listas
@@ -470,98 +368,91 @@ Listas
 
 Python tiene varios tipos de datos *compuestos*, usados para agrupar otros
 valores.  El más versátil es la *lista*, la cual puede ser escrita como una
-lista de valores separados por coma (ítems) entre corchetes.  No es necesario
-que los ítems de una lista tengan todos el mismo tipo. ::
+lista de valores separados por coma (ítems) entre corchetes.  Las listas pueden
+contener ítems de diferentes tipos, pero usualmente los ítems son del mismo
+tipo::
 
-   >>> a = ['pan', 'huevos', 100, 1234]
-   >>> a
-   ['pan', 'huevos', 100, 1234]
+   >>> cuadrados = [1, 2, 4, 9, 16, 25]
+   >>> cuadrados
+   [1, 2, 4, 9, 16, 25]
 
-Como los índices de las cadenas de texto, los índices de las listas comienzan
-en 0, y las listas pueden ser rebanadas, concatenadas y todo lo demás::
+Como las cadenas de caracteres (y todos los otros tipos `sequence`
+integrados), las listas pueden ser indexadas y rebanadas::
 
-   >>> a[0]
-   'pan'
-   >>> a[3]
-   1234
-   >>> a[-2]
-   100
-   >>> a[1:-1]
-   ['huevos', 100]
-   >>> a[:2] + ['carne', 2*2]
-   ['pan', 'huevos', 'carne', 4]
-   >>> 3*a[:3] + ['Boo!']
-   ['pan', 'huevos', 100, 'pan', 'huevos', 100, 'pan', 'huevos', 100, 'Boo!']
+   >>> cuadrados[0]  # índices retornan un ítem
+   1
+   >>> cuadrados[-1]
+   25
+   >>> cuadrados[-3:]  # rebanadas retornan una nueva lista
+   [9, 16, 25]
 
 Todas las operaciones de rebanado devuelven una nueva lista conteniendo los
 elementos pedidos.  Esto significa que la siguiente rebanada devuelve una copia
-superficial de la lista *a*::
+superficial de la lista::
 
-   >>> a[:]
-   ['pan', 'huevos', 100, 1234]
+   >>> cuadrados[:]
+   [1, 2, 4, 9, 16, 25]
 
-A diferencia de las cadenas de texto, que son *inmutables*, es posible cambiar
-un elemento individual de una lista::
+Las listas también soportan operaciones como concatenación::
 
-   >>> a
-   ['pan', 'huevos', 100, 1234]
-   >>> a[2] = a[2] + 23
-   >>> a
-   ['pan', 'huevos', 123, 1234]
+   >>> cuadrados + [36, 49, 64, 81, 100]
+   [1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+A diferencia de las cadenas de texto, que son `immutable`, las listas son
+un tipo `mutable`, es posible cambiar un su contenido::
+
+    >>> cubos = [1, 8, 27, 65, 125]  # hay algo mal aquí
+    >>> 4 ** 3  # el cubo de 4 es 64, no 65!
+    64
+    >>> cubos[3] = 64  # reemplazar el valor incorrecto
+    >>> cubos
+    [1, 8, 27, 64, 125]
+
+También podés agregar nuevos ítems al final de la lista, usando el *método*
+:meth:`~list.append` (vamos a ver más sobre los métodos luego)::
+
+   >>> cubos.append(216)  # agregar el cubo de 6
+   >>> cubos.append(7 ** 3)  # y el cubo de 7
+   >>> cubos
+   [1, 8, 27, 64, 125, 216, 343]
 
 También es posible asignar a una rebanada, y esto incluso puede cambiar la
 longitud de la lista o vaciarla totalmente::
 
-   >>> # Reemplazar algunos elementos:
-   ... a[0:2] = [1, 12]
-   >>> a
-   [1, 12, 123, 1234]
-   >>> # Borrar algunos:
-   ... a[0:2] = []
-   >>> a
-   [123, 1234]
-   >>> # Insertar algunos:
-   ... a[1:1] = ['bruja', 'xyzzy']
-   >>> a
-   [123, 'bruja', 'xyzzy', 1234]
-   >>> # Insertar (una copia de) la misma lista al principio
-   >>> a[:0] = a
-   >>> a
-   [123, 'bruja', 'xyzzy', 1234, 123, 'bruja', 'xyzzy', 1234]
-   >>> # Vaciar la lista: reemplazar todos los items con una lista vacía
-   >>> a[:] = []
-   >>> a
+   >>> letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+   >>> letras
+   ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+   >>> # reemplazar algunos valores
+   >>> letras[2:5] = ['C', 'D', 'E']
+   >>> letras
+   ['a', 'b', 'C', 'D', 'E', 'f', 'g']
+   >>> # ahora borrarlas
+   >>> letras[2:5] = []
+   >>> letras
+   ['a', 'b', 'f', 'g']
+   >>> # borrar la lista reemplzando todos los elementos por una lista vacía
+   >>> letras[:] = []
+   >>> letras
    []
 
 La función predefinida :func:`len` también sirve para las listas:
 
-   >>> a = ['a', 'b', 'c', 'd']
-   >>> len(a)
+   >>> letras = ['a', 'b', 'c', 'd']
+   >>> len(letras)
    4
 
 Es posible anidar listas (crear listas que contengan otras listas), por
 ejemplo::
 
-   >>> q = [2, 3]
-   >>> p = [1, q, 4]
-   >>> len(p)
-   3
-   >>> p[1]
-   [2, 3]
-   >>> p[1][0]
-   2
-
-Podés agregar algo al final de la lista::
-
-   >>> p[1].append('extra')
-   >>> p
-   [1, [2, 3, 'extra'], 4]
-   >>> q
-   [2, 3, 'extra']
-
-Notá que en el último ejemplo, ``p[1]`` y ``q`` ¡realmente hacen referencia
-al mismo objeto!  Volveremos a la *semántica de los objetos* más adelante.
-
+   >>> a = ['a', 'b', 'c']
+   >>> n = [1, 2, 3]
+   >>> x = [a, n]
+   >>> x
+   [['a', 'b', 'c'], [1, 2, 3]]
+   >>> x[0]
+   ['a', 'b', 'c']
+   >>> x[0][1]
+   'b'
 
 .. _tut-firststeps:
 
@@ -636,3 +527,15 @@ Este ejemplo introduce varias características nuevas.
      ...     a, b = b, a+b
      ...
      1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,
+
+.. rubric:: Footnotes
+
+.. [#] Debido a que ``**`` tiene mayor precedencia que ``-``, ``-3**2`` será
+   interpretado como ``-(3**2)`` y eso da como resultado ``-9``. Para evitar
+   esto y obtener 9, podés usar ``(-3)**2``.
+
+.. [#] A diferencia de otros lenguajes, caracteres especiales como ``\n`` tiene
+   el mismo significado con simple (``'...'``)  y doble (``"..."``) comillas. La
+   única diferencia entre las dos es que dentro de las comillas simples no tenés
+   la necesitada de escapar ``"`` (pero tenés que escapar ``\'``) y viceversa.
+

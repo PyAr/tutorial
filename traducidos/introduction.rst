@@ -5,7 +5,7 @@ Una introducción informal a Python
 **********************************
 
 En los siguientes ejemplos, las entradas y salidas son distinguidas por la
-presencia o ausencia de los prompts (``>>>`` and ``...``): para
+presencia o ausencia de los prompts (``>>>`` y ``...``): para
 reproducir los ejemplos, debés escribir todo lo que esté después del prompt,
 cuando este aparezca; las líneas que no comiencen con el prompt son las salidas
 del intérprete.  Tené en cuenta que el prompt secundario que aparece por si
@@ -13,10 +13,10 @@ sólo en una línea de un ejemplo significa que debés escribir una línea en
 blanco; esto es usado para terminar un comando multilínea.
 
 Muchos de los ejemplos de este manual, incluso aquellos ingresados en el prompt
-interactivo, incluyen comentarios.  Los comentarios en Python comienzan con
-el carácter numeral, ``#``, y se extienden hasta el final físico de la
-línea.  Un comentario quizás aparezca al comienzo de la línea o seguidos
-de espacios blancos o código, pero sin una cadena de caracteres.  Un carácter
+interactivo, incluyen comentarios.  Los comentarios en Python comienzan con el
+carácter numeral, ``#``, y se extienden hasta el final físico de la línea.  Un
+comentario quizás aparezca al comienzo de la línea o seguidos de espacios
+blancos o código, pero no dentro de una cadena de caracteres.  Un carácter
 numeral dentro de una cadena de caracteres es sólo un carácter numeral.  Ya que
 los comentarios son para aclarar código y no son interpretados por Python,
 pueden omitirse cuando se escriben ejemplos.
@@ -42,7 +42,7 @@ esperá por el prompt primario, ``>>>``. (No debería demorar tanto).
 Números
 -------
 
-El intérprete actúa como una simple calculadora; podés ingrsar una expresión y
+El intérprete actúa como una simple calculadora; podés ingresar una expresión y
 este escribirá los valores.  La sintaxis es sencilla: los operadores ``+``,
 ``-``, ``*`` y ``/`` funcionan como en la mayoría de los lenguajes (por
 ejemplo, Pascal o C); los paréntesis (``()``) pueden ser usados para agrupar.

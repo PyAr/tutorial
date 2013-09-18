@@ -11,7 +11,7 @@ Invocando al intérprete
 =======================
 
 Por lo general, el intérprete de Python se instala en
-file:`/usr/local/bin/python3.4` en las máquinas dónde está disponible; poner
+:file:`/usr/local/bin/python3.4` en las máquinas dónde está disponible; poner
 :file:`/usr/local/bin` en el camino de búsqueda de tu intérprete de comandos
 Unix hace posible iniciarlo ingresando la orden:
 
@@ -158,7 +158,7 @@ poniendo la linea::
 ...al principio del script y dándole al archivo permisos de ejecución
 (asumiendo que el intérprete están en la variable de entorno :envvar:`PATH` del
 usuario).  ``#!`` deben ser los primeros dos caracteres del archivo.  En
-algunas plataformas, la primer línea debe terminar al estilo Unix (``'\n'``),
+algunas plataformas, la primera línea debe terminar al estilo Unix (``'\n'``),
 no como en Windows (``'\r\n'``).  Notá que el caracter numeral
 ``'#'`` se usa en Python para comenzar un comentario.
 
@@ -224,7 +224,7 @@ archivo que contenga tus comandos de inicio.  Esto es similar al archivo
    de las personas no usan Python interactivamente de formas no triviales.
 
 Este archivo es solo leído en las sesiones interactivas del intérprete, no
-cuando Python lee comandos de un script ni cuando file:`/dev/tty` se explicita
+cuando Python lee comandos de un script ni cuando :file:`/dev/tty` se explicita
 como una fuente de comandos (que de otro modo se comporta como una sesión
 interactiva).  Se ejecuta en el mismo espacio de nombres en el que los comandos
 interactivos se ejecutan, entonces los objetos que define o importa pueden ser
@@ -271,7 +271,7 @@ la documentación del módulo :mod:`site`.
 .. rubric:: Footnotes
 
 .. [#] En Unix, el intérprete de Python 3.x no se instala por default con el
-   ejecutable llamdo ``python`` para que no conflictúe con un ejecutable de
+   ejecutable llamado ``python`` para que no conflictúe con un ejecutable de
    Python 2.x que esté instalado simultaneamente.
 
 .. [#] Un problema con el paquete GNU Readline puede evitar que funcione.

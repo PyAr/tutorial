@@ -31,14 +31,14 @@ disponible para sistemas operativos Windows, Mac OS X y Unix, y te ayudará a
 realizar tu tarea más velozmente.
 
 Python es fácil de usar, pero es un lenguaje de programación de verdad,
-ofreciendo mucho mucho mayor estructura y soporte para programas grandes que lo
-que lo que pueden ofrecer los scripts de Unix o archivos por lotes.  Por otro
-lado, Python ofrece mucho más chequeo de error que C, y siendo un *lenguaje de
-muy alto nivel*, tiene tipos de datos de alto nivel incorporados como
-arreglos de tamaño flexible y diccionarios.  Debido a sus tipos de datos más
-generales Python puede aplicarse a un dominio de problemas mayor que Awk o
-incluso Perl, y aún así muchas cosas siguen siendo al menos igual de fácil
-en Python que en esos lenguajes.
+ofreciendo mucha más estructura y soporte para programas grandes de lo que
+pueden ofrecer los scripts de Unix o archivos por lotes.  Por otro lado, Python
+ofrece mucho más chequeo de error que C, y siendo un *lenguaje de muy alto
+nivel*, tiene tipos de datos de alto nivel incorporados como arreglos de tamaño
+flexible y diccionarios.  Debido a sus tipos de datos más generales Python
+puede aplicarse a un dominio de problemas mayor que Awk o incluso Perl, y aún
+así muchas cosas siguen siendo al menos igual de fácil en Python que en esos
+lenguajes.
 
 Python te permite separar tu programa en módulos que pueden reusarse en otros
 programas en Python.  Viene con una gran colección de módulos estándar que

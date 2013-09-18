@@ -223,11 +223,6 @@ esta operación de formateo.  Por ejemplo::
    >>> print('El valor de PI es aproximadamente %5.3f.' % math.pi)
    El valor de PI es aproximadamente 3.142.
 
-Ya que :meth:`str.format` es bastante nuevo, un montón de código Python todavía
-usa el operador ``%``.  Sin embargo, ya que este viejo estilo de formateo será
-eventualmente eliminado del lenguaje, en general debería usarse
-:meth:`str.format`.
-
 Podés encontrar más información en la sección :ref:`old-string-formatting`.
 
 
@@ -307,18 +302,8 @@ por ``'\n'``, una cadena conteniendo sólo un único fin de linea. ::
    >>> f.readline()
    ''
 
-``f.readlines()`` devuelve una lista conteniendo todos las lineas de datos en
-el archivo.  Si se da un parámetro opcional *size*, lee esa cantidad de
-bytes del archivo y lo suficientemente más como para completar una linea, y
-devuelve las lineas de eso.  Esto se usa frecuentemente para permitir una
-lectura por lineas de forma eficiente en archivos grandes, sin tener que cargar
-el archivo entero en memoria.  Sólo lineas completas serán devueltas. ::
-
-   >>> f.readlines()
-   ['Esta es la primer linea del archivo.\n', 'Segunda linea del archivo\n']
-
-Una forma alternativa a leer lineas es iterar sobre el objeto archivo.  Esto es
-eficiente en memoria, rápido, y conduce a un código más simple::
+Para leer líneas de un archivo, podés iterar sobre el objeto archivo. Esto
+es eficiente en memoria, rápido, y conduce a un código más simple::
 
    >>> for linea in f:
    ...     print(linea, end='')
@@ -326,9 +311,8 @@ eficiente en memoria, rápido, y conduce a un código más simple::
    Esta es la primer linea del archivo
    Segunda linea del archivo
 
-El enfoque alternativo es mucho más simple pero no permite un control fino.
-Como los dos enfoques manejan diferente el buffer de lineas, no deberían
-mezclarse.
+Si querés leer todas las líneas de un archivo en una lista también podés usar
+``list(f)`` o ``f.readlines()``.
 
 ``f.write(cadena)`` escribe el contenido de la *cadena* al archivo, devolviendo
 la cantidad de caracteres escritos. ::
@@ -344,14 +328,17 @@ cadena::
    >>> f.write(s)
    20
 
-``f.tell()`` devuelve un entero que indica la posición actual en el archivo,
-medida en bytes desde el comienzo del archivo.  Para cambiar la posición usá
-``f.seek(desplazamiento, desde_donde)``.  La posición es calculada agregando
-el *desplazamiento* a un punto de referencia; el punto de referencia se
-selecciona del argumento *desde_donde*.  Un valor *desde_donde* de 0 mide desde
-el comienzo del archivo, 1 usa la posición actual del archivo, y 2 usa el fin
-del archivo como punto de referencia.  *desde_donde* puede omitirse, el default
-es 0, usando el comienzo del archivo como punto de referencia. ::
+``f.tell()`` devuelve un entero que indica la posición actual en el archivo
+representada como número de bytes desde el comienzo del archivo en `modo
+binario` y un número opaco en `modo texto`.
+
+Para cambiar la posición del objeto archivo, usá ``f.seek(desplazamiento,
+desde_donde)``.  La posición es calculada agregando el *desplazamiento* a un
+punto de referencia; el punto de referencia se selecciona del argumento
+*desde_donde*.  Un valor *desde_donde* de 0 mide desde el comienzo del archivo,
+1 usa la posición actual del archivo, y 2 usa el fin del archivo como punto de
+referencia.  *desde_donde* puede omitirse, el default es 0, usando el comienzo
+del archivo como punto de referencia. ::
 
    >>> f = open('archivodetrabajo', 'rb+')
    >>> f.write(b'0123456789abcdef')
@@ -364,9 +351,11 @@ es 0, usando el comienzo del archivo como punto de referencia. ::
    >>> f.read(1)
    b'd'
 
-En los archivos de texto (aquellos que se abrieron sin una ``b`` en el
-modo), se permiten solamente desplazamientos con ``seek`` relativos al
-comienzo (con la excepción de ir justo al final con ``seek(0, 2)``).
+En los archivos de texto (aquellos que se abrieron sin una ``b`` en el modo),
+se permiten solamente desplazamientos con ``seek`` relativos al comienzo (con
+la excepción de ir justo al final con ``seek(0, 2)``) y los únicos valores de
+*desplazamiento* válidos son aquellos retornados por ``f.tell()``, o cero.
+Cualquier otro valor de *desplazamiento* produce un comportamiento indefinido.
 
 Cuando hayas terminado con un archivo, llamá a ``f.close()`` para cerrarlo
 y liberar cualquier recurso del sistema tomado por el archivo abierto.  Luego

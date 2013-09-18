@@ -23,6 +23,7 @@ La referencia de la biblioteca
 .. _typesmapping:
 .. _typesseq:
 .. _textseq:
+.. _typesnumeric:
 
 Tipos integrados
 ----------------
@@ -39,7 +40,8 @@ Tipos integrados
   <http://docs.python.org/3/library/stdtypes.html#mapping-types-dict>`__
 * `Tipos de secuencia
   <http://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range>`__
-
+* `Tipos de números complejos
+  <http://docs.python.org/3.4/library/stdtypes.html#typesnumeric>`__
 
 .. _bltin-exceptions:
 

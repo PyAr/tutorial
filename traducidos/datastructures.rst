@@ -57,6 +57,11 @@ de los objetos lista:
    Biblioteca de Python.)
 
 
+.. method:: list.clear()
+   :noindex:
+
+   Quita todos los elementos de la lista. Equivalente a ``del a[:]``.
+
 .. method:: list.index(x)
    :noindex:
 
@@ -79,6 +84,11 @@ de los objetos lista:
    :noindex:
 
    Invierte los elementos de la lista in situ.
+
+.. method:: list.copy()
+   :noindex:
+
+   Devuelve una copia superficial de la lista. Equivalente a ``a[:]``.
 
 Un ejemplo que usa la mayoría de los métodos de lista::
 

@@ -72,10 +72,11 @@ permite una forma directa de formatear números con separadores de grupo::
 Plantillas
 ==========
 
-El módulo :mod:`string` incluye una clase versátil :class:`Template`
-(plantilla) con una sintaxis simplificada apta para ser editada por usuarios
-finales.  Esto permite que los usuarios personalicen sus aplicaciones sin
-necesidad de modificar la aplicación en sí.
+El módulo :mod:`string` incluye una clase versátil
+:class:`~string.Template` (plantilla) con una sintaxis simplificada
+apta para ser editada por usuarios finales.  Esto permite que los
+usuarios personalicen sus aplicaciones sin necesidad de modificar la
+aplicación en sí.
 
 El formato usa marcadores cuyos nombres se forman con ``$`` seguido de
 identificadores Python válidos (caracteres alfanuméricos y guión de subrayado).
@@ -87,10 +88,11 @@ sin necesidad de dejar espacios en blanco. ``$$`` genera un ``$``::
    >>> t.substitute(village='Nottingham', cause='the ditch fund')
    'Nottinghamfolk send $10 to the ditch fund.'
 
-El método :meth:`substitute` lanza :exc:`KeyError` cuando no se suministra
-ningún valor para un marcador mediante un diccionario o argumento por nombre.
-Para algunas aplicaciones los datos suministrados por el usuario puede ser
-incompletos, y el método :meth:`safe_substitute` puede ser más apropiado: deja
+El método :meth:`~string.Temaplte.substitute` lanza :exc:`KeyError`
+cuando no se suministra ningún valor para un marcador mediante un
+diccionario o argumento por nombre.  Para algunas aplicaciones los
+datos suministrados por el usuario puede ser incompletos, y el método
+:meth:`~string.Template.safe_substitute` puede ser más apropiado: deja
 los marcadores inalterados cuando hay datos faltantes::
 
    >>> t = Template('Return the $item to $owner.')
@@ -137,13 +139,14 @@ y reportes web en HTML.
 Trabajar con registros estructurados conteniendo datos binarios
 ===============================================================
 
-El módulo :mod:`struct` provee las funciones :func:`pack` y :func:`unpack`
-para trabajar con formatos de registros binarios de longitud variable.
-El siguiente ejemplo muestra cómo recorrer la información de encabezado
-en un archivo ZIP sin usar el módulo :mod:`zipfile`.  Los códigos ``"H"``
-e ``"I"`` representan números sin signo de dos y cuatro bytes
-respectivamente.  El ``"<"`` indica que son de tamaño estándar y los
-bytes tienen ordenamiento `little-endian`::
+El módulo :mod:`struct` provee las funciones :func:`~struct.pack` y
+:func:`~struct.unpack` para trabajar con formatos de registros
+binarios de longitud variable.  El siguiente ejemplo muestra cómo
+recorrer la información de encabezado en un archivo ZIP sin usar el
+módulo :mod:`zipfile`.  Los códigos ``"H"`` e ``"I"`` representan
+números sin signo de dos y cuatro bytes respectivamente.  El ``"<"``
+indica que son de tamaño estándar y los bytes tienen ordenamiento
+`little-endian`::
 
    import struct
 
@@ -210,7 +213,7 @@ Aún cuando esas herramientas son poderosas, pequeños errores de diseño pueden
 resultar en problemas difíciles de reproducir.  La forma preferida de coordinar
 tareas es concentrar todos los accesos a un recurso en un único hilo y después
 usar el módulo :mod:`queue` para alimentar dicho hilo con pedidos desde otros
-hilos.  Las aplicaciones que usan objetos :class:`Queue` para
+hilos.  Las aplicaciones que usan objetos :class:`~queue.Queue` para
 comunicación y coordinación entre hilos son más fáciles de diseñar,
 más legibles, y más confiables.
 
@@ -240,13 +243,15 @@ archivo o a ``sys.stderr``::
    ERROR:root:Ocurrió un error
    CRITICAL:root:Error crítico -- cerrando
 
-De forma predeterminada, los mensajes de depuración e informativos se suprimen,
-y la salida se envía al error estándar.  Otras opciones de salida incluyen
-mensajes de ruteo a través de correo electrónico, datagramas, sockets, o un
-servidor HTTP.  Nuevos filtros pueden seleccionar diferentes rutas basadas en
-la prioridad del mensaje: :const:`DEBUG`, :const:`INFO`,
-:const:`WARNING`, :const:`ERROR`, and :const:`CRITICAL`
-(Depuración, Informativo, Atención, Error y Crítico respectivamente)
+De forma predeterminada, los mensajes de depuración e informativos se
+suprimen, y la salida se envía al error estándar.  Otras opciones de
+salida incluyen mensajes de ruteo a través de correo electrónico,
+datagramas, sockets, o un servidor HTTP.  Nuevos filtros pueden
+seleccionar diferentes rutas basadas en la prioridad del mensaje:
+:const:`~logging.DEBUG`, :const:`~logging.INFO`,
+:const:`~logging.WARNING`, :const:`~logging.ERROR`, and
+:const:`~logging.CRITICAL` (Depuración, Informativo, Atención, Error y
+Crítico respectivamente)
 
 El sistema de registro puede configurarse directamente desde Python
 o puede cargarse la configuración desde un archivo editable por el usuario
@@ -305,11 +310,12 @@ Muchas necesidades de estructuras de datos pueden ser satisfechas con el tipo
 integrado lista.  Sin embargo, a veces se hacen necesarias implementaciones
 alternativas con rendimientos distintos.
 
-El módulo :mod:`array` provee un objeto :class:`array()` (vector) que es como
-una lista que almacena sólo datos homogéneos y de una manera más compacta.  Los
-ejemplos a continuación muestran un vector de números guardados como dos
-números binarios sin signo de dos bytes (código de tipo ``"H"``) en lugar de
-los 16 bytes por elemento habituales en listas de objetos int de Python::
+El módulo :mod:`array` provee un objeto :class:`~array.array()`
+(vector) que es como una lista que almacena sólo datos homogéneos y de
+una manera más compacta.  Los ejemplos a continuación muestran un
+vector de números guardados como dos números binarios sin signo de dos
+bytes (código de tipo ``"H"``) en lugar de los 16 bytes por elemento
+habituales en listas de objetos int de Python::
 
    >>> from array import array
    >>> a = array('H', [4000, 10, 700, 22222])
@@ -318,10 +324,11 @@ los 16 bytes por elemento habituales en listas de objetos int de Python::
    >>> a[1:3]
    array('H', [10, 700])
 
-El módulo :mod:`collections` provee un objeto :class:`deque()` que es como una
-lista más rápida para agregar y quitar elementos por el lado izquierdo pero
-con búsquedas más lentas por el medio.  Estos objetos son adecuados para
-implementar colas y árboles de búsqueda a lo ancho::
+El módulo :mod:`collections` provee un objeto
+:class:`~collections.deque()` que es como una lista más rápida para
+agregar y quitar elementos por el lado izquierdo pero con búsquedas
+más lentas por el medio.  Estos objetos son adecuados para implementar
+colas y árboles de búsqueda a lo ancho::
 
    >>> from collections import deque
    >>> d = deque(["tarea1", "tarea2", "tarea3"])
@@ -367,10 +374,10 @@ no quieren hacer un orden completo de la lista::
 Aritmética de punto flotante decimal
 ====================================
 
-El módulo :mod:`decimal` provee un tipo de dato :class:`Decimal` para soportar
-aritmética de punto flotante decimal.  Comparado con :class:`float`, la
-implementación de punto flotante binario incluida, la clase es muy útil
-especialmente para:
+El módulo :mod:`decimal` provee un tipo de dato
+:class:`~decimal.Decimal` para soportar aritmética de punto flotante
+decimal.  Comparado con :class:`float`, la implementación de punto
+flotante binario incluida, la clase es muy útil especialmente para:
 
 * aplicaciones financieras y para cualquier uso que requiera una
   representación decimal exacta,
@@ -391,14 +398,16 @@ al centavo más próximo::
    >>> round(0.70 * 1.05, 2)
    0.73
 
-El resultado con :class:`Decimal` conserva un cero al final, calculando
-automáticamente cuatro cifras significativas a partir de los multiplicandos con
-dos cifras significativas.  Decimal reproduce la matemática como se la hace a
-mano, y evita problemas que pueden surgir cuando el punto flotante binario no
-puede representar exactamente cantidades decimales.
+El resultado con :class:`~decimal.Decimal` conserva un cero al final,
+calculando automáticamente cuatro cifras significativas a partir de
+los multiplicandos con dos cifras significativas.  Decimal reproduce
+la matemática como se la hace a mano, y evita problemas que pueden
+surgir cuando el punto flotante binario no puede representar
+exactamente cantidades decimales.
 
-La representación exacta permite a la clase :class:`Decimal` hacer cálculos de
-modulo y pruebas de igualdad que son inadecuadas para punto flotante binario::
+La representación exacta permite a la clase :class:`~decimal.Decimal`
+hacer cálculos de modulo y pruebas de igualdad que son inadecuadas
+para punto flotante binario::
 
    >>> Decimal('1.00') % Decimal('.10')
    Decimal('0.00')

@@ -58,7 +58,7 @@ For example::
 
 The integer numbers (e.g. ``2``, ``4``, ``20``) have type :class:`int`,
 the ones with a fractional part (e.g. ``5.0``, ``1.6``) have type
-:class:`float`.  We will see more about numberic types later in the tutorial.
+:class:`float`.  We will see more about numeric types later in the tutorial.
 
 Division (``/``) always returns a float.  To do :term:`floor division` and
 get an integer result (discarding any fractional result) you can use the ``//``
@@ -74,7 +74,7 @@ operator; to calculate the remainder you can use ``%``::
    >>> 5 * 3 + 2  # result * divisor + remainder
    17
 
-With Python is possible to use the ``**`` operator to calculate powers [#]_::
+With Python, it is possible to use the ``**`` operator to calculate powers [#]_::
 
    >>> 5 ** 2  # 5 squared
    25

@@ -385,12 +385,12 @@ Referencia de la Biblioteca para una guía completa sobre los objetos
 archivo.
 
 
-.. _tut-pickle:
+.. _tut-json:
 
-El módulo :mod:`pickle`
----------------------------
+Guardar datos estructurados con :mod:`json`
+-------------------------------------------
 
-.. index:: module: pickle
+.. index:: module: json
 
 Las cadenas pueden facilmente escribirse y leerse de un archivo.  Los números
 toman algo más de esfuerzo, ya que el método :meth:`read` sólo devuelve
@@ -399,34 +399,58 @@ una cadena como ``'123'`` y devuelve su valor numérico 123.  Sin embargo,
 cuando querés grabar tipos de datos más complejos como listas, diccionarios, o
 instancias de clases, las cosas se ponen más complicadas.
 
-En lugar de tener a los usuarios constantemente escribiendo y debugueando
-código para grabar tipos de datos complicados, Python provee un módulo estándar
-llamado :mod:`pickle`.  Este es un asombroso módulo que puede tomar casi
-cualquier objeto Python (¡incluso algunas formas de código Python!), y
-convertirlo a una representación de cadena; este proceso se llama
-:dfn:`picklear`.  Reconstruir los objetos desde la representación en cadena
-se llama :dfn:`despicklear`.  Entre que se picklea y se despicklea, la
-cadena que representa al objeto puede almacenarse en un archivo, o enviarse
-a una máquina distante por una conexión de red.
+En lugar de tener a los usuarios constantemente escribiendo y
+debugueando código para grabar tipos de datos complicados, Python te
+permite usar formato intercambiable de datos popular llamado `JSON
+(JavaScript Object Notation) +<http://json.org>`_. El módulo estandar
+llamado :mod:`json` puede tomar datos de Python con una jerarquía, y
+convertirlo a representaciones de cadena de caracteres; este proceso
+es llamado :dfn:`serializing`. Reconstruir los datos desde la
+representación de cadena de caracteres es llamado
+:dfn:`deserializing`. Entre serialización y deserialización, la cadena
+de caracteres representando el objeto quizás haya sido guardado en un
+archivo o datos, o enviado a una máquina distante por una conexión de
+red.
 
-Si tenés un objeto ``x``, y un objeto archivo ``f`` que fue abierto para
-escritura, la manera más simple de picklear el objeto toma una sola linea
-de código::
+.. note:: 
 
-   pickle.dump(x, f)
+   El formato JSON es comunmente usado por aplicaciones modernas para
+   permitir intercambiar datos. Muchos programadores están
+   familiarizados con este, lo que lo hace una buena elección por su
+   interoperatividad.
 
-Para despicklear el objeto, si ``f`` es un objeto archivo que fue
-abierto para lectura::
+Si tienes un objeto ``x``, puedes ver su representación JSON con una
+simple línea de código::
 
-   x = pickle.load(f)
+   >>> json.dumps([1, 'simple', 'lista'])
+   '[1, "simple", "lista"]'
 
-(Hay otras variantes de esto, usadas al picklear muchos objetos o cuando no
-querés escribir los datos pickleados a un archivo; consultá la documentación
-completa para :mod:`pickle` en la Referencia de la Biblioteca de Python.)
+Otra variante de la función :func:`~json.dumps`, llamada
+:func:`~json.dump`, simplemente serializa el objeto a un :term:`text
+file`. Así que, si ``f`` es un objeto :term:`text file` abierto para
+escritura, podemos hacer::
 
-:mod:`pickle` es la manera estándar de hacer que los objetos Python puedan
-almacenarse y reusarse por otros programas o por una futura invocación al mismo
-programa; el término técnico de esto es un objeto :dfn:`persistente`.  Ya que
-:mod:`pickle` es tan ampliamente usado, muchos autores que escriben extensiones
-de Python toman el cuidado de asegurarse que los nuevos tipos de datos, como
-matrices, puedan ser adecuadamente pickleados y despickleados.
+   json.dump(x, f)
+
+Para decodificar un objeto nuevamente, si ``f`` es un objeto
+:term:`text file` que fue abierto para lectura::
+
+   x = json.load(x, f)
+
+La simple técnica de serialización puede manejar listas y
+diccionarios, pero serializar instancias de clases arbitrarias en JSON
+requiere un poco de esfuerzo extra. La referencia del módulo
+:mod:`json` contiene una explicación de esto.
+
+.. seealso::
+
+   :mod:`pickle` - el módulo pickle
+
+   Contrariamente a :ref:`JSON <tut-json>`, *pickle* es un protocolo
+   que permite la serialización de arbitrariamente objetos complejos
+   de Python. Por lo tanto, este es específico de Python y no puede
+   ser usado para comunicarse con aplicaciones escritas en otros
+   lenguajes. Es inseguro por defecto: deserializar datos que fueron
+   serializados con pickle desde fuentes inseguras puede ejecutar
+   código arbitrario, si los datos fueron interceptados por un
+   atacante experto.

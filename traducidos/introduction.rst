@@ -77,7 +77,7 @@ fraccional) podés usar el operador ``//``; para calcular el resto podés usar
    >>> 5 * 3 + 2  # resultado * divisor + resto
    17
 
-Con Python es posible usar el operador ``**`` para calcular potencias [#]_::
+Con Python, es posible usar el operador ``**`` para calcular potencias [#]_::
 
 
    >>> 5 ** 2  # 5 al cuadrado

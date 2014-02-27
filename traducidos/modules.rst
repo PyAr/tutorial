@@ -172,10 +172,18 @@ Si no lo encuentra, entonces busca un archivo llamado  :file:`spam.py` en
 una lista de directorios especificada por la variable :data:`sys.path`.
 :data:`sys.path` se inicializa con las siguientes ubicaciones:
 
-* el directorio conteniendo el script (o el directorio actual).
+* el directorio conteniendo el script (o el directorio actual cuando
+  no se especifica un archivo).
 * :envvar:`PYTHONPATH` (una lista de nombres de directorios, con la misma
   sintaxis que la variable de entorno :envvar:`PATH`.
 * el directorio default de la instalación.
+
+.. note::
+   En sistemas de archivos que soportan enlaces simbólicos, el
+   directorio conteniendo el script de entrada es calculado después de
+   que el enlace simbólico sea seguido. En otras palabras, el
+   directorio conteniendo el enlace simbólico **no** es agregado al
+   módulo de busca del path.
 
 Luego de la inicialización, los programas Python pueden modificar
 :data:`sys.path`. El directorio que contiene el script que se está
@@ -189,64 +197,47 @@ Mirá la sección :ref:`tut-standardmodules` para más información.
 Archivos "compilados" de Python
 -------------------------------
 
-Como una importante aceleración del tiempo de arranque para programas cortos
-que usan un montón de los módulos estándar, si un archivo llamado
-:file:`spam.pyc` existe en el directorio donde se encuentra :file:`spam.py`, se
-asume que contiene una versión ya "compilada a byte" del módulo :mod:`spam` (lo
-que se denomina *bytecode*).  La fecha y hora de modificación del archivo
-:file:`spam.py` usado para crear :file:`spam.pyc` se graba en este último, y
-el :file:`.pyc` se ignora si estos no coinciden.
+Para acelerar la carga de módulos, Python cachea las versiones
+compiladas de cada módulo en el directorio ``__pycache__`` bajo el
+nombre :file:`module.{version}.pyc` dónde la versión codifica el
+formato del archivo compilado; generalmente contiene el número de
+version de Python. Por ejemplo, en CPython release 3.3 la version
+compilada de spam.py sería cacheada como
+``__pycache__/spam.cpython-33.pyc``. Este convensión de nombre permite
+compilar módulos desde diferentes releases y versiones de Python para
+coexistir.
 
-Normalmente, no necesitás hacer nada para crear el archivo :file:`spam.pyc`.
-Siempre que se compile satisfactoriamente el :file:`spam.py`, se hace un
-intento de escribir la versión compilada al :file:`spam.pyc`.  No es un error
-si este intento falla, si por cualquier razón el archivo no se escribe
-completamente el archivo :file:`spam.pyc` resultante se reconocerá como
-inválido luego.  El contenido del archivo :file:`spam.pyc` es independiente de
-la plataforma, por lo que un directorio de módulos puede ser compartido por
-máquinas de diferentes arquitecturas.
+Python chequea la fecha de modificación de la fuente contra la versión
+compilada para evr si esta es obsoleta y necesita ser
+recompilada. Esto es un proceso completamente automático. También, los
+módulos compilados son independientes de la plataforma, así que la
+misma librería puede ser compartida a través de sistemas con
+diferentes arquitecturas.
+
+Python no chequea el caché en dos circuntancias. Primero, siempre
+recompila y no graba el resultado del módulo que es cargado
+directamente desde la línea de comando. Segundo, no chequea el caché
+si no hay módulo fuente.
 
 Algunos consejos para expertos:
 
-* Cuando se invoca el intérprete de Python con la opción :option:`-O`, se
-  genera código optimizado que se almacena en archivos :file:`.pyo`.  El
-  optimizador actualmente no ayuda mucho; sólo remueve las declaraciones
-  :keyword:`assert`.  Cuando se usa :option:`-O`, se optimiza *todo* el
-  `bytecode`; se ignoran los archivos ``.pyc`` y los archivos ``.py``
-  se compilan a bytecode optimizado.
+* Podés usar la :option:`-O` o :option:`-OO` en el comando de Python
+  para reducir el tamaño de los módulos compilados. La ``-O`` quita
+  assert statements, la ``--O`` quita ambos, assert statements y
+  cadenas de caracteres __doc__. Debido a que algunos programas se
+  basan en que estos estén disponibles, deberías usar esta opción
+  únicamente si sabés lo que estás haciendo. Los módulos "optimizados"
+  tienen un sufijo .pyo en vez de .pyc y son normalmente más
+  pequeños. Releases futuras quizás cambien los efectos de la
+  optimización.
 
-* Pasando dos opciones :option:`-O` al intérprete de Python (:option:`-OO`)
-  causará que el compilador realice optimizaciones que en algunos raros casos
-  podría resultar en programas que funcionen incorrectamente.  Actualmente,
-  solamente se remueven del bytecode a las cadenas ``__doc__``, resultando en
-  archivos :file:`.pyo` más compactos.  Ya que algunos programas necesitan
-  tener disponibles estas cadenas, sólo deberías usar esta opción si sabés lo
-  que estás haciendo.
-
-* Un programa no corre más rápido cuando se lee de un archivo :file:`.pyc` o
-  :file:`.pyo` que cuando se lee del :file:`.py`; lo único que es más rápido
-  en los archivos :file:`.pyc` o :file:`.pyo` es la velocidad con que se
+* Un programa no corre más rápido cuando se lee de un archivo `.pyc` o
+  `.pyo` que cuando se lee del `.py`; lo único que es más rápido
+  en los archivos `.pyc` o :`.pyo` es la velocidad con que se
   cargan.
 
-* Cuando se ejecuta un script desde la linea de órdenes, nunca se escribe el
-  bytecode del script a los archivos :file:`.pyc` o :file:`.pyo`.  Por lo
-  tanto, el tiempo de comienzo de un script puede reducirse moviendo la mayor
-  parte de su código a un módulo y usando un pequeño script de arranque que
-  importe el módulo.  También es posible nombrar a los archivos :file:`.pyc` o
-  :file:`.pyo` directamente desde la linea de órdenes.
-
-* Es posible tener archivos llamados :file:`spam.pyc` (o :file:`spam.pyo`
-  cuando se usa la opción :option:`-O`) sin un archivo :file:`spam.py` para
-  el mismo módulo.  Esto puede usarse para distribuir el código de una
-  biblioteca de Python en una forma que es moderadamente difícil de hacerle
-  ingeniería inversa.
-
-  .. index:: module: compileall
-
-* El módulo :mod:`compileall` puede crear archivos :file:`.pyc` (o archivos
-  :file:`.pyo` cuando se usa la opción :option:`-O`) para todos los módulos
-  en un directorio.
-
+* Hay más detalles de este proceso, incluyendo un diagrama de flujo de
+  la toma de decisiones, en la PEP 3147.
 
 .. _tut-standardmodules:
 
@@ -396,7 +387,9 @@ quizás quieras ejecutar en los datos de sonido (como mezclarlos, añadir eco,
 aplicar una función ecualizadora, crear un efecto estéreo artificial), por lo
 que ademas estarás escribiendo una lista sin fin de módulos para realizar
 estas operaciones.  Aquí hay una posible estructura para tu paquete (expresados
-en términos de un sistema jerárquico de archivos)::
+en términos de un sistema jerárquico de archivos):
+
+.. code-block:: text
 
    sound/                          Paquete superior
          __init__.py               Inicializa el paquete de sonido
@@ -496,7 +489,7 @@ importados cuando se hace ``from package import *``.  Es tarea del autor del
 paquete mantener actualizada esta lista cuando se libera una nueva versión del
 paquete.  Los autores de paquetes podrían decidir no soportarlo, si no ven un
 uso para importar \* en sus paquetes.  Por ejemplo, el archivo
-:file:`sounds/effects/__init__.py` podría contener el siguiente código::
+:file:`sound/effects/__init__.py` podría contener el siguiente código::
 
    __all__ = ["echo", "surround", "reverse"]
 

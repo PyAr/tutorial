@@ -49,7 +49,7 @@ mensajes de error como los mostrados aquí::
    >>> 10 * (1/0)
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?
-   ZeroDivisionError: int division or modulo by zero
+   ZeroDivisionError: division by zero
    >>> 4 + spam*3
    Traceback (most recent call last):
      File "<stdin>", line 1, in ?

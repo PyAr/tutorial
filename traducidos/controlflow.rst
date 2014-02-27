@@ -605,18 +605,17 @@ con el operador ``**``\::
 
 .. _tut-lambda:
 
-Formas con lambda
------------------
+Expresiones lambda
+------------------
 
-Por demanda popular, algunas características comúnmente encontradas en
-lenguajes de programación funcionales como Lisp fueron añadidas a Python.  Con
-la palabra reservada :keyword:`lambda` se pueden crear pequeñas funciones
-anónimas.  Esta es una función que devuelve la suma de sus dos argumentos:
-``lambda a, b: a+b``.  Las formas con lambda pueden ser usadas en cualquier
-lugar que se requieran funciones.  Semánticamente, son solo azúcar sintáctica
-para la definición de funciones.  Cómo en la definición de funciones anidadas,
-las formas con lambda pueden hacer referencia a variables del ámbito en el que
-son contenidas::
+Pequeñas funciones anónimas pueden ser creadas con la palabra
+reservada :keyword:`lambda`. Esta función retorna la suma de sus dos
+argumentos: ``lambda a, b: a + b``. Las funciones lambda pueden ser
+usadas objetos de tipo función son requeridos. Están sintácticamente
+restringidas a una sola expresión. Semánticamente, son solo azucar
+sintáctica para definiciones normales de funciones. Al igual que las
+funciones anidadas, las funciones lambda pueden hacer referencia a
+variables desde el ámbito que la contiene::
 
    >>> def hacer_incrementador(n):
    ...     return lambda x: x + n

@@ -187,7 +187,6 @@ espacios de nombres, y cómo las declaraciones :keyword:`global` y
        def hacer_global():
            global algo
            algo = "algo global"
-
        algo = "algo de prueba"
        hacer_local()
        print("Luego de la asignación local:", algo)
@@ -697,7 +696,7 @@ Algún código Python que espera un tipo abstracto de datos en particular
 puede frecuentemente recibir en cambio una clase que emula los métodos de aquel
 tipo de datos.  Por ejemplo, si tenés una función que formatea algunos
 datos a partir de un objeto archivo, podés definir una clase con métodos
-:meth:`read` y :meth:`readline` que obtengan los datos de alguna cadena en
+:meth:`read` y :meth:`!readline` que obtengan los datos de alguna cadena en
 memoria intermedia, y pasarlo como argumento.
 
 .. (Desafortunadamente esta técnica tiene sus limitaciones: una clase no
@@ -785,10 +784,10 @@ Este estilo de acceso es limpio, conciso y conveniente.  El uso de iteradores
 está impregnado y unifica a Python.  En bambalinas, la sentencia :keyword:`for`
 llama a :func:`iter` en el objeto contenedor.  La función devuelve un objeto
 iterador que define el método :meth:`__next__` que accede elementos en el
-contenedor de a uno por vez.  Cuando no hay más elementos, :meth:`__next__`
+contenedor de a uno por vez.  Cuando no hay más elementos, :meth:`~iterator.__next__`
 levanta una excepción :exc:`StopIteration` que le avisa al bucle del
 :keyword:`for` que hay que terminar.  Podés llamar al método
-:meth:`__next__` usando la función integrada :func:`next`; este ejemplo
+:meth:`~iterator.__next__` usando la función integrada :func:`~iterator.__next__`; este ejemplo
 muestra como funciona todo esto::
 
    >>> s = 'abc'

@@ -172,10 +172,10 @@ caracteres especiales, podés usar *cadenas crudas* agregando una ``r`` antes de
 la primera comilla::
 
    >>> print('C:\algun\nombre')  # aquí \n significa nueva línea!
-   C:\some
-   ame
+   C:\algun
+   ombre
    >>> print(r'C:\algun\nombre')  # nota la r antes de la comilla
-   C:\some\name
+   C:\algun\nombre
 
 Las cadenas de texto literales pueden contener múltiples líneas. Una forma es
 usar triple comillas: ``"""..."""`` o ``'''...'''``. Los fin de línea son

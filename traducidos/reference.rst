@@ -121,9 +121,17 @@ Declaraciones compuestas
   <http://docs.python.org/3/reference/compound_stmts.html#function-definitions>`__
 
 
-.. _install-index:
+.. _installing-index:
 
 Instalando módulos de Python
 ============================
 
 * `Índice <http://docs.python.org/3/install/index.html>`__
+
+
+.. _glossary:
+
+Glosario
+========
+
+.. _text file:

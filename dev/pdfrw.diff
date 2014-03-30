@@ -1,0 +1,11 @@
+--- /tmp/pdfreader.py	2013-02-28 13:27:36.410947457 -0300
++++ pdfreader.py	2013-02-28 13:28:04.614948213 -0300
+@@ -211,7 +211,7 @@
+         # add it to the list of streams if it starts a stream
+         obj.indirect = key
+         tok = source.next()
+-        if tok != 'endobj':
++        if tok != 'endobj' and not tok.isdigit():
+             self.readstream(obj, self.findstream(obj, tok, source), source)
+         return obj
+ 

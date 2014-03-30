@@ -1,0 +1,88 @@
+Index: rst2pdf/createpdf.py
+===================================================================
+--- rst2pdf/createpdf.py	(revisión: 2632)
++++ rst2pdf/createpdf.py	(copia de trabajo)
+@@ -74,7 +74,7 @@
+ 
+ from reportlab.platypus import *
+ from reportlab.platypus.doctemplate import IndexingFlowable
+-from reportlab.platypus.flowables import _listWrapOn, _Container
++from reportlab.platypus.flowables import _listWrapOn, _Container, KeepTogether
+ from reportlab.pdfbase.pdfdoc import PDFPageLabel
+ #from reportlab.lib.enums import *
+ #from reportlab.lib.units import *
+@@ -545,7 +545,7 @@
+                 return
+         else:
+             self.doctree = doctree
+-            
++
+         if self.numbered_links:
+             # Transform all links to sections so they show numbers
+             from sectnumlinks import SectNumFolder, SectRefExpander
+@@ -557,7 +557,7 @@
+             from docutils.transforms.universal import StripClassesAndElements
+             sce = StripClassesAndElements(self.doctree)
+             sce.apply()
+-            
++
+         elements = self.gen_elements(self.doctree)
+ 
+         # Find cover template, save it in cover_file
+@@ -646,6 +646,24 @@
+             if not isinstance(elements[-1],UnhappyOnce):
+                 log.info ('Forcing second pass so Total pages work')
+                 elements.append(UnhappyOnce())
++
++        # fix widowes here
++        new_story = []
++        elements = iter(elements)
++        for e in elements:
++            if getattr(e, "level", 0) > 0:
++                # a title! bind together it and the next(s) element(s) (until
++                # we get a non-title)
++                together = [e]
++                for e in elements:
++                    together.append(e)
++                    if getattr(e, "level", 0) == 0:
++                        break
++                new_story.append(KeepTogether(together))
++            else:
++                new_story.append(e)
++        elements = new_story
++
+         while True:
+             try:
+                 log.info("Starting build")
+@@ -678,7 +696,10 @@
+                             if fnPile:
+                                 fnPile.insert(0, Separation())
+                                 newStory.append(Sinker(fnPile))
+-                            newStory.append(e)
++                                if not isinstance(e, MyPageBreak):
++                                    newStory.append(e)
++                            else:
++                                newStory.append(e)
+                             fnPile=[]
+                         else:
+                             newStory.append(e)
+@@ -1030,8 +1051,8 @@
+         bg.drawOn(canv, x, y)
+ 
+     def is_left(self, page_num):
+-        """Default behavior is that the first page is on the left.   
+-           
++        """Default behavior is that the first page is on the left.
++
+            If the user has --first_page_on_right, the calculation is reversed.
+         """
+         val = page_num % 2 == 1
+@@ -1332,7 +1353,7 @@
+     parser.add_option('--use-numbered-links', action='store_true', default=def_numbered_links,
+         help='When using numbered sections, adds the numbers to all links referring to the section headers. Default: %s'%def_numbered_links,
+         dest='numbered_links')
+-        
++
+     parser.add_option('--strip-elements-with-class', action='append', dest='strip_elements_with_classes',
+         metavar='CLASS', help='Remove elements with this CLASS from the output. Can be used multiple times.')
+ 

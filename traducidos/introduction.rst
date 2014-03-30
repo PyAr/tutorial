@@ -372,9 +372,9 @@ lista de valores separados por coma (ítems) entre corchetes.  Las listas pueden
 contener ítems de diferentes tipos, pero usualmente los ítems son del mismo
 tipo::
 
-   >>> cuadrados = [1, 2, 4, 9, 16, 25]
+   >>> cuadrados = [1, 4, 9, 16, 25]
    >>> cuadrados
-   [1, 2, 4, 9, 16, 25]
+   [1, 4, 9, 16, 25]
 
 Como las cadenas de caracteres (y todos los otros tipos `sequence`
 integrados), las listas pueden ser indexadas y rebanadas::
@@ -391,12 +391,12 @@ elementos pedidos.  Esto significa que la siguiente rebanada devuelve una copia
 superficial de la lista::
 
    >>> cuadrados[:]
-   [1, 2, 4, 9, 16, 25]
+   [1, 4, 9, 16, 25]
 
 Las listas también soportan operaciones como concatenación::
 
    >>> cuadrados + [36, 49, 64, 81, 100]
-   [1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+   [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
 A diferencia de las cadenas de texto, que son `immutable`, las listas son
 un tipo `mutable`, es posible cambiar un su contenido::

@@ -21,8 +21,8 @@ documentos que encontrarás en este juego son:
   escribir programas CGI, comprimir datos, y muchas otras tareas. Un vistazo
   por la Referencia de Biblioteca te dará una idea de lo que hay disponible.
 
-* :ref:`install-index` explica cómo instalar módulos externos escritos por
-  otros usuarios de Python.
+* :ref:`installing-index` explica cómo instalar módulos externos
+  escritos por otros usuarios de Python.
 
 * :ref:`reference-index`: Una descripción en detalle de la sintaxis y semántica
   de Python. Es una lectura pesada, pero útil como guía completa al lenguaje en

@@ -3,3 +3,7 @@
 traducidos/_build/
 traducidos/tmp*.svg
 .venv
+dev/rst2pdf
+rst2pdf
+traducidos/output2.pdf
+

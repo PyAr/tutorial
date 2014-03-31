@@ -18,10 +18,10 @@ def deploy_all():
 def deploy_html3():
     local('rsync -rav ' \
           'traducidos/_build/html/* ' \
-          'python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/3/')
+          'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/3/')
 
 
 def deploy_pdf3():
     local('rsync -rav ' \
           'traducidos/_build/pdf/TutorialPython.pdf ' \
-          'python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/pdfs/TutorialPython3.pdf')
+          'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/pdfs/TutorialPython3.pdf')

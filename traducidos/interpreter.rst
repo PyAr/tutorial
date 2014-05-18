@@ -36,15 +36,16 @@ de fin de archivo (:kbd:`Control-D` en Unix, :kbd:`Control-Z` en Windows) en el
 prompt primario.  Si esto no funciona, se puede salir del intérprete
 ingresando: ``quit()``.
 
-Las características para editar líneas del intérprete no son muy sofisticadas.
-En Unix, quien instale el intérprete tendrá habilitado el soporte para la
-biblioteca GNU readlines, que añade una edición interactiva más elaborada e
-historia.  Tal vez la forma más rápida de detectar si las características de
-edición están presentes es ingresar Control-P en el primer prompt de Python que
-aparezca.  Si se escucha un beep, las características están presentes; ver
-Apéndice :ref:`tut-interacting` para una introducción a las teclas.  Si no pasa
-nada, o si aparece ``^P``, estas características no están disponibles; solo vas
-a poder usar backspace para borrar los caracteres de la línea actual.
+Las características para editar líneas del intérprete incluyen edición
+interactiva, sustitución usando el historial y completado de código en
+sistemas que soportan readline. Tal vez la forma más rápida de
+detectar si las características de edición están presentes es ingresar
+Control-P en el primer prompt de Python que aparezca.  Si se escucha
+un beep, las características están presentes; ver Apéndice
+:ref:`tut-interacting` para una introducción a las teclas.  Si no pasa
+nada, o si aparece ``^P``, estas características no están disponibles;
+solo vas a poder usar backspace para borrar los caracteres de la línea
+actual.
 
 La forma de operar del intérprete es parecida a la línea de comandos de
 Unix: cuando se la llama con la entrada estándar conectada a una terminal
@@ -100,15 +101,15 @@ muestra un mensaje de bienvenida reportando su número de versión y una nota de
 copyright::
 
    $ python3.4
-   Python 3.4 (default, Sep 24 2012, 09:25:04)
-   [GCC 4.6.3] on linux2
+   Python 3.4 (default, Mar 16 2014, 09:25:04)
+   [GCC 4.8.2] on linux
    Type "help", "copyright", "credits" or "license" for more information.
    >>>
 
 Las líneas de continuación son necesarias cuando queremos ingresar un
 constructor multilínea.  Como en el ejemplo, mirá la sentencia :keyword:`if`::
 
-   >>> el_mundo_es_plano = 1
+   >>> el_mundo_es_plano = True
    >>> if el_mundo_es_plano:
    ...     print("¡Tené cuidado de no caerte!")
    ...

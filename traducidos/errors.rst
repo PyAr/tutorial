@@ -139,8 +139,8 @@ llama, manejar también la excepción)::
        f = open('miarchivo.txt')
        s = f.readline()
        i = int(s.strip())
-   except IOError as err:
-       print("Error E/S: {0}".format(err))
+   except OSError as err:
+       print("Error OS: {0}".format(err))
    except ValueError:
        print("No pude convertir el dato a un entero.")
    except:

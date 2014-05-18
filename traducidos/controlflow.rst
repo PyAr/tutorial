@@ -385,7 +385,7 @@ que los que permite.  Por ejemplo::
                return False
            reintentos = reintentos - 1
            if reintentos < 0:
-               raise IOError('usuario duro')
+               raise OSError('usuario duro')
            print(queja)
 
 Esta función puede ser llamada de distintas maneras:

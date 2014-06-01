@@ -25,3 +25,19 @@ def deploy_pdf3():
     local('rsync -rav ' \
           'traducidos/_build/pdf/TutorialPython.pdf ' \
           'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/pdfs/TutorialPython3.pdf')
+
+
+def create_html():
+    local('cd traducidos && make html')
+
+
+def create_pdf():
+    local('cd traducidos && make pdf')
+
+    # FIXME: there is an issue with 'gs' that doesn't allow us to use
+    # this command to make the .pdf smaller
+
+    # local('cd traducidos && '
+    #       'gs -dCompatibilityLevel=1.4 -dCompressFonts=true -dSubsetFonts=true '
+    #       '-dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=output2.pdf '
+    #       '-f _build/pdf/TutorialPython.pdf')

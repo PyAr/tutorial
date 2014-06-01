@@ -11,8 +11,15 @@ env.colorize_errors = True
 
 
 def deploy_all():
+    deploy_index()
     deploy_html3()
     deploy_pdf3()
+
+
+def deploy_index():
+    local('rsync -rav ' \
+          'index.html ' \
+          'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/')
 
 
 def deploy_html3():

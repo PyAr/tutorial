@@ -2,7 +2,7 @@
 # de PyAr y actualizar la version HTML y PDF online en
 # http://docs.python.org.ar/tutorial/
 
-from fabric.api import *
+from fabric.api import env, local
 
 # env.hosts = ['python.org.ar']
 # env.shell = '/bin/bash -l -c'
@@ -34,6 +34,11 @@ def deploy_pdf3():
           'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/pdfs/TutorialPython3.pdf')
 
 
+def create_all():
+    create_html()
+    create_pdf()
+
+
 def create_html():
     local('cd traducidos && make html')
 
@@ -41,10 +46,13 @@ def create_html():
 def create_pdf():
     local('cd traducidos && make pdf')
 
-    # FIXME: there is an issue with 'gs' that doesn't allow us to use
-    # this command to make the .pdf smaller
+    # This command makes the pdf smaller and fixes a SyntaxError that
+    # Firefox reports and does not show it properly. This error does
+    # not happen with Evince, for example. We are not really sure how
+    # this command works, but it does in some way
 
-    # local('cd traducidos && '
-    #       'gs -dCompatibilityLevel=1.4 -dCompressFonts=true -dSubsetFonts=true '
-    #       '-dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=output2.pdf '
-    #       '-f _build/pdf/TutorialPython.pdf')
+    # This command was tested with pdftk 2.01
+    local('cd traducidos/_build/pdf && '
+          'pdftk TutorialPython.pdf cat output output.pdf && '
+          'mv output.pdf TutorialPython.pdf'
+    )

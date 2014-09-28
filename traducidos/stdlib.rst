@@ -15,7 +15,7 @@ con el sistema operativo::
 
    >>> import os
    >>> os.getcwd()      # devuelve el directorio de trabajo actual
-   'C:\\Python34'
+   'C:\\Python35'
    >>> os.chdir('/server/accesslogs')   # cambia el directorio de trabajo
    >>> os.system('mkdir today')   # ejecuta el comando 'mkdir' en el sistema
    0
@@ -40,7 +40,9 @@ Para tareas diarias de administración de archivos y directorios, el módulo
 
    >>> import shutil
    >>> shutil.copyfile('datos.db', 'archivo.db')
+   'archivo.db'
    >>> shutil.move('/build/executables', 'dir_instalac')
+   'dir_instalac'
 
 
 .. _tut-file-wildcards:

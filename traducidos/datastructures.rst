@@ -74,10 +74,12 @@ de los objetos lista:
    Devuelve el número de veces que *x* aparece en la lista.
 
 
-.. method:: list.sort()
+.. method:: list.sort(key=None, reverse=False)
    :noindex:
 
-   Ordena los ítems de la lista in situ.
+   Ordena los ítems de la lista in situ (los argumentos pueden ser
+   usados para definir un órden específico, ve a :func:`sorted` para
+   su explicación).
 
 
 .. method:: list.reverse()
@@ -110,10 +112,14 @@ Un ejemplo que usa la mayoría de los métodos de lista::
    >>> a.sort()
    >>> a
    [-1, 1, 66.25, 333, 333, 1234.5]
+   >>> a.pop()
+   1234.5
+   >>> a
+   [-1, 1, 66.25, 333, 333]
 
 
 Quizás hayas notado que métodos como ``insert``, ``remove`` o ``sort``, que
-modifican a la lista, no tienen impreso un valor de retorno -- devuelven
+solo modifican a la lista, no tienen impreso un valor de retorno -- devuelven
 None. [1]_ Esto es un principio de diseño para todas las estructuras
 de datos mutables en Python.
 

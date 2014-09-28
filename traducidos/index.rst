@@ -17,3 +17,4 @@
    interactive.rst
    floatingpoint.rst
    reference.rst
+   appendix.rst

@@ -1,19 +1,19 @@
 Tutorial de Python en Español
 =============================
 
-Esta traducción cubre la versión 3.4.0a3 del tutorial de Python.
+Esta traducción cubre la versión 3.4.2rc1 del tutorial de Python.
 
 La revisión que usó para hacer la traducción es esta:
 
-* http://hg.python.org/cpython/rev/dd9cdf90a507
+* https://hg.python.org/cpython/rev/8711a0951384
 
 utilizando la carpeta Doc/tutorial y el archivo descargado fue este:
 
-* http://hg.python.org/cpython/archive/dd9cdf90a507.tar.bz2
+* https://hg.python.org/cpython/archive/8711a0951384.tar.bz2
 
 La versión OnLine de esta documentación se puede encontrar en:
 
-* http://tutorialpython.com.ar
+* http://docs.python.org.ar/tutorial/index.html
 
 Pasos para actualizar el tutorial
 ---------------------------------
@@ -55,4 +55,4 @@ fab deploy_all
 1. Una vez actualizada la traducción, enviar un mail a la lista de
 correo de Python Argentina para que se actualice el contenido de la
 versión OnLine de la traducción del tutorial
-(http://tutorialpython.com.ar)
+(http://docs.python.org.ar/tutorial/index.html)

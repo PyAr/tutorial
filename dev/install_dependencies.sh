@@ -43,3 +43,6 @@ patch -p0 < $PATCH_DIR/rst2pdf.diff
 echo "Instalando Sphinx"
 pip install sphinx # 1.1.3
 pip install sphinx-bootstrap-theme
+
+echo "Instalando pdftk"
+sudo apt-get install pdftk

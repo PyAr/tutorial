@@ -15,8 +15,18 @@ La versión OnLine de esta documentación se puede encontrar en:
 
 * http://tutorial.python.org.ar/
 
-Pasos para actualizar el tutorial
----------------------------------
+Instalar los paquetes necesarios para generar el HTML / PDF
+-----------------------------------------------------------
+
+Hay un script (`dev/install_dependencies.sh`) que instala las
+dependencias necesarias para generar el tutorial en todos sus
+formatos.
+
+*Abrir el archivo ANTES de ejecutarlo para estar SEGUROS que hace lo
+ que queremos en vez de algo extraño*
+
+Actualizar el tutorial
+----------------------
 
 1. Fijarse en http://hg.python.org/cpython/tags cuál es la última
 versión publicada

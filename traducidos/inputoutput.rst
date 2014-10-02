@@ -402,7 +402,7 @@ instancias de clases, las cosas se ponen más complicadas.
 En lugar de tener a los usuarios constantemente escribiendo y
 debugueando código para grabar tipos de datos complicados, Python te
 permite usar formato intercambiable de datos popular llamado `JSON
-(JavaScript Object Notation) +<http://json.org>`_. El módulo estandar
+(JavaScript Object Notation) <http://json.org>`_. El módulo estandar
 llamado :mod:`json` puede tomar datos de Python con una jerarquía, y
 convertirlo a representaciones de cadena de caracteres; este proceso
 es llamado :dfn:`serializing`. Reconstruir los datos desde la

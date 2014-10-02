@@ -13,7 +13,7 @@ utilizando la carpeta Doc/tutorial y el archivo descargado fue este:
 
 La versión OnLine de esta documentación se puede encontrar en:
 
-* http://docs.python.org.ar/tutorial/index.html
+* http://tutorial.python.org.ar/
 
 Pasos para actualizar el tutorial
 ---------------------------------
@@ -53,6 +53,4 @@ fab deploy_all
 ```
 
 1. Una vez actualizada la traducción, enviar un mail a la lista de
-correo de Python Argentina para que se actualice el contenido de la
-versión OnLine de la traducción del tutorial
-(http://docs.python.org.ar/tutorial/index.html)
+correo de Python Argentina para informar sobre esta actualización.

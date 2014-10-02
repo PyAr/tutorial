@@ -2,12 +2,20 @@
 # de PyAr y actualizar la version HTML y PDF online en
 # http://docs.python.org.ar/tutorial/
 
+from bs4 import BeautifulSoup
 from fabric.api import env, local
+from traducidos.conf import version
 
 # env.hosts = ['python.org.ar']
 # env.shell = '/bin/bash -l -c'
 # env.project = '/home/www-pyar/docs.python.org.ar/tutorial/'
 env.colorize_errors = True
+
+
+def do_all():
+    create_all()
+    change_htmlindex_version()
+    deploy_all()
 
 
 def deploy_all():
@@ -56,3 +64,17 @@ def create_pdf():
           'pdftk TutorialPython.pdf cat output output.pdf && '
           'mv output.pdf TutorialPython.pdf'
     )
+
+
+def change_htmlindex_version():
+    # get version from config file
+    soup = BeautifulSoup(open('index.html', 'r').read())
+    print('Version anterior: {0} | Version nueva: {1}'.format(
+        soup.find('h3').contents[0].strip(),
+        version,
+    ))
+    soup.find('h3').contents[0].replace_with(version)
+
+    with open('index.html', 'w') as fh:
+        html_content = soup.prettify(soup.original_encoding)
+        fh.write(html_content)

@@ -15,15 +15,15 @@ La versión OnLine de esta documentación se puede encontrar en:
 
 * http://tutorial.python.org.ar/
 
-Instalar los paquetes necesarios para generar el HTML / PDF
------------------------------------------------------------
+Configurar entorno para generar el HTML / PDF
+---------------------------------------------
 
 Hay un script (`dev/install_dependencies.sh`) que instala las
 dependencias necesarias para generar el tutorial en todos sus
 formatos.
 
 *Abrir el archivo ANTES de ejecutarlo para estar SEGUROS que hace lo
- que queremos en vez de algo extraño*
+ que queremos...*
 
 Actualizar el tutorial
 ----------------------
@@ -48,19 +48,19 @@ haciendo los cambios en los archivos dentro del directorio `traducidos/`
 1. Crear las versiones HTML y PDF (para crear esta version es
 necesario tener instalado `pdftk` 2.01):
 
-```
-fab create_html
-fab create_pdf
-```
-
+ ```
+ fab create_html
+ fab create_pdf
+ ```
+ 
 1. Verificar que el PDF se abre correctamente con Evince y Firefox
 (preview)
 
 1. Si tenés permisos de `admin` en el servidor, ejecutar:
 
-```
-fab deploy_all
-```
-
+ ```
+ fab deploy_all
+ ```
+ 
 1. Una vez actualizada la traducción, enviar un mail a la lista de
 correo de Python Argentina para informar sobre esta actualización.

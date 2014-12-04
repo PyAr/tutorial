@@ -26,7 +26,7 @@ def deploy_all():
 
 def deploy_index():
     local('rsync -rav ' \
-          'index.html ' \
+          'traducidos/web/* ' \
           'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/')
 
 

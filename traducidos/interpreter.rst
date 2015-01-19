@@ -11,13 +11,13 @@ Invocando al intérprete
 =======================
 
 Por lo general, el intérprete de Python se instala en
-:file:`/usr/local/bin/python3.5` en las máquinas dónde está disponible; poner
+:file:`/usr/local/bin/python3.4` en las máquinas dónde está disponible; poner
 :file:`/usr/local/bin` en el camino de búsqueda de tu intérprete de comandos
 Unix hace posible iniciarlo ingresando la orden:
 
 .. code-block:: text
 
-   python3.5
+   python3.4
 
 ...en la terminal. [#]_ Ya que la elección del directorio dónde vivirá el
 intérprete es una opción del proceso de instalación, puede estar en otros
@@ -25,11 +25,11 @@ lugares; consultá a tu Gurú Python local o administrador de sistemas. (Por
 ejemplo, :file:`/usr/local/python` es una alternativa popular).
 
 En máquinas con Windows, la instalación de Python por lo general se encuentra
-en :file:`C:\\Python35`, aunque se puede cambiar durante la instalación.  Para
+en :file:`C:\\Python34`, aunque se puede cambiar durante la instalación.  Para
 añadir este directorio al camino, podes ingresar la siguiente orden en el
 prompt de DOS::
 
-   set path=%path%;C:\python35
+   set path=%path%;C:\python34
 
 Se puede salir del intérprete con estado de salida cero ingresando el carácter
 de fin de archivo (:kbd:`Control-D` en Unix, :kbd:`Control-Z` en Windows) en el
@@ -100,8 +100,8 @@ tres puntos (``...``).  Antes de mostrar el prompt primario, el intérprete
 muestra un mensaje de bienvenida reportando su número de versión y una nota de
 copyright::
 
-   $ python3.5
-   Python 3.5 (default, Sep 16 2015, 09:25:04)
+   $ python3.4
+   Python 3.4 (default, Mar 16 2014, 09:25:04)
    [GCC 4.8.2] on linux
    Type "help", "copyright", "credits" or "license" for more information.
    >>>

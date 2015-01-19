@@ -42,7 +42,7 @@ En los sistemas Unix y tipo BSD, los programas Python pueden convertirse
 directamente en ejecutables, como programas del intérprete de comandos,
 poniendo la linea::
 
-   #! /usr/bin/env python3.5
+   #! /usr/bin/env python3.4
 
 ...al principio del script y dándole al archivo permisos de ejecución
 (asumiendo que el intérprete están en la variable de entorno :envvar:`PATH` del
@@ -110,7 +110,7 @@ Python y ejecutá el siguiente código::
 
    >>> import site
    >>> site.getusersitepackages()
-   '/home/user/.local/lib/python3.5/site-packages'
+   '/home/user/.local/lib/python3.4/site-packages'
 
 Ahora podés crear un archivo llamado :file:`usercustomize.py` en ese
 directorio y poner lo que quieras en él.  Eso afectará cada ejecución de

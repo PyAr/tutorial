@@ -73,11 +73,10 @@ objects:
    Return the number of times *x* appears in the list.
 
 
-.. method:: list.sort(key=None, reverse=False)
+.. method:: list.sort()
    :noindex:
 
-   Sort the items of the list in place (the arguments can be used for sort
-   customization, see :func:`sorted` for their explanation).
+   Sort the items of the list in place.
 
 
 .. method:: list.reverse()

@@ -68,13 +68,14 @@ def create_pdf():
 
 def change_htmlindex_version():
     # get version from config file
-    soup = BeautifulSoup(open('index.html', 'r').read())
+    index_filename = 'traducidos/web/index.html'
+    soup = BeautifulSoup(open(index_filename, 'r').read())
     print('Version anterior: {0} | Version nueva: {1}'.format(
         soup.find('h3').contents[0].strip(),
         version,
     ))
     soup.find('h3').contents[0].replace_with(version)
 
-    with open('index.html', 'w') as fh:
+    with open(index_filename, 'w') as fh:
         html_content = soup.prettify(soup.original_encoding)
         fh.write(html_content)

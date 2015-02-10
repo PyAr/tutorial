@@ -67,6 +67,8 @@ Cuando se usa un script, a veces es útil correr primero el script y luego
 entrar al modo interactivo.  Esto se puede hacer pasándole la opción
 :option:`-i` antes del nombre del script.
 
+Todas las opciones de línea de comandos están se descriptas en
+:ref:`using-on-general`.
 
 .. _tut-argpassing:
 

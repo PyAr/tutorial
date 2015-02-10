@@ -13,7 +13,7 @@ lenguaje ideal para scripting y desarrollo rápido de aplicaciones en diversas
 
 El intérprete de Python y la extensa biblioteca estándar están a libre
 disposición en forma binaria y de código fuente para las principales
-plataformas desde el sitio web de Python, http://www.python.org/, y puede
+plataformas desde el sitio web de Python, https://www.python.org/, y puede
 distribuirse libremente.  El mismo sitio contiene también distribuciones y
 enlaces de muchos módulos libres de Python de terceros, programas y
 herramientas, y documentación adicional.

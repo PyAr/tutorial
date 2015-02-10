@@ -30,20 +30,20 @@ documentos que encontrarás en este juego son:
 
 Más recursos sobre Python:
 
-* http://www.python.org:  El sitio web principal sobre Python. Contiene código,
+* https://www.python.org:  El sitio web principal sobre Python. Contiene código,
   documentación, y referencias a páginas relacionadas con Python en la Web.
   Este sitio web tiene copias espejo en varios lugares del mundo cómo Europa,
   Japón y Australia; una copia espejo puede funcionar más rápido que el sitio
   principal, dependiendo de tu ubicación geográfica.
 
-* http://docs.python.org:  Acceso rápido a la documentación de Python.
+* https://docs.python.org:  Acceso rápido a la documentación de Python.
 
-* http://pypi.python.org: El Índice de Paquetes de Python, antes también
+* https://pypi.python.org: El Índice de Paquetes de Python, antes también
   apodado "El Negocio de Quesos", es un listado de módulos de Python
   disponibles para descargar hechos por otros usuarios. Cuándo comiences a
   publicar código, puedes registrarlo aquí así los demás pueden encontrarlo.
 
-* http://aspn.activestate.com/ASPN/Python/Cookbook/: El Recetario de Python es
+* http://code.activestate.com/recipes/langs/python/: El Recetario de Python es
   una colección de tamaño considerable de ejemplos de código, módulos más
   grandes, y programas útiles. Las contribuciones particularmente notorias
   están recolectadas en un libro también titulado Recetario de Python
@@ -63,8 +63,8 @@ retransmitidos al otro.  Hay alrededor de 120 mensajes diarios (con picos de
 hasta varios cientos), haciendo (y respondiendo) preguntas, sugiriendo nuevas
 características, y anunciando nuevos módulos.  Antes de escribir, asegúrate de
 haber revisado la lista de `Preguntas Frecuentes
-<http://www.python.org/doc/faq/>`_ (también llamado el FAQ).
+<https://docs.python.org/3/faq/>`_ (también llamado el FAQ).
 
 Hay archivos de la lista de correo disponibles en
-http://mail.python.org/pipermail/. El FAQ responde a muchas de las preguntas
+https://mail.python.org/pipermail/. El FAQ responde a muchas de las preguntas
 que aparecen una y otra vez, y puede que ya contenga la solución a tu problema.

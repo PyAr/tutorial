@@ -136,3 +136,11 @@ Glosario
 
 .. _text file:
 .. _mutable:
+
+
+.. _using-on-general:
+
+Línea de comandos y entorno
+===========================
+
+* `Línea de comandos y entorno <https://docs.python.org/3/using/cmdline.html>`_

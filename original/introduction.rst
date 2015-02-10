@@ -305,7 +305,7 @@ indices, if both are within bounds.  For example, the length of ``word[1:3]`` is
 
 Attempting to use a index that is too large will result in an error::
 
-   >>> word[42]  # the word only has 7 characters
+   >>> word[42]  # the word only has 6 characters
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
    IndexError: string index out of range
@@ -391,7 +391,7 @@ means that the following slice returns a new (shallow) copy of the list::
    >>> squares[:]
    [1, 4, 9, 16, 25]
 
-Lists also supports operations like concatenation::
+Lists also support operations like concatenation::
 
    >>> squares + [36, 49, 64, 81, 100]
    [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]

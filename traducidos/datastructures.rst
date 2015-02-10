@@ -202,13 +202,17 @@ Por ejemplo, asumamos que queremos crear una lista de cuadrados, como::
    >>> cuadrados
    [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
 
-Podemos obtener el mismo resultado con::
+Nota que esto crea (o sobreescribe) una variable llamada ``x`` que
+sigue existiendo luego de que el bucle haya terminado. Podemos
+calcular la lista de cuadrados sin ningun efecto secundario haciendo::
+
+   cuadrados = list(map(lambda x: x**2, range(10)))
+
+o, un equivalente::
 
    cuadrados = [x ** 2 for x in range(10)]
 
-Esto es equivalente también a
-``squares = list(map(lambda x: x**2, range(10)))`` pero es más conciso
-y legible.
+que es más conciso y legible.
 
 Una lista de comprensión consiste de corchetes rodeando una expresión
 seguida de la declaración :keyword:`for` y luego cero o más declaraciones

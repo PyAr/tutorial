@@ -329,8 +329,8 @@ cadena::
    20
 
 ``f.tell()`` devuelve un entero que indica la posición actual en el archivo
-representada como número de bytes desde el comienzo del archivo en `modo
-binario` y un número opaco en `modo texto`.
+representada como número de bytes desde el comienzo del archivo en modo
+binario y un número opaco en modo texto.
 
 Para cambiar la posición del objeto archivo, usá ``f.seek(desplazamiento,
 desde_donde)``.  La posición es calculada agregando el *desplazamiento* a un

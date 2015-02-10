@@ -45,7 +45,7 @@ copyright = u'2014, Python Software Foundation'
 # built documents.
 #
 # The short X.Y version.
-version = release = '3.4.2'
+version = release = '3.4.3rc1'
 # The full version, including alpha/beta/rc tags.
 # release = '3.4.1'
 

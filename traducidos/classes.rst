@@ -682,7 +682,7 @@ en cada clase, que se llame a cada clase base sólo una vez, y que sea monótona
 (lo cual significa que una clase puede tener clases derivadas sin afectar el
 orden de precedencia de sus clases bases).  En conjunto, estas propiedades
 hacen posible diseñar clases confiables y extensibles con herencia múltiple.
-Para más detalles mirá  http://www.python.org/download/releases/2.3/mro/.
+Para más detalles mirá  https://www.python.org/download/releases/2.3/mro/.
 
 
 .. _tut-private:

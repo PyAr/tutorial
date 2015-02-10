@@ -303,7 +303,7 @@ Para índices no negativos, la longitud de la rebanada es la diferencia de los
 
 Intentar usar un índice que es muy grande resultará en un error::
 
-   >>> palabra[42]  # la palabra solo tiene 7 caracteres
+   >>> palabra[42]  # la palabra solo tiene 6 caracteres
    Traceback (most recent call last):
      File "<stdin>", line 1, in <module>
    IndexError: string index out of range

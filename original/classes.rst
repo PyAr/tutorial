@@ -643,7 +643,7 @@ class, that calls each parent only once, and that is monotonic (meaning that a
 class can be subclassed without affecting the precedence order of its parents).
 Taken together, these properties make it possible to design reliable and
 extensible classes with multiple inheritance.  For more detail, see
-http://www.python.org/download/releases/2.3/mro/.
+https://www.python.org/download/releases/2.3/mro/.
 
 
 .. _tut-private:
@@ -869,7 +869,7 @@ Generators
 :term:`Generator`\s are a simple and powerful tool for creating iterators.  They
 are written like regular functions but use the :keyword:`yield` statement
 whenever they want to return data.  Each time :func:`next` is called on it, the
-generator resumes where it left-off (it remembers all the data values and which
+generator resumes where it left off (it remembers all the data values and which
 statement was last executed).  An example shows that generators can be trivially
 easy to create::
 
@@ -887,7 +887,7 @@ easy to create::
    o
    g
 
-Anything that can be done with generators can also be done with class based
+Anything that can be done with generators can also be done with class-based
 iterators as described in the previous section.  What makes generators so
 compact is that the :meth:`__iter__` and :meth:`~generator.__next__` methods
 are created automatically.

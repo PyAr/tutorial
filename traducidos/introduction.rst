@@ -19,7 +19,7 @@ comentario quizás aparezca al comienzo de la línea o seguidos de espacios
 blancos o código, pero no dentro de una cadena de caracteres.  Un carácter
 numeral dentro de una cadena de caracteres es sólo un carácter numeral.  Ya que
 los comentarios son para aclarar código y no son interpretados por Python,
-pueden omitirse cuando se escriben ejemplos.
+pueden omitirse cuando se escriben los ejemplos.
 
 Algunos ejemplos::
 
@@ -212,7 +212,7 @@ de la otra son automáticamente concatenadas::
 Esto solo funciona con dos literales, no con variables ni expresiones::
 
    >>> prefix = 'Py'
-   >>> prefix 'thon'  # no se puede concatenar una viariable y una cadena literal
+   >>> prefix 'thon'  # no se puede concatenar una variable y una cadena literal
      ...
    SyntaxError: invalid syntax
    >>> ('un' * 3) 'ium'
@@ -479,9 +479,9 @@ y dos.  Por ejemplo, podemos escribir una subsecuencia inicial de la serie de
 
 Este ejemplo introduce varias características nuevas.
 
-* La primer línea contiene una *asignación múltiple*: las variables``a`` y
+* La primer línea contiene una *asignación múltiple*: las variables ``a`` y
   ``b`` toman en forma simultanea los nuevos valores 0 y 1.  En la última linea
-  esto es vuelto a usar, demostrando que las expresiones a la derecha son
+  esto se vuelve a usar, demostrando que las expresiones a la derecha son
   evaluadas antes de que suceda cualquier asignación.  Las expresiones a la
   derecha son evaluadas de izquierda a derecha.
 

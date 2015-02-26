@@ -132,7 +132,7 @@ Codificación del código fuente
 ------------------------------
 
 Por default, los archivos fuente de Python son tratados como codificados en
-UTF-8.  En ese codificación, los caracteres de la mayoría de los lenguajes
+UTF-8.  En esa codificación, los caracteres de la mayoría de los lenguajes
 del mundo pueden ser usados simultáneamente en literales, identificadores
 y comentarios, a pesar de que la biblioteca estándar usa solamente caracteres
 ASCII para los identificadores, una convención que debería seguir cualquier

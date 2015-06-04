@@ -467,7 +467,7 @@ cualquiera de las siguientes maneras::
    loro(tension=1000000, accion='VOOOOOM')             # 2 argumentos nombrados
    loro(accion='VOOOOOM', tension=1000000)             # 2 argumentos nombrados
    loro('un millón', 'despojado de vida', 'saltar')    # 3 args posicionales
-   loro('mil', state='viendo crecer las flores desde abajo')  # uno y uno
+   loro('mil', estado='viendo crecer las flores desde abajo')  # uno y uno
 
 ...pero estas otras llamadas serían todas inválidas::
 

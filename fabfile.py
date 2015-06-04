@@ -79,3 +79,8 @@ def change_htmlindex_version():
     with open(index_filename, 'w') as fh:
         html_content = soup.prettify(soup.original_encoding)
         fh.write(html_content)
+
+
+def update_check_script():
+    local('scp dev/check_python_tutorial.py '
+          'humitos@mkaufmann.com.ar:~/src/check_python_tutorial.py')

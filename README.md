@@ -1,11 +1,11 @@
 Tutorial de Python en Español
 =============================
 
-Esta traducción cubre la versión 3.4.2 del tutorial de Python.
+Esta traducción cubre la versión 3.4.3 del tutorial de Python.
 
 Utilizando la carpeta Doc/tutorial y el archivo descargado fue este:
 
-* https://hg.python.org/cpython/archive/ab2c023a9432.tar.bz2/Doc/tutorial/
+* https://hg.python.org/cpython/archive/b4cbecbc0781.tar.bz2/Doc/tutorial/
 
 La versión OnLine de esta documentación se puede encontrar en:
 
@@ -53,6 +53,7 @@ necesario tener instalado `pdftk` 2.01):
  ```
  fab create_html
  fab create_pdf
+ fab change_htmlindex_version
  ```
  
 1. Verificar que el PDF se abre correctamente con Evince y Firefox

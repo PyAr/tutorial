@@ -18,7 +18,7 @@ mostrar contenedores grandes o profundamente anidados, en forma abreviada:
 
    >>> import reprlib
    >>> reprlib.repr(set('supercalifragilisticoespialidoso'))
-   "set(['a', 'c', 'd', 'e', 'f', 'g', ...])"
+   "{'a', 'c', 'd', 'e', 'f', 'g', ...}"
 
 El módulo :mod:`pprint` ofrece un control más sofisticado de la forma
 en que se imprimen tanto los objetos predefinidos como los objetos

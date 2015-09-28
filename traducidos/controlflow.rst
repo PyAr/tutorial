@@ -689,12 +689,13 @@ Anotación de funciones
    pair: function; annotations
    single: -> (return annotation assignment)
 
-Las anotaciones de funciones es información arbitraria y completamente
-opcional en funciones definidas por el usuario.  Ni Python mismo ni
-la biblioteca estándar usan anotaciones de funciones de ninguna manera;
-esta sección sólo muestra la sintaxis.  Proyectos de terceros son libres
-de usar las anotaciones de funciones para documentación, control de
-tipos, y otros casos.
++:ref:`Function annotations <function>` are completely optional metadata
++information about the types used by user-defined functions (see :pep:`484`
++for more information).
+
+Las anotaciones de funciones son información completamente opcional
+sobre los tipos usadas en funciones definidas por el usuario (ver
+:pep:`484` para más información).
 
 Las anotaciones se almacenan en el atributo :attr:`__annotations__` de
 la función como un diccionario y no tienen efecto en ninguna otra
@@ -704,17 +705,18 @@ expresión que evalúa al valor de la anotación.  Las anotaciones de
 retorno son definidas por el literal ``->``, seguidas de una expresión,
 entre la lista de parámetros y los dos puntos que marcan el final
 de la declaración :keyword:`def`.  El siguiente ejemplo tiene un
-argumento posicional, uno nombrado, y el valor de retorno anotado
-sin sentido::
+argumento posicional, uno nombrado, y el valor de retorno anotado::
 
-   >>> def f(jamon: 42, huevos: int = 'carne') -> "nada nada":
+   >>> def f(jamon: str, huevos: str = 'huevos') -> str:
    ...     print("Anotaciones:", f.__annotations__)
    ...     print("Argumentos:", jamon, huevos)
+   ...     return jamon + ' y ' + huevos
    ...
-   >>> f('maravillosa')
-   Anotaciones: {'huevos: <class 'int'>, 'return': 'nada nada', 'jamon': 42}
-   Argumentos: maravillosa carne
-
+   >>> f('carne')
+   Anotaciones: {'jamon': <class 'str'>, 'huevos': <class 'str'>, 'return': <class 'str'>}
+   Argumentos: carne huevos
+   'carne y huevos'
+   >>>
 
 .. _tut-codingstyle:
 

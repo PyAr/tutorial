@@ -15,6 +15,7 @@
    classes.rst
    stdlib.rst
    stdlib2.rst
+   venv.rst
    whatnow.rst
    interactive.rst
    floatingpoint.rst

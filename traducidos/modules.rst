@@ -227,17 +227,18 @@ Algunos consejos para expertos:
   cadenas de caracteres __doc__. Debido a que algunos programas se
   basan en que estos estén disponibles, deberías usar esta opción
   únicamente si sabés lo que estás haciendo. Los módulos "optimizados"
-  tienen un sufijo .pyo en vez de .pyc y son normalmente más
-  pequeños. Releases futuras quizás cambien los efectos de la
-  optimización.
+  tienen una etiqueta ``opt-`` y son normalmente más pequeños. Releases
+  futuras quizás cambien los efectos de la optimización.
 
-* Un programa no corre más rápido cuando se lee de un archivo `.pyc` o
-  `.pyo` que cuando se lee del `.py`; lo único que es más rápido
-  en los archivos `.pyc` o :`.pyo` es la velocidad con que se
-  cargan.
+* Un programa no corre más rápido cuando se lee de un archivo `.pyc`
+  que cuando se lee del `.py`; lo único que es más rápido en los
+  archivos `.pyc` es la velocidad con que se cargan.
 
 * Hay más detalles de este proceso, incluyendo un diagrama de flujo de
   la toma de decisiones, en la PEP 3147.
+
+* El módulo :mod:`compilleall` puede crear archivos .pyc para todos
+  los módulos en un directorio.
 
 .. _tut-standardmodules:
 

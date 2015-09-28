@@ -251,12 +251,13 @@ agregarle información; cualquier dato escrito al archivo será automáticamente
 agregado al final. ``'r+'`` abre el archivo tanto para leerlo como para
 escribirlo.  El argumento *modo* es opcional; si se omite se asume ``'r'``.
 
-Normalmente los archivos se abren en :dfn:`modo texto`, lo que significa
-que podés leer y escribir cadenas del y al archivo, las cuales se
-codifican utilizando un código específico (por defecto es UTF-8).  Si se
-agrega ``b`` al modo el archivo se abre en :dfn:`modo binario`: ahora
-los datos se leen y escriben en forma de objetos bytes.  Se debería usar
-este modo para todos los archivos que no contengan texto.
+Normalmente los archivos se abren en :dfn:`modo texto`, lo que
+significa que podés leer y escribir cadenas del y al archivo, las
+cuales se codifican utilizando un código específico. Si el código no
+es especificado, el valor predeterminado depende de la plataforma. Si
+se agrega ``b`` al modo el archivo se abre en :dfn:`modo binario`:
+ahora los datos se leen y escriben en forma de objetos bytes.  Se
+debería usar este modo para todos los archivos que no contengan texto.
 
 Cuando se lee en modo texto, por defecto se convierten los fines de lineas
 que son específicos a las plataformas (``\n`` en Unix, ``\r\n`` en Windows)

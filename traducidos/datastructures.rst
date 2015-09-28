@@ -74,10 +74,12 @@ de los objetos lista:
    Devuelve el número de veces que *x* aparece en la lista.
 
 
-.. method:: list.sort()
+.. method:: list.sort(key=None, reverse=False)
    :noindex:
 
-   Ordena los ítems de la lista in situ.
+   Ordena los ítems de la lista in situ (los argumentos pueden ser
+   usados para personalizar el orden de la lista, ve :func:`sorted`
+   para su explicación).
 
 
 .. method:: list.reverse()

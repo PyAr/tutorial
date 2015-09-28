@@ -15,7 +15,7 @@ con el sistema operativo::
 
    >>> import os
    >>> os.getcwd()      # devuelve el directorio de trabajo actual
-   'C:\\Python34'
+   'C:\\Python35'
    >>> os.chdir('/server/accesslogs')   # cambia el directorio de trabajo
    >>> os.system('mkdir today')   # ejecuta el comando 'mkdir' en el sistema
    0
@@ -140,6 +140,18 @@ El módulo :mod:`random` provee herramientas para realizar selecciones al azar::
    >>> random.randrange(6)    # un entero al azar tomado de range(6)
    4
 
+El módulo :mod:`statistics` calcula propiedades de estadística básica
+(la media, mediana, varianza, etc) de datos númericos::
+
+    >>> import statistics
+    >>> datos = [2.75, 1.75, 1.25, 0.25, 0.5, 1.25, 3.5]
+    >>> statistics.mean(datos)
+    1.6071428571428572
+    >>> statistics.median(datos)
+    1.25
+    >>> statistics.variance(datos)
+    1.3720238095238095
+
 El proyecto SciPy <http://scipy.org> tiene muchos otros módulos para
 cálculos numéricos.
 
@@ -153,10 +165,11 @@ Hay varios módulos para acceder a internet y procesar sus protocolos.  Dos de
 los más simples son :mod:`urllib.request` para traer data de URLs y
 :mod:`smtplib` para mandar correos::
 
-   >>> from urllib.request import urlopen
-   >>> for line in urlopen('http://tycho.usno.navy.mil/cgi-bin/timer.pl'):
-   ...     if 'EST' in line or 'EDT' in line:  # buscamos la hora del este
-   ...         print(line)
+   >>> with urlopen('http://tycho.usno.navy.mil/cgi-bin/timer.pl') as response:
+   ...     for line in response:
+   ...         line = line.decode('utf-8')  # Decoding the binary data to text.
+   ...         if 'EST' in line or 'EDT' in line:  # look for Eastern Time
+   ...             print(line)
 
    <BR>Nov. 25, 09:43:32 PM EST
 
@@ -319,11 +332,20 @@ capacidades robustas y sofisticadas de sus paquetes más grandes.  Por ejemplo:
   adjuntos) y para implementar protocolos de cabecera y codificación de
   Internet.
 
-* Los paquetes :mod:`xml.dom` y :mod:`xml.sax` proveen un robusto soporte para
-  analizar este popular formato de intercambio de datos.  Asimismo, el módulo
-  :mod:`csv` soporta lecturas y escrituras directas en un formato común de base
-  de datos.  Juntos, estos módulos y paquetes simplifican enormemente el
-  intercambio de datos entre aplicaciones Python y otras herramientas.
+* El paquete :mod:`json` provee soporte robusto para parsear este
+  popular formato de intercambio de datos. El módulo :mod:`csv`
+  soporta una lectura y escritura directa de archivos de valores
+  separados por coma, comunmente soportados por bases de datos y hojas
+  de cálculos. Procesar XML es soportado por los paquetes
+  :mod:`xml.etree.ElementTree`, :mod:`xml.dom` y
+  :mod:`xml.sax`. Juntos, estos tres módulos y paquetes simplifican
+  ampliamente el intercambio de datos entre aplicaciones Python y
+  otras herramientas.
+
+* El módulo :mod:`sqlite3` es un wrapper para la librería de base de
+  datos SQLite, proveyendo una base de datos persistente que puede ser
+  actualizada y accedida utilizando sintaxis SQL ligeramente no
+  estándar.
 
 * Se soporta la internacionalización a través de varios módulos, incluyendo
   :mod:`gettext`, :mod:`locale`, y el paquete :mod:`codecs`.

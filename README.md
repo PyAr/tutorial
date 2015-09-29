@@ -75,8 +75,8 @@ necesario tener instalado `pdftk` 2.01):
 1. Crear una etiqueta de git:
 
  ```
- git tag v3.4.2
- git push --all
+ git tag v3.5.0
+ git push --tags
  ```
 
 1. Una vez actualizada la traducción, enviar un mail a la lista de

@@ -123,13 +123,13 @@ Aunque los alcances se determinan estáticamente, se usan dinámicamente. En
 cualquier momento durante la ejecución hay por lo menos cuatro alcances
 anidados cuyos espacios de nombres son directamente accesibles:
 
- * el ámbito interno, donde se busca primero, contiene los nombres locales
- * los espacios de nombres de las funciones anexas, en las cuales se busca
-   empezando por el ámbito adjunto más cercano, contiene los nombres no
-   locales pero también los no globales
- * el ámbito anteúltimo contiene los nombres globales del módulo actual
- * el ámbito exterior (donde se busca al final) es el espacio de nombres que
-   contiene los nombres incluidos
+* el ámbito interno, donde se busca primero, contiene los nombres locales
+* los espacios de nombres de las funciones anexas, en las cuales se busca
+  empezando por el ámbito adjunto más cercano, contiene los nombres no
+  locales pero también los no globales
+* el ámbito anteúltimo contiene los nombres globales del módulo actual
+* el ámbito exterior (donde se busca al final) es el espacio de nombres que
+  contiene los nombres incluidos
 
 Si un nombre se declara como global, entonces todas las referencias y
 asignaciones al mismo van directo al ámbito intermedio que contiene los

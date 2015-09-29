@@ -180,8 +180,8 @@ convención común es poner esta lista en un archivo
   numpy==1.9.2
   requests==2.7.0
 
-El archivo ``requirements.txt`` puede entonces ser confirmado para
-control de versiones y entregado como parte de una aplicación. Los
+El archivo ``requirements.txt`` entonces puede ser agregado a nuestro
+control de versiones y distribuído como parte de la aplicación. Los
 usuarios pueden entonces instalar todos los paquetes necesarios con
 ``install -r``::
 

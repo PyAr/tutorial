@@ -1,16 +1,17 @@
-. _tut-venv:
 
-*********************************
+.. _tut-venv:
+
+*****************************
 Entornos Virtuales y Paquetes
-*********************************
+*****************************
 
 Introducción
 ============
 
 Las aplicaciones en Python usualmente hacen uso de paquetes y módulos 
-que no forman parte de las librerías estándar. Las aplicaciones a veces
+que no forman parte de la librería estándar. Las aplicaciones a veces
 necesitan una versión específica de una librería, debido a que dicha
-aplicación requiere que una debilidad particular haya sido solucionada
+aplicación requiere que un bug particular haya sido solucionado
 o bien la aplicación ha sido escrita usando una versión obsoleta de la
 interface de la librería.
 
@@ -20,55 +21,55 @@ necesita la versión 1.0 de un módulo particular y la aplicación B necesita
 la versión 2.0, entonces los requerimientos entran en conflicto e instalar
 la versión 1.0 o 2.0 dejará una de las aplicaciones sin funcionar.
 
-La solución a este problema es crear un :term:`virtual
-environment` (comunmente abreviado como "virtualenv"), una directorio que
-contiene una instalación de Python de una versión en particular, además de
-unos cuantos paquetes adicionales.
+La solución a este problema es crear un :term:`entorno virtual`
+(comunmente abreviado como "virtualenv"), un directorio que contiene
+una instalación de Python de una versión en particular, además de unos
+cuantos paquetes adicionales.
 
 Diferentes aplicaciones pueden entonces usar entornos virtuales diferentes.
 Para resolver el ejemplo de requerimientos en conflicto citado anteriormente,
 la aplicación A puede tener su propio entorno virtual con la versión 1.0 instalada
-mientras que la aplicación B tiene otro entorno virtual  con la versión 2.0.
+mientras que la aplicación B tiene otro entorno virtual con la versión 2.0.
 Si la aplicación B requiere que actualizar la librería a la versión 3.0, ésto no 
 afectará el entorno virtual de la aplicación A. 
 
 
 Creando Entornos Virtuales
-=============================
+==========================
 
-El script usado para crear y manejar entornos virtuales es 
+El script usado para crear y manejar entornos virtuales es
 :program:`pyvenv`.  :program:`pyvenv` normalmente instalará la versión
-mas reciente de Python que Ud. tenga disponible; el script también se 
-instalará con una versión, con lo que si tiene múltiples versiones
-de Python en su sistema puede seleccionar una versión de Python específica
-ejecutando ``pyvenv-3.4`` o la versión que desee.
+mas reciente de Python que tengas disponible; el script también es
+instalado con un número de versión, con lo que si tienes múltiples
+versiones de Python en tu sistema puedes seleccionar una versión de
+Python específica ejecutando ``pyvenv-3.4`` o la versión que desees.
 
-Para crear un virtualenv(Entorno Virtual), decida en que carpeta 
-quiere crearlo y ejecute :program:`pyvenv con la ruta a la carpeta:
+Para crear un virtualenv, decide en que carpeta quieres crearlo y
+ejecuta :program:`pyvenv` con la ruta a la carpeta::
 
    pyvenv tutorial-env 
 
 Esto creará la carpeta ``tutorial-env`` si no existe, y también creará
-las subcarpetas conteniendo la copia del intérprete Python, las librerías
+las subcarpetas conteniendo la copia del intérprete Python, la librería
 estándar y los archivos de soporte.
 
-Una vez creado el entorno virtual, necesita activarlo.
+Una vez creado el entorno virtual, necesitarás activarlo.
 
-En Windows, ejecutar::
+En Windows, ejecuta::
 
   tutorial-env/Scripts/activate
 
-En Unix o MacOS, ejecute::
+En Unix o MacOS, ejecuta::
 
   source tutorial-env/bin/activate
 
-(Este script está escrito para la consola bash. Si Ud. usa las
-consolas :program:`csh` or :program:`fish`, hay scripts alternativos
-``activate.csh`` and ``activate.fish`` que deberá usar en su lugar)
+(Este script está escrito para la consola bash. Si usas las consolas
+:program:`csh` or :program:`fish`, hay scripts alternativos
+``activate.csh`` y ``activate.fish`` que deberá usar en su lugar).
 
-Activar el entorno virtual cambiará el prompt de su consola para mostrar
-que entorno virtual está usando, y modificará el entorno para que al correr
-``python`` sea con esa versión e instalación en particular. Por ejemplo:
+Activar el entorno virtual cambiará el prompt de tu consola para mostrar
+que entorno virtual está usando, y modificará el entorno para que al ejecutar
+``python`` sea con esa versión e instalación en particular. Por ejemplo::
 
   -> source ~/envs/tutorial-env/bin/activate
   (tutorial-env) -> python
@@ -84,11 +85,11 @@ que entorno virtual está usando, y modificará el entorno para que al correr
 Manejando paquetes con pip
 ==========================
 
-Una vez activado un entorno virtual, se puede instalar, actualizar y remover
+Una vez activado un entorno virtual, se puede instalar, actualizar y quitar
 paquetes usando un programa llamado :program:`pip`. Por defecto ``pip`` instalará
 paquetes desde Python Package Index (Indice de Paquetes Python),
-<https://pypi.python.org/pypi> . Se puede navegar Python Package Index ingresando
-con su navegador de internet, o se puede usar la búsqueda limitada de `pip``'s
+<https://pypi.python.org/pypi> . Se puede navegar el Python Package Index ingresando
+con su navegador de internet, o se puede usar la búsqueda limitada de ``pip``'s::
 
   (tutorial-env) -> pip search astronomy
   skyfield               - Elegant astronomy for Python
@@ -100,7 +101,7 @@ con su navegador de internet, o se puede usar la búsqueda limitada de `pip``'s
 
 
 ``pip`` tiene varios subcomandos: "search", "install", "uninstall",
-"freeze", etc.  (Consultar la guía :ref:`installing-index` para la documentación
+"freeze", etc.  (consulta la guía :ref:`installing-index` para la documentación
 completa de ``pip``.)
 
 Se puede instalar la última versión de un paquete especificando el nombre del paquete::
@@ -113,7 +114,7 @@ Se puede instalar la última versión de un paquete especificando el nombre del 
   Successfully installed novas-3.1.1.3
 
 También se puede instalar una verisón específica de un paquete ingresando
-el nombre del paquete seguido de ``==`` y el número de versión:: 
+el nombre del paquete seguido de ``==`` y el número de versión::
 
   -> pip install requests==2.6.0
   Collecting requests==2.6.0
@@ -184,6 +185,6 @@ entonces instalar todos los paquetes necesarios con ``install -r``::
     Running setup.py install for novas
   Successfully installed novas-3.1.1.3 numpy-1.9.2 requests-2.7.0
 
-``pip`` tiene muchas opciones más. Consultar la guía :ref:`installing-index`
-para la documentación de ``pip``. Cuando Ud. haya escrito un paquete y desee
+``pip`` tiene muchas opciones más. Consulta la guía :ref:`installing-index`
+para la documentación de ``pip``. Cuando hayas escrito un paquete y desees
 dejarlo disponible en Python Package Index, consulte la guía :ref:`distributing-index`.

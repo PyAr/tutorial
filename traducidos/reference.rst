@@ -9,6 +9,20 @@ Se incluye aquí sólo a modo de referencia, y para hacer poder llegar fácil
 a la documentación de cada ítem cuando se apunta al mismo en el tutorial.
 
 
+.. _extending-index:
+
+Extendiendo e Integrando el Intérprete de Python
+================================================
+
+* `Índice <https://docs.python.org/3/extending/index.html#extending-index>`__
+
+.. _c-api-index:
+
+Referencia de la API Python/C
+=============================
+
+* `Índice <https://docs.python.org/3/c-api/index.html#c-api-index>`__
+
 .. _library-index:
 
 La referencia de la biblioteca

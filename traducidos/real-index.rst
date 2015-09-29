@@ -29,10 +29,10 @@ interprete de Python a mano para experimentar, sin embargo todos los ejemplos
 están aislados, por lo tanto el tutorial puede leerse estando desconectado.
 
 Para una descripción de los objetos y módulos estándar, mirá
-:ref:`library-index`.  :ref:`library-index` provee una definición más formal
-del lenguaje.  Para escribir extensiones en C o C++, leé Extendiendo e
-Integrando el Intérprete de Python y la Referencia de la API Python/C.
-Hay también numerosos libros que tratan a Python en profundidad.
+:ref:`library-index`.  :ref:`library-index` provee una definición más
+formal del lenguaje.  Para escribir extensiones en C o C++, leé
+:ref:`extending-index` y la :ref:`c-api-index`.  Hay también numerosos
+libros que tratan a Python en profundidad.
 
 Este tutorial no pretende ser exhaustivo ni tratar cada una de las
 características, o siquiera las características más usadas.  En cambio,

@@ -231,10 +231,10 @@ pdf_breakside = 'odd'
 #pdf_font_path= ['/usr/share/fonts', '/usr/share/texmf-dist/fonts/']
 
 # Language to be used for hyphenation support
-pdf_language=""
+pdf_language = "es"
 
 # If false, no index is generated.
 pdf_use_index = False
 
 # no cover
-pdf_use_coverpage=True
+pdf_use_coverpage = True

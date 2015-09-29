@@ -41,6 +41,16 @@
         "fontSize": 9,
         "leading": 14
     }],
+    ["file" , {
+        "backColor": "#FCFFF5",
+        "borderWidth": 0.3,
+        "borderColor": "#AACC99",
+        "allowOrphans": false,
+        "allowWidows": false,
+        "spaceAfter": 12,
+        "leading": 12,
+        "fontSize": 8
+    }],
     ["toc" , {
         "parent": "normal",
         "leading": 11

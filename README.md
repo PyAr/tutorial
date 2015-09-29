@@ -1,11 +1,11 @@
 Tutorial de Python en Español
 =============================
 
-Esta traducción cubre la versión 3.4.3 del tutorial de Python.
+Esta traducción cubre la versión 3.5.0 del tutorial de Python.
 
 Utilizando la carpeta Doc/tutorial y el archivo descargado fue este:
 
-* https://hg.python.org/cpython/archive/b4cbecbc0781.tar.bz2/Doc/tutorial/
+* https://hg.python.org/cpython/file/v3.5.0/Doc/tutorial/
 
 La versión OnLine de esta documentación se puede encontrar en:
 
@@ -64,6 +64,9 @@ necesario tener instalado `pdftk` 2.01):
  ```
  fab deploy_all
  ```
+
+1. Actualizar el README.md (la sección que indica qué versión del
+   tutorial está traducida, al principio)
 
 1. Crear un commit para esta nueva revision:
 

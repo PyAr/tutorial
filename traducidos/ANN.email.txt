@@ -1,0 +1,36 @@
+Hola a todos,
+
+Hoy actualizamos la versión del Tutorial de Python a la versión 3.5.0
+(la última).
+
+Gracias a:
+
+ * https://github.com/omicronvt
+ * https://github.com/gamba47
+
+Que ayudaron con el archivo "venv.rst" (lo nuevo de Python 3.5.0)
+
+Podés consultar la última versión en:
+
+http://tutorial.python.org.ar/
+
+Y si te interesa colaborar en mantener actualizado el tutorial, podés
+ingresar aquí:
+
+https://github.com/PyAr/tutorial
+
+(yo tengo un script corriendo que me manda un mail cuando hay una
+nueva versión, así no tengo que estar chequeando eso) -te puedo
+agregar a vos así te manda uno también...
+
+https://github.com/PyAr/tutorial/blob/master/dev/check_python_tutorial.py
+
+Por favor, difundan esta noticia y también, cualquier inconveniente
+que encuentren por no dejen de comunicarlo.
+
+Saludos,
+
+-- 
+
+Kaufmann Manuel
+-- http://elblogdehumitos.com.ar/

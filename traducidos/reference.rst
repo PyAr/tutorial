@@ -142,15 +142,26 @@ Instalando módulos de Python
 
 * `Índice <http://docs.python.org/3/install/index.html>`__
 
-
-.. _glossary:
+.. _distributing-index:
 
 Glosario
 ========
 
-.. _text file:
-.. _mutable:
+.. glossary::
 
+   mutables
+       https://docs.python.org/3/glossary.html#term-mutable
+
+   archivo de texto
+       https://docs.python.org/3/glossary.html#term-text-file
+
+   entorno virtual
+       https://docs.python.org/3/glossary.html#term-virtual-environment
+
+Distribuyendo módulos de Python
+===============================
+
+* `Índice <https://docs.python.org/3/distributing/index.html#distributing-index>`__
 
 .. _using-on-general:
 

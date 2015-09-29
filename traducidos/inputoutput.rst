@@ -427,14 +427,14 @@ simple línea de código::
    '[1, "simple", "lista"]'
 
 Otra variante de la función :func:`~json.dumps`, llamada
-:func:`~json.dump`, simplemente serializa el objeto a un :term:`text
-file`. Así que, si ``f`` es un objeto :term:`text file` abierto para
-escritura, podemos hacer::
+:func:`~json.dump`, simplemente serializa el objeto a un
+:term:`archivo de texto`. Así que, si ``f`` es un objeto
+:term:`archivo de texto` abierto para escritura, podemos hacer::
 
    json.dump(x, f)
 
 Para decodificar un objeto nuevamente, si ``f`` es un objeto
-:term:`text file` que fue abierto para lectura::
+:term:`archivo de texto` que fue abierto para lectura::
 
    x = json.load(x, f)
 

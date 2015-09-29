@@ -8,30 +8,32 @@ Entornos Virtuales y Paquetes
 Introducción
 ============
 
-Las aplicaciones en Python usualmente hacen uso de paquetes y módulos 
+Las aplicaciones en Python usualmente hacen uso de paquetes y módulos
 que no forman parte de la librería estándar. Las aplicaciones a veces
 necesitan una versión específica de una librería, debido a que dicha
-aplicación requiere que un bug particular haya sido solucionado
-o bien la aplicación ha sido escrita usando una versión obsoleta de la
+aplicación requiere que un bug particular haya sido solucionado o bien
+la aplicación ha sido escrita usando una versión obsoleta de la
 interface de la librería.
 
-Esto significa que tal vez no sea posible para una instalación de Python
-cumplir los requerimientos de todas las aplicaciones. Si la aplicación A
-necesita la versión 1.0 de un módulo particular y la aplicación B necesita
-la versión 2.0, entonces los requerimientos entran en conflicto e instalar
-la versión 1.0 o 2.0 dejará una de las aplicaciones sin funcionar.
+Esto significa que tal vez no sea posible para una instalación de
+Python cumplir los requerimientos de todas las aplicaciones. Si la
+aplicación A necesita la versión 1.0 de un módulo particular y la
+aplicación B necesita la versión 2.0, entonces los requerimientos
+entran en conflicto e instalar la versión 1.0 o 2.0 dejará una de las
+aplicaciones sin funcionar.
 
 La solución a este problema es crear un :term:`entorno virtual`
 (comunmente abreviado como "virtualenv"), un directorio que contiene
 una instalación de Python de una versión en particular, además de unos
 cuantos paquetes adicionales.
 
-Diferentes aplicaciones pueden entonces usar entornos virtuales diferentes.
-Para resolver el ejemplo de requerimientos en conflicto citado anteriormente,
-la aplicación A puede tener su propio entorno virtual con la versión 1.0 instalada
-mientras que la aplicación B tiene otro entorno virtual con la versión 2.0.
-Si la aplicación B requiere que actualizar la librería a la versión 3.0, ésto no 
-afectará el entorno virtual de la aplicación A. 
+Diferentes aplicaciones pueden entonces usar entornos virtuales
+diferentes.  Para resolver el ejemplo de requerimientos en conflicto
+citado anteriormente, la aplicación A puede tener su propio entorno
+virtual con la versión 1.0 instalada mientras que la aplicación B
+tiene otro entorno virtual con la versión 2.0.  Si la aplicación B
+requiere que actualizar la librería a la versión 3.0, ésto no afectará
+el entorno virtual de la aplicación A.
 
 
 Creando Entornos Virtuales
@@ -50,8 +52,8 @@ ejecuta :program:`pyvenv` con la ruta a la carpeta::
    pyvenv tutorial-env 
 
 Esto creará la carpeta ``tutorial-env`` si no existe, y también creará
-las subcarpetas conteniendo la copia del intérprete Python, la librería
-estándar y los archivos de soporte.
+las subcarpetas conteniendo la copia del intérprete Python, la
+librería estándar y los archivos de soporte.
 
 Una vez creado el entorno virtual, necesitarás activarlo.
 
@@ -67,9 +69,10 @@ En Unix o MacOS, ejecuta::
 :program:`csh` or :program:`fish`, hay scripts alternativos
 ``activate.csh`` y ``activate.fish`` que deberá usar en su lugar).
 
-Activar el entorno virtual cambiará el prompt de tu consola para mostrar
-que entorno virtual está usando, y modificará el entorno para que al ejecutar
-``python`` sea con esa versión e instalación en particular. Por ejemplo::
+Activar el entorno virtual cambiará el prompt de tu consola para
+mostrar que entorno virtual está usando, y modificará el entorno para
+que al ejecutar ``python`` sea con esa versión e instalación en
+particular. Por ejemplo::
 
   -> source ~/envs/tutorial-env/bin/activate
   (tutorial-env) -> python
@@ -85,11 +88,12 @@ que entorno virtual está usando, y modificará el entorno para que al ejecutar
 Manejando paquetes con pip
 ==========================
 
-Una vez activado un entorno virtual, se puede instalar, actualizar y quitar
-paquetes usando un programa llamado :program:`pip`. Por defecto ``pip`` instalará
-paquetes desde Python Package Index (Indice de Paquetes Python),
-<https://pypi.python.org/pypi> . Se puede navegar el Python Package Index ingresando
-con su navegador de internet, o se puede usar la búsqueda limitada de ``pip``'s::
+Una vez activado un entorno virtual, se puede instalar, actualizar y
+quitar paquetes usando un programa llamado :program:`pip`. Por defecto
+``pip`` instalará paquetes desde Python Package Index (Indice de
+Paquetes Python), <https://pypi.python.org/pypi> . Se puede navegar el
+Python Package Index ingresando con su navegador de internet, o se
+puede usar la búsqueda limitada de ``pip``'s::
 
   (tutorial-env) -> pip search astronomy
   skyfield               - Elegant astronomy for Python
@@ -101,10 +105,11 @@ con su navegador de internet, o se puede usar la búsqueda limitada de ``pip``'s
 
 
 ``pip`` tiene varios subcomandos: "search", "install", "uninstall",
-"freeze", etc.  (consulta la guía :ref:`installing-index` para la documentación
-completa de ``pip``.)
+"freeze", etc.  (consulta la guía :ref:`installing-index` para la
+documentación completa de ``pip``.)
 
-Se puede instalar la última versión de un paquete especificando el nombre del paquete::
+Se puede instalar la última versión de un paquete especificando el
+nombre del paquete::
 
   -> pip install novas
   Collecting novas
@@ -113,8 +118,9 @@ Se puede instalar la última versión de un paquete especificando el nombre del 
     Running setup.py install for novas
   Successfully installed novas-3.1.1.3
 
-También se puede instalar una verisón específica de un paquete ingresando
-el nombre del paquete seguido de ``==`` y el número de versión::
+También se puede instalar una verisón específica de un paquete
+ingresando el nombre del paquete seguido de ``==`` y el número de
+versión::
 
   -> pip install requests==2.6.0
   Collecting requests==2.6.0
@@ -122,10 +128,10 @@ el nombre del paquete seguido de ``==`` y el número de versión::
   Installing collected packages: requests
   Successfully installed requests-2.6.0
 
-Si se re-ejecuta el comando, ``pip`` detectará que la versión ya 
-está instalada y no hará nada. Se puede ingresar un número de versión
-diferente para instalarlo, o se puede ejecutar ``pip install --upgrade``
-para actualizar el paquete a la última versión::
+Si se re-ejecuta el comando, ``pip`` detectará que la versión ya está
+instalada y no hará nada. Se puede ingresar un número de versión
+diferente para instalarlo, o se puede ejecutar ``pip install
+--upgrade`` para actualizar el paquete a la última versión::
 
   -> pip install --upgrade requests
   Collecting requests
@@ -135,8 +141,8 @@ para actualizar el paquete a la última versión::
         Successfully uninstalled requests-2.6.0
   Successfully installed requests-2.7.0
 
-``pip uninstall`` seguido de uno o varios nombres de paquetes desinstalará
-los paquetes del entorno virtual.
+``pip uninstall`` seguido de uno o varios nombres de paquetes
+desinstalará los paquetes del entorno virtual.
 
 ``pip show`` mostrará información de un paquete en particular::
 
@@ -153,7 +159,8 @@ los paquetes del entorno virtual.
   Location: /Users/akuchling/envs/tutorial-env/lib/python3.4/site-packages
   Requires:
 
-``pip list`` mostrará todos los paquetes instalados en el entorno virtual::
+``pip list`` mostrará todos los paquetes instalados en el entorno
+virtual::
 
   (tutorial-env) -> pip list
   novas (3.1.1.3)
@@ -162,18 +169,22 @@ los paquetes del entorno virtual.
   requests (2.7.0)
   setuptools (16.0)
 
-``pip freeze`` devuelve una lista de paquetes instalados similar, pero el
-formato de salida es el requerido por ``pip install``.
-Una convención común es poner esta lista en un archivo ``requirements.txt``::
+``pip freeze`` devuelve una lista de paquetes instalados similar, pero
+el formato de salida es el requerido por ``pip install``.  Una
+convención común es poner esta lista en un archivo
+``requirements.txt``::
+
   (tutorial-env) -> pip freeze > requirements.txt
   (tutorial-env) -> cat requirements.txt
   novas==3.1.1.3
   numpy==1.9.2
   requests==2.7.0
 
-El archivo ``requirements.txt`` puede entonces ser confirmado para control
-de versiones y entregado como parte de una aplicación. Los usuarios pueden
-entonces instalar todos los paquetes necesarios con ``install -r``::
+El archivo ``requirements.txt`` puede entonces ser confirmado para
+control de versiones y entregado como parte de una aplicación. Los
+usuarios pueden entonces instalar todos los paquetes necesarios con
+``install -r``::
+
   -> pip install -r requirements.txt
   Collecting novas==3.1.1.3 (from -r requirements.txt (line 1))
     ...
@@ -185,6 +196,7 @@ entonces instalar todos los paquetes necesarios con ``install -r``::
     Running setup.py install for novas
   Successfully installed novas-3.1.1.3 numpy-1.9.2 requests-2.7.0
 
-``pip`` tiene muchas opciones más. Consulta la guía :ref:`installing-index`
-para la documentación de ``pip``. Cuando hayas escrito un paquete y desees
-dejarlo disponible en Python Package Index, consulte la guía :ref:`distributing-index`.
+``pip`` tiene muchas opciones más. Consulta la guía
+:ref:`installing-index` para la documentación de ``pip``. Cuando hayas
+escrito un paquete y desees dejarlo disponible en Python Package
+Index, consulte la guía :ref:`distributing-index`.

@@ -629,19 +629,17 @@ la cual devuelve una nueva lista ordenada dejando a la original intacta. ::
    naranja
    pera
 
-Para cambiar una secuencia sobre la que estás iterando mientras estás
-adentro del ciclo (por ejemplo para duplicar algunos ítems), se recomienda
-que primera hagas una copia.  Ciclar sobre una secuencia no hace
-implícitamente una copia.  La notación de rebanadas es especialmente
-conveniente para esto::
+A veces uno intenta cambiar una lista mientras la está iterando; sin
+embargo, a menudo es más simple y seguro crear una nueva lista::
 
-   >>> palabras = ['gato', 'ventana', 'defenestrar']
-   >>> for p in palabras[:]:  # ciclar sobre una copia de la lista entera
-   ...     if len(p) > 6:
-   ...         palabras.insert(0, p)
+   >>> datos = [56.2, float('NaN'), 51.7, 55.3, 52.5, float('NaN'), 47.8]
+   >>> datos_filtrados = []
+   >>> for valor in datos:
+   ...     if not math.isnan(valor):
+   ...         datos_filtrados.append(valor)
    ...
-   >>> palabras
-   ['defenestrar', 'gato', 'ventana', 'defenestrar']
+   >>> datos_filtrados
+   [56.2, 51.7, 55.3, 52.5, 47.8]
 
 
 .. _tut-conditions:

@@ -26,7 +26,7 @@ inconsistencias internas o a que el intérprete se queda sin memoria.
 Todos los mensajes de error se escriben en el flujo de errores estándar;
 las salidas normales de comandos ejecutados se escriben en la salida estándar.
 
-Al ingresar el caracter de interrupción (por lo general Control-C o DEL) en el
+Al ingresar el caracter de interrupción (por lo general :kbd:`Control-C` o :kbd:`Supr`) en el
 prompt primario o secundario, se cancela la entrada y retorna al prompt
 primario.  [#]_ Tipear una interrupción mientras un comando se están ejecutando
 lanza la excepción :exc:`KeyboardInterrupt`, que puede ser manejada con una

@@ -40,7 +40,7 @@ Las características para editar líneas del intérprete incluyen edición
 interactiva, sustitución usando el historial y completado de código en
 sistemas que soportan readline. Tal vez la forma más rápida de
 detectar si las características de edición están presentes es ingresar
-Control-P en el primer prompt de Python que aparezca.  Si se escucha
+:kbd:`Control-P` en el primer prompt de Python que aparezca.  Si se escucha
 un beep, las características están presentes; ver Apéndice
 :ref:`tut-interacting` para una introducción a las teclas.  Si no pasa
 nada, o si aparece ``^P``, estas características no están disponibles;

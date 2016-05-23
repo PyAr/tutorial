@@ -16,13 +16,13 @@ import sphinx_bootstrap_theme
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-#sys.path.append(os.path.abspath('.'))
+# sys.path.append(os.path.abspath('.'))
 
 # -- General configuration -----------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc','rst2pdf.pdfbuilder']
+extensions = ['sphinx.ext.autodoc', 'rst2pdf.pdfbuilder']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -45,7 +45,7 @@ copyright = u'2014, Python Software Foundation'
 # built documents.
 #
 # The short X.Y version.
-version = release = '3.5.0'
+version = release = '3.5.1'
 # The full version, including alpha/beta/rc tags.
 # release = '3.4.1'
 
@@ -172,8 +172,8 @@ htmlhelp_basename = 'TutorialPythondoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'TutorialPython.tex', u'Tutorial Python Documentation',
-   u'Guido van Rossum', 'manual'),
+    ('index', 'TutorialPython.tex', u'Tutorial Python Documentation',
+     u'Guido van Rossum', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -196,13 +196,13 @@ latex_documents = [
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 pdf_documents = [
-  ('index','TutorialPython', u'Tutorial Python', u'Guido van Rossum'),
+    ('index', 'TutorialPython', u'Tutorial Python', u'Guido van Rossum'),
 ]
 
 # Los dos estilos que estamos usando, el primero es para el PDF descargable,
 # el segundo es para imprimir el manualcito
 # stylesheets=["fruity.json", "a4paper.json", "verasans.json"]
-pdf_stylesheets = ['a4','sphinx','estilo-descargable']
+pdf_stylesheets = ['a4', 'sphinx', 'estilo-descargable']
 #pdf_stylesheets = ['eightpoint','a5','sphinx','estilo-manualcito','bw']
 
 # What to do when a literal block is too wide
@@ -224,7 +224,7 @@ pdf_breakside = 'odd'
 # Create a compressed PDF
 # Use True/False or 1/0
 # Example: compressed=True
-#pdf_compressed=False
+# pdf_compressed=False
 
 # A colon-separated list of folders to search for fonts. Example:
 # pdf_font_path=['/usr/share/fonts', '/usr/share/texmf-dist/fonts/']

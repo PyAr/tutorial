@@ -47,6 +47,8 @@ haciendo los cambios en los archivos dentro del directorio
 1. Actualizar las variales `version` y `release` del archivo
    `traducidos/conf.py`.
 
+1. Actualizar la fecha en el archivo `traducidos/imagenes/pag1.svg`
+
 1. Crear las versiones HTML y PDF (para crear esta version es
 necesario tener instalado `pdftk` 2.01):
 

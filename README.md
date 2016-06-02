@@ -49,16 +49,17 @@ haciendo los cambios en los archivos dentro del directorio
 
 1. Actualizar la fecha en el archivo `traducidos/imagenes/pag1.svg`
 
-1. Crear las versiones HTML y PDF (para crear esta version es
+1. Crear las versiones HTML, eBook y PDF (para crear esta version es
 necesario tener instalado `pdftk` 2.01):
 
  ```
  fab create_html
+ fab create_ebook
  fab create_pdf
  fab change_htmlindex_version
  ```
- 
-1. Verificar que el PDF se abre correctamente con Evince y Firefox
+
+1. Verificar que el PDF y eBook se abre correctamente con Evince y Firefox
 (preview)
 
 1. Si tenés permisos de `admin` en el servidor, ejecutar:

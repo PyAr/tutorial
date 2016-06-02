@@ -35,6 +35,11 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in _build/html."
 
+epub:
+	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) _build/epub
+	@echo
+	@echo "Build finished. The e-Pub pages are in _build/epub."
+
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) _build/dirhtml
 	@echo

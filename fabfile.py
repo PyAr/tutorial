@@ -51,6 +51,11 @@ def create_html():
     local('cd traducidos && make html')
 
 
+def create_ebook():
+    """Build an eBook on ePub format using Sphinx."""
+    local('cd traducidos && make epub')
+
+
 def create_pdf():
     local('cd traducidos && make pdf')
 

@@ -1,11 +1,11 @@
---- /tmp/pdfreader.py	2013-02-28 13:27:36.410947457 -0300
-+++ pdfreader.py	2013-02-28 13:28:04.614948213 -0300
-@@ -211,7 +211,7 @@
-         # add it to the list of streams if it starts a stream
+--- pdfreader.py.orig	2016-09-05 20:33:48.626874677 -0500
++++ pdfreader.py	2016-09-05 20:33:59.759081856 -0500
+@@ -232,7 +232,7 @@
+         # just return it if it is a simple object.
          obj.indirect = key
          tok = source.next()
--        if tok != 'endobj':
-+        if tok != 'endobj' and not tok.isdigit():
-             self.readstream(obj, self.findstream(obj, tok, source), source)
-         return obj
+-        if tok == 'endobj':
++        if tok == 'endobj' and not tok.isdigit():
+             return obj
  
+         # Should be a stream.  Either that or it's broken.

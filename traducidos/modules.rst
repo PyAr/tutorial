@@ -36,7 +36,7 @@ el directorio actual, con el siguiente contenido::
            a, b = b, a+b
         print()
 
-   def fib2(n): # devuelve la serie Fibonacci hasta n
+   def fib2(n):   # devuelve la serie Fibonacci hasta n
        resultado = []
        a, b = 0, 1
        while b < n:
@@ -122,7 +122,8 @@ embargo, está bien usarlo para ahorrar tecleo en sesiones interactivas.
    intérprete.  Por lo tanto, si modificás los módulos, tenés que reiniciar el
    intérprete -- o, si es sólo un módulo que querés probar interactivamente,
    usá  :func:`imp.reload`, por ejemplo
-   ``import imp; imp.reload(nombremodulo)``.
+    ``import importlib;
+   importlib.reload(modulename)``.
 
 
 .. _tut-modulesasscripts:
@@ -144,7 +145,9 @@ agregando este código al final de tu módulo::
 
 ...podés hacer que el archivo sea utilizable tanto como script, como módulo
 importable, porque el código que analiza la linea de órdenes sólo se ejecuta
-si el módulo es ejecutado como archivo principal::
+si el módulo es ejecutado como archivo principal:
+
+.. code-block:: shell-session
 
    $ python fibo.py 50
    1 1 2 3 5 8 13 21 34

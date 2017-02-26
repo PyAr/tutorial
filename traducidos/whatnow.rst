@@ -43,7 +43,7 @@ Más recursos sobre Python:
   disponibles para descargar hechos por otros usuarios. Cuándo comiences a
   publicar código, puedes registrarlo aquí así los demás pueden encontrarlo.
 
-* http://code.activestate.com/recipes/langs/python/: El Recetario de Python es
+* https://code.activestate.com/recipes/langs/python/: El Recetario de Python es
   una colección de tamaño considerable de ejemplos de código, módulos más
   grandes, y programas útiles. Las contribuciones particularmente notorias
   están recolectadas en un libro también titulado Recetario de Python
@@ -52,7 +52,7 @@ Más recursos sobre Python:
 * http://www.pyvideo.org recolecta links de videos relacionados con
   Python de conferencias y reuniones de grupos de usuarios.
 
-* http://scipy.org: El proyecto "Python Científico" incluye módulos para
+* https://scipy.org: El proyecto "Python Científico" incluye módulos para
   manipulación y cálculo rápido de arreglos además de incluir paquetes para
   cosas como álgebra lineal, transformaciones de Fourier, soluciones no
   lineales, distribuciones de números al azar, análisis estadísticos, y

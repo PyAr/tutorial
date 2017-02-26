@@ -18,9 +18,9 @@ Los errores de sintaxis, también conocidos como errores de interpretación, son
 quizás el tipo de queja más común que tenés cuando todavía estás aprendiendo
 Python::
 
+
    >>> while True print('Hola mundo')
-   Traceback (most recent call last):
-   ...
+     File "<stdin>", line 1
        while True print('Hola mundo')
                       ^
    SyntaxError: invalid syntax
@@ -48,15 +48,15 @@ mensajes de error como los mostrados aquí::
 
    >>> 10 * (1/0)
    Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
+     File "<stdin>", line 1, in <module>
    ZeroDivisionError: division by zero
    >>> 4 + spam*3
    Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
+     File "<stdin>", line 1, in <module>
    NameError: name 'spam' is not defined
    >>> '2' + 2
    Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
+     File "<stdin>", line 1, in <module>
    TypeError: Can't convert 'int' object to str implicitly
 
 La última línea de los mensajes de error indica qué sucedió.  Las excepciones
@@ -126,6 +126,33 @@ ejemplo::
 
    ... except (RuntimeError, TypeError, NameError):
    ...     pass
+  
+Una clase en una clausula :keyword:`except` es compatible con una excepción si la misma esta en
+la misma clase o una clase base de la misma (pero no de la otra manera --- una
+clausula except listando una clase derivada no es compatible con una clase base).
+Por ejemplo, el siguiente código imprimirá B, C, D, en ese orden::
+
+   class B(Exception):
+       pass
+
+   class C(B):
+       pass
+
+   class D(C):
+       pass
+
+   for cls in [B, C, D]:
+       try:
+           raise cls()
+       except D:
+           print("D")
+       except C:
+           print("C")
+       except B:
+           print("B")
+
+Notese que si las clausulas de except estuvieran invertidas (con ``except B`` primero), habría
+impreso B, B, B --- la primera clausula de except coincidente es usada.
 
 El último :keyword:`except` puede omitir nombrar qué excepción captura, para
 servir como comodín.  Usá esto con extremo cuidado, ya que de esta manera es
@@ -155,7 +182,7 @@ excepción.  Por ejemplo::
    for arg in sys.argv[1:]:
        try:
            f = open(arg, 'r')
-       except IOError:
+       except OSError:
            print('no pude abrir', arg)
        else:
            print(arg, 'tiene', len(f.readlines()), 'lineas')
@@ -211,7 +238,7 @@ dentro de las funciones que se llaman (inclusive indirectamente) dentro del
    ... except ZeroDivisionError as err:
    ...     print('Manejando error en tiempo de ejecución:', err)
    ...
-   Manejando error en tiempo de ejecución: int division or modulo by zero
+   Manejando error en tiempo de ejecución: division by zero
 
 
 .. _tut-raising:
@@ -224,12 +251,15 @@ una excepción específica.  Por ejemplo::
 
    >>> raise NameError('Hola')
    Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
+     File "<stdin>", line 1, in <module>	 
    NameError: Hola
 
 El único argumento a :keyword:`raise` indica la excepción a generarse. Tiene
 que ser o una instancia de excepción, o una clase de excepción (una clase que
-hereda de :class:`Exception`).
+hereda de :class:`Exception`). Si se pasa una clase de excepción, la misma sera
+instanciada implicitamente llamandoa su constructor sin argumentos::
+
+   raise ValueError  # atajo para 'raise ValueError()'
 
 Si necesitás determinar cuando una excepción fue lanzada pero no querés
 manejarla, una forma simplificada de la instrucción :keyword:`raise` te permite
@@ -243,7 +273,7 @@ relanzarla::
    ...
    Voló una excepción!
    Traceback (most recent call last):
-     File "<stdin>", line 2, in ?
+     File "<stdin>", line 2, in <module>	 
    NameError: Hola
 
 
@@ -255,28 +285,7 @@ Excepciones definidas por el usuario
 Los programas pueden nombrar sus propias excepciones creando una nueva clase
 excepción (mirá :ref:`tut-classes` para más información sobre las clases de
 Python).  Las excepciones, típicamente, deberán derivar de la clase
-:exc:`Exception`, directa o indirectamente.  Por ejemplo::
-
-   >>> class MiError(Exception):
-   ...     def __init__(self, valor):
-   ...         self.valor = valor
-   ...     def __str__(self):
-   ...         return repr(self.valor)
-   ...
-   >>> try:
-   ...     raise MiError(2*2)
-   ... except MyError as e:
-   ...     print('Ocurrió mi excepción, valor:', e.valor)
-   ...
-   Ocurrió mi excepción, valor: 4
-   >>> raise MiError('oops!')
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
-   __main__.MiError: 'oops!'
-
-En este ejemplo, el método :meth:`__init__` de :class:`Exception` fue
-sobrescrito.  El nuevo comportamiento simplemente crea el atributo *valor*.
-Esto reemplaza el comportamiento por defecto de crear el atributo *args*.
+:exc:`Exception`, directa o indirectamente.
 
 Las clases de Excepciones pueden ser definidas de la misma forma que cualquier
 otra clase, pero usualmente se mantienen simples, a menudo solo ofreciendo un
@@ -371,8 +380,8 @@ más complicado::
    ejecutando la clausula finally
    >>> divide("2", "1")
    ejecutando la clausula finally
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
+   Traceback (most recent call last):     
+     File "<stdin>", line 1, in <module>	 
      File "<stdin>", line 3, in divide
    TypeError: unsupported operand type(s) for /: 'str' and 'str'
 

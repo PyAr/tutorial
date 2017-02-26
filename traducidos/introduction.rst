@@ -241,7 +241,7 @@ carácter es simplemente una cadena de longitud uno::
    >>> palabra[5]  # caracter en la posición 5
    'n'
 
-Los índices quizás sean números negativos, para empezar a contar desde la dereche::
+Los índices quizás sean números negativos, para empezar a contar desde la derecha::
 
    >>> palabra[-1]  # último caracter
    'n'
@@ -351,10 +351,13 @@ de texto::
       Las cadenas de texto soportan una gran cantidad de métodos para
       transformaciones básicas y búsqueda.
 
-   :ref:`string-formatting`
+   :ref:`f-strings`
+      Literales de cadena que tienen expresiones embebidas.
+
+   :ref:`formatstrings`
       Aquí se da información sobre formateo de cadenas de texto con
       :meth:`str.format`.
-
+	  
    :ref:`old-string-formatting`
       Aquí se describe con más detalle las operaciones viejas para formateo
       usadas cuando una cadena de texto o una cadena Unicode están a la

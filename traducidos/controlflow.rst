@@ -81,6 +81,9 @@ conveniente para esto::
    >>> palabras
    ['defenestrado', 'ventana', 'gato', 'ventana', 'defenestrado']
 
+Con ``for w in words:``, el ejemplo intentaría crear una lista infinita,
+insertando ``defenestrado`` una y otra vez.
+
 
 .. _tut-range:
 
@@ -251,7 +254,7 @@ Definiendo funciones
 Podemos crear una función que escriba la serie de Fibonacci hasta un límite
 determinado::
 
-   >>> def fib(n):    # escribe la serie de Fibonacci hasta n
+   >>> def fib(n):  # escribe la serie de Fibonacci hasta n
    ...     """Escribe la serie de Fibonacci hasta n."""
    ...     a, b = 0, 1
    ...     while a < n:
@@ -376,7 +379,7 @@ La forma más útil es especificar un valor por omisión para  uno o más
 argumentos.  Esto crea una función que puede ser llamada con menos argumentos
 que los que permite.  Por ejemplo::
 
-   def pedir_confirmacion(prompt, reintentos=4, queja='Si o no, por favor!'):
+   def pedir_confirmacion(prompt, reintentos=4, recordatorio='Por favor, intente nuevamente!'):
        while True:
            ok = input(prompt)
            if ok in ('s', 'S', 'si', 'Si', 'SI'):
@@ -385,8 +388,8 @@ que los que permite.  Por ejemplo::
                return False
            reintentos = reintentos - 1
            if reintentos < 0:
-               raise OSError('usuario duro')
-           print(queja)
+               raise ValueError('respuesta de usuario inválida')
+           print(recordatorio)
 
 Esta función puede ser llamada de distintas maneras:
 
@@ -522,6 +525,8 @@ Puede ser llamada así::
 
 ...y por supuesto imprimirá::
 
+.. code-block:: none
+
    -- ¿Tiene Limburger ?
    -- Lo siento, nos quedamos sin Limburger
    Es muy liquido, sr.
@@ -560,7 +565,7 @@ será 'sólo nombrado', o sea que sólo se pueden usar como nombrados
 y no posicionales.::
 
    >>> def concatenar(*args, sep="/"):
-   ...    return sep.join(args)
+   ...     return sep.join(args)
    ...
    >>> concatenar("tierra", "marte", "venus")
    'tierra/marte/venus'

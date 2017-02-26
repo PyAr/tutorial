@@ -15,7 +15,7 @@ con el sistema operativo::
 
    >>> import os
    >>> os.getcwd()      # devuelve el directorio de trabajo actual
-   'C:\\Python35'
+   'C:\\Python36'
    >>> os.chdir('/server/accesslogs')   # cambia el directorio de trabajo
    >>> os.system('mkdir today')   # ejecuta el comando 'mkdir' en el sistema
    0
@@ -152,7 +152,7 @@ El módulo :mod:`statistics` calcula propiedades de estadística básica
     >>> statistics.variance(datos)
     1.3720238095238095
 
-El proyecto SciPy <http://scipy.org> tiene muchos otros módulos para
+El proyecto SciPy <https://scipy.org> tiene muchos otros módulos para
 cálculos numéricos.
 
 
@@ -308,7 +308,7 @@ de pruebas::
            with self.assertRaises(TypeError):
               promedio(20, 30, 70)
 
-   unittest.main() # llamarlo de la linea de comandos ejecuta todas las pruebas
+   unittest.main()  # llamarlo de la linea de comandos ejecuta todas las pruebas
 
 
 .. _tut-batteries-included:

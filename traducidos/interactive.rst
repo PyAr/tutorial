@@ -47,6 +47,6 @@ objetos, y administración avanzada del historial.  También puede ser
 configurado en profundidad, e integrarse en otras aplicaciones.  Otro
 entorno interactivo mejorado similar es bpython_.
 
-.. _GNU Readline: http://tiswww.case.edu/php/chet/readline/rltop.html
-.. _IPython: http://ipython.scipy.org/
+.. _GNU Readline: https://tiswww.case.edu/php/chet/readline/rltop.html
+.. _IPython: https://ipython.scipy.org/
 .. _bpython: http://www.bpython-interpreter.org/

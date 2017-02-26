@@ -38,14 +38,14 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Tutorial de Python'
-copyright = u'2014, Python Software Foundation'
+copyright = u'2017, Python Software Foundation'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = release = '3.5.1'
+version = release = '3.6.0'
 # The full version, including alpha/beta/rc tags.
 # release = '3.4.1'
 

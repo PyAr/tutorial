@@ -756,7 +756,7 @@ definición de clase vacía funcionará perfecto::
    class Empleado:
        pass
 
-   juan = Empleado() # Crear un registro de empleado vacío
+   juan = Empleado()  # Crear un registro de empleado vacío
 
    # Llenar los campos del registro
    juan.nombre = 'Juan Pistola'
@@ -779,57 +779,6 @@ memoria intermedia, y pasarlo como argumento.
 Los objetos método de instancia tienen atributos también: ``m.__self__`` es
 el objeto instancia con el método :meth:`m`, y ``m.__func__`` es el objeto
 función correspondiente al método.
-
-
-.. _tut-exceptionclasses:
-
-Las excepciones también son clases
-==================================
-
-Las excepciones definidas por el usuario también son identificadas por clases.
-Usando este mecanismo es posible crear jerarquías extensibles de excepciones.
-
-Hay dos nuevas formas (semánticas) válidas para la sentencia :keyword:`raise`::
-
-   raise Clase
-
-   raise Instancia
-
-En la primera forma, ``Clase`` debe ser una instancia de :class:`type` o
-de una clase derivada de ella.  La segunda forma es una abreviatura de::
-
-   raise Clase()
-
-Una clase en una cláusula :keyword:`except` es compatible con una excepción si
-es de la misma clase o una clase base suya (pero no al revés, una cláusula
-except listando una clase derivada no es compatible con una clase base).  Por
-ejemplo, el siguiente código imprimirá B, C, D en ese orden::
-
-   class B(Exception):
-       pass
-   class C(B):
-       pass
-   class D(C):
-       pass
-
-   for cls in [B, C, D]:
-       try:
-           raise cls()
-       except D:
-           print("D")
-       except C:
-           print("C")
-       except B:
-           print("B")
-
-Notar que si la cláusulas ``except`` fueran invertidas (dejando ``except B`` al
-principio), habría impreso B, B, B; se dispara la primera cláusula ``except``
-que coincide.
-
-Cuando se imprime un mensaje de error para una excepción sin atrapar, se
-imprime el nombre de la clase de la excepción, luego dos puntos y un espacio y
-finalmente la instancia convertida a un string usando la función
-integrada :func:`str`.
 
 
 .. _tut-iterators:

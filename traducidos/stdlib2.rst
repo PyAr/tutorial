@@ -279,7 +279,6 @@ automáticamente de una tabla de referencias débiles y se dispara una
 retrollamada (`callback`).  Comúnmente se usa para mantener una `cache` de
 objetos que son caros de crear:
 
-
    >>> import weakref, gc
    >>> class A:
    ...     def __init__(self, valor):
@@ -287,17 +286,20 @@ objetos que son caros de crear:
    ...     def __repr__(self):
    ...         return str(self.valor)
    ...
-   >>> a = A(10)                    # crear una referencia
+   >>> a = A(10)                   # crear una referencia
    >>> d = weakref.WeakValueDictionary()
    >>> d['primaria'] = a            # no crea una referencia
    >>> d['primaria']                # traer el objeto si aún está vivo
    10
-   >>> del a                        # eliminar la única referencia
-   >>> gc.collect()                 # recolección de basura justo ahora
+   >>> del a                       # eliminar la única referencia
+   >>> gc.collect()                # recolección de basura justo ahora
    0
    >>> d['primaria']                # la entrada fue automáticamente eliminada
    Traceback (most recent call last):
-     ...
+     File "<stdin>", line 1, in <module>
+       d['primaria']                # la entrada fue automáticamente eliminada
+     File "C:/python36/lib/weakref.py", line 46, in __getitem__
+       o = self.data[key]()
    KeyError: 'primaria'
 
 

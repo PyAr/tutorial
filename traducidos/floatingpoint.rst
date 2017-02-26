@@ -1,3 +1,7 @@
+.. testsetup::
+
+    import math
+
 .. _tut-fp-issues:
 
 ******************************************************
@@ -167,7 +171,7 @@ implementa aritmética basada en números racionales (por lo que números como
 Si sos un usuario frecuente de las operaciones de punto flotante deberías
 pegarle una mirada al paquete Numerical Python y otros paquetes para
 operaciones matemáticas y estadísticas provistos por el proyecto
-SciPy. Mirá <http://scipy.org>.
+SciPy. Mirá <https://scipy.org>.
 
 Python provee herramientas que pueden ayudar en esas raras ocasiones
 cuando realmente *querés* saber el valor exacto de un float. El método

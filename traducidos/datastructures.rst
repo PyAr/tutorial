@@ -62,11 +62,17 @@ de los objetos lista:
 
    Quita todos los elementos de la lista. Equivalente a ``del a[:]``.
 
-.. method:: list.index(x)
+.. method:: list.index(x[, start[, end]])
    :noindex:
 
-   Devuelve el índice en la lista del primer ítem cuyo valor sea *x*. Es un
-   error si no existe tal ítem.
+   Devuelve un índice basado en cero en la lista del primer ítem cuyo valor sea *x*.
+   Levanta una excepción :exc:`ValueError` si no existe tal ítem.
+
+   Los argumentos opcionales *start* y *end* son interpetados como la notación de rebanadas
+   y se usan para limitar la búsqueda a una subsecuencia particular de *x*.
+   El index retornado se calcula de manera relativa al inicio de la secuencia
+   completa en lugar de con respecto al argumento *start*.
+
 
 .. method:: list.count(x)
    :noindex:
@@ -94,28 +100,26 @@ de los objetos lista:
 
 Un ejemplo que usa la mayoría de los métodos de lista::
 
-   >>> a = [66.25, 333, 333, 1, 1234.5]
-   >>> print(a.count(333), a.count(66.25), a.count('x'))
-   2 1 0
-   >>> a.insert(2, -1)
-   >>> a.append(333)
-   >>> a
-   [66.25, 333, -1, 333, 1, 1234.5, 333]
-   >>> a.index(333)
-   1
-   >>> a.remove(333)
-   >>> a
-   [66.25, -1, 333, 1, 1234.5, 333]
-   >>> a.reverse()
-   >>> a
-   [333, 1234.5, 1, 333, -1, 66.25]
-   >>> a.sort()
-   >>> a
-   [-1, 1, 66.25, 333, 333, 1234.5]
-   >>> a.pop()
-   1234.5
-   >>> a
-   [-1, 1, 66.25, 333, 333]
+    >>> frutas = ['naranja', 'manzana', 'pera', 'banana', 'kiwi', 'manzana', 'banana']
+    >>> frutas.count('manzana')
+    2
+    >>> frutas.count('mandarina')
+    0
+    >>> frutas.index('banana')
+    3
+    >>> frutas.index('banana', 4)  # Find next banana starting a position 4
+    6
+    >>> frutas.reverse()
+    >>> frutas
+    ['banana', 'manzana', 'kiwi', 'banana', 'pera', 'manzana', 'naranja']
+    >>> frutas.append('uva')
+    >>> frutas
+	['banana', 'manzana', 'kiwi', 'banana', 'pera', 'manzana', 'naranja', 'uva']    
+    >>> frutas.sort()
+    >>> frutas
+    ['manzana', 'manzana', 'banana', 'banana', 'uva', 'kiwi', 'naranja', 'pera']
+    >>> frutas.pop()
+    'pera'
 
 
 Quizás hayas notado que métodos como ``insert``, ``remove`` o ``sort``, que

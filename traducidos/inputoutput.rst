@@ -30,7 +30,8 @@ formatear tu salida; la primera es hacer todo el manejo de las cadenas vos
 mismo: usando rebanado de cadenas y operaciones de concatenado podés crear
 cualquier forma que puedas imaginar.  El tipo *string* contiene algunos
 métodos útiles para emparejar cadenas a un determinado ancho; estas las
-discutiremos en breve.  La otra forma es usar el método :meth:`str.format`.
+discutiremos en breve.  La otra forma es usar :ref:`formatted string literals <f-strings>`
+o el método :meth:`str.format`.
 
 El módulo :mod:`string` contiene una clase :class:`string.Template` que
 ofrece otra forma de sustituir valores en las cadenas.
@@ -161,11 +162,11 @@ Se pueden usar ``'!a'`` (aplica :func:`apply`), ``'!s'`` (aplica
 :func:`str`) y ``'!r'`` (aplica :func:`repr`) para convertir el valor
 antes de que se formatee. ::
 
-   >>> import math
-   >>> print('El valor de Pi es aproximadamente {}.'.format(math.pi))
-   El valor de Pi es aproximadamente 3.14159265359.
-   >>> print('El valor de Pi es aproximadamente {!r}.'.format(math.pi))
-   El valor de Pi es aproximadamente 3.141592653589793.
+   >>> contents = 'anguilas'
+   >>> print('Mi aerodeslizador esta lleno de {}.'.format(contents))
+   Mi aerodeslizador esta lleno de anguilas.
+   >>> print('My hovercraft is full of {!r}.'.format(contents))
+   Mi aerodeslizador esta lleno de 'anguilas'.
 
 Un ``':`` y especificador de formato opcionales pueden ir luego del nombre del
 campo.  Esto aumenta el control sobre cómo el valor es formateado.  El
@@ -277,12 +278,13 @@ archivo llamado ``f``.
 
 Para leer el contenido de una archivo llamá a ``f.read(cantidad)``, el
 cual lee alguna cantidad de datos y los devuelve como una cadena de
-texto o bytes.  *cantidad* es un argumento numérico opcional.  Cuando
+(en modo texto) o un objeto de bytes (en modo binario).
+*cantidad* es un argumento numérico opcional.  Cuando
 se omite *cantidad* o es negativo, el contenido entero del archivo
 será leido y devuelto; es tu problema si el archivo es el doble de
 grande que la memoria de tu máquina.  De otra manera, a lo sumo una
-*cantidad* de bytes son leídos y devueltos.  Si se alcanzó el
-fin del archivo, ``f.read()`` devolverá una cadena vacía (``""``). ::
+*cantidad* de bytes son leídos y devueltos. 
+Si se alcanzó el fin del archivo, ``f.read()`` devolverá una cadena vacía (``""``). ::
 
    >>> f.read()
    'Este es el archivo entero.\n'
@@ -324,10 +326,13 @@ la cantidad de caracteres escritos. ::
 Para escribir algo más que una cadena, necesita convertirse primero a una
 cadena::
 
+Otros tipos de objetos necesitan serconvertidos -- tanto a una cadena (en modo texto)
+o a un objeto de bytes (en modo binario) -- antes de escribirlos::
+
    >>> valor = ('la respuesta', 42)
-   >>> s = str(valor)
+   >>> s = str(valor)  # convert the tuple to string
    >>> f.write(s)
-   20
+   18
 
 ``f.tell()`` devuelve un entero que indica la posición actual en el archivo
 representada como número de bytes desde el comienzo del archivo en modo

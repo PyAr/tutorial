@@ -227,10 +227,10 @@ Si querés concatenar variables o una variable con un literal, usá ``+``::
 Esta característica es particularmente útil cuando querés separar cadenadas largas::
 
    >>> texto = ('Poné muchas cadenas dentro de paréntesis '
-                'para que ellas sean unidas juntas.')
+   ...          'para que ellas sean unidas juntas.')
    >>> texto
    'Poné muchas cadenas dentro de paréntesis para que ellas sean unidas juntas.'
-   
+
 Las cadenas de texto se pueden *indexar* (subíndices), el primer carácter de la
 cadena tiene el índice 0.  No hay un tipo de dato para los caracteres; un
 carácter es simplemente una cadena de longitud uno::
@@ -357,7 +357,7 @@ de texto::
    :ref:`formatstrings`
       Aquí se da información sobre formateo de cadenas de texto con
       :meth:`str.format`.
-	  
+
    :ref:`old-string-formatting`
       Aquí se describe con más detalle las operaciones viejas para formateo
       usadas cuando una cadena de texto o una cadena Unicode están a la
@@ -541,4 +541,3 @@ Este ejemplo introduce varias características nuevas.
    el mismo significado con simple (``'...'``)  y doble (``"..."``) comillas. La
    única diferencia entre las dos es que dentro de las comillas simples no tenés
    la necesitada de escapar ``"`` (pero tenés que escapar ``\'``) y viceversa.
-

@@ -283,7 +283,7 @@ cual lee alguna cantidad de datos y los devuelve como una cadena de
 se omite *cantidad* o es negativo, el contenido entero del archivo
 será leido y devuelto; es tu problema si el archivo es el doble de
 grande que la memoria de tu máquina.  De otra manera, a lo sumo una
-*cantidad* de bytes son leídos y devueltos. 
+*cantidad* de bytes son leídos y devueltos.
 Si se alcanzó el fin del archivo, ``f.read()`` devolverá una cadena vacía (``""``). ::
 
    >>> f.read()
@@ -323,14 +323,11 @@ la cantidad de caracteres escritos. ::
    >>> f.write('Esto es una prueba\n')
    19
 
-Para escribir algo más que una cadena, necesita convertirse primero a una
-cadena::
-
 Otros tipos de objetos necesitan serconvertidos -- tanto a una cadena (en modo texto)
 o a un objeto de bytes (en modo binario) -- antes de escribirlos::
 
    >>> valor = ('la respuesta', 42)
-   >>> s = str(valor)  # convert the tuple to string
+   >>> s = str(valor)  # Convierte la tupla a string
    >>> f.write(s)
    18
 
@@ -418,7 +415,7 @@ de caracteres representando el objeto quizás haya sido guardado en un
 archivo o datos, o enviado a una máquina distante por una conexión de
 red.
 
-.. note:: 
+.. note::
 
    El formato JSON es comunmente usado por aplicaciones modernas para
    permitir intercambiar datos. Muchos programadores están

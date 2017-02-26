@@ -18,8 +18,11 @@ export PATCH_DIR=`pwd`
 # python-virtualenvwrapper)
 . $VIRTUALENVWRAPPER_SCRIPT
 
+echo "Eliminando el entorno virtual 'python-tutorial'"
+rmvirtualenv python-tutorial
+
 echo "Creando el entorno Python"
-mkvirtualenv python-tutorial
+mkvirtualenv --python python2 python-tutorial
 
 set -e
 
@@ -31,10 +34,13 @@ cdvirtualenv
 cd lib/python2.7/site-packages/pdfrw
 patch -p0 < $PATCH_DIR/pdfrw.diff
 
-echo "Descargando el repositorio de rst2pdf"
 cd $PATCH_DIR
+echo "Eliminando el respositorio de rst2pdf"
+rm -rf rst2pdf
+echo "Descargando el repositorio de rst2pdf"
 git clone https://github.com/rst2pdf/rst2pdf
 cd rst2pdf
+git checkout db62c731b4d03f2afaeef9803a03cc59389cae8b
 python setup.py develop
 patch -p0 < $PATCH_DIR/rst2pdf.diff
 
@@ -45,8 +51,17 @@ pip install sphinx-bootstrap-theme
 echo "Instalando Fabric"
 pip install fabric
 
-echo "instalando BeautifulSoup 4"
+echo "Instalando BeautifulSoup 4"
 pip install bs4
+
+echo "Instalando configparser"
+pip install configparser
+
+echo "Instalando feedparser"
+pip install feedparser
 
 echo "Instalando pdftk"
 sudo apt-get install pdftk
+
+echo "Instalando inkscape"
+sudo apt-get install inkscape

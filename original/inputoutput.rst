@@ -25,7 +25,8 @@ first way is to do all the string handling yourself; using string slicing and
 concatenation operations you can create any layout you can imagine.  The
 string type has some methods that perform useful operations for padding
 strings to a given column width; these will be discussed shortly.  The second
-way is to use the :meth:`str.format` method.
+way is to use :ref:`formatted string literals <f-strings>`, or the
+:meth:`str.format` method.
 
 The :mod:`string` module contains a :class:`~string.Template` class which offers
 yet another way to substitute values into strings.
@@ -152,11 +153,11 @@ Positional and keyword arguments can be arbitrarily combined::
 ``'!a'`` (apply :func:`ascii`), ``'!s'`` (apply :func:`str`) and ``'!r'``
 (apply :func:`repr`) can be used to convert the value before it is formatted::
 
-   >>> import math
-   >>> print('The value of PI is approximately {}.'.format(math.pi))
-   The value of PI is approximately 3.14159265359.
-   >>> print('The value of PI is approximately {!r}.'.format(math.pi))
-   The value of PI is approximately 3.141592653589793.
+   >>> contents = 'eels'
+   >>> print('My hovercraft is full of {}.'.format(contents))
+   My hovercraft is full of eels.
+   >>> print('My hovercraft is full of {!r}.'.format(contents))
+   My hovercraft is full of 'eels'.
 
 An optional ``':'`` and format specifier can follow the field name. This allows
 greater control over how the value is formatted.  The following example
@@ -271,10 +272,11 @@ The rest of the examples in this section will assume that a file object called
 ``f`` has already been created.
 
 To read a file's contents, call ``f.read(size)``, which reads some quantity of
-data and returns it as a string or bytes object.  *size* is an optional numeric
-argument.  When *size* is omitted or negative, the entire contents of the file
-will be read and returned; it's your problem if the file is twice as large as
-your machine's memory. Otherwise, at most *size* bytes are read and returned.
+data and returns it as a string (in text mode) or bytes object (in binary mode).
+*size* is an optional numeric argument.  When *size* is omitted or negative, the
+entire contents of the file will be read and returned; it's your problem if the
+file is twice as large as your machine's memory. Otherwise, at most *size* bytes
+are read and returned.
 If the end of the file has been reached, ``f.read()`` will return an empty
 string (``''``).  ::
 
@@ -315,11 +317,11 @@ the number of characters written. ::
    >>> f.write('This is a test\n')
    15
 
-To write something other than a string, it needs to be converted to a string
-first::
+Other types of objects need to be converted -- either to a string (in text mode)
+or a bytes object (in binary mode) -- before writing them::
 
    >>> value = ('the answer', 42)
-   >>> s = str(value)
+   >>> s = str(value)  # convert the tuple to string
    >>> f.write(s)
    18
 
@@ -337,11 +339,11 @@ beginning of the file as the reference point. ::
    >>> f = open('workfile', 'rb+')
    >>> f.write(b'0123456789abcdef')
    16
-   >>> f.seek(5)     # Go to the 6th byte in the file
+   >>> f.seek(5)      # Go to the 6th byte in the file
    5
    >>> f.read(1)
    b'5'
-   >>> f.seek(-3, 2) # Go to the 3rd byte before the end
+   >>> f.seek(-3, 2)  # Go to the 3rd byte before the end
    13
    >>> f.read(1)
    b'd'

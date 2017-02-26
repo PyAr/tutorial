@@ -15,7 +15,7 @@ operating system::
 
    >>> import os
    >>> os.getcwd()      # Return the current working directory
-   'C:\\Python35'
+   'C:\\Python36'
    >>> os.chdir('/server/accesslogs')   # Change current working directory
    >>> os.system('mkdir today')   # Run the command mkdir in the system shell
    0
@@ -152,7 +152,7 @@ The :mod:`statistics` module calculates basic statistical properties
     >>> statistics.variance(data)
     1.3720238095238095
 
-The SciPy project <http://scipy.org> has many other modules for numerical
+The SciPy project <https://scipy.org> has many other modules for numerical
 computations.
 
 .. _tut-internet-access:
@@ -301,7 +301,7 @@ file::
            with self.assertRaises(TypeError):
                average(20, 30, 70)
 
-   unittest.main() # Calling from the command line invokes all tests
+   unittest.main()  # Calling from the command line invokes all tests
 
 
 .. _tut-batteries-included:

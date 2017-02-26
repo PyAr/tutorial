@@ -120,7 +120,7 @@ are directly accessible:
 If a name is declared global, then all references and assignments go directly to
 the middle scope containing the module's global names.  To rebind variables
 found outside of the innermost scope, the :keyword:`nonlocal` statement can be
-used; if not declared nonlocal, those variable are read-only (an attempt to
+used; if not declared nonlocal, those variables are read-only (an attempt to
 write to such a variable will simply create a *new* local variable in the
 innermost scope, leaving the identically named outer variable unchanged).
 
@@ -162,12 +162,15 @@ binding::
    def scope_test():
        def do_local():
            spam = "local spam"
+
        def do_nonlocal():
            nonlocal spam
            spam = "nonlocal spam"
+
        def do_global():
            global spam
            spam = "global spam"
+
        spam = "test spam"
        do_local()
        print("After local assignment:", spam)
@@ -260,6 +263,7 @@ definition looked like this::
    class MyClass:
        """A simple example class"""
        i = 12345
+
        def f(self):
            return 'hello world'
 
@@ -508,8 +512,10 @@ variable in the class is also ok.  For example::
 
    class C:
        f = f1
+
        def g(self):
            return 'hello world'
+
        h = g
 
 Now ``f``, ``g`` and ``h`` are all attributes of class :class:`C` that refer to
@@ -523,8 +529,10 @@ argument::
    class Bag:
        def __init__(self):
            self.data = []
+
        def add(self, x):
            self.data.append(x)
+
        def addtwice(self, x):
            self.add(x)
            self.add(x)
@@ -713,7 +721,7 @@ will do nicely::
    class Employee:
        pass
 
-   john = Employee() # Create an empty employee record
+   john = Employee()  # Create an empty employee record
 
    # Fill the fields of the record
    john.name = 'John Doe'
@@ -734,55 +742,6 @@ data from a string buffer instead, and pass it as an argument.
 Instance method objects have attributes, too: ``m.__self__`` is the instance
 object with the method :meth:`m`, and ``m.__func__`` is the function object
 corresponding to the method.
-
-
-.. _tut-exceptionclasses:
-
-Exceptions Are Classes Too
-==========================
-
-User-defined exceptions are identified by classes as well.  Using this mechanism
-it is possible to create extensible hierarchies of exceptions.
-
-There are two new valid (semantic) forms for the :keyword:`raise` statement::
-
-   raise Class
-
-   raise Instance
-
-In the first form, ``Class`` must be an instance of :class:`type` or of a
-class derived from it.  The first form is a shorthand for::
-
-   raise Class()
-
-A class in an :keyword:`except` clause is compatible with an exception if it is
-the same class or a base class thereof (but not the other way around --- an
-except clause listing a derived class is not compatible with a base class).  For
-example, the following code will print B, C, D in that order::
-
-   class B(Exception):
-       pass
-   class C(B):
-       pass
-   class D(C):
-       pass
-
-   for cls in [B, C, D]:
-       try:
-           raise cls()
-       except D:
-           print("D")
-       except C:
-           print("C")
-       except B:
-           print("B")
-
-Note that if the except clauses were reversed (with ``except B`` first), it
-would have printed B, B, B --- the first matching except clause is triggered.
-
-When an error message is printed for an unhandled exception, the exception's
-class name is printed, then a colon and a space, and finally the instance
-converted to a string using the built-in function :func:`str`.
 
 
 .. _tut-iterators:
@@ -839,8 +798,10 @@ defines :meth:`__next__`, then :meth:`__iter__` can just return ``self``::
        def __init__(self, data):
            self.data = data
            self.index = len(data)
+
        def __iter__(self):
            return self
+
        def __next__(self):
            if self.index == 0:
                raise StopIteration
@@ -941,8 +902,8 @@ Examples::
 .. rubric:: Footnotes
 
 .. [#] Except for one thing.  Module objects have a secret read-only attribute called
-   :attr:`__dict__` which returns the dictionary used to implement the module's
-   namespace; the name :attr:`__dict__` is an attribute but not a global name.
+   :attr:`~object.__dict__` which returns the dictionary used to implement the module's
+   namespace; the name :attr:`~object.__dict__` is an attribute but not a global name.
    Obviously, using this violates the abstraction of namespace implementation, and
    should be restricted to things like post-mortem debuggers.
 

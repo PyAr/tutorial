@@ -60,11 +60,16 @@ objects:
    Remove all items from the list.  Equivalent to ``del a[:]``.
 
 
-.. method:: list.index(x)
+.. method:: list.index(x[, start[, end]])
    :noindex:
 
-   Return the index in the list of the first item whose value is *x*. It is an
-   error if there is no such item.
+   Return zero-based index in the list of the first item whose value is *x*.
+   Raises a :exc:`ValueError` if there is no such item.
+
+   The optional arguments *start* and *end* are interpreted as in the slice
+   notation and are used to limit the search to a particular subsequence of
+   *x*.  The returned index is computed relative to the beginning of the full
+   sequence rather than the *start* argument.
 
 
 .. method:: list.count(x)
@@ -94,28 +99,26 @@ objects:
 
 An example that uses most of the list methods::
 
-   >>> a = [66.25, 333, 333, 1, 1234.5]
-   >>> print(a.count(333), a.count(66.25), a.count('x'))
-   2 1 0
-   >>> a.insert(2, -1)
-   >>> a.append(333)
-   >>> a
-   [66.25, 333, -1, 333, 1, 1234.5, 333]
-   >>> a.index(333)
-   1
-   >>> a.remove(333)
-   >>> a
-   [66.25, -1, 333, 1, 1234.5, 333]
-   >>> a.reverse()
-   >>> a
-   [333, 1234.5, 1, 333, -1, 66.25]
-   >>> a.sort()
-   >>> a
-   [-1, 1, 66.25, 333, 333, 1234.5]
-   >>> a.pop()
-   1234.5
-   >>> a
-   [-1, 1, 66.25, 333, 333]
+    >>> fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
+    >>> fruits.count('apple')
+    2
+    >>> fruits.count('tangerine')
+    0
+    >>> fruits.index('banana')
+    3
+    >>> fruits.index('banana', 4)  # Find next banana starting a position 4
+    6
+    >>> fruits.reverse()
+    >>> fruits
+    ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange']
+    >>> fruits.append('grape')
+    >>> fruits
+    ['banana', 'apple', 'kiwi', 'banana', 'pear', 'apple', 'orange', 'grape']
+    >>> fruits.sort()
+    >>> fruits
+    ['apple', 'apple', 'banana', 'banana', 'grape', 'kiwi', 'orange', 'pear']
+    >>> fruits.pop()
+    'pear'
 
 You might have noticed that methods like ``insert``, ``remove`` or ``sort`` that
 only modify the list have no return value printed -- they return the default
@@ -397,7 +400,7 @@ objects, such as lists.
 
 Though tuples may seem similar to lists, they are often used in different
 situations and for different purposes.
-Tuples are :term:`immutable`, and usually contain an heterogeneous sequence of
+Tuples are :term:`immutable`, and usually contain a heterogeneous sequence of
 elements that are accessed via unpacking (see later in this section) or indexing
 (or even by attribute in the case of :func:`namedtuples <collections.namedtuple>`).
 Lists are :term:`mutable`, and their elements are usually homogeneous and are

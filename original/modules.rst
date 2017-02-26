@@ -34,7 +34,7 @@ called :file:`fibo.py` in the current directory with the following contents::
            a, b = b, a+b
        print()
 
-   def fib2(n): # return Fibonacci series up to n
+   def fib2(n):   # return Fibonacci series up to n
        result = []
        a, b = 0, 1
        while b < n:
@@ -117,7 +117,8 @@ use it to save typing in interactive sessions.
    For efficiency reasons, each module is only imported once per interpreter
    session.  Therefore, if you change your modules, you must restart the
    interpreter -- or, if it's just one module you want to test interactively,
-   use :func:`imp.reload`, e.g. ``import imp; imp.reload(modulename)``.
+   use :func:`importlib.reload`, e.g. ``import importlib;
+   importlib.reload(modulename)``.
 
 
 .. _tut-modulesasscripts:
@@ -139,7 +140,9 @@ the end of your module::
 
 you can make the file usable as a script as well as an importable module,
 because the code that parses the command line only runs if the module is
-executed as the "main" file::
+executed as the "main" file:
+
+.. code-block:: shell-session
 
    $ python fibo.py 50
    1 1 2 3 5 8 13 21 34

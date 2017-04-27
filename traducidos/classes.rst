@@ -626,7 +626,7 @@ vez de simplemente reemplazar al método de la clase base con el mismo nombre.
 Hay una manera simple de llamar al método de la clase base directamente:
 simplemente llamás a ``ClaseBase.metodo(self, argumentos)``.  En ocasiones esto
 es útil para los clientes también.  (Observá que esto sólo funciona si la clase
-base es accesible como ``CalseBase`` en el ámbito global.)
+base es accesible como ``ClaseBase`` en el ámbito global.)
 
 Python tiene dos funciones integradas que funcionan con herencia:
 

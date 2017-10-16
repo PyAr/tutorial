@@ -1,11 +1,11 @@
 Tutorial de Python en Español
 =============================
 
-Esta traducción cubre la versión 3.5.1 del tutorial de Python.
+Esta traducción cubre la versión 3.6.3 del tutorial de Python.
 
 Utilizando la carpeta Doc/tutorial y el archivo descargado fue este:
 
-* https://hg.python.org/cpython/file/v3.5.1/Doc/tutorial/
+* https://github.com/python/cpython/tree/v3.6.3/Doc/tutorial
 
 La versión OnLine de esta documentación se puede encontrar en:
 
@@ -24,16 +24,12 @@ formatos.
 Actualizar el tutorial
 ----------------------
 
-1. Fijarse en http://hg.python.org/cpython/tags cuál es la última
+1. Fijarse en https://github.com/python/cpython/releases cuál es la última
 versión publicada
 
-1. Hacer click en la versión a la que estamos interesados actualizar
+1. Descargar el `.tar.gz` que aparece al lado del nombre de la versión
 
-1. Ir al link `Browse` y llegar a la carpeta `Doc/tutorial`
-
-1. Descargar el `.bz2` desde la barra del lateral izquierdo
-
-1. Abrir el `.bz2` y descomprimir los archivos de la carpeta
+1. Abrir el `.tar.gz` y descomprimir los archivos de la carpeta
 `Doc/tutorial/*.rst` en nuestro respositorio bajo el directorio
 `original/`
 
@@ -78,7 +74,7 @@ necesario tener instalado `pdftk` 2.01):
 1. Crear una etiqueta de git:
 
  ```
- git tag v3.5.0
+ git tag v3.6.3
  git push --tags
  ```
 

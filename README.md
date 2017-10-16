@@ -69,7 +69,9 @@ necesario tener instalado `pdftk` 2.01):
 
 1. Crear un commit para esta nueva revision:
 
- `git commit -am "Actualización del tutorial"`
+ ```
+ git commit -am "Actualización del tutorial"
+ ```
 
 1. Crear una etiqueta de git:
 

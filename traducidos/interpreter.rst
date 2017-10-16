@@ -142,26 +142,27 @@ código que sea portable. Para mostrar estos caracteres correctamente, tu editor
 debe reconocer que el archivo está en UTF-8 y usar una tipografía que soporte
 todos los careacteres del archivo.
 
-También es posible especificar una codificación distinta para los archivos
-fuente.   Para hacer esto, poné una o más lineas de comentarios especiales
-luego de la linea del ``#!`` para definir la codificación del archivo fuente::
+Para especificar una codificación distinta de la por defecto, un línea
+de comentario especial debe ser agregada como la *primera* línea del
+archivo. La sintaxis es como sigue::
 
    # -*- coding: encoding -*-
 
-Con esa declaración, todo en el archivo fuente será tratado utilizando la
-codificación *encoding* en lugar de UTF-8.  La lista de posibles
-codificaciones se puede encontrar en la Referencia de la Biblioteca
-de Python, en la sección sobre :mod:`codecs`.
-
-Por ejemplo, si tu editor no soporta la codificación UTF-8 e insiste en usar
-alguna otra, digamos Windows-1252, podés escribir::
+Donde *encoding* es uno de los :mod:`codecs` válidos soportados por
+Python.
+   
+Por ejemplo, para indicar que el encoding Windows-1252 es el usado, la
+primera línea de tu código fuente debe ser::
 
    # -*- coding: cp-1252 -*-
 
-y usar todos los caracteres del conjunto de Windows-1252 en los archivos
-fuente.  El comentario especial de la codificación debe estar en la *primera
-o segunda* linea del archivo.
+Una excepción a la regla de la *primera línea* es cuando el código
+fuente comienza con :ref:`UNIX "shebang" line <tut-scripts>`. En este
+caso, la declaración del encoding debe ser agregada como la segunda
+línea del archivo. Por ejempo::
 
+   #!/usr/bin/env python3
+   # -*- coding: cp-1252 -*-
 
 .. rubric:: Footnotes
 

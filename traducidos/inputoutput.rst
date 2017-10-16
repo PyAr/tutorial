@@ -268,6 +268,37 @@ Este cambio automático está bien para archivos de texto, pero corrompería
 datos binarios como los de archivos :file:`JPEG` o :file:`EXE`.  Asegurate
 de usar modo binario cuando leas y escribas tales archivos.
 
+Es una buena práctica usar la declaración :keyword:`with` cuando manejamos
+objetos archivo.  Tiene la ventaja que el archivo es cerrado apropiadamente
+luego de que el bloque termina, incluso si se generó una excepción.  También
+es mucho más corto que escribir los equivalentes bloques
+:keyword:`try`\ -\ :keyword:`finally` ::
+
+    >>> with open('archivodetrabajo') as f:
+    ...     datos_leidos = f.read()
+    >>> f.closed
+    True
+
+Si no estuvieses usando el bloque :keyword:`with`, entonces deberías
+llamar ``f.close()`` para cerrar el archivo e inmediatamente liberar
+cualquier recurso del sistema usado por este. Si no cierras
+explícitamente el archivo, el «garbage collector» de Python
+eventualmente destruirá el objeto y cerrará el archivo por vos, pero
+el archivo puede estar abierto por un tiempo. Otro riesgo es que
+diferentes implementaciones de Python harán esta limpieza en
+diferentes momentos.
+
+Después de que un objeto de archivo es cerrado, ya sea por
+:keyword:`with` o llamando a ``f.close()``, intentar volver a
+utilizarlo fallará automáticamente::
+
+   >>> f.close()
+   >>> f.read()
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+   ValueError: I/O operation on closed file
+
+
 .. _tut-filemethods:
 
 Métodos de los objetos Archivo
@@ -360,28 +391,6 @@ la excepción de ir justo al final con ``seek(0, 2)``) y los únicos valores de
 *desplazamiento* válidos son aquellos retornados por ``f.tell()``, o cero.
 Cualquier otro valor de *desplazamiento* produce un comportamiento indefinido.
 
-Cuando hayas terminado con un archivo, llamá a ``f.close()`` para cerrarlo
-y liberar cualquier recurso del sistema tomado por el archivo abierto.  Luego
-de llamar ``f.close()``, los intentos de usar el objeto archivo fallarán
-automáticamente. ::
-
-   >>> f.close()
-   >>> f.read()
-   Traceback (most recent call last):
-     File "<stdin>", line 1, in ?
-   ValueError: I/O operation on closed file
-
-Es una buena práctica usar la declaración :keyword:`with` cuando manejamos
-objetos archivo.  Tiene la ventaja que el archivo es cerrado apropiadamente
-luego de que el bloque termina, incluso si se generó una excepción.  También
-es mucho más corto que escribir los equivalentes bloques
-:keyword:`try`\ -\ :keyword:`finally` ::
-
-    >>> with open('archivodetrabajo', 'r') as f:
-    ...     read_data = f.read()
-    >>> f.closed
-    True
-
 Los objetos archivo tienen algunos métodos más, como :meth:`isatty` y
 :meth:`truncate` que son usados menos frecuentemente; consultá la
 Referencia de la Biblioteca para una guía completa sobre los objetos
@@ -425,6 +434,7 @@ red.
 Si tienes un objeto ``x``, puedes ver su representación JSON con una
 simple línea de código::
 
+   >>> import json
    >>> json.dumps([1, 'simple', 'lista'])
    '[1, "simple", "lista"]'
 

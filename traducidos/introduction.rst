@@ -101,6 +101,12 @@ producirá un error::
      File "<stdin>", line 1, in <module>
    NameError: name 'n' is not defined
 
+Hay soporte completo de punto flotante; operadores con operando
+mezclados convertirán los enteros a punto flotante::
+
+   >>> 4 * 3.75 - 1
+   14.0
+
 En el modo interactivo, la última expresión impresa es asignada a la variable
 ``_``.  Esto significa que cuando estés usando Python como una calculadora de
 escritorio, es más fácil seguir calculando, por ejemplo::
@@ -360,8 +366,8 @@ de texto::
 
    :ref:`old-string-formatting`
       Aquí se describe con más detalle las operaciones viejas para formateo
-      usadas cuando una cadena de texto o una cadena Unicode están a la
-      izquierda del operador ``%``.
+      usadas cuando una cadena de texto están a la izquierda del operador
+      ``%``.
 
 
 .. _tut-lists:

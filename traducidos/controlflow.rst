@@ -1,8 +1,8 @@
 .. _tut-morecontrol:
 
-**************************************
-Más herramientas para control de flujo
-**************************************
+========================================
+ Más herramientas para control de flujo
+========================================
 
 Además de la sentencia :keyword:`while` que acabamos de introducir,
 Python soporta las sentencias de control de flujo que podemos encontrar en
@@ -511,8 +511,7 @@ así::
        for arg in argumentos:
            print(arg)
        print("-" * 40)
-       claves = sorted(palabrasclaves.keys())
-       for c in claves:
+       for c in palabrasclaves:
            print(c, ":", palabrasclaves[c])
 
 Puede ser llamada así::
@@ -536,10 +535,9 @@ Puede ser llamada así::
    vendedor : Miguel Paez
    puesto : Venta de Queso Argentino
 
-Se debe notar que la lista de nombres de argumentos nombrados se crea al
-ordenar el resultado del método ``keys()`` del diccionario antes de imprimir
-su contenido; si esto no se hace, el orden en que los argumentos son
-impresos no está definido.
+Se debe notar que el orden en el cual los argumentos nombrados son
+impresos está garantizado para coincidir con el orden en el cual
+fueron provistos en la llamada a la función.
 
 .. _tut-arbitraryargs:
 

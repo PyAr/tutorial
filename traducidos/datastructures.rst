@@ -23,11 +23,11 @@ de los objetos lista:
    Agrega un ítem al final de la lista. Equivale a ``a[len(a):] = [x]``.
 
 
-.. method:: list.extend(L)
+.. method:: list.extend(iterable)
    :noindex:
 
-   Extiende la lista agregándole todos los ítems de la lista dada. Equivale
-   a  ``a[len(a):] = L``.
+   Extiende la lista agregándole todos los ítems del iterable. Equivale
+   a  ``a[len(a):] = iterable``.
 
 
 .. method:: list.insert(i, x)
@@ -69,7 +69,7 @@ de los objetos lista:
    Levanta una excepción :exc:`ValueError` si no existe tal ítem.
 
    Los argumentos opcionales *start* y *end* son interpetados como la notación de rebanadas
-   y se usan para limitar la búsqueda a una subsecuencia particular de *x*.
+   y se usan para limitar la búsqueda a una subsecuencia particular de la lista.
    El index retornado se calcula de manera relativa al inicio de la secuencia
    completa en lugar de con respecto al argumento *start*.
 
@@ -482,7 +482,7 @@ Una pequeña demostración::
    {a', 'r', 'b', 'c', 'd'}
    >>> a - b                              # letras en a pero no en b
    {'r', 'b', 'd'}
-   >>> a | b                              # letras en a o en b
+   >>> a | b                              # letras en a o en b o en ambas
    {'a', 'c', 'b', 'd', 'm', 'l', 'r', 'z'}
    >>> a & b                              # letras en a y en b
    {'a', 'c'}

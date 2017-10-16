@@ -16,13 +16,23 @@ export PATCH_DIR=`pwd`
 
 # Incluimos el script de virtualenvwrapper (requiere
 # python-virtualenvwrapper)
-. $VIRTUALENVWRAPPER_SCRIPT
+# . $VIRTUALENVWRAPPER_SCRIPT
+
+# Iniciamos pyenv para manejar entornos virtuales (require
+# https://github.com/pyenv/pyenv)
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 
 echo "Eliminando el entorno virtual 'python-tutorial'"
-rmvirtualenv python-tutorial
+pyenv uninstall -f python-tutorial
+# rmvirtualenv python-tutorial
 
 echo "Creando el entorno Python"
-mkvirtualenv --python python2 python-tutorial
+pyenv virtualenv 2.7.14 python-tutorial
+# mkvirtualenv --python python2 python-tutorial
+
+pyenv activate python-tutorial
 
 set -e
 
@@ -30,13 +40,13 @@ echo "Instalando pdfrw"
 pip install pdfrw
 
 echo "Patcheando pdfrw"
-cdvirtualenv
-cd lib/python2.7/site-packages/pdfrw
+cd $PYENV_VIRTUAL_ENV
+cd lib/python3.6/site-packages/pdfrw
 patch -p0 < $PATCH_DIR/pdfrw.diff
 
 cd $PATCH_DIR
-echo "Eliminando el respositorio de rst2pdf"
-rm -rf rst2pdf
+# echo "Eliminando el respositorio de rst2pdf"
+# rm -rf rst2pdf
 echo "Descargando el repositorio de rst2pdf"
 git clone https://github.com/rst2pdf/rst2pdf
 cd rst2pdf
@@ -60,8 +70,8 @@ pip install configparser
 echo "Instalando feedparser"
 pip install feedparser
 
-echo "Instalando pdftk"
-sudo apt-get install pdftk
+# echo "Instalando pdftk"
+# sudo apt-get install pdftk
 
-echo "Instalando inkscape"
-sudo apt-get install inkscape
+# echo "Instalando inkscape"
+# sudo apt-get install inkscape

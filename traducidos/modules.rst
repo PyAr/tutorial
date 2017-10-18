@@ -121,9 +121,7 @@ embargo, está bien usarlo para ahorrar tecleo en sesiones interactivas.
    Por razones de eficiencia, cada módulo se importa una vez por sesión del
    intérprete.  Por lo tanto, si modificás los módulos, tenés que reiniciar el
    intérprete -- o, si es sólo un módulo que querés probar interactivamente,
-   usá  :func:`imp.reload`, por ejemplo
-    ``import importlib;
-   importlib.reload(modulename)``.
+   usá  :func:`imp.reload`, por ejemplo ``import importlib; importlib.reload(modulename)``.
 
 
 .. _tut-modulesasscripts:

@@ -41,12 +41,12 @@ pip install pdfrw
 
 echo "Patcheando pdfrw"
 cd $PYENV_VIRTUAL_ENV
-cd lib/python3.6/site-packages/pdfrw
+cd lib/python2.7/site-packages/pdfrw
 patch -p0 < $PATCH_DIR/pdfrw.diff
 
 cd $PATCH_DIR
-# echo "Eliminando el respositorio de rst2pdf"
-# rm -rf rst2pdf
+echo "Eliminando el respositorio de rst2pdf"
+rm -rf rst2pdf
 echo "Descargando el repositorio de rst2pdf"
 git clone https://github.com/rst2pdf/rst2pdf
 cd rst2pdf

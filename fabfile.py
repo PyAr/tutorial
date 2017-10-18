@@ -25,19 +25,19 @@ def deploy_all():
 
 
 def deploy_index():
-    local('rsync -rav -e "ssh -l www-pyar -p 22215" '
+    local('rsync -rav -e "ssh -l www-pyar -p 22111" '
           'traducidos/web/* '
           'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/')
 
 
 def deploy_html3():
-    local('rsync -rav -e "ssh -l www-pyar -p 22215" '
+    local('rsync -rav -e "ssh -l www-pyar -p 22111" '
           'traducidos/_build/html/* '
           'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/3/')
 
 
 def deploy_pdf3():
-    local('rsync -rav -e "ssh -l www-pyar -p 22215" '
+    local('rsync -rav -e "ssh -l www-pyar -p 22111" '
           'traducidos/_build/pdf/TutorialPython.pdf '
           'www-pyar@python.org.ar:/home/www-pyar/docs.python.org.ar/tutorial/pdfs/TutorialPython3.pdf')
 

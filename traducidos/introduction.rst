@@ -298,7 +298,7 @@ de *n* caracteres tienen índice *n*, por ejemplo::
     0   1   2   3   4   5   6
    -6  -5  -4  -3  -2  -1
 
-La primer fila de números da la posición de los índices 0...6 en la cadena;
+La primera fila de números da la posición de los índices 0...6 en la cadena;
 la segunda fila da los correspondientes índices negativos. La rebanada de *i*
 a *j* consiste en todos los caracteres entre los puntos etiquetados *i* y *j*,
 respectivamente.
@@ -488,7 +488,7 @@ y dos.  Por ejemplo, podemos escribir una subsecuencia inicial de la serie de
 
 Este ejemplo introduce varias características nuevas.
 
-* La primer línea contiene una *asignación múltiple*: las variables ``a`` y
+* La primera línea contiene una *asignación múltiple*: las variables ``a`` y
   ``b`` toman en forma simultanea los nuevos valores 0 y 1.  En la última linea
   esto se vuelve a usar, demostrando que las expresiones a la derecha son
   evaluadas antes de que suceda cualquier asignación.  Las expresiones a la

@@ -276,7 +276,7 @@ seguirle el nombre de la función y la lista de parámetros formales entre
 paréntesis.  Las sentencias que forman el cuerpo de la función empiezan en la
 línea siguiente, y deben estar con sangría.
 
-La primer sentencia del cuerpo de la función puede ser opcionalmente una
+La primera sentencia del cuerpo de la función puede ser opcionalmente una
 cadena de texto literal; esta es la cadena de texto de documentación de la
 función, o :dfn:`docstring`.  (Podés encontrar más acerca de docstrings en la
 sección :ref:`tut-docstrings`.)
@@ -643,7 +643,7 @@ Cadenas de texto de documentación
 Acá hay algunas convenciones sobre el contenido y formato de las cadenas de
 texto de documentación.
 
-La primer línea debe ser siempre un resumen corto y conciso del propósito del
+La primera línea debe ser siempre un resumen corto y conciso del propósito del
 objeto.  Para ser breve, no se debe mencionar explícitamente el nombre o tipo
 del objeto, ya que estos están disponibles de otros modos (excepto si el nombre
 es un verbo que describe el funcionamiento de la función).  Esta línea debe
@@ -657,7 +657,7 @@ convenciones para llamar al objeto, efectos secundarios, etc.
 El analizador de Python no quita el sangrado de las cadenas de texto
 literales multi-líneas, entonces las herramientas que procesan documentación
 tienen que quitarlo si así lo desean.  Esto se hace mediante la
-siguiente convención.  La primer línea que no está en blanco *siguiente* a la
+siguiente convención.  La primera línea que no está en blanco *siguiente* a la
 primer línea de la cadena determina la cantidad de sangría para toda la
 cadena de documentación.  (No podemos usar la primer línea ya que generalmente
 es adyacente a las comillas de apertura de la cadena y el sangrado no se nota

@@ -13,7 +13,7 @@ lenguaje ideal para scripting y desarrollo rápido de aplicaciones en diversas
 
 El intérprete de Python y la extensa biblioteca estándar están a libre
 disposición en forma binaria y de código fuente para las principales
-plataformas desde el sitio web de Python, https://www.python.org/, y puede
+plataformas desde el sitio web de Python, https://www.python.org/, y pueden
 distribuirse libremente.  El mismo sitio contiene también distribuciones y
 enlaces de muchos módulos libres de Python de terceros, programas y
 herramientas, y documentación adicional.
@@ -28,7 +28,7 @@ características básicas del lenguaje y el sistema de Python.  Es bueno tener u
 interprete de Python a mano para experimentar, sin embargo todos los ejemplos
 están aislados, por lo tanto el tutorial puede leerse estando desconectado.
 
-Para una descripción de los objetos y módulos estándar, mirá
+Para una descripción de los objetos y módulos estándares, mirá
 :ref:`library-index`.  :ref:`library-index` provee una definición más
 formal del lenguaje.  Para escribir extensiones en C o C++, leé
 :ref:`extending-index` y la :ref:`c-api-index`.  Hay también numerosos

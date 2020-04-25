@@ -42,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Tutorial de Python'
-copyright = u'2017, Python Software Foundation'
+copyright = u'2020, Python Software Foundation'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

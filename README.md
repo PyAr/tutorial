@@ -43,17 +43,15 @@ necesario tener instalado `pdftk` 2.01):
    tutorial está traducida, al principio)
 
 1. Crear un commit para esta nueva revision:
-
- ```
- git commit -am "Actualización del tutorial"
- ```
+   ```
+   git commit -am "Actualización del tutorial"
+    ```
 
 1. Crear una etiqueta de git:
-
- ```
- git tag v3.6.3
- git push --tags
- ```
+   ```
+   git tag v3.6.3
+   git push --tags
+   ```
 
 1. Una vez actualizada la traducción, enviar un mail a la lista de
 correo de Python Argentina para informar sobre esta actualización.

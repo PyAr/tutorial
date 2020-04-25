@@ -9,17 +9,8 @@ Utilizando la carpeta Doc/tutorial y el archivo descargado fue este:
 
 La versión OnLine de esta documentación se puede encontrar en:
 
-* http://tutorial.python.org.ar/
+* https://tutorial.python.org.ar/
 
-Configurar entorno para generar el HTML / PDF
----------------------------------------------
-
-Hay un script (`dev/install_dependencies.sh`) que instala las
-dependencias necesarias para generar el tutorial en todos sus
-formatos.
-
-*Abrir el archivo ANTES de ejecutarlo para estar SEGUROS que hace lo
- que queremos...*
 
 Actualizar el tutorial
 ----------------------
@@ -47,22 +38,6 @@ haciendo los cambios en los archivos dentro del directorio
 
 1. Crear las versiones HTML, eBook y PDF (para crear esta version es
 necesario tener instalado `pdftk` 2.01):
-
- ```
- fab create_html
- fab create_ebook
- fab create_pdf
- fab change_htmlindex_version
- ```
-
-1. Verificar que el PDF y eBook se abre correctamente con Evince y Firefox
-(preview)
-
-1. Si tenés permisos de `admin` en el servidor, ejecutar:
-
- ```
- fab deploy_all
- ```
 
 1. Actualizar el README.md (la sección que indica qué versión del
    tutorial está traducida, al principio)

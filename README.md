@@ -12,6 +12,8 @@ La versión OnLine de esta documentación se puede encontrar en:
 * https://tutorial.python.org.ar/
 
 
+Hosteado en Read The Docs: [![Documentation Status](https://readthedocs.org/projects/python-tutorial-es/badge/?version=latest)](https://tutorial.python.org.ar/en/latest/?badge=latest)
+
 Actualizar el tutorial
 ----------------------
 
@@ -53,5 +55,6 @@ necesario tener instalado `pdftk` 2.01):
    git push --tags
    ```
 
-1. Una vez actualizada la traducción, enviar un mail a la lista de
-correo de Python Argentina para informar sobre esta actualización.
+1. Una vez actualizada la traducción. Cuando el PR es aceptado y "mergeado" a master la documentación se va a actualizar 
+   automaticamente en Read the Docs
+

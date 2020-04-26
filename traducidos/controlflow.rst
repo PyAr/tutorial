@@ -658,7 +658,7 @@ El analizador de Python no quita el sangrado de las cadenas de texto
 literales multi-líneas, entonces las herramientas que procesan documentación
 tienen que quitarlo si así lo desean.  Esto se hace mediante la
 siguiente convención.  La primera línea que no está en blanco *siguiente* a la
-primer línea de la cadena determina la cantidad de sangría para toda la
+primera línea de la cadena determina la cantidad de sangría para toda la
 cadena de documentación.  (No podemos usar la primer línea ya que generalmente
 es adyacente a las comillas de apertura de la cadena y el sangrado no se nota
 en la cadena de texto).  Los espacios en blanco "equivalentes" a este sangrado

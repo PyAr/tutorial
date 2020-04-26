@@ -11,6 +11,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
+import os
 import sphinx_bootstrap_theme
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -22,7 +23,10 @@ import sphinx_bootstrap_theme
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'rst2pdf.pdfbuilder']
+extensions = ['sphinx.ext.autodoc']
+
+if not os.environ.get('READTHEDOCS', None):
+    extensions.append('rst2pdf.pdfbuilder')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -38,7 +42,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Tutorial de Python'
-copyright = u'2017, Python Software Foundation'
+copyright = u'2020, Python Software Foundation'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

@@ -45,10 +45,6 @@ instalado con un número de versión, con lo que si tienes múltiples
 versiones de Python en tu sistema puedes seleccionar una versión de
 Python específica ejecutando ``python3`` o la versión que desees.
 
-
-To create a virtual environment, decide upon a directory where you want to
-place it, 
-
 Para crear un virtualenv, decide en que carpeta quieres crearlo y
 ejecuta el módulo :mod:`venv` como script con la ruta a la carpeta::
 

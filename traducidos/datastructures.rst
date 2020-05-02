@@ -434,9 +434,7 @@ encerrar un único valor entre paréntesis).  Feo, pero efectivo.  Por ejemplo::
 
 La declaración ``t = 12345, 54321, 'hola!'`` es un ejemplo de *empaquetado de
 tuplas*: los valores ``12345``, ``54321`` y ``'hola!'`` se empaquetan juntos en
-una tupla.
-
-La operación inversa también es posible::
+una tupla. La operación inversa también es posible::
 
    >>> x, y, z = t
 

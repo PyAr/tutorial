@@ -194,6 +194,8 @@ directorio en lugar de módulos de la biblioteca estándar con el mismo
 nombre. Esto es un error a menos que se esté reemplazando intencionalmente.
 Mirá la sección :ref:`tut-standardmodules` para más información.
 
+.. %
+    Do we need stuff on zip files etc. ? DUBOIS
 
 Archivos "compilados" de Python
 -------------------------------

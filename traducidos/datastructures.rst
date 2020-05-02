@@ -703,11 +703,9 @@ son iguales, se comparan los siguientes dos ítems, y así sucesivamente hasta
 llegar al final de alguna de las secuencias. Si dos ítems a comparar son ambos
 secuencias del mismo tipo, la comparación lexicográfica es recursiva.  Si todos
 los ítems de dos secuencias resultan iguales, se considera que las secuencias
-son iguales.
-
-Si una secuencia es una subsecuencia inicial de la otra, la secuencia más corta
-es la menor. El orden lexicográfico para cadenas de caracteres utiliza el orden
-de códigos Unicode para caracteres individuales.  Algunos ejemplos de
+son iguales. Si una secuencia es una subsecuencia inicial de la otra, la secuencia 
+más corta es la menor. El orden lexicográfico para cadenas de caracteres utiliza 
+el orden de códigos Unicode para caracteres individuales.  Algunos ejemplos de
 comparaciones entre secuencias del mismo tipo::
 
    (1, 2, 3)              < (1, 2, 4)

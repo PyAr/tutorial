@@ -254,6 +254,7 @@ after the last reference to it has been eliminated.
 This approach works fine for most applications but occasionally there is a need
 to track objects only as long as they are being used by something else.
 Unfortunately, just tracking them creates a reference that makes them permanent.
+
 The :mod:`weakref` module provides tools for tracking objects without creating a
 reference.  When the object is no longer needed, it is automatically removed
 from a weakref table and a callback is triggered for weakref objects.  Typical

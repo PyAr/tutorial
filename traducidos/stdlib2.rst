@@ -117,13 +117,14 @@ o el formato de archivo::
    ...
    >>> fmt = input('Enter rename style (%d-date %n-seqnum %f-format):  ')
    Enter rename style (%d-date %n-seqnum %f-format):  Ashley_%n%f
+
    >>> t = BatchRename(fmt)
    >>> date = time.strftime('%d%b%y')
    >>> for i, filename in enumerate(photofiles):
    ...     base, ext = os.path.splitext(filename)
    ...     newname = t.substitute(d=date, n=i, f=ext)
    ...     print('{0} --> {1}'.format(filename, newname))
-   ...
+
    img_1074.jpg --> Ashley_0.jpg
    img_1076.jpg --> Ashley_1.jpg
    img_1077.jpg --> Ashley_2.jpg
@@ -190,6 +191,7 @@ su ejecución::
            threading.Thread.__init__(self)
            self.arch_ent = arch_ent
            self.arch_sal = arch_sal
+
        def run(self):
            f = zipfile.ZipFile(self.arch_sal, 'w', zipfile.ZIP_DEFLATED)
            f.write(self.arch_ent)
@@ -277,7 +279,7 @@ El módulo :mod:`weakref` provee herramientas para seguimiento de objetos que
 no crean una referencia.  Cuando el objeto no se necesita más, es eliminado
 automáticamente de una tabla de referencias débiles y se dispara una
 retrollamada (`callback`).  Comúnmente se usa para mantener una `cache` de
-objetos que son caros de crear:
+objetos que son caros de crear::
 
    >>> import weakref, gc
    >>> class A:

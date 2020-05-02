@@ -197,8 +197,7 @@ Esto se podría también hacer pasando la tabla como argumentos nombrados con la
 notación '**'. ::
 
    >>> tabla = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-   >>> print('Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; '
-             'Dcab: {Dcab:d}'.format(**tabla))
+   >>> print('Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**tabla))
    Jack: 4098; Sjoerd: 4127; Dcab: 8637678
 
 Esto es particularmente útil en combinación con la función integrada
@@ -233,11 +232,18 @@ Leyendo y escribiendo archivos
    object: file
 
 La función :func:`open` devuelve un `objeto archivo`, y se usa
-normalmente con dos argumentos: ``open(nombre_de_archivo, modo)``. ::
+normalmente con dos argumentos: ``open(nombre_de_archivo, modo)``.
+
+::
 
    >>> f = open('archivodetrabajo', 'w')
    >>> print(f)
    <_io.TextIOWrapper name='archivodetrabajo' mode='w' encoding='UTF-8'>
+
+.. XXX str(f) is <io.TextIOWrapper object at 0x82e8dc4>
+
+   >>> print(f)
+   <open file 'workfile', mode 'w' at 80a0960>
 
 El primer argumento es una cadena conteniendo el nombre de archivo.  El segundo
 argumento es otra cadena conteniendo unos pocos caracteres que describen la
@@ -337,7 +343,7 @@ es eficiente en memoria, rápido, y conduce a un código más simple::
 
    >>> for linea in f:
    ...     print(linea, end='')
-
+   ...
    Esta es la primer linea del archivo
    Segunda linea del archivo
 
@@ -421,7 +427,6 @@ archivo o datos, o enviado a una máquina distante por una conexión de
 red.
 
 .. note::
-
    El formato JSON es comunmente usado por aplicaciones modernas para
    permitir intercambiar datos. Muchos programadores están
    familiarizados con este, lo que lo hace una buena elección por su

@@ -126,7 +126,7 @@ ejemplo::
 
    ... except (RuntimeError, TypeError, NameError):
    ...     pass
-  
+
 Una clase en una clausula :keyword:`except` es compatible con una excepción si la misma esta en
 la misma clase o una clase base de la misma (pero no de la otra manera --- una
 clausula except listando una clase derivada no es compatible con una clase base).
@@ -251,7 +251,7 @@ una excepción específica.  Por ejemplo::
 
    >>> raise NameError('Hola')
    Traceback (most recent call last):
-     File "<stdin>", line 1, in <module>	 
+     File "<stdin>", line 1, in <module>
    NameError: Hola
 
 El único argumento a :keyword:`raise` indica la excepción a generarse. Tiene
@@ -273,7 +273,7 @@ relanzarla::
    ...
    Voló una excepción!
    Traceback (most recent call last):
-     File "<stdin>", line 2, in <module>	 
+     File "<stdin>", line 2, in <module>
    NameError: Hola
 
 
@@ -320,6 +320,7 @@ condiciones de error::
            siguiente -- nuevo estado intentado
            mensaje -- explicación de por qué la transición no está permitida
        """
+
        def __init__(self, previo, siguiente, mensaje):
            self.previo = previo
            self.siguiente = siguiente
@@ -380,8 +381,8 @@ más complicado::
    ejecutando la clausula finally
    >>> divide("2", "1")
    ejecutando la clausula finally
-   Traceback (most recent call last):     
-     File "<stdin>", line 1, in <module>	 
+   Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
      File "<stdin>", line 3, in divide
    TypeError: unsupported operand type(s) for /: 'str' and 'str'
 

@@ -188,12 +188,15 @@ espacios de nombres, y cómo las declaraciones :keyword:`global` y
    def prueba_ambitos():
        def hacer_local():
            algo = "algo local"
+
        def hacer_nonlocal():
            nonlocal algo
            algo = "algo no local"
+
        def hacer_global():
            global algo
            algo = "algo global"
+
        algo = "algo de prueba"
        hacer_local()
        print("Luego de la asignación local:", algo)
@@ -287,6 +290,7 @@ cuando ésta se creó.  Por lo tanto, si la definición de la clase es así::
    class MiClase:
        """Simple clase de ejemplo"""
        i = 12345
+
        def f(self):
            return 'hola mundo'
 
@@ -548,8 +552,10 @@ función a una variable local en la clase también está bien.  Por ejemplo::
 
    class C:
        f = f1
+
        def g(self):
            return 'hola mundo'
+
        h = g
 
 Ahora ``f``, ``g`` y ``h`` son todos atributos de la clase :class:`C` que hacen
@@ -564,8 +570,10 @@ Los métodos pueden llamar a otros métodos de la instancia usando el argumento
    class Bolsa:
        def __init__(self):
            self.datos = []
+
        def agregar(self, x):
            self.datos.append(x)
+
        def dobleagregar(self, x):
            self.agregar(x)
            self.agregar(x)
@@ -843,14 +851,19 @@ que devuelva un objeto con un método :meth:`__next__`.  Si la clase define
    ...     def __init__(self, datos):
    ...         self.datos = datos
    ...         self.indice = len(datos)
+
    ...     def __iter__(self):
    ...         return self
+
    ...     def __next__(self):
    ...         if self.indice == 0:
    ...             raise StopIteration
    ...         self.indice = self.indice - 1
    ...         return self.datos[self.indice]
-   ...
+
+
+::
+
    >>> rev = Reversa('spam')
    >>> iter(rev)
    <__main__.Reversa object at 0x00A1DB50>
@@ -879,6 +892,9 @@ ejemplo muestra que los generadores pueden ser muy fáciles de crear::
    ...     for indice in range(len(datos)-1, -1, -1):
    ...         yield datos[indice]
    ...
+
+::
+
    >>> for letra in reversa('golf'):
    ...     print(letra)
    ...

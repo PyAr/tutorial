@@ -1,6 +1,11 @@
 Tutorial de Python en Español
 =============================
 
+
+:warning: **Este repo contiene la versión original de la traducción del tutorial. Recientemente la migramos al formato oficial para poder tenerlo disponible en docs.python.org**
+
+El repositorio con el formato oficial es: https://github.com/PyCampES/python-docs-es 
+
 Esta traducción cubre la versión 3.6.3 del tutorial de Python.
 
 Utilizando la carpeta Doc/tutorial y el archivo descargado fue este:
